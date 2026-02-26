@@ -110,8 +110,8 @@
 
   /* EVENTS */
   .events{background:var(--color-bg);padding:64px 20px;}
-  .events-inner{max-width:800px;margin:0 auto;display:grid;grid-template-columns:1fr 1px 1fr;gap:40px;align-items:center;text-align:center;}
-  @media(max-width:600px){.events-inner{grid-template-columns:1fr;gap:40px;}.vline{display:none;}}
+  .events-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;gap:32px;align-items:center;text-align:center;}
+  @media(max-width:700px){.events-inner{grid-template-columns:1fr;gap:40px;}.vline{display:none;}}
   .vline{background:var(--color-accent);height:120px;}
   .event-icon{font-size:1.8rem;margin-bottom:12px;}
   .event-type{font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--color-accent);margin-bottom:8px;}
@@ -270,6 +270,14 @@
   <p class="section-label" style="text-align:center;padding-top:0" data-i18n="scheduleLabel"></p>
   <div class="events-inner" style="padding-bottom:0;margin-bottom:32px;">
     <div>
+      <div class="event-icon">📋</div>
+      <p class="event-type" data-i18n="civil"></p>
+      <p class="event-time" id="civil-time"></p>
+      <p class="event-place" id="civil-place"></p>
+      <a class="map-btn" id="civil-map" href="#" target="_blank" data-i18n="viewMap"></a>
+    </div>
+    <div class="vline"></div>
+    <div>
       <div class="event-icon">⛪</div>
       <p class="event-type" data-i18n="ceremony"></p>
       <p class="event-time" id="ceremony-time"></p>
@@ -380,12 +388,17 @@ const WEDDING = {
     en:"With immense joy and love in our hearts, we invite you to share the most special day of our lives. Your presence will make this moment even more memorable and full of love.",
     pa:"ਆਪਣੇ ਦਿਲਾਂ ਵਿੱਚ ਅਥਾਹ ਖੁਸ਼ੀ ਅਤੇ ਪਿਆਰ ਨਾਲ, ਅਸੀਂ ਤੁਹਾਨੂੰ ਆਪਣੀ ਜ਼ਿੰਦਗੀ ਦੇ ਸਭ ਤੋਂ ਖਾਸ ਦਿਨ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਲਈ ਸੱਦਾ ਦਿੰਦੇ ਹਾਂ।"
   },
-  ceremonyTime:"4:00 PM",
-  ceremonyPlace:"Parroquia de San Juan Bautista\nCoyoacán, CDMX",
-  ceremonyMap:"https://maps.google.com/?q=Parroquia+San+Juan+Bautista+Coyoacan",
+  civilTime:"12:00 PM",
+  civilPlace:"Registro Civil No. 1\nChihuahua, México",
+  civilMap:"https://maps.google.com/?q=Registro+Civil+Chihuahua",
+
+  templeTime:"4:00 PM",
+  templePlace:"Parroquia de San Juan Bautista\nChihuahua, México",
+  templeMap:"https://maps.google.com/?q=Parroquia+San+Juan+Bautista+Chihuahua",
+
   receptionTime:"7:00 PM",
-  receptionPlace:"Salón Los Jardines\nPolanco, CDMX",
-  receptionMap:"https://maps.google.com/?q=Polanco+CDMX",
+  receptionPlace:"Salón Los Jardines\nChihuahua, México",
+  receptionMap:"https://maps.google.com/?q=Salon+Los+Jardines+Chihuahua",
   dresscodeTitle:{es:"Formal",en:"Formal Attire",pa:"ਰਸਮੀ ਪਹਿਰਾਵਾ"},
   dresscodeDesc:{
     es:"Caballeros: traje oscuro. Damas: vestido largo o cocktail.\nPaleta de colores sugerida:",
@@ -423,7 +436,7 @@ const T = {
     weddingTag:"nos casamos",countdown:"cuenta regresiva",
     days:"días",hours:"horas",minutes:"minutos",seconds:"segundos",
     messageLabel:"un mensaje para ustedes",messageTitle:"Juntos para siempre",
-    scheduleLabel:"programa del día",ceremony:"ceremonia",reception:"recepción",
+    scheduleLabel:"programa del día",civil:"boda civil",ceremony:"ceremonia religiosa",reception:"recepción",
     viewMap:"ver en mapa",dresscodeLabel:"código de vestimenta",
     songLabel:"nuestra canción",songTitle2:"La música de nuestro amor",
     listenSpotify:"escuchar en spotify",
@@ -437,7 +450,7 @@ const T = {
     weddingTag:"we're getting married",countdown:"countdown",
     days:"days",hours:"hours",minutes:"minutes",seconds:"seconds",
     messageLabel:"a message for you",messageTitle:"Together Forever",
-    scheduleLabel:"day schedule",ceremony:"ceremony",reception:"reception",
+    scheduleLabel:"day schedule",civil:"civil wedding",ceremony:"church ceremony",reception:"reception",
     viewMap:"view on map",dresscodeLabel:"dress code",
     songLabel:"our song",songTitle2:"The Music of Our Love",
     listenSpotify:"listen on spotify",
@@ -451,7 +464,7 @@ const T = {
     weddingTag:"ਅਸੀਂ ਵਿਆਹ ਕਰਵਾ ਰਹੇ ਹਾਂ",countdown:"ਉਲਟੀ ਗਿਣਤੀ",
     days:"ਦਿਨ",hours:"ਘੰਟੇ",minutes:"ਮਿੰਟ",seconds:"ਸਕਿੰਟ",
     messageLabel:"ਤੁਹਾਡੇ ਲਈ ਇੱਕ ਸੁਨੇਹਾ",messageTitle:"ਹਮੇਸ਼ਾ ਲਈ ਇਕੱਠੇ",
-    scheduleLabel:"ਦਿਨ ਦਾ ਪ੍ਰੋਗਰਾਮ",ceremony:"ਵਿਆਹ ਸਮਾਰੋਹ",reception:"ਸਵਾਗਤ ਸਮਾਰੋਹ",
+    scheduleLabel:"ਦਿਨ ਦਾ ਪ੍ਰੋਗਰਾਮ",civil:"ਸਿਵਲ ਵਿਆਹ",ceremony:"ਧਾਰਮਿਕ ਸਮਾਰੋਹ",reception:"ਸਵਾਗਤ ਸਮਾਰੋਹ",
     viewMap:"ਨਕਸ਼ੇ 'ਤੇ ਵੇਖੋ",dresscodeLabel:"ਪਹਿਰਾਵੇ ਦਾ ਕੋਡ",
     songLabel:"ਸਾਡਾ ਗੀਤ",songTitle2:"ਸਾਡੇ ਪਿਆਰ ਦਾ ਸੰਗੀਤ",
     listenSpotify:"ਸਪੋਟੀਫਾਈ 'ਤੇ ਸੁਣੋ",
@@ -497,9 +510,12 @@ document.getElementById("heart-initials").textContent = WEDDING.heartInitials;
 document.getElementById("name1").textContent          = WEDDING.name1;
 document.getElementById("name2").textContent          = WEDDING.name2;
 document.getElementById("wedding-city").textContent   = WEDDING.city;
-document.getElementById("ceremony-time").textContent  = WEDDING.ceremonyTime;
-document.getElementById("ceremony-place").innerHTML   = WEDDING.ceremonyPlace.replace("\n","<br>");
-document.getElementById("ceremony-map").href          = WEDDING.ceremonyMap;
+document.getElementById("civil-time").textContent    = WEDDING.civilTime;
+document.getElementById("civil-place").innerHTML     = WEDDING.civilPlace.replace("\n","<br>");
+document.getElementById("civil-map").href            = WEDDING.civilMap;
+document.getElementById("ceremony-time").textContent = WEDDING.templeTime;
+document.getElementById("ceremony-place").innerHTML  = WEDDING.templePlace.replace("\n","<br>");
+document.getElementById("ceremony-map").href         = WEDDING.templeMap;
 document.getElementById("reception-time").textContent = WEDDING.receptionTime;
 document.getElementById("reception-place").innerHTML  = WEDDING.receptionPlace.replace("\n","<br>");
 document.getElementById("reception-map").href         = WEDDING.receptionMap;
