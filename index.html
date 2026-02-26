@@ -356,17 +356,17 @@
 const WEDDING = {
   name1:"Dallany", name2:"Tony", heartInitials:"D & T",
   dateISO:"2026-06-30T17:00:00", city:"Chihuahua, México",
-  dateDisplay:{es:"Martes, 30 de Junio de 2026",en:"Tuesday, June 30th, 2026",pa:"ਮੰਗਲਵਾਰ, 30 ਜੂਨ 2026"},
+  dateDisplay:{es:"Viernes, 3 de Julio de 2026",en:"Friday, July 3rd, 2026",pa:"ਸ਼ੁੱਕਰਵਾਰ, 3 ਜੁਲਾਈ 2026"},
   message:{
     es:"Con inmensa alegría y amor en nuestros corazones, los invitamos a compartir el día más especial de nuestras vidas. Su presencia hará este momento aún más memorable y lleno de amor.",
     en:"With immense joy and love in our hearts, we invite you to share the most special day of our lives. Your presence will make this moment even more memorable and full of love.",
     pa:"ਆਪਣੇ ਦਿਲਾਂ ਵਿੱਚ ਅਥਾਹ ਖੁਸ਼ੀ ਅਤੇ ਪਿਆਰ ਨਾਲ, ਅਸੀਂ ਤੁਹਾਨੂੰ ਆਪਣੀ ਜ਼ਿੰਦਗੀ ਦੇ ਸਭ ਤੋਂ ਖਾਸ ਦਿਨ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਲਈ ਸੱਦਾ ਦਿੰਦੇ ਹਾਂ।"
   },
-  civilDate:"Jueves, 2 de Julio de 2026", civilTime:"12:00 PM",
+  civilDate:"Miércoles, 1 de Julio de 2026", civilTime:"12:00 PM",
   civilPlace:"Registro Civil No. 1\nChihuahua, México", civilMap:"https://maps.google.com/?q=Registro+Civil+Chihuahua",
-  templeDate:"Viernes, 3 de Julio de 2026", templeTime:"4:00 PM",
-  templePlace:"Colonia Juárez Temple\nChihuahua, México", templeMap:"https://maps.app.goo.gl/ywPJZuzydDq6wroc6",
-  receptionDate:"Sábado, 4 de Julio de 2026", receptionTime:"7:00 PM",
+  templeDate:"Jueves, 2 de Julio de 2026", templeTime:"4:00 PM",
+  templePlace:"Parroquia de San Juan Bautista\nChihuahua, México", templeMap:"https://maps.google.com/?q=Parroquia+San+Juan+Bautista+Chihuahua",
+  receptionDate:"Viernes, 3 de Julio de 2026", receptionTime:"7:00 PM",
   receptionPlace:"Salón Los Jardines\nChihuahua, México", receptionMap:"https://maps.google.com/?q=Salon+Los+Jardines+Chihuahua",
   dresscodeTitle:{es:"Formal",en:"Formal Attire",pa:"ਰਸਮੀ ਪਹਿਰਾਵਾ"},
   dresscodeGents:{es:"Traje oscuro\nCamisa blanca\nCorbata o moño",en:"Dark suit\nWhite dress shirt\nTie or bow tie",pa:"ਗਹਿਰਾ ਸੂਟ\nਚਿੱਟੀ ਕਮੀਜ਼\nਟਾਈ ਜਾਂ ਬੋ ਟਾਈ"},
@@ -634,6 +634,8 @@ setPhoto("dress-photo",WEDDING.photoDress,"photoSlot");
 setPhoto("song-photo",WEDDING.photoSong,"photoSlot");
 setPhoto("gifts-photo",WEDDING.photoGifts,"photoSlot");
 setLang('es');
+// Force date display after lang is set
+safeSet("wedding-date-display", WEDDING.dateDisplay['es']);
 
 function updateCountdown(){
   const diff=Math.max(0,new Date(WEDDING.dateISO).getTime()-Date.now());
