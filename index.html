@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación de Boda</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  /* ============ CONFIG ============ */
+  :root {
+    --color-bg: #faf8f5;
+    --color-primary: #7a6a52;
+    --color-accent: #c4a882;
+    --color-text: #3e3530;
+    --color-light: #ede8df;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Montserrat', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+  }
+
+  /* ---- HERO ---- */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    background:
+      radial-gradient(ellipse at top, rgba(196,168,130,0.15) 0%, transparent 70%),
+      var(--color-bg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before, .hero::after {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,168,130,0.12), transparent 70%);
+    pointer-events: none;
+  }
+  .hero::before { top: -80px; left: -80px; }
+  .hero::after  { bottom: -80px; right: -80px; }
+
+  .ornament { color: var(--color-accent); font-size: 1.5rem; letter-spacing: 6px; margin-bottom: 16px; }
+
+  .hero-subtitle {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: .75rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+  }
+
+  .hero-names {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.1;
+    color: var(--color-text);
+  }
+
+  .hero-names span { color: var(--color-primary); }
+  .hero-ampersand { color: var(--color-accent); display: block; font-size: 1.3em; }
+
+  .divider {
+    display: flex; align-items: center; gap: 16px;
+    margin: 28px auto; width: min(280px, 80%);
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--color-accent); }
+  .divider-icon { color: var(--color-accent); font-size: 1.1rem; }
+
+  .hero-date {
+    font-family: var(--font-serif);
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+  }
+
+  .hero-location {
+    font-family: var(--font-sans);
+    font-size: .78rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-top: 8px;
+  }
+
+  /* ---- COUNTDOWN ---- */
+  .countdown-section {
+    background: var(--color-light);
+    text-align: center;
+    padding: 50px 20px;
+  }
+
+  .section-label {
+    font-size: .7rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 24px;
+  }
+
+  .countdown {
+    display: flex;
+    justify-content: center;
+    gap: clamp(16px, 4vw, 48px);
+  }
+
+  .countdown-unit { text-align: center; }
+
+  .countdown-num {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 300;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .countdown-label {
+    font-size: .6rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-top: 4px;
+  }
+
+  /* ---- SECTIONS ---- */
+  section {
+    padding: 64px 20px;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-text);
+    margin-bottom: 16px;
+  }
+
+  .section-body {
+    font-weight: 300;
+    font-size: .88rem;
+    line-height: 1.9;
+    color: #6b5e53;
+  }
+
+  /* ---- CEREMONY & RECEPTION ---- */
+  .events {
+    background: var(--color-bg);
+    padding: 64px 20px;
+  }
+
+  .events-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 40px;
+    align-items: center;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    .events-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .vline { display: none; }
+  }
+
+  .vline { background: var(--color-accent); height: 120px; }
+
+  .event-icon { font-size: 1.8rem; margin-bottom: 12px; }
+  .event-type {
+    font-size: .68rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 8px;
+  }
+  .event-time {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-primary);
+    margin-bottom: 4px;
+  }
+  .event-place {
+    font-size: .78rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: #6b5e53;
+  }
+
+  /* ---- DRESS CODE ---- */
+  .dresscode {
+    background: var(--color-light);
+    padding: 56px 20px;
+    text-align: center;
+  }
+
+  .palette {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .swatch {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  }
+
+  /* ---- RSVP ---- */
+  .rsvp-section {
+    background: var(--color-primary);
+    color: white;
+    padding: 64px 20px;
+    text-align: center;
+  }
+
+  .rsvp-section .section-title { color: white; }
+  .rsvp-section .section-body { color: rgba(255,255,255,.75); }
+
+  .rsvp-btn {
+    display: inline-block;
+    margin-top: 28px;
+    padding: 14px 44px;
+    border: 1px solid rgba(255,255,255,.6);
+    color: white;
+    font-family: var(--font-sans);
+    font-size: .72rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all .3s;
+    cursor: pointer;
+    background: transparent;
+  }
+
+  .rsvp-btn:hover {
+    background: rgba(255,255,255,.15);
+    border-color: white;
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background: var(--color-text);
+    color: rgba(255,255,255,.4);
+    text-align: center;
+    padding: 28px 20px;
+    font-size: .68rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  /* ---- MAP BUTTON ---- */
+  .map-btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 9px 24px;
+    border: 1px solid var(--color-accent);
+    color: var(--color-primary);
+    font-size: .68rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    transition: all .3s;
+  }
+  .map-btn:hover { background: var(--color-accent); color: white; }
+
+  /* ---- FADE IN ---- */
+  .fade { opacity: 0; transform: translateY(24px); transition: opacity .8s, transform .8s; }
+  .fade.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- ========== HERO ========== -->
+<div class="hero">
+  <p class="ornament">✦ ✦ ✦</p>
+  <p class="hero-subtitle">Nos casamos</p>
+  <h1 class="hero-names">
+    <span id="name1">Mary</span>
+    <span class="hero-ampersand">&</span>
+    <span id="name2">Dylan</span>
+  </h1>
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-icon">❧</div>
+    <div class="divider-line"></div>
+  </div>
+  <p class="hero-date" id="wedding-date-display">Sábado, 12 de Abril de 2025</p>
+  <p class="hero-location" id="wedding-city">Ciudad de México, México</p>
+</div>
+
+<!-- ========== COUNTDOWN ========== -->
+<div class="countdown-section">
+  <p class="section-label">Cuenta regresiva</p>
+  <div class="countdown">
+    <div class="countdown-unit"><div class="countdown-num" id="cd-days">00</div><div class="countdown-label">Días</div></div>
+    <div class="countdown-unit"><div class="countdown-num" id="cd-hours">00</div><div class="countdown-label">Horas</div></div>
+    <div class="countdown-unit"><div class="countdown-num" id="cd-min">00</div><div class="countdown-label">Minutos</div></div>
+    <div class="countdown-unit"><div class="countdown-num" id="cd-sec">00</div><div class="countdown-label">Segundos</div></div>
+  </div>
+</div>
+
+<!-- ========== MESSAGE ========== -->
+<section class="fade">
+  <p class="section-label">Un mensaje para ustedes</p>
+  <h2 class="section-title">Juntos para siempre</h2>
+  <p class="section-body" id="wedding-message">
+    Con inmensa alegría y amor en nuestros corazones, los invitamos a compartir el día más especial de nuestras vidas.
+    Su presencia hará este momento aún más memorable y lleno de amor.
+  </p>
+</section>
+
+<!-- ========== CEREMONY & RECEPTION ========== -->
+<div class="events fade">
+  <p class="section-label" style="text-align:center; padding-top:64px;">Programa del día</p>
+  <div class="events-inner" style="padding-bottom:64px;">
+    <div>
+      <div class="event-icon">⛪</div>
+      <p class="event-type">Ceremonia</p>
+      <p class="event-time" id="ceremony-time">4:00 PM</p>
+      <p class="event-place" id="ceremony-place">Parroquia de San Juan Bautista<br>Coyoacán, CDMX</p>
+      <a class="map-btn" id="ceremony-map" href="#" target="_blank">Ver en mapa</a>
+    </div>
+    <div class="vline"></div>
+    <div>
+      <div class="event-icon">🥂</div>
+      <p class="event-type">Recepción</p>
+      <p class="event-time" id="reception-time">7:00 PM</p>
+      <p class="event-place" id="reception-place">Salón Los Jardines<br>Polanco, CDMX</p>
+      <a class="map-btn" id="reception-map" href="#" target="_blank">Ver en mapa</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========== DRESS CODE ========== -->
+<div class="dresscode fade">
+  <p class="section-label">Código de vestimenta</p>
+  <h2 class="section-title" id="dresscode-title">Formal</h2>
+  <p class="section-body" id="dresscode-desc">Caballeros: traje oscuro. Damas: vestido largo o cocktail.<br>Paleta de colores sugerida:</p>
+  <div class="palette" id="palette">
+    <!-- swatches injected by JS -->
+  </div>
+</div>
+
+<!-- ========== RSVP ========== -->
+<div class="rsvp-section fade">
+  <p class="section-label" style="color:rgba(255,255,255,.5)">Confirmación de asistencia</p>
+  <h2 class="section-title">¿Nos acompañas?</h2>
+  <p class="section-body" id="rsvp-deadline">Por favor confirma antes del <strong style="color:white">1 de Marzo de 2025</strong></p>
+  <a class="rsvp-btn" id="rsvp-link" href="#" target="_blank">Confirmar asistencia</a>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <span id="footer-names">Mary &amp; Dylan</span> &nbsp;·&nbsp; <span id="footer-year">2025</span>
+</footer>
+
+<script>
+/* ================================================
+   CONFIG — Edit this object for each new wedding
+   ================================================ */
+const WEDDING = {
+  name1:         "Dallany",
+  name2:         "Tony",
+  dateISO:       "2026-06-30T17:00:00",          // ISO date of the wedding
+  dateDisplay:   "Viernes, 3 de Julio de 2025",
+  city:          "Chihuahua, México",
+  message:       "Con inmensa alegría y amor en nuestros corazones, los invitamos a compartir el día más especial de nuestras vidas. Su presencia hará este momento aún más memorable y lleno de amor.",
+
+  ceremonyTime:  "4:00 PM",
+  ceremonyPlace: "Parroquia de San Juan Bautista\nCoyoacán, CDMX",
+  ceremonyMap:   "https://maps.google.com/?q=Parroquia+San+Juan+Bautista+Coyoacan",
+
+  receptionTime:  "7:00 PM",
+  receptionPlace: "Salón Los Jardines\nPolanco, CDMX",
+  receptionMap:   "https://maps.google.com/?q=Polanco+CDMX",
+
+  dresscodeTitle: "Formal",
+  dresscodeDesc:  "Caballeros: traje oscuro. Damas: vestido largo o cocktail.\nPaleta de colores sugerida:",
+  palette:       ["#c9b99a","#e8ddd0","#7a6a52","#3e3530","#f0ebe3"],
+
+  rsvpDeadline:  "1 de Marzo de 2025",
+  rsvpLink:      "https://wa.me/521234567890?text=Confirmo+asistencia",
+
+  // Page document title
+  docTitle: "Invitación Mary & Dylan"
+};
+
+/* ---- Apply config ---- */
+document.title = WEDDING.docTitle;
+document.getElementById("name1").textContent           = WEDDING.name1;
+document.getElementById("name2").textContent           = WEDDING.name2;
+document.getElementById("wedding-date-display").textContent = WEDDING.dateDisplay;
+document.getElementById("wedding-city").textContent    = WEDDING.city;
+document.getElementById("wedding-message").textContent = WEDDING.message;
+
+document.getElementById("ceremony-time").textContent   = WEDDING.ceremonyTime;
+document.getElementById("ceremony-place").innerHTML    = WEDDING.ceremonyPlace.replace("\n","<br>");
+document.getElementById("ceremony-map").href           = WEDDING.ceremonyMap;
+
+document.getElementById("reception-time").textContent  = WEDDING.receptionTime;
+document.getElementById("reception-place").innerHTML   = WEDDING.receptionPlace.replace("\n","<br>");
+document.getElementById("reception-map").href          = WEDDING.receptionMap;
+
+document.getElementById("dresscode-title").textContent = WEDDING.dresscodeTitle;
+document.getElementById("dresscode-desc").innerHTML    = WEDDING.dresscodeDesc.replace("\n","<br>");
+document.getElementById("rsvp-deadline").innerHTML     = `Por favor confirma antes del <strong style="color:white">${WEDDING.rsvpDeadline}</strong>`;
+document.getElementById("rsvp-link").href              = WEDDING.rsvpLink;
+document.getElementById("footer-names").textContent    = `${WEDDING.name1} & ${WEDDING.name2}`;
+document.getElementById("footer-year").textContent     = new Date(WEDDING.dateISO).getFullYear();
+
+// Palette swatches
+const p = document.getElementById("palette");
+WEDDING.palette.forEach(c => {
+  const s = document.createElement("div");
+  s.className = "swatch";
+  s.style.background = c;
+  s.title = c;
+  p.appendChild(s);
+});
+
+/* ---- Countdown ---- */
+function updateCountdown() {
+  const now  = Date.now();
+  const end  = new Date(WEDDING.dateISO).getTime();
+  const diff = Math.max(0, end - now);
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000)  / 60000);
+  const s = Math.floor((diff % 60000)    / 1000);
+  document.getElementById("cd-days").textContent  = String(d).padStart(2,"0");
+  document.getElementById("cd-hours").textContent = String(h).padStart(2,"0");
+  document.getElementById("cd-min").textContent   = String(m).padStart(2,"0");
+  document.getElementById("cd-sec").textContent   = String(s).padStart(2,"0");
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* ---- Fade in on scroll ---- */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+}, { threshold: 0.15 });
+document.querySelectorAll(".fade").forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
