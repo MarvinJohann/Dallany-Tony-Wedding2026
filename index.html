@@ -115,6 +115,7 @@
   .vline{background:var(--color-accent);height:120px;}
   .event-icon{font-size:1.8rem;margin-bottom:12px;}
   .event-type{font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--color-accent);margin-bottom:8px;}
+  .event-date{font-family:var(--font-sans);font-size:.65rem;font-weight:300;letter-spacing:2px;text-transform:uppercase;color:var(--color-accent);margin-bottom:4px;}
   .event-time{font-family:var(--font-serif);font-size:1.8rem;font-weight:300;font-style:italic;color:var(--color-primary);margin-bottom:4px;}
   .event-place{font-size:.78rem;font-weight:300;letter-spacing:1px;color:#6b5e53;}
   .map-btn{display:inline-block;margin-top:12px;padding:9px 24px;border:1px solid var(--color-accent);color:var(--color-primary);font-size:.68rem;letter-spacing:3px;text-transform:uppercase;text-decoration:none;font-family:var(--font-sans);font-weight:300;transition:all .3s;}
@@ -272,6 +273,7 @@
     <div>
       <div class="event-icon">📋</div>
       <p class="event-type" data-i18n="civil"></p>
+      <p class="event-date" id="civil-date"></p>
       <p class="event-time" id="civil-time"></p>
       <p class="event-place" id="civil-place"></p>
       <a class="map-btn" id="civil-map" href="#" target="_blank" data-i18n="viewMap"></a>
@@ -280,6 +282,7 @@
     <div>
       <div class="event-icon">⛪</div>
       <p class="event-type" data-i18n="ceremony"></p>
+      <p class="event-date" id="temple-date"></p>
       <p class="event-time" id="ceremony-time"></p>
       <p class="event-place" id="ceremony-place"></p>
       <a class="map-btn" id="ceremony-map" href="#" target="_blank" data-i18n="viewMap"></a>
@@ -288,6 +291,7 @@
     <div>
       <div class="event-icon">🥂</div>
       <p class="event-type" data-i18n="reception"></p>
+      <p class="event-date" id="reception-date"></p>
       <p class="event-time" id="reception-time"></p>
       <p class="event-place" id="reception-place"></p>
       <a class="map-btn" id="reception-map" href="#" target="_blank" data-i18n="viewMap"></a>
@@ -388,17 +392,20 @@ const WEDDING = {
     en:"With immense joy and love in our hearts, we invite you to share the most special day of our lives. Your presence will make this moment even more memorable and full of love.",
     pa:"ਆਪਣੇ ਦਿਲਾਂ ਵਿੱਚ ਅਥਾਹ ਖੁਸ਼ੀ ਅਤੇ ਪਿਆਰ ਨਾਲ, ਅਸੀਂ ਤੁਹਾਨੂੰ ਆਪਣੀ ਜ਼ਿੰਦਗੀ ਦੇ ਸਭ ਤੋਂ ਖਾਸ ਦਿਨ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਲਈ ਸੱਦਾ ਦਿੰਦੇ ਹਾਂ।"
   },
-  civilTime:"12:00 PM",
-  civilPlace:"Registro Civil No. 1\nChihuahua, México",
-  civilMap:"https://maps.google.com/?q=Registro+Civil+Chihuahua",
+  civilDate:    "Jueves, 25 de Junio de 2026",
+  civilTime:    "12:00 PM",
+  civilPlace:   "Registro Civil No. 1\nChihuahua, México",
+  civilMap:     "https://maps.google.com/?q=Registro+Civil+Chihuahua",
 
-  templeTime:"4:00 PM",
-  templePlace:"Parroquia de San Juan Bautista\nChihuahua, México",
-  templeMap:"https://maps.google.com/?q=Parroquia+San+Juan+Bautista+Chihuahua",
+  templeDate:   "Sábado, 27 de Junio de 2026",
+  templeTime:   "4:00 PM",
+  templePlace:  "Parroquia de San Juan Bautista\nChihuahua, México",
+  templeMap:    "https://maps.google.com/?q=Parroquia+San+Juan+Bautista+Chihuahua",
 
-  receptionTime:"7:00 PM",
-  receptionPlace:"Salón Los Jardines\nChihuahua, México",
-  receptionMap:"https://maps.google.com/?q=Salon+Los+Jardines+Chihuahua",
+  receptionDate:  "Sábado, 27 de Junio de 2026",
+  receptionTime:  "7:00 PM",
+  receptionPlace: "Salón Los Jardines\nChihuahua, México",
+  receptionMap:   "https://maps.google.com/?q=Salon+Los+Jardines+Chihuahua",
   dresscodeTitle:{es:"Formal",en:"Formal Attire",pa:"ਰਸਮੀ ਪਹਿਰਾਵਾ"},
   dresscodeDesc:{
     es:"Caballeros: traje oscuro. Damas: vestido largo o cocktail.\nPaleta de colores sugerida:",
@@ -510,12 +517,15 @@ document.getElementById("heart-initials").textContent = WEDDING.heartInitials;
 document.getElementById("name1").textContent          = WEDDING.name1;
 document.getElementById("name2").textContent          = WEDDING.name2;
 document.getElementById("wedding-city").textContent   = WEDDING.city;
+document.getElementById("civil-date").textContent    = WEDDING.civilDate;
 document.getElementById("civil-time").textContent    = WEDDING.civilTime;
 document.getElementById("civil-place").innerHTML     = WEDDING.civilPlace.replace("\n","<br>");
 document.getElementById("civil-map").href            = WEDDING.civilMap;
+document.getElementById("temple-date").textContent   = WEDDING.templeDate;
 document.getElementById("ceremony-time").textContent = WEDDING.templeTime;
 document.getElementById("ceremony-place").innerHTML  = WEDDING.templePlace.replace("\n","<br>");
 document.getElementById("ceremony-map").href         = WEDDING.templeMap;
+document.getElementById("reception-date").textContent= WEDDING.receptionDate;
 document.getElementById("reception-time").textContent = WEDDING.receptionTime;
 document.getElementById("reception-place").innerHTML  = WEDDING.receptionPlace.replace("\n","<br>");
 document.getElementById("reception-map").href         = WEDDING.receptionMap;
