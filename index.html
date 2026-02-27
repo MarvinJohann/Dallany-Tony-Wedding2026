@@ -158,18 +158,18 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 
 /* ── COUNTDOWN ── */
 .countdown-wrap{background:var(--primary);padding:46px 20px;text-align:center;position:relative;}
-.countdown-wrap::before,.countdown-wrap::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:min(280px,58vw);height:1px;background:rgba(255,255,255,.1);}
+.countdown-wrap::before,.countdown-wrap::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:min(280px,58vw);height:1px;background:rgba(255,255,255,.2);}
 .countdown-wrap::before{top:14px;}.countdown-wrap::after{bottom:14px;}
-.section-label{font-size:.58rem;letter-spacing:5px;text-transform:uppercase;color:var(--accent);margin-bottom:18px;display:block;}
+.section-label{font-size:.72rem;letter-spacing:5px;text-transform:uppercase;color:var(--accent);margin-bottom:18px;display:block;}
 .countdown{display:flex;justify-content:center;gap:clamp(20px,5vw,56px);}
 .countdown-unit{text-align:center;}
-.countdown-num{font-family:var(--serif);font-size:clamp(2.8rem,9vw,4.5rem);font-weight:300;color:white;line-height:1;}
-.countdown-label{font-size:.52rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:4px;}
+.countdown-num{font-family:var(--serif);font-size:clamp(3.5rem,10vw,5.5rem);font-weight:300;color:white;line-height:1;}
+.countdown-label{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.75);margin-top:6px;}
 
 /* ── CONTENT ── */
-.content-wrap{padding:56px 20px;text-align:center;max-width:660px;margin:0 auto;}
-.section-title{font-family:var(--serif);font-size:clamp(1.9rem,4.8vw,2.9rem);font-weight:300;font-style:italic;color:var(--text);margin-bottom:14px;line-height:1.2;}
-.section-body{font-weight:300;font-size:.84rem;line-height:2;color:var(--muted);}
+.content-wrap{padding:56px 20px;text-align:center;max-width:720px;margin:0 auto;}
+.section-title{font-family:var(--serif);font-size:clamp(2.2rem,5.5vw,3.2rem);font-weight:300;font-style:italic;color:var(--text);margin-bottom:16px;line-height:1.2;}
+.section-body{font-weight:300;font-size:1rem;line-height:2;color:#6B4A58;letter-spacing:.3px;}
 
 /* ── PHOTO EFFECTS ── */
 .section-photo-wrap{position:relative;width:clamp(155px,46vw,230px);margin:30px auto 0;}
@@ -340,7 +340,7 @@ body.lang-pa .cal-btn,body.lang-pa .cal-opt{font-family:var(--pa);letter-spacing
       </g>
     </svg>
   </div>
-  <p class="pre-title" data-i18n="weddingTag"></p>
+  <p class="pre-title" style="display:none;" data-i18n="weddingTag"></p>
   <h1 class="hero-names"><span id="name1"></span><span class="hero-ampersand">&</span><span id="name2"></span></h1>
   <div class="side-lines"><div class="side-line"></div><div class="side-diamond"></div><div class="side-line"></div></div>
   <p class="hero-date" id="wedding-date-display"></p>
@@ -564,7 +564,9 @@ const WEDDING={
   palette:["#E8A0B4","#F2C4D0","#C8965A","#DDB87A","#FAEEF2"],
   songTitle:"Perfect",songArtist:"Ed Sheeran",
   songSpotify:"https://open.spotify.com/track/0tgVpDi06FyKpA1z0VMD4v",songAudio:"",
-  gifts:[{store:"Liverpool",icon:"liverpool",url:"https://www.liverpool.com.mx/tienda/mesaderegalos"},{store:"Amazon",icon:"amazon",url:"https://www.amazon.com.mx/wedding"}],
+  gifts:[
+    {store:"PayPal",icon:"paypal",url:"https://www.paypal.com/paypalme/TUUSUARIO"}
+  ],
   rsvpDeadline:{es:"1 de Mayo de 2026",en:"May 1st, 2026",pa:"1 ਮਈ 2026"},
   rsvpLink:"https://wa.me/521234567890?text=Confirmo+asistencia",
   inviteURL:"https://tu-invitacion.netlify.app",
@@ -575,12 +577,19 @@ const WEDDING={
 };
 
 const T={
-  es:{weddingTag:"nos casamos",countdown:"cuenta regresiva",days:"días",hours:"horas",minutes:"minutos",seconds:"segundos",messageLabel:"un mensaje para ustedes",messageTitle:"Juntos para siempre",scheduleLabel:"fechas importantes",civil:"boda civil",ceremony:"ceremonia religiosa",reception:"recepción",viewMap:"ver en mapa",addCal:"al calendario",dresscodeLabel:"código de vestimenta",gents:"caballeros",ladies:"damas",paletteLabel:"paleta de colores sugerida",songLabel:"nuestra canción",songTitle2:"La música de nuestro amor",listenSpotify:"escuchar en spotify",giftsLabel:"mesa de regalos",giftsTitle:"Un regalo del corazón",giftsBody:"Tu presencia es nuestro mejor regalo. Si deseas hacernos un obsequio, aquí encontrarás nuestras mesas.",qrLabel:"comparte esta invitación",qrTitle:"Escanea para guardar las fechas",qrBody:"Escanea este código con tu teléfono para guardar todos los eventos en tu calendario.",qrSub:"Compatible con Google Calendar, Apple Calendar y Outlook",qrDownloadICS:"📅 Agregar eventos a mi calendario",rsvpLabel:"confirmación de asistencia",rsvpTitle:"¿Nos acompañas?",rsvpBtn:"confirmar asistencia",confirmBefore:"Por favor confirma antes del",giftCta:"Ver mesa →"},
-  en:{weddingTag:"we're getting married",countdown:"countdown",days:"days",hours:"hours",minutes:"minutes",seconds:"seconds",messageLabel:"a message for you",messageTitle:"Together Forever",scheduleLabel:"important dates",civil:"civil wedding",ceremony:"church ceremony",reception:"reception",viewMap:"view on map",addCal:"add to calendar",dresscodeLabel:"dress code",gents:"gentlemen",ladies:"ladies",paletteLabel:"suggested color palette",songLabel:"our song",songTitle2:"The Music of Our Love",listenSpotify:"listen on spotify",giftsLabel:"gift registry",giftsTitle:"A Gift from the Heart",giftsBody:"Your presence is our greatest gift. If you wish to give us something, find our registries here.",qrLabel:"share this invitation",qrTitle:"Scan to save the dates",qrBody:"Scan this code to add all events to your calendar.",qrSub:"Compatible with Google Calendar, Apple Calendar & Outlook",qrDownloadICS:"📅 Add events to my calendar",rsvpLabel:"rsvp",rsvpTitle:"Will you join us?",rsvpBtn:"confirm attendance",confirmBefore:"Please confirm before",giftCta:"View registry →"},
+  es:{weddingTag:"nos casamos",countdown:"cuenta regresiva",days:"días",hours:"horas",minutes:"minutos",seconds:"segundos",messageLabel:"un mensaje para ustedes",messageTitle:"Juntos para siempre",scheduleLabel:"fechas importantes",civil:"boda civil",ceremony:"ceremonia religiosa",reception:"recepción",viewMap:"ver en mapa",addCal:"al calendario",dresscodeLabel:"código de vestimenta",gents:"caballeros",ladies:"damas",paletteLabel:"paleta de colores sugerida",songLabel:"nuestra canción",songTitle2:"La música de nuestro amor",listenSpotify:"escuchar en spotify",giftsLabel:"mesa de regalos",giftsTitle:"Un regalo del corazón",giftsBody:"Tu presencia es nuestro mejor regalo. Si deseas hacernos un obsequio, aquí encontrarás nuestras mesas.",qrLabel:"comparte esta invitación",qrTitle:"Escanea para guardar las fechas",qrBody:"Escanea este código con tu teléfono para guardar todos los eventos en tu calendario.",qrSub:"Compatible con Google Calendar, Apple Calendar y Outlook",qrDownloadICS:"📅 Agregar eventos a mi calendario",rsvpLabel:"confirmación de asistencia",rsvpTitle:"¿Nos acompañas?",rsvpBtn:"confirmar asistencia",confirmBefore:"Por favor confirma antes del",giftCta:"Enviar regalo →"},
+  en:{weddingTag:"we're getting married",countdown:"countdown",days:"days",hours:"hours",minutes:"minutes",seconds:"seconds",messageLabel:"a message for you",messageTitle:"Together Forever",scheduleLabel:"important dates",civil:"civil wedding",ceremony:"church ceremony",reception:"reception",viewMap:"view on map",addCal:"add to calendar",dresscodeLabel:"dress code",gents:"gentlemen",ladies:"ladies",paletteLabel:"suggested color palette",songLabel:"our song",songTitle2:"The Music of Our Love",listenSpotify:"listen on spotify",giftsLabel:"gift registry",giftsTitle:"A Gift from the Heart",giftsBody:"Your presence is our greatest gift. If you wish to give us something, find our registries here.",qrLabel:"share this invitation",qrTitle:"Scan to save the dates",qrBody:"Scan this code to add all events to your calendar.",qrSub:"Compatible with Google Calendar, Apple Calendar & Outlook",qrDownloadICS:"📅 Add events to my calendar",rsvpLabel:"rsvp",rsvpTitle:"Will you join us?",rsvpBtn:"confirm attendance",confirmBefore:"Please confirm before",giftCta:"Send a gift →"},
   pa:{weddingTag:"ਅਸੀਂ ਵਿਆਹ ਕਰਵਾ ਰਹੇ ਹਾਂ",countdown:"ਉਲਟੀ ਗਿਣਤੀ",days:"ਦਿਨ",hours:"ਘੰਟੇ",minutes:"ਮਿੰਟ",seconds:"ਸਕਿੰਟ",messageLabel:"ਤੁਹਾਡੇ ਲਈ ਸੁਨੇਹਾ",messageTitle:"ਹਮੇਸ਼ਾ ਲਈ ਇਕੱਠੇ",scheduleLabel:"ਮਹੱਤਵਪੂਰਨ ਤਾਰੀਖਾਂ",civil:"ਸਿਵਲ ਵਿਆਹ",ceremony:"ਧਾਰਮਿਕ ਸਮਾਰੋਹ",reception:"ਸਵਾਗਤ ਸਮਾਰੋਹ",viewMap:"ਨਕਸ਼ੇ 'ਤੇ ਵੇਖੋ",addCal:"ਕੈਲੰਡਰ ਵਿੱਚ ਜੋੜੋ",dresscodeLabel:"ਪਹਿਰਾਵੇ ਦਾ ਕੋਡ",gents:"ਸੱਜਣ",ladies:"ਮਹਿਲਾਵਾਂ",paletteLabel:"ਸੁਝਾਈ ਗਈ ਰੰਗ ਪੈਲੇਟ",songLabel:"ਸਾਡਾ ਗੀਤ",songTitle2:"ਸਾਡੇ ਪਿਆਰ ਦਾ ਸੰਗੀਤ",listenSpotify:"ਸਪੋਟੀਫਾਈ 'ਤੇ ਸੁਣੋ",giftsLabel:"ਤੋਹਫ਼ੇ ਦੀ ਸੂਚੀ",giftsTitle:"ਦਿਲ ਤੋਂ ਇੱਕ ਤੋਹਫ਼ਾ",giftsBody:"ਤੁਹਾਡੀ ਹਾਜ਼ਰੀ ਸਾਡਾ ਸਭ ਤੋਂ ਵੱਡਾ ਤੋਹਫ਼ਾ ਹੈ।",qrLabel:"ਇਹ ਸੱਦਾ ਸਾਂਝਾ ਕਰੋ",qrTitle:"ਤਾਰੀਖਾਂ ਸੁਰੱਖਿਅਤ ਕਰਨ ਲਈ ਸਕੈਨ ਕਰੋ",qrBody:"ਸਾਰੇ ਸਮਾਗਮ ਆਪਣੇ ਕੈਲੰਡਰ ਵਿੱਚ ਜੋੜਨ ਲਈ ਇਹ ਕੋਡ ਸਕੈਨ ਕਰੋ।",qrSub:"Google, Apple ਅਤੇ Outlook ਕੈਲੰਡਰ ਦੇ ਅਨੁਕੂਲ",qrDownloadICS:"📅 ਕੈਲੰਡਰ ਵਿੱਚ ਸਮਾਗਮ ਜੋੜੋ",rsvpLabel:"ਹਾਜ਼ਰੀ ਦੀ ਪੁਸ਼ਟੀ",rsvpTitle:"ਕੀ ਤੁਸੀਂ ਆਓਗੇ?",rsvpBtn:"ਹਾਜ਼ਰੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",confirmBefore:"ਕਿਰਪਾ ਕਰਕੇ ਇਸ ਤੋਂ ਪਹਿਲਾਂ ਪੁਸ਼ਟੀ ਕਰੋ",giftCta:"ਵੇਖੋ →"}
 };
 
 const LOGOS={
+  paypal:`<svg width="130" height="44" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+    <!-- PayPal P -->
+    <text x="18" y="44" font-family="Arial,sans-serif" font-size="48" font-weight="700" fill="#F2C4D0">P</text>
+    <text x="38" y="44" font-family="Arial,sans-serif" font-size="48" font-weight="700" fill="#E8A0B4">P</text>
+    <!-- ayPal text -->
+    <text x="62" y="40" font-family="Arial,sans-serif" font-size="26" font-weight="400" fill="#E8A0B4">ayPal</text>
+  </svg>`,
   liverpool:`<svg width="130" height="36" viewBox="0 0 200 52" xmlns="http://www.w3.org/2000/svg"><text x="100" y="36" text-anchor="middle" font-family="Georgia,serif" font-size="36" font-weight="700" fill="#E8A0B4" letter-spacing="2">Liverpool</text><line x1="10" y1="46" x2="190" y2="46" stroke="#C8965A" stroke-width="1.5"/></svg>`,
   amazon:`<svg width="130" height="36" viewBox="0 0 200 52" xmlns="http://www.w3.org/2000/svg"><text x="100" y="34" text-anchor="middle" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#E8A0B4" letter-spacing="-1">amazon</text><path d="M55,46 Q100,60 145,46" fill="none" stroke="#C8965A" stroke-width="2" stroke-linecap="round"/><polygon points="145,41 151,48 141,50" fill="#C8965A"/></svg>`
 };
