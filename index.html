@@ -59,6 +59,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 .bar-play-btn{width:26px;height:26px;border-radius:50%;background:var(--primary);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s,transform .2s;}
 .bar-play-btn:hover{background:var(--accent);transform:scale(1.1);}
 .bar-play-btn svg{width:11px;height:11px;fill:white;margin-left:2px;}
+@media(max-width:520px){.bar-vinyl,.bar-song-info,.bar-progress{display:none !important;}.bar-player{gap:0;}}
 
 /* HAMBURGER */
 .ham-btn{display:flex;flex-direction:column;justify-content:center;gap:5px;width:32px;height:32px;background:none;border:none;cursor:pointer;flex-shrink:0;padding:4px;}
@@ -66,11 +67,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 .ham-btn.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
 .ham-btn.open span:nth-child(2){opacity:0;transform:scaleX(0);}
 .ham-btn.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
-/* Mobile player — only show play button */
-@media(max-width:520px){
-  .bar-vinyl,.bar-song-info,.bar-progress{display:none !important;}
-  .bar-player{gap:0;}
-}
 
 /* NAV DRAWER */
 #nav-drawer{position:fixed;top:48px;left:0;bottom:0;width:min(260px,80vw);background:rgba(253,250,248,.98);backdrop-filter:blur(18px);border-right:1px solid rgba(200,150,90,.18);z-index:99;transform:translateX(-100%);transition:transform .38s cubic-bezier(.4,0,.2,1);box-shadow:4px 0 32px rgba(60,30,40,.08);overflow-y:auto;}
@@ -104,67 +100,109 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 .monogram-svg .inner-lines{animation:fadeLines 2.8s ease-in-out infinite;}
 .pre-title{font-weight:200;font-size:.6rem;letter-spacing:7px;text-transform:uppercase;color:var(--text);margin-bottom:10px;opacity:.7;}
 
-/* ── QUILL HERO NAMES ── */
+/* ── QUILL NAMES ── */
 .hero-names-outer{position:relative;display:inline-block;max-width:92vw;}
 
-/* The h1 — built via JS with individual char spans */
-.hero-names{
+/* Writing layer: 3 stacked rows, absolutely overlaid on top of the final h1 */
+.names-writing-layer{
+  position:absolute;top:0;left:50%;
+  transform:translateX(-50%);
+  text-align:center;pointer-events:none;z-index:2;
+  transition:opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1);
+  transform-origin:center top;
+}
+.names-writing-layer.exit{
+  opacity:0;
+  transform:translateX(-50%) scale(.92) translateY(-14px);
+}
+.names-wr-line{
+  display:block;
   font-family:'Great Vibes',cursive;
-  font-size:clamp(3.4rem,12vw,7rem);
-  font-weight:400;
-  line-height:1.15;
-  color:var(--text);
-  position:relative;
-  z-index:1;
+  font-size:clamp(3.2rem,11vw,6.5rem);
+  font-weight:400;line-height:1.2;
+  color:var(--text);white-space:nowrap;
 }
-.hero-ampersand{color:var(--accent);display:block;font-size:.85em;line-height:1;}
+.names-wr-line.amp-line{
+  color:var(--accent);
+  font-size:clamp(2.6rem,9vw,5.4rem);
+  line-height:1.05;
+}
 
-/* Individual character spans — extra padding so cursive swashes aren't clipped */
-.wc{
-  display:inline-block;
-  padding:0.18em 0.12em;
-  margin:-0.18em -0.12em;
-  clip-path:inset(0 103% 0 0 round 0px);
-  transition:clip-path 0.19s ease-out;
-  vertical-align:baseline;
+/* Final single-line h1 — invisible at start but controls container size */
+.hero-names-final{
+  display:block;
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(2.8rem,9vw,5.5rem);
+  font-weight:400;line-height:1.2;
+  color:var(--text);white-space:nowrap;
+  opacity:0;
+  transform:translateY(24px) scale(.95);
+  transition:opacity .8s cubic-bezier(.2,1,.3,1), transform .8s cubic-bezier(.2,1,.3,1);
 }
+.hero-names-final .amp{color:var(--accent);}
+.hero-names-final.show{opacity:1;transform:translateY(0) scale(1);}
+
+/* Character spans */
+.wc{display:inline-block;padding:.18em .1em;margin:-.18em -.1em;clip-path:inset(0 103% 0 0 round 0px);transition:clip-path .19s ease-out;vertical-align:baseline;}
 .wc.on{clip-path:inset(0 0% 0 0 round 0px);}
 .wc-amp{color:var(--accent);}
 
-/* Quill pen — positioned by JS */
-#quill{
-  position:absolute;
-  width:clamp(28px,4.5vw,44px);
-  pointer-events:none;
-  opacity:0;
-  z-index:10;
-  transform-origin:50% 90%;
-  transform:rotate(30deg);
-  transition:left .12s ease-out, top .12s ease-out, opacity .4s ease;
-  will-change:left,top;
-}
-/* Subtle writing jitter */
-@keyframes quillJitter{
-  0%,100%{transform:rotate(30deg) translate(0,0);}
-  25%{transform:rotate(31.5deg) translate(0.5px,-1px);}
-  50%{transform:rotate(29.5deg) translate(-0.5px,0.5px);}
-  75%{transform:rotate(30.8deg) translate(0.3px,-0.5px);}
-}
+/* Quill pen */
+#quill{position:absolute;width:clamp(28px,4.5vw,44px);pointer-events:none;opacity:0;z-index:10;transform-origin:50% 90%;transform:rotate(30deg);transition:left .12s ease-out,top .12s ease-out,opacity .4s ease;will-change:left,top;}
+@keyframes quillJitter{0%,100%{transform:rotate(30deg) translate(0,0);}25%{transform:rotate(31.5deg) translate(.5px,-1px);}50%{transform:rotate(29.5deg) translate(-.5px,.5px);}75%{transform:rotate(30.8deg) translate(.3px,-.5px);}}
 #quill.writing{animation:quillJitter .16s ease-in-out infinite;}
 
-.side-lines{display:flex;align-items:center;gap:18px;margin:18px auto;width:min(320px,78%);}
+/* ── DATE BLOCK (hidden until after writing) ── */
+.hero-info-wrap{
+  overflow:hidden;max-height:0;opacity:0;
+  transition:max-height .7s ease,opacity .6s ease,margin .5s ease;
+  margin-top:0;
+}
+.hero-info-wrap.show{max-height:120px;opacity:1;margin-top:16px;}
+.side-lines{display:flex;align-items:center;gap:18px;margin:10px auto;width:min(320px,78%);}
 .side-line{flex:1;height:.5px;background:var(--accent);opacity:.6;}
 .side-diamond{width:5px;height:5px;background:var(--accent);transform:rotate(45deg);flex-shrink:0;}
 .hero-date{font-family:var(--serif);font-size:clamp(.95rem,2.4vw,1.35rem);font-weight:300;letter-spacing:3px;color:var(--primary);}
-.hero-location{font-size:.58rem;font-weight:200;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-top:5px;}
-.hero-photo-wrap{margin-top:34px;position:relative;width:clamp(185px,50vw,255px);}
+.hero-location{font-size:.58rem;font-weight:200;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+
+/* ── SLIDESHOW ── */
+.hero-slideshow{
+  width:clamp(260px,78vw,500px);
+  margin:22px auto 0;
+  opacity:0;transform:translateY(30px);
+  transition:opacity .8s ease,transform .8s ease;
+}
+.hero-slideshow.show{opacity:1;transform:translateY(0);}
+.ss-frame{
+  position:relative;width:100%;
+  height:clamp(200px,52vw,340px);
+  overflow:hidden;
+  /* torn-paper top & bottom edges */
+  clip-path:polygon(0% 3%,2% 0%,4% 2%,6% 0%,8% 2%,11% 0%,13% 2%,15% 0%,18% 2%,20% 0%,22% 2%,25% 0%,27% 2%,30% 0%,32% 2%,35% 0%,37% 2%,40% 0%,42% 2%,45% 0%,47% 2%,50% 0%,52% 2%,55% 0%,57% 2%,60% 0%,62% 2%,65% 0%,68% 2%,70% 0%,72% 2%,75% 0%,77% 2%,80% 0%,82% 2%,85% 0%,87% 2%,90% 0%,92% 2%,95% 0%,97% 2%,100% 3%,100% 97%,97% 100%,95% 98%,92% 100%,90% 98%,87% 100%,85% 98%,82% 100%,80% 98%,77% 100%,75% 98%,72% 100%,70% 98%,68% 100%,65% 98%,62% 100%,60% 98%,57% 100%,55% 98%,52% 100%,50% 98%,47% 100%,45% 98%,42% 100%,40% 98%,37% 100%,35% 98%,32% 100%,30% 98%,27% 100%,25% 98%,22% 100%,20% 98%,18% 100%,15% 98%,13% 100%,11% 98%,8% 100%,6% 98%,4% 100%,2% 98%,0% 97%);
+  background:var(--light);
+  box-shadow:0 10px 40px rgba(60,30,40,.14);
+}
+.ss-slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;background:var(--light);}
+.ss-slide.active{opacity:1;}
+.ss-slide img{width:100%;height:100%;object-fit:cover;display:block;}
+.ss-slide .ss-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+/* Arrow buttons */
+.ss-arrows{display:flex;justify-content:space-between;position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);pointer-events:none;padding:0 10px;z-index:5;}
+.ss-arrow{width:34px;height:34px;border-radius:50%;background:rgba(253,250,248,.75);border:1px solid rgba(200,150,90,.35);display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:all;transition:background .2s,transform .2s;backdrop-filter:blur(6px);}
+.ss-arrow:hover{background:var(--primary);transform:scale(1.1);}
+.ss-arrow svg{width:14px;height:14px;fill:var(--text);}
+.ss-arrow:hover svg{fill:white;}
+/* Dots */
+.ss-dots{display:flex;justify-content:center;gap:7px;margin-top:12px;}
+.ss-dot{width:6px;height:6px;border-radius:50%;background:rgba(200,150,90,.3);transition:background .3s,transform .3s;cursor:pointer;border:none;padding:0;}
+.ss-dot.active{background:var(--accent);transform:scale(1.35);}
+
+/* REST OF SECTIONS */
 .torn-frame{position:relative;width:100%;clip-path:polygon(0% 6%,3% 0%,7% 4%,11% 1%,15% 5%,19% 0%,23% 3%,27% 0%,31% 4%,35% 1%,39% 5%,43% 0%,47% 3%,51% 0%,55% 4%,59% 1%,63% 5%,67% 0%,71% 3%,75% 0%,79% 4%,83% 1%,87% 5%,91% 0%,95% 3%,100% 6%,100% 93%,97% 97%,93% 94%,89% 98%,85% 95%,81% 99%,77% 96%,73% 100%,69% 97%,65% 100%,61% 96%,57% 99%,53% 95%,49% 100%,45% 96%,41% 99%,37% 95%,33% 100%,29% 96%,25% 99%,21% 95%,17% 98%,13% 94%,9% 98%,5% 95%,0% 93%);background:var(--light);box-shadow:0 8px 40px rgba(60,30,40,.12);overflow:hidden;transition:transform .4s;}
 .torn-frame:hover{transform:scale(1.02);}
 .torn-frame img{width:100%;height:clamp(210px,58vw,300px);object-fit:cover;display:block;transition:transform .6s;}
 .torn-frame:hover img{transform:scale(1.05);}
 .torn-frame .photo-ph{width:100%;height:clamp(210px,58vw,300px);display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--light);}
-
-/* COUNTDOWN */
 .countdown-wrap{background:var(--primary);padding:46px 20px;text-align:center;position:relative;}
 .countdown-wrap::before,.countdown-wrap::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:min(280px,58vw);height:1px;background:rgba(255,255,255,.2);}
 .countdown-wrap::before{top:14px;}.countdown-wrap::after{bottom:14px;}
@@ -173,11 +211,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 .countdown-unit{text-align:center;}
 .countdown-num{font-family:var(--serif);font-size:clamp(3.5rem,10vw,5.5rem);font-weight:300;color:white;line-height:1;}
 .countdown-label{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.75);margin-top:6px;}
-
 .content-wrap{padding:56px 20px;text-align:center;max-width:720px;margin:0 auto;}
 .section-title{font-family:var(--serif);font-size:clamp(2.2rem,5.5vw,3.2rem);font-weight:300;font-style:italic;color:var(--text);margin-bottom:16px;line-height:1.2;}
 .section-body{font-weight:300;font-size:1rem;line-height:2;color:#6B4A58;letter-spacing:.3px;}
-
 .section-photo-wrap{position:relative;width:clamp(155px,46vw,230px);margin:30px auto 0;}
 .photo-effect-tilt .section-torn{clip-path:polygon(0% 5%,4% 0%,8% 3%,12% 0%,16% 4%,20% 0%,25% 3%,29% 0%,33% 4%,37% 0%,42% 3%,46% 0%,50% 4%,54% 0%,58% 3%,63% 0%,67% 4%,71% 0%,76% 3%,80% 0%,84% 4%,88% 0%,92% 3%,96% 0%,100% 5%,100% 94%,96% 98%,92% 95%,88% 99%,84% 96%,80% 100%,76% 97%,71% 100%,67% 96%,63% 100%,58% 97%,54% 100%,50% 96%,46% 100%,42% 96%,37% 99%,33% 95%,29% 99%,25% 96%,20% 100%,16% 97%,12% 100%,8% 96%,4% 99%,0% 94%);box-shadow:0 6px 24px rgba(60,30,40,.12);background:var(--light);transition:transform .4s;transform:rotate(-2deg);}
 .photo-effect-tilt:hover .section-torn{transform:rotate(0) scale(1.03);}
@@ -203,7 +239,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 .photo-effect-circle .section-torn img{width:100%;height:clamp(175px,50vw,250px);object-fit:cover;display:block;transition:transform .5s;}
 .photo-effect-circle:hover .section-torn img{transform:scale(1.07);}
 .photo-effect-circle .section-torn .photo-ph{width:100%;height:clamp(175px,50vw,250px);display:flex;align-items:center;justify-content:center;background:var(--light);}
-
 .events-wrap{background:var(--light);padding:56px 20px;}
 .events-inner{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;gap:24px;align-items:start;text-align:center;}
 @media(max-width:660px){.events-inner{grid-template-columns:1fr;gap:32px;}.vline{display:none;}}
@@ -288,10 +323,7 @@ body.lang-pa .cal-btn,body.lang-pa .cal-opt,body.lang-pa .nav-item{font-family:v
 <div id="nav-overlay" onclick="closeNav()"></div>
 <div id="nav-drawer">
   <div class="nav-inner">
-    <div class="nav-couple">
-      <div class="nav-couple-name">Dallany &amp; Tony</div>
-      <div class="nav-couple-date">3 · VII · 2026</div>
-    </div>
+    <div class="nav-couple"><div class="nav-couple-name">Dallany &amp; Tony</div><div class="nav-couple-date">3 · VII · 2026</div></div>
     <button class="nav-item" onclick="navTo('section-hero')"><span class="nav-icon">🏠</span><span data-i18n="nav_home"></span></button>
     <button class="nav-item" onclick="navTo('section-message')"><span class="nav-icon">💌</span><span data-i18n="nav_message"></span></button>
     <button class="nav-item" onclick="navTo('section-events')"><span class="nav-icon">📅</span><span data-i18n="nav_dates"></span></button>
@@ -348,46 +380,54 @@ body.lang-pa .cal-btn,body.lang-pa .cal-opt,body.lang-pa .nav-item{font-family:v
   </div>
   <p class="pre-title" style="display:none;" data-i18n="weddingTag"></p>
 
-  <!-- Names container — quill and chars built by JS -->
+  <!-- Names + quill -->
   <div class="hero-names-outer" id="names-outer">
-    <h1 class="hero-names" id="hero-names-el"></h1>
-    <!-- Quill SVG -->
+    <!-- Writing layer: 3 rows stacked during quill animation -->
+    <div class="names-writing-layer" id="names-writing-layer">
+      <span class="names-wr-line" id="wr-name1"></span>
+      <span class="names-wr-line amp-line" id="wr-amp"></span>
+      <span class="names-wr-line" id="wr-name2"></span>
+    </div>
+    <!-- Final single-line h1 — invisible until writing finishes, sizes the container -->
+    <h1 class="hero-names-final" id="names-final"><span id="fn1"></span><span class="amp"> &amp; </span><span id="fn2"></span></h1>
     <svg id="quill" viewBox="0 0 40 110" xmlns="http://www.w3.org/2000/svg">
-      <!-- Right vane of feather -->
       <path d="M20,3 Q36,14 33,48 Q27,66 20,78" fill="#DDB87A" opacity="0.82"/>
-      <!-- Left vane of feather -->
       <path d="M20,3 Q4,14 7,48 Q13,66 20,78" fill="#C8965A" opacity="0.82"/>
-      <!-- Feather barbs right -->
       <path d="M20,3 Q34,18 31,44 Q26,60 20,74" fill="none" stroke="#F0D080" stroke-width="1" opacity="0.55"/>
-      <!-- Feather barbs left -->
       <path d="M20,3 Q6,18 9,44 Q14,60 20,74" fill="none" stroke="#D4A850" stroke-width="0.7" opacity="0.4"/>
-      <!-- Fine barb lines right -->
       <line x1="20" y1="18" x2="32" y2="24" stroke="#E8C870" stroke-width="0.5" opacity="0.4"/>
       <line x1="20" y1="30" x2="31" y2="35" stroke="#E8C870" stroke-width="0.5" opacity="0.4"/>
       <line x1="20" y1="42" x2="30" y2="46" stroke="#E8C870" stroke-width="0.5" opacity="0.4"/>
       <line x1="20" y1="54" x2="28" y2="57" stroke="#E8C870" stroke-width="0.5" opacity="0.35"/>
-      <!-- Fine barb lines left -->
       <line x1="20" y1="18" x2="8" y2="24" stroke="#C8965A" stroke-width="0.5" opacity="0.4"/>
       <line x1="20" y1="30" x2="9" y2="35" stroke="#C8965A" stroke-width="0.5" opacity="0.4"/>
       <line x1="20" y1="42" x2="10" y2="46" stroke="#C8965A" stroke-width="0.5" opacity="0.4"/>
       <line x1="20" y1="54" x2="12" y2="57" stroke="#C8965A" stroke-width="0.5" opacity="0.35"/>
-      <!-- Central rachis (spine) -->
       <line x1="20" y1="3" x2="20" y2="92" stroke="#8B6010" stroke-width="1.3" stroke-linecap="round"/>
-      <!-- Quill body narrowing to nib -->
       <path d="M17.5,79 Q18.5,86 20,94 Q21.5,86 22.5,79 Q21.5,77 20,76 Q18.5,77 17.5,79Z" fill="#5C3A10"/>
-      <!-- Nib slit -->
       <line x1="20" y1="84" x2="20" y2="95" stroke="#3A1808" stroke-width="0.7" opacity="0.7"/>
-      <!-- Ink drop at tip -->
       <ellipse cx="20" cy="97" rx="1.8" ry="2.6" fill="#2A160A" opacity="0.6"/>
       <circle cx="20" cy="100.5" r="1" fill="#3A2010" opacity="0.3"/>
     </svg>
   </div>
 
-  <div class="side-lines"><div class="side-line"></div><div class="side-diamond"></div><div class="side-line"></div></div>
-  <p class="hero-date" id="wedding-date-display"></p>
-  <p class="hero-location" id="wedding-city"></p>
-  <div class="hero-photo-wrap">
-    <div class="torn-frame" id="hero-torn"><div class="photo-ph" id="hero-ph"></div></div>
+  <!-- Date + city — hidden until after writing -->
+  <div class="hero-info-wrap" id="hero-info-wrap">
+    <div class="side-lines"><div class="side-line"></div><div class="side-diamond"></div><div class="side-line"></div></div>
+    <p class="hero-date" id="wedding-date-display"></p>
+    <p class="hero-location" id="wedding-city"></p>
+  </div>
+
+  <!-- Slideshow — hidden until after writing -->
+  <div class="hero-slideshow" id="hero-slideshow">
+    <div class="ss-frame" id="ss-frame">
+      <div id="ss-track"></div>
+      <div class="ss-arrows">
+        <button class="ss-arrow" onclick="ssPrev()"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="ss-arrow" onclick="ssNext()"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+    </div>
+    <div class="ss-dots" id="ss-dots"></div>
   </div>
 </section>
 
@@ -432,14 +472,8 @@ body.lang-pa .cal-btn,body.lang-pa .cal-opt,body.lang-pa .nav-item{font-family:v
   <span class="section-label" data-i18n="dresscodeLabel"></span>
   <h2 class="section-title" id="dresscode-title"></h2>
   <div class="dress-figures">
-    <div class="dress-figure">
-      <svg class="figure-svg" viewBox="0 0 100 180" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="18" r="12" fill="none" stroke="#E8A0B4" stroke-width="2"/><line x1="50" y1="30" x2="50" y2="100" stroke="#E8A0B4" stroke-width="2"/><path d="M30,45 L50,38 L70,45 L68,100 L32,100 Z" fill="#E8A0B4" opacity="0.15" stroke="#E8A0B4" stroke-width="1.8" stroke-linejoin="round"/><path d="M50,38 L42,55 L50,60 L58,55 L50,38" fill="none" stroke="#E8A0B4" stroke-width="1.5"/><path d="M48,55 L47,72 L50,76 L53,72 L52,55 Z" fill="#C8965A" opacity="0.7"/><line x1="30" y1="45" x2="16" y2="82" stroke="#E8A0B4" stroke-width="2" stroke-linecap="round"/><line x1="70" y1="45" x2="84" y2="82" stroke="#E8A0B4" stroke-width="2" stroke-linecap="round"/><line x1="38" y1="100" x2="32" y2="155" stroke="#E8A0B4" stroke-width="2.5" stroke-linecap="round"/><line x1="62" y1="100" x2="68" y2="155" stroke="#E8A0B4" stroke-width="2.5" stroke-linecap="round"/><path d="M24,153 Q32,150 36,155 Q34,160 24,158 Z" fill="#C8965A" opacity="0.6"/><path d="M76,153 Q68,150 64,155 Q66,160 76,158 Z" fill="#C8965A" opacity="0.6"/></svg>
-      <p class="dress-label" data-i18n="gents"></p><p class="dress-desc" id="dress-desc-gents"></p>
-    </div>
-    <div class="dress-figure">
-      <svg class="figure-svg" viewBox="0 0 100 180" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="14" r="12" fill="none" stroke="#E8A0B4" stroke-width="2"/><line x1="50" y1="26" x2="50" y2="34" stroke="#E8A0B4" stroke-width="2"/><line x1="38" y1="48" x2="16" y2="44" stroke="#E8A0B4" stroke-width="2" stroke-linecap="round"/><line x1="62" y1="48" x2="84" y2="44" stroke="#E8A0B4" stroke-width="2" stroke-linecap="round"/><polygon points="40,34 60,34 65,60 80,170 20,170 35,60" fill="#E8A0B4" opacity="0.5" stroke="#E8A0B4" stroke-width="2" stroke-linejoin="round"/><polyline points="43,34 50,46 57,34" fill="none" stroke="#E8A0B4" stroke-width="1.5"/><line x1="36" y1="60" x2="64" y2="60" stroke="#C8965A" stroke-width="1" opacity="0.7"/></svg>
-      <p class="dress-label" data-i18n="ladies"></p><p class="dress-desc" id="dress-desc-ladies"></p>
-    </div>
+    <div class="dress-figure"><svg class="figure-svg" viewBox="0 0 100 180" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="18" r="12" fill="none" stroke="#E8A0B4" stroke-width="2"/><line x1="50" y1="30" x2="50" y2="100" stroke="#E8A0B4" stroke-width="2"/><path d="M30,45 L50,38 L70,45 L68,100 L32,100 Z" fill="#E8A0B4" opacity="0.15" stroke="#E8A0B4" stroke-width="1.8" stroke-linejoin="round"/><path d="M50,38 L42,55 L50,60 L58,55 L50,38" fill="none" stroke="#E8A0B4" stroke-width="1.5"/><path d="M48,55 L47,72 L50,76 L53,72 L52,55 Z" fill="#C8965A" opacity="0.7"/><line x1="30" y1="45" x2="16" y2="82" stroke="#E8A0B4" stroke-width="2" stroke-linecap="round"/><line x1="70" y1="45" x2="84" y2="82" stroke="#E8A0B4" stroke-width="2" stroke-linecap="round"/><line x1="38" y1="100" x2="32" y2="155" stroke="#E8A0B4" stroke-width="2.5" stroke-linecap="round"/><line x1="62" y1="100" x2="68" y2="155" stroke="#E8A0B4" stroke-width="2.5" stroke-linecap="round"/><path d="M24,153 Q32,150 36,155 Q34,160 24,158 Z" fill="#C8965A" opacity="0.6"/><path d="M76,153 Q68,150 64,155 Q66,160 76,158 Z" fill="#C8965A" opacity="0.6"/></svg><p class="dress-label" data-i18n="gents"></p><p class="dress-desc" id="dress-desc-gents"></p></div>
+    <div class="dress-figure"><svg class="figure-svg" viewBox="0 0 100 180" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="14" r="12" fill="none" stroke="#E8A0B4" stroke-width="2"/><line x1="50" y1="26" x2="50" y2="34" stroke="#E8A0B4" stroke-width="2"/><line x1="38" y1="48" x2="16" y2="44" stroke="#E8A0B4" stroke-width="2" stroke-linecap="round"/><line x1="62" y1="48" x2="84" y2="44" stroke="#E8A0B4" stroke-width="2" stroke-linecap="round"/><polygon points="40,34 60,34 65,60 80,170 20,170 35,60" fill="#E8A0B4" opacity="0.5" stroke="#E8A0B4" stroke-width="2" stroke-linejoin="round"/><polyline points="43,34 50,46 57,34" fill="none" stroke="#E8A0B4" stroke-width="1.5"/><line x1="36" y1="60" x2="64" y2="60" stroke="#C8965A" stroke-width="1" opacity="0.7"/></svg><p class="dress-label" data-i18n="ladies"></p><p class="dress-desc" id="dress-desc-ladies"></p></div>
   </div>
   <span class="section-label" style="margin-top:24px;display:block;" data-i18n="paletteLabel"></span>
   <div class="palette" id="palette"></div>
@@ -518,35 +552,34 @@ const WEDDING={
   dresscodeLadies:{es:"Vestido largo\no cocktail\nTacones",en:"Long gown\nor cocktail dress\nHeels",pa:"ਲੰਮੀ ਗਾਊਨ\nਜਾਂ ਕਾਕਟੇਲ ਡਰੈੱਸ\nਹੀਲ"},
   palette:["#E8A0B4","#F2C4D0","#C8965A","#DDB87A","#FAEEF2"],
   songTitle:"Perfect",songArtist:"Ed Sheeran",
-  songSpotify:"https://open.spotify.com/track/0tgVpDi06FyKpA1z0VMD4v",songAudio:"Ed Sheeran - Perfect (Official Music Video) - (320 Kbps).mp3",
+  songSpotify:"https://open.spotify.com/track/0tgVpDi06FyKpA1z0VMD4v",
+  songAudio:"Ed Sheeran - Perfect (Official Music Video) - (320 Kbps).mp3",
   gifts:[{store:"PayPal",icon:"paypal",url:"https://www.paypal.com/paypalme/TUUSUARIO"}],
   rsvpDeadline:{es:"1 de Mayo de 2026",en:"May 1st, 2026",pa:"1 ਮਈ 2026"},
   rsvpLink:"https://wa.me/521234567890?text=Confirmo+asistencia",
   inviteURL:"https://tu-invitacion.netlify.app",
   docTitle:"Invitación Dallany & Tony",
-  photoHero:"img/IMG_7517.jpeg",photoMsg:"img/Facetune_07-02-2026-13-18-06.jpeg",
-  photoEvents:"img/Facetune_07-02-2026-13-59-51.jpeg",photoDress:"img/Facetune_07-02-2026-14-07-42.jpeg",
-  photoSong:"img/IMG_7485.jpeg",photoGifts:"img/Facetune_07-02-2026-14-02-18.jpeg"
+  photoHero:"img/IMG_7517.jpeg",
+  photoMsg:"img/Facetune_07-02-2026-13-18-06.jpeg",
+  photoEvents:"img/Facetune_07-02-2026-13-59-51.jpeg",
+  photoDress:"img/Facetune_07-02-2026-14-07-42.jpeg",
+  photoSong:"img/IMG_7485.jpeg",
+  photoGifts:"img/Facetune_07-02-2026-14-02-18.jpeg"
 };
 
-/* PayPal logo — real double-P structure in pastel pink */
 const PAYPAL_SVG=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 40" width="165" height="40">
-  <!-- back P (lighter) -->
   <text x="2"  y="28" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="32" fill="#F2C4D0">P</text>
-  <!-- front P (darker, offset) -->
   <text x="12" y="32" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="32" fill="#E8A0B4">P</text>
-  <!-- full word PayPal -->
   <text x="50" y="28" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="20" fill="#E8A0B4" letter-spacing="-0.3">PayPal</text>
 </svg>`;
 
 const T={
   es:{weddingTag:"nos casamos",countdown:"cuenta regresiva",days:"días",hours:"horas",minutes:"minutos",seconds:"segundos",messageLabel:"un mensaje para ustedes",messageTitle:"Juntos para siempre",scheduleLabel:"fechas importantes y ubicación",civil:"boda civil",ceremony:"ceremonia religiosa",reception:"recepción",viewMap:"ver en mapa",addCal:"al calendario",dresscodeLabel:"código de vestimenta",gents:"caballeros",ladies:"damas",paletteLabel:"paleta de colores sugerida",songLabel:"nuestra canción",songTitle2:"La música de nuestro amor",listenSpotify:"escuchar en spotify",giftsLabel:"mesa de regalos",giftsTitle:"Un regalo del corazón",giftsBody:"Tu presencia es nuestro mejor regalo. Si deseas hacernos un obsequio, aquí encontrarás nuestras mesas.",qrLabel:"agregar al calendario",qrTitle:"Escanea para guardar las fechas",qrBody:"Escanea este código con tu teléfono para guardar todos los eventos en tu calendario.",qrSub:"Compatible con Google Calendar, Apple Calendar y Outlook",qrDownloadICS:"📅 Agregar eventos a mi calendario",rsvpLabel:"confirmación de asistencia",rsvpTitle:"¿Nos acompañas?",rsvpBtn:"confirmar asistencia",confirmBefore:"Por favor confirma antes del",giftCta:"Enviar regalo →",nav_home:"Inicio",nav_message:"Mensaje",nav_dates:"Fechas y Ubicación",nav_attire:"Vestimenta",nav_song:"Canción",nav_gifts:"Regalos",nav_qr:"Calendario",nav_rsvp:"Confirmar"},
-  en:{weddingTag:"we're getting married",countdown:"countdown",days:"days",hours:"hours",minutes:"minutes",seconds:"seconds",messageLabel:"a message for you",messageTitle:"Together Forever",scheduleLabel:"important dates & location",civil:"civil wedding",ceremony:"church ceremony",reception:"reception",viewMap:"view on map",addCal:"add to calendar",dresscodeLabel:"dress code",gents:"gentlemen",ladies:"ladies",paletteLabel:"suggested color palette",songLabel:"our song",songTitle2:"The Music of Our Love",listenSpotify:"listen on spotify",giftsLabel:"gift registry",giftsTitle:"A Gift from the Heart",giftsBody:"Your presence is our greatest gift. If you wish to give us something, find our registries here.",qrLabel:"add to calendar",qrTitle:"Scan to save the dates",qrBody:"Scan this code to add all events to your calendar.",qrSub:"Compatible with Google Calendar, Apple Calendar & Outlook",qrDownloadICS:"📅 Add events to my calendar",rsvpLabel:"rsvp",rsvpTitle:"Will you join us?",rsvpBtn:"confirm attendance",confirmBefore:"Please confirm before",giftCta:"Send a gift →",nav_home:"Home",nav_message:"Message",nav_dates:"Dates",nav_attire:"Attire",nav_song:"Song",nav_gifts:"Gifts",nav_qr:"Calendar",nav_rsvp:"RSVP"},
-  pa:{weddingTag:"ਅਸੀਂ ਵਿਆਹ ਕਰਵਾ ਰਹੇ ਹਾਂ",countdown:"ਉਲਟੀ ਗਿਣਤੀ",days:"ਦਿਨ",hours:"ਘੰਟੇ",minutes:"ਮਿੰਟ",seconds:"ਸਕਿੰਟ",messageLabel:"ਤੁਹਾਡੇ ਲਈ ਸੁਨੇਹਾ",messageTitle:"ਹਮੇਸ਼ਾ ਲਈ ਇਕੱਠੇ",scheduleLabel:"ਮਹੱਤਵਪੂਰਨ ਤਾਰੀਖਾਂ ਅਤੇ ਸਥਾਨ",civil:"ਸਿਵਲ ਵਿਆਹ",ceremony:"ਧਾਰਮਿਕ ਸਮਾਰੋਹ",reception:"ਸਵਾਗਤ ਸਮਾਰੋਹ",viewMap:"ਨਕਸ਼ੇ 'ਤੇ ਵੇਖੋ",addCal:"ਕੈਲੰਡਰ ਵਿੱਚ ਜੋੜੋ",dresscodeLabel:"ਪਹਿਰਾਵੇ ਦਾ ਕੋਡ",gents:"ਸੱਜਣ",ladies:"ਮਹਿਲਾਵਾਂ",paletteLabel:"ਸੁਝਾਈ ਗਈ ਰੰਗ ਪੈਲੇਟ",songLabel:"ਸਾਡਾ ਗੀਤ",songTitle2:"ਸਾਡੇ ਪਿਆਰ ਦਾ ਸੰਗੀਤ",listenSpotify:"ਸਪੋਟੀਫਾਈ 'ਤੇ ਸੁਣੋ",giftsLabel:"ਤੋਹਫ਼ੇ ਦੀ ਸੂਚੀ",giftsTitle:"ਦਿਲ ਤੋਂ ਇੱਕ ਤੋਹਫ਼ਾ",giftsBody:"ਤੁਹਾਡੀ ਹਾਜ਼ਰੀ ਸਾਡਾ ਸਭ ਤੋਂ ਵੱਡਾ ਤੋਹਫ਼ਾ ਹੈ।",qrLabel:"ਕੈਲੰਡਰ ਵਿੱਚ ਜੋੜੋ",qrTitle:"ਤਾਰੀਖਾਂ ਸੁਰੱਖਿਅਤ ਕਰਨ ਲਈ ਸਕੈਨ ਕਰੋ",qrBody:"ਸਾਰੇ ਸਮਾਗਮ ਆਪਣੇ ਕੈਲੰਡਰ ਵਿੱਚ ਜੋੜਨ ਲਈ ਇਹ ਕੋਡ ਸਕੈਨ ਕਰੋ।",qrSub:"Google, Apple ਅਤੇ Outlook ਕੈਲੰਡਰ ਦੇ ਅਨੁਕੂਲ",qrDownloadICS:"📅 ਕੈਲੰਡਰ ਵਿੱਚ ਸਮਾਗਮ ਜੋੜੋ",rsvpLabel:"ਹਾਜ਼ਰੀ ਦੀ ਪੁਸ਼ਟੀ",rsvpTitle:"ਕੀ ਤੁਸੀਂ ਆਓਗੇ?",rsvpBtn:"ਹਾਜ਼ਰੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",confirmBefore:"ਕਿਰਪਾ ਕਰਕੇ ਇਸ ਤੋਂ ਪਹਿਲਾਂ ਪੁਸ਼ਟੀ ਕਰੋ",giftCta:"ਵੇਖੋ →",nav_home:"ਮੁੱਖ",nav_message:"ਸੁਨੇਹਾ",nav_dates:"ਤਾਰੀਖਾਂ",nav_attire:"ਪਹਿਰਾਵਾ",nav_song:"ਗੀਤ",nav_gifts:"ਤੋਹਫ਼ੇ",nav_qr:"ਕੈਲੰਡਰ",nav_rsvp:"ਪੁਸ਼ਟੀ"}
+  en:{weddingTag:"we're getting married",countdown:"countdown",days:"days",hours:"hours",minutes:"minutes",seconds:"seconds",messageLabel:"a message for you",messageTitle:"Together Forever",scheduleLabel:"important dates & location",civil:"civil wedding",ceremony:"church ceremony",reception:"reception",viewMap:"view on map",addCal:"add to calendar",dresscodeLabel:"dress code",gents:"gentlemen",ladies:"ladies",paletteLabel:"suggested color palette",songLabel:"our song",songTitle2:"The Music of Our Love",listenSpotify:"listen on spotify",giftsLabel:"gift registry",giftsTitle:"A Gift from the Heart",giftsBody:"Your presence is our greatest gift. If you wish to give us something, find our registries here.",qrLabel:"add to calendar",qrTitle:"Scan to save the dates",qrBody:"Scan this code to add all events to your calendar.",qrSub:"Compatible with Google Calendar, Apple Calendar & Outlook",qrDownloadICS:"📅 Add events to my calendar",rsvpLabel:"rsvp",rsvpTitle:"Will you join us?",rsvpBtn:"confirm attendance",confirmBefore:"Please confirm before",giftCta:"Send a gift →",nav_home:"Home",nav_message:"Message",nav_dates:"Dates & Location",nav_attire:"Attire",nav_song:"Song",nav_gifts:"Gifts",nav_qr:"Calendar",nav_rsvp:"RSVP"},
+  pa:{weddingTag:"ਅਸੀਂ ਵਿਆਹ ਕਰਵਾ ਰਹੇ ਹਾਂ",countdown:"ਉਲਟੀ ਗਿਣਤੀ",days:"ਦਿਨ",hours:"ਘੰਟੇ",minutes:"ਮਿੰਟ",seconds:"ਸਕਿੰਟ",messageLabel:"ਤੁਹਾਡੇ ਲਈ ਸੁਨੇਹਾ",messageTitle:"ਹਮੇਸ਼ਾ ਲਈ ਇਕੱਠੇ",scheduleLabel:"ਮਹੱਤਵਪੂਰਨ ਤਾਰੀਖਾਂ ਅਤੇ ਸਥਾਨ",civil:"ਸਿਵਲ ਵਿਆਹ",ceremony:"ਧਾਰਮਿਕ ਸਮਾਰੋਹ",reception:"ਸਵਾਗਤ ਸਮਾਰੋਹ",viewMap:"ਨਕਸ਼ੇ 'ਤੇ ਵੇਖੋ",addCal:"ਕੈਲੰਡਰ ਵਿੱਚ ਜੋੜੋ",dresscodeLabel:"ਪਹਿਰਾਵੇ ਦਾ ਕੋਡ",gents:"ਸੱਜਣ",ladies:"ਮਹਿਲਾਵਾਂ",paletteLabel:"ਸੁਝਾਈ ਗਈ ਰੰਗ ਪੈਲੇਟ",songLabel:"ਸਾਡਾ ਗੀਤ",songTitle2:"ਸਾਡੇ ਪਿਆਰ ਦਾ ਸੰਗੀਤ",listenSpotify:"ਸਪੋਟੀਫਾਈ 'ਤੇ ਸੁਣੋ",giftsLabel:"ਤੋਹਫ਼ੇ ਦੀ ਸੂਚੀ",giftsTitle:"ਦਿਲ ਤੋਂ ਇੱਕ ਤੋਹਫ਼ਾ",giftsBody:"ਤੁਹਾਡੀ ਹਾਜ਼ਰੀ ਸਾਡਾ ਸਭ ਤੋਂ ਵੱਡਾ ਤੋਹਫ਼ਾ ਹੈ।",qrLabel:"ਕੈਲੰਡਰ ਵਿੱਚ ਜੋੜੋ",qrTitle:"ਤਾਰੀਖਾਂ ਸੁਰੱਖਿਅਤ ਕਰਨ ਲਈ ਸਕੈਨ ਕਰੋ",qrBody:"ਸਾਰੇ ਸਮਾਗਮ ਆਪਣੇ ਕੈਲੰਡਰ ਵਿੱਚ ਜੋੜਨ ਲਈ ਇਹ ਕੋਡ ਸਕੈਨ ਕਰੋ।",qrSub:"Google, Apple ਅਤੇ Outlook ਕੈਲੰਡਰ ਦੇ ਅਨੁਕੂਲ",qrDownloadICS:"📅 ਕੈਲੰਡਰ ਵਿੱਚ ਸਮਾਗਮ ਜੋੜੋ",rsvpLabel:"ਹਾਜ਼ਰੀ ਦੀ ਪੁਸ਼ਟੀ",rsvpTitle:"ਕੀ ਤੁਸੀਂ ਆਓਗੇ?",rsvpBtn:"ਹਾਜ਼ਰੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",confirmBefore:"ਕਿਰਪਾ ਕਰਕੇ ਇਸ ਤੋਂ ਪਹਿਲਾਂ ਪੁਸ਼ਟੀ ਕਰੋ",giftCta:"ਵੇਖੋ →",nav_home:"ਮੁੱਖ",nav_message:"ਸੁਨੇਹਾ",nav_dates:"ਤਾਰੀਖਾਂ ਅਤੇ ਸਥਾਨ",nav_attire:"ਪਹਿਰਾਵਾ",nav_song:"ਗੀਤ",nav_gifts:"ਤੋਹਫ਼ੇ",nav_qr:"ਕੈਲੰਡਰ",nav_rsvp:"ਪੁਸ਼ਟੀ"}
 };
 
 const PH={
-  hero:`<svg viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="200" height="230" fill="#FAEEF2"/><path d="M40,210 L40,95 Q40,44 100,44 Q160,44 160,95 L160,210" fill="none" stroke="#C8965A" stroke-width="1" opacity=".45"/><circle cx="84" cy="100" r="10" fill="#E8A0B4" opacity=".55"/><path d="M74,113 Q69,125 66,165 L102,165 Q100,135 94,113Z" fill="#E8A0B4" opacity=".4"/><circle cx="118" cy="98" r="11" fill="#E8A0B4" opacity=".55"/><rect x="108" y="110" width="20" height="55" rx="2" fill="#E8A0B4" opacity=".4"/><text x="100" y="205" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="11" font-style="italic" fill="#E8A0B4" opacity=".5">foto de pareja</text></svg>`,
   msg:`<svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="200" height="220" fill="#FAEEF2"/><rect x="30" y="68" width="140" height="100" rx="2" fill="none" stroke="#C8965A" stroke-width="1" opacity=".5"/><path d="M30,68 L100,118 L170,68" fill="none" stroke="#C8965A" stroke-width="1" opacity=".5"/><circle cx="100" cy="143" r="14" fill="none" stroke="#C8965A" stroke-width=".8" opacity=".5"/><text x="100" y="148" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="12" font-style="italic" fill="#C8965A" opacity=".7">D&amp;T</text></svg>`,
   events:`<svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="200" height="220" fill="#FAEEF2"/><path d="M55,195 L55,100 Q55,55 100,55 Q145,55 145,100 L145,195" fill="none" stroke="#E8A0B4" stroke-width="1.2" opacity=".45"/></svg>`,
   dress:`<svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="200" height="220" fill="#FAEEF2"/><path d="M80,62 Q74,78 70,92 L50,190 L150,190 L130,92 Q126,78 120,62Z" fill="#E8A0B4" opacity=".12" stroke="#E8A0B4" stroke-width="1" opacity=".4"/></svg>`,
@@ -554,88 +587,127 @@ const PH={
   gifts:`<svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="200" height="220" fill="#FAEEF2"/><rect x="45" y="110" width="110" height="80" rx="2" fill="#E8A0B4" opacity=".1" stroke="#E8A0B4" stroke-width="1" opacity=".35"/><path d="M100,95 Q80,78 68,82 Q62,88 80,95Z" fill="#C8965A" opacity=".4"/><path d="M100,95 Q120,78 132,82 Q138,88 120,95Z" fill="#C8965A" opacity=".4"/><circle cx="100" cy="95" r="5" fill="#C8965A" opacity=".5"/></svg>`
 };
 
-/* ══ QUILL LETTER-BY-LETTER ANIMATION ══ */
+/* ══ SLIDESHOW ══ */
+let ssIndex=0, ssTimer=null, ssSlides=[];
+const ssPhotos=[
+  WEDDING.photoHero,WEDDING.photoMsg,WEDDING.photoEvents,
+  WEDDING.photoDress,WEDDING.photoSong,WEDDING.photoGifts
+];
+const ssPHs=[
+  `<svg viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="500" height="340" fill="#FAEEF2"/><path d="M100,310 Q100,130 250,130 Q400,130 400,310" fill="none" stroke="#E8A0B4" stroke-width="1.5" opacity=".4"/><circle cx="205" cy="145" r="22" fill="#E8A0B4" opacity=".35"/><circle cx="295" cy="140" r="25" fill="#E8A0B4" opacity=".35"/><text x="250" y="295" text-anchor="middle" font-family="'Great Vibes',cursive" font-size="38" fill="#E8A0B4" opacity=".35">Dallany &amp; Tony</text></svg>`,
+  `<svg viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="500" height="340" fill="#FAEEF2"/><path d="M160,100 Q250,60 340,100 Q380,140 340,200 Q280,260 250,290 Q220,260 160,200 Q120,140 160,100Z" fill="#E8A0B4" opacity=".12" stroke="#E8A0B4" stroke-width="1"/><text x="250" y="185" text-anchor="middle" font-family="'Great Vibes',cursive" font-size="32" fill="#C8965A" opacity=".5">con amor</text></svg>`,
+  `<svg viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="500" height="340" fill="#FAEEF2"/><rect x="80" y="80" width="340" height="180" rx="3" fill="none" stroke="#E8A0B4" stroke-width="1.2" opacity=".4"/><text x="250" y="200" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="20" font-style="italic" fill="#C8965A" opacity=".5">Chihuahua, México</text></svg>`,
+  `<svg viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="500" height="340" fill="#FAEEF2"/><polygon points="250,60 270,120 340,120 285,158 305,220 250,182 195,220 215,158 160,120 230,120" fill="#E8A0B4" opacity=".18" stroke="#C8965A" stroke-width="1"/></svg>`,
+  `<svg viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="500" height="340" fill="#FAEEF2"/><circle cx="250" cy="155" r="90" fill="none" stroke="#E8A0B4" stroke-width="1.2" opacity=".4"/><circle cx="250" cy="155" r="8" fill="#C8965A" opacity=".5"/><text x="250" y="295" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="16" font-style="italic" fill="#E8A0B4" opacity=".5">Perfect · Ed Sheeran</text></svg>`,
+  `<svg viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><rect width="500" height="340" fill="#FAEEF2"/><rect x="110" y="160" width="280" height="120" rx="2" fill="#E8A0B4" opacity=".1" stroke="#E8A0B4" stroke-width="1" opacity=".35"/><path d="M250,140 Q210,110 185,118 Q172,130 205,140Z" fill="#C8965A" opacity=".4"/><path d="M250,140 Q290,110 315,118 Q328,130 295,140Z" fill="#C8965A" opacity=".4"/></svg>`
+];
+
+function buildSlideshow(){
+  const track=document.getElementById('ss-track');
+  const dots=document.getElementById('ss-dots');
+  if(!track||!dots) return;
+  track.innerHTML=''; dots.innerHTML='';
+  ssSlides=[];
+  ssPhotos.forEach((src,i)=>{
+    const slide=document.createElement('div');
+    slide.className='ss-slide'+(i===0?' active':'');
+    if(src){
+      const img=document.createElement('img');
+      img.src=src; img.alt='';
+      img.onerror=()=>{slide.innerHTML=`<div class="ss-ph">${ssPHs[i]}</div>`;};
+      slide.appendChild(img);
+    } else {
+      slide.innerHTML=`<div class="ss-ph">${ssPHs[i]}</div>`;
+    }
+    track.appendChild(slide);
+    ssSlides.push(slide);
+    const dot=document.createElement('button');
+    dot.className='ss-dot'+(i===0?' active':'');
+    dot.onclick=()=>ssGoTo(i);
+    dots.appendChild(dot);
+  });
+}
+
+function ssGoTo(n){
+  ssSlides[ssIndex].classList.remove('active');
+  document.querySelectorAll('.ss-dot')[ssIndex].classList.remove('active');
+  ssIndex=(n+ssSlides.length)%ssSlides.length;
+  ssSlides[ssIndex].classList.add('active');
+  document.querySelectorAll('.ss-dot')[ssIndex].classList.add('active');
+}
+function ssNext(){clearInterval(ssTimer);ssGoTo(ssIndex+1);ssTimer=setInterval(()=>ssGoTo(ssIndex+1),3800);}
+window.ssNext=ssNext;
+function ssPrev(){clearInterval(ssTimer);ssGoTo(ssIndex-1);ssTimer=setInterval(()=>ssGoTo(ssIndex+1),3800);}
+window.ssPrev=ssPrev;
+function startSlideshow(){ssTimer=setInterval(()=>ssGoTo(ssIndex+1),3800);}
+
+/* ══ QUILL + NAME BUILD ══ */
 let writeTriggered=false;
 
 function buildNameSpans(){
-  const el=document.getElementById('hero-names-el');
-  const n1=WEDDING.name1, n2=WEDDING.name2;
-  let html='';
-  // Name 1 chars
-  for(const ch of n1){
-    if(ch===' ') html+=`<span class="wc"> </span>`;
-    else html+=`<span class="wc">${ch==='&'?'&amp;':ch}</span>`;
-  }
-  // Ampersand on its own line block
-  html+=`<span class="hero-ampersand"><span class="wc wc-amp">&amp;</span></span>`;
-  // Name 2 chars
-  for(const ch of n2){
-    if(ch===' ') html+=`<span class="wc"> </span>`;
-    else html+=`<span class="wc">${ch==='&'?'&amp;':ch}</span>`;
-  }
-  el.innerHTML=html;
+  const l1=document.getElementById('wr-name1');
+  const lA=document.getElementById('wr-amp');
+  const l2=document.getElementById('wr-name2');
+  let h='';
+  for(const ch of WEDDING.name1) h+=`<span class="wc">${ch===' '?' ':ch}</span>`;
+  l1.innerHTML=h; h='';
+  lA.innerHTML=`<span class="wc wc-amp">&amp;</span>`;
+  for(const ch of WEDDING.name2) h+=`<span class="wc">${ch===' '?' ':ch}</span>`;
+  l2.innerHTML=h;
+  document.getElementById('fn1').textContent=WEDDING.name1;
+  document.getElementById('fn2').textContent=WEDDING.name2;
 }
 
 function triggerWrite(){
   if(writeTriggered) return;
   writeTriggered=true;
-
   const outer=document.getElementById('names-outer');
   const quill=document.getElementById('quill');
-  const chars=outer.querySelectorAll('.wc');
+  const chars=[...document.querySelectorAll('#wr-name1 .wc, #wr-amp .wc, #wr-name2 .wc')];
   if(!chars.length) return;
-
-  // quill dimensions
-  const qW=quill.offsetWidth||36;
-  const qH=quill.offsetHeight||90;
-
-  // Show quill
+  const qW=quill.offsetWidth||36, qH=quill.offsetHeight||90;
   quill.style.opacity='1';
   quill.classList.add('writing');
-
-  // Character durations — vary naturally per letter, spaces instant
-  const charMs=170; // base ms per character
-
+  const charMs=170;
   let delay=300;
-  chars.forEach((span,i)=>{
-    const isSpace=(span.textContent.trim()==='');
+  chars.forEach(span=>{
+    const isSpace=span.textContent.trim()==='';
     const dur=isSpace?40:charMs+Math.random()*60;
-
     setTimeout(()=>{
-      // ── Move quill so its INK TIP sits on the character ──
       const spanR=span.getBoundingClientRect();
       const outerR=outer.getBoundingClientRect();
-
-      // SVG viewBox 40×110, tip (ink drop) at SVG (20, 97).
-      // Rendered: height = qW * 2.75. Transform-origin: (50%, 90%).
-      // After 30deg rotation the tip is essentially at element coords:
-      //   tipX ≈ qW * 0.50,  tipY ≈ qH * 0.88
-      // So we position the element so that point lands on the char.
-      const tipX = qW * 0.50;
-      const tipY = qH * 0.88;
-
-      // Writing contact point: left edge of char, at ~65% height (baseline for Great Vibes)
-      const targetLeft = spanR.left - outerR.left + spanR.width * 0.18 - tipX;
-      const targetTop  = spanR.top  - outerR.top  + spanR.height * 0.65 - tipY;
-
-      quill.style.left=targetLeft+'px';
-      quill.style.top =targetTop+'px';
-
-      // Reveal character with a quick left-to-right clip
-      span.style.transition=`clip-path ${isSpace?0:charMs*0.85}ms ease-out`;
+      const tipX=qW*.50, tipY=qH*.88;
+      quill.style.left=(spanR.left-outerR.left+spanR.width*.18-tipX)+'px';
+      quill.style.top =(spanR.top -outerR.top +spanR.height*.65-tipY)+'px';
+      span.style.transition=`clip-path ${isSpace?0:charMs*.85}ms ease-out`;
       span.classList.add('on');
-
-    }, delay);
-
+    },delay);
     delay+=dur;
   });
-
-  // Fade quill out after last char
+  const total=delay;
+  // 1. Quill fades out
   setTimeout(()=>{
     quill.classList.remove('writing');
-    quill.style.transition='opacity .7s ease, left .12s ease-out, top .12s ease-out';
+    quill.style.transition='opacity .7s ease,left .12s ease-out,top .12s ease-out';
     quill.style.opacity='0';
-  }, delay+200);
+  }, total+150);
+  // 2. Stacked writing layer shrinks + fades up
+  setTimeout(()=>{
+    document.getElementById('names-writing-layer').classList.add('exit');
+  }, total+450);
+  // 3. Single-line final h1 rises in smoothly
+  setTimeout(()=>{
+    document.getElementById('names-final').classList.add('show');
+  }, total+750);
+  // 4. Date + city slides in
+  setTimeout(()=>{
+    document.getElementById('hero-info-wrap').classList.add('show');
+  }, total+1100);
+  // 5. Slideshow appears
+  setTimeout(()=>{
+    document.getElementById('hero-slideshow').classList.add('show');
+    startSlideshow();
+  }, total+1650);
 }
 
 /* ── NAV ── */
@@ -643,7 +715,7 @@ let navOpen=false;
 window.toggleNav=function(){navOpen?closeNav():openNav();};
 function openNav(){navOpen=true;document.getElementById('nav-drawer').classList.add('open');document.getElementById('nav-overlay').classList.add('open');document.getElementById('ham-btn').classList.add('open');}
 window.closeNav=function(){navOpen=false;document.getElementById('nav-drawer').classList.remove('open');document.getElementById('nav-overlay').classList.remove('open');document.getElementById('ham-btn').classList.remove('open');};
-window.navTo=function(id){const el=document.getElementById(id);if(el){window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-54,behavior:'smooth'});}closeNav();};
+window.navTo=function(id){const el=document.getElementById(id);if(el)window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-54,behavior:'smooth'});closeNav();};
 
 /* ── ENVELOPE ── */
 let envOpened=false;
@@ -663,8 +735,13 @@ window.openEnvelope=function(){
     document.body.appendChild(flash);void flash.offsetWidth;flash.style.opacity='1';
     setTimeout(()=>{
       const o=document.getElementById('env-overlay');if(o&&o.parentNode)o.remove();
-      setTimeout(()=>{flash.style.transition='opacity 0.5s ease';flash.style.opacity='0';
-        setTimeout(()=>{if(flash.parentNode)flash.remove();triggerWrite();setTimeout(()=>autoplaySong(),800);},500);
+      setTimeout(()=>{
+        flash.style.transition='opacity 0.5s ease';flash.style.opacity='0';
+        setTimeout(()=>{
+          if(flash.parentNode)flash.remove();
+          triggerWrite();
+          setTimeout(()=>autoplaySong(),800);
+        },500);
       },100);
     },600);
   },1900);
@@ -708,8 +785,8 @@ function generateQR(){const c=document.getElementById('qr-canvas');if(!c)return;
 
 /* ── INIT ── */
 document.title=WEDDING.docTitle;
-buildNameSpans(); // build char spans before anything else
-
+buildNameSpans();
+buildSlideshow();
 safeSet('heart-initials',WEDDING.heartInitials);
 safeSet('wedding-city',WEDDING.city);
 safeSet('ec-names',`${WEDDING.name1} & ${WEDDING.name2}`);
@@ -737,28 +814,21 @@ WEDDING.gifts.forEach(g=>{
   a.innerHTML=`${logo}<span class="gift-cta">Ver mesa →</span>`;gGrid.appendChild(a);
 });
 
-setPhoto('hero-torn',WEDDING.photoHero,'hero-ph');
 setPhoto('msg-photo',WEDDING.photoMsg,'msg-ph');
 setPhoto('events-photo',WEDDING.photoEvents,'events-ph');
 setPhoto('dress-photo',WEDDING.photoDress,'dress-ph');
 setPhoto('song-photo',WEDDING.photoSong,'song-ph');
 setPhoto('gifts-photo',WEDDING.photoGifts,'gifts-ph');
-['hero','msg','events','dress','song','gifts'].forEach(k=>{const ph=document.getElementById(k+'-ph');if(ph&&ph.children.length===0&&PH[k])ph.innerHTML=PH[k];});
+['msg','events','dress','song','gifts'].forEach(k=>{const ph=document.getElementById(k+'-ph');if(ph&&ph.children.length===0&&PH[k])ph.innerHTML=PH[k];});
 setLang('es');
 generateQR();
-
-const tf=document.querySelector('.torn-frame');
-if(tf){
-  tf.addEventListener('mousemove',e=>{const r=tf.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;tf.style.transform=`perspective(600px) rotateY(${x*9}deg) rotateX(${-y*9}deg) scale(1.02)`;});
-  tf.addEventListener('mouseleave',()=>{tf.style.transform='';});
-}
 
 function updateCountdown(){const d=Math.max(0,new Date(WEDDING.dateISO).getTime()-Date.now());safeSet('cd-days',String(Math.floor(d/86400000)).padStart(2,'0'));safeSet('cd-hours',String(Math.floor((d%86400000)/3600000)).padStart(2,'0'));safeSet('cd-min',String(Math.floor((d%3600000)/60000)).padStart(2,'0'));safeSet('cd-sec',String(Math.floor((d%60000)/1000)).padStart(2,'0'));}
 updateCountdown();setInterval(updateCountdown,1000);
 
 let audio=null,playing=false,progTimer=null;
 function autoplaySong(){
-  if(playing) return;
+  if(playing)return;
   if(WEDDING.songAudio){
     if(!audio){audio=new Audio(WEDDING.songAudio);audio.onended=()=>stopSong();}
     audio.currentTime=18;audio.play().catch(()=>{});
@@ -769,25 +839,14 @@ function autoplaySong(){
     bi.innerHTML='<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
     const bar=document.getElementById('progress-bar'),bbar=document.getElementById('bar-progress-bar');
     progTimer=setInterval(()=>{const p=(audio.currentTime/audio.duration*100)+'%';bar.style.width=p;bbar.style.width=p;},500);
-  } else {
-    // No audio file — just open Spotify silently and start the fake progress
-    window.open(WEDDING.songSpotify,'_blank');
-    const vinyl=document.getElementById('song-vinyl'),icon=document.getElementById('play-icon');
-    const bv=document.getElementById('bar-vinyl'),bi=document.getElementById('bar-play-icon');
-    playing=true;vinyl.style.animation='barSpin 3s linear infinite';bv.classList.add('playing');
-    icon.innerHTML='<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
-    bi.innerHTML='<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
-    const bar=document.getElementById('progress-bar'),bbar=document.getElementById('bar-progress-bar');
-    let w=0;progTimer=setInterval(()=>{w=Math.min(w+0.4,100);const p=w+'%';bar.style.width=p;bbar.style.width=p;if(w>=100)stopSong();},200);
   }
 }
-
 window.toggleSong=function(){
   const vinyl=document.getElementById('song-vinyl'),icon=document.getElementById('play-icon');
   const bv=document.getElementById('bar-vinyl'),bi=document.getElementById('bar-play-icon');
   const bar=document.getElementById('progress-bar'),bbar=document.getElementById('bar-progress-bar');
   function startUI(){playing=true;vinyl.style.animation='barSpin 3s linear infinite';bv.classList.add('playing');icon.innerHTML='<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';bi.innerHTML='<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';}
-  if(WEDDING.songAudio){    if(!audio){audio=new Audio(WEDDING.songAudio);audio.onended=()=>stopSong();}if(playing){audio.pause();stopSong();}else{audio.currentTime=18;audio.play();startUI();progTimer=setInterval(()=>{const p=(audio.currentTime/audio.duration*100)+'%';bar.style.width=p;bbar.style.width=p;},500);}}
+  if(WEDDING.songAudio){if(!audio){audio=new Audio(WEDDING.songAudio);audio.onended=()=>stopSong();}if(playing){audio.pause();stopSong();}else{audio.currentTime=18;audio.play();startUI();progTimer=setInterval(()=>{const p=(audio.currentTime/audio.duration*100)+'%';bar.style.width=p;bbar.style.width=p;},500);}}
   else{if(!playing){startUI();let w=0;progTimer=setInterval(()=>{w=Math.min(w+0.4,100);const p=w+'%';bar.style.width=p;bbar.style.width=p;if(w>=100)stopSong();},200);window.open(WEDDING.songSpotify,'_blank');}else stopSong();}
 };
 function stopSong(){playing=false;document.getElementById('song-vinyl').style.animation='';document.getElementById('bar-vinyl').classList.remove('playing');document.getElementById('play-icon').innerHTML='<path d="M8 5v14l11-7z"/>';document.getElementById('bar-play-icon').innerHTML='<path d="M8 5v14l11-7z"/>';clearInterval(progTimer);document.getElementById('progress-bar').style.width='0%';document.getElementById('bar-progress-bar').style.width='0%';}
