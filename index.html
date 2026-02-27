@@ -62,7 +62,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 .bar-play-btn{width:26px;height:26px;border-radius:50%;background:var(--primary);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s,transform .2s;}
 .bar-play-btn:hover{background:var(--accent);transform:scale(1.1);}
 .bar-play-btn svg{width:11px;height:11px;fill:white;margin-left:2px;}
-@media(max-width:480px){.bar-vinyl,.bar-song-info,.bar-progress{display:none !important;}.bar-player{gap:0;}}
+@media(max-width:480px){.bar-vinyl,.bar-progress{display:none !important;}.bar-player{gap:4px;}.bar-song-title{max-width:70px;}.bar-song-artist{max-width:70px;}.bar-play-btn{order:-1;}.bar-song-info{order:0;}}
 
 /* Language dropdown */
 .lang-icon-btn{background:none;border:1px solid rgba(200,150,90,.45);border-radius:99px;padding:4px 9px;cursor:pointer;font-size:.7rem;display:flex;align-items:center;gap:4px;color:var(--text);font-family:var(--sans);transition:background .2s;white-space:nowrap;}
@@ -138,22 +138,28 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 .hero-date{font-family:var(--serif);font-size:clamp(.95rem,2.4vw,1.35rem);font-weight:300;letter-spacing:3px;color:var(--primary);}
 .hero-location{font-size:.58rem;font-weight:200;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-top:4px;}
 
-/* SLIDESHOW */
-.hero-slideshow{width:clamp(260px,78vw,500px);margin:22px auto 0;opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease;}
-.hero-slideshow.show{opacity:1;transform:translateY(0);}
-.ss-frame{position:relative;width:100%;height:clamp(200px,52vw,340px);overflow:hidden;clip-path:polygon(0% 3%,2% 0%,5% 2%,8% 0%,11% 2%,15% 0%,18% 2%,21% 0%,25% 2%,28% 0%,31% 2%,35% 0%,38% 2%,42% 0%,45% 2%,48% 0%,52% 2%,55% 0%,58% 2%,62% 0%,65% 2%,68% 0%,72% 2%,75% 0%,78% 2%,82% 0%,85% 2%,88% 0%,92% 2%,95% 0%,98% 2%,100% 3%,100% 97%,98% 100%,95% 98%,92% 100%,88% 98%,85% 100%,82% 98%,78% 100%,75% 98%,72% 100%,68% 98%,65% 100%,62% 98%,58% 100%,55% 98%,52% 100%,48% 98%,45% 100%,42% 98%,38% 100%,35% 98%,31% 100%,28% 98%,25% 100%,21% 98%,18% 100%,15% 98%,11% 100%,8% 98%,5% 100%,2% 98%,0% 97%);background:var(--light);box-shadow:0 10px 40px rgba(60,30,40,.14);}
-.ss-slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;background:var(--light);}
+/* SLIDESHOW — fullscreen hero background */
+.hero-slideshow{position:absolute;inset:0;z-index:0;opacity:0;transition:opacity 1s ease;}
+.hero-slideshow.show{opacity:1;}
+.ss-frame{position:absolute;inset:0;overflow:hidden;background:#2A1A1E;}
+.ss-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;background:#2A1A1E;}
 .ss-slide.active{opacity:1;}
 .ss-slide img{width:100%;height:100%;object-fit:cover;display:block;}
 .ss-slide .ss-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
-.ss-arrows{display:flex;justify-content:space-between;position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);pointer-events:none;padding:0 10px;z-index:5;}
-.ss-arrow{width:34px;height:34px;border-radius:50%;background:rgba(253,250,248,.75);border:1px solid rgba(200,150,90,.35);display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:all;transition:background .2s,transform .2s;backdrop-filter:blur(6px);}
+/* Gradient overlay on top of slides so text stays readable */
+.ss-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(253,250,248,.70) 0%,rgba(253,250,248,.52) 45%,rgba(253,250,248,.72) 100%);z-index:1;pointer-events:none;}
+.ss-arrows{display:flex;justify-content:space-between;position:absolute;bottom:24px;left:50%;transform:translateX(-50%);gap:12px;z-index:3;pointer-events:none;}
+.ss-arrow{width:36px;height:36px;border-radius:50%;background:rgba(253,250,248,.7);border:1px solid rgba(200,150,90,.4);display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:all;transition:background .2s,transform .2s;backdrop-filter:blur(8px);}
 .ss-arrow:hover{background:var(--primary);transform:scale(1.1);}
 .ss-arrow svg{width:14px;height:14px;fill:var(--text);}
 .ss-arrow:hover svg{fill:white;}
-.ss-dots{display:flex;justify-content:center;gap:7px;margin-top:12px;}
-.ss-dot{width:6px;height:6px;border-radius:50%;background:rgba(200,150,90,.3);transition:background .3s,transform .3s;cursor:pointer;border:none;padding:0;}
-.ss-dot.active{background:var(--accent);transform:scale(1.35);}
+.ss-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:3;}
+.ss-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);transition:background .3s,transform .3s;cursor:pointer;border:none;padding:0;}
+.ss-dot.active{background:var(--accent);transform:scale(1.4);}
+
+/* Top-bar heart — centered */
+.bar-heart{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;pointer-events:none;}
+.bar-heart svg{width:36px;height:28px;}
 
 /* SECTIONS */
 .countdown-wrap{background:var(--primary);padding:46px 20px;text-align:center;position:relative;}
@@ -297,6 +303,29 @@ body.lang-pa .section-label,body.lang-pa .section-title,body.lang-pa .section-bo
       <button class="bar-play-btn" id="bar-play-btn" onclick="toggleSong()"><svg id="bar-play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
     </div>
   </div>
+  <!-- Full monogram heart centered in bar -->
+  <div class="bar-heart">
+    <svg viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg" width="38" height="31">
+      <g class="heart-group">
+        <path d="M160,228 L52,122 L52,100 L74,62 L108,44 L138,52 L160,78 L182,52 L212,44 L246,62 L268,100 L268,122 Z" fill="#E8A0B4" opacity="0.13"/>
+        <path d="M160,228 L52,122 L52,100 L74,62 L108,44 L138,52 L160,78 L182,52 L212,44 L246,62 L268,100 L268,122 Z" fill="none" stroke="#C8965A" stroke-width="6" stroke-linejoin="round"/>
+        <g stroke="#C8965A" stroke-width="3.5" fill="none" opacity=".7">
+          <line x1="160" y1="78" x2="160" y2="122"/><line x1="160" y1="178" x2="160" y2="228"/>
+          <line x1="52" y1="122" x2="142" y2="122"/><line x1="52" y1="100" x2="138" y2="118"/>
+          <line x1="74" y1="62" x2="146" y2="114"/><line x1="108" y1="44" x2="150" y2="108"/>
+          <line x1="138" y1="52" x2="155" y2="100"/><line x1="268" y1="122" x2="178" y2="122"/>
+          <line x1="268" y1="100" x2="182" y2="118"/><line x1="246" y1="62" x2="174" y2="114"/>
+          <line x1="212" y1="44" x2="170" y2="108"/><line x1="182" y1="52" x2="165" y2="100"/>
+          <line x1="52" y1="122" x2="142" y2="178"/><line x1="142" y1="178" x2="160" y2="228"/>
+          <line x1="268" y1="122" x2="178" y2="178"/><line x1="178" y1="178" x2="160" y2="228"/>
+          <line x1="138" y1="52" x2="160" y2="78"/><line x1="182" y1="52" x2="160" y2="78"/>
+          <line x1="52" y1="100" x2="108" y2="44"/><line x1="268" y1="100" x2="212" y2="44"/>
+          <line x1="108" y1="44" x2="138" y2="52"/><line x1="212" y1="44" x2="182" y2="52"/>
+        </g>
+        <text x="160" y="162" font-family="Cormorant Garamond,Georgia,serif" font-size="58" font-style="italic" font-weight="400" fill="#E8A0B4" text-anchor="middle">D &amp; T</text>
+      </g>
+    </svg>
+  </div>
   <div class="bar-right">
     <div class="lang-dropdown-wrap" id="lang-wrap">
       <button class="lang-icon-btn" onclick="toggleLangDropdown()">
@@ -316,29 +345,6 @@ body.lang-pa .section-label,body.lang-pa .section-title,body.lang-pa .section-bo
 <section id="section-hero" class="hero">
   <div class="hero-bg"></div>
   <div class="hero-corner-bl"></div><div class="hero-corner-br"></div>
-  <div class="monogram-wrap">
-    <svg class="monogram-svg" viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg">
-      <g class="heart-group">
-        <path d="M160,228 L52,122 L52,100 L74,62 L108,44 L138,52 L160,78 L182,52 L212,44 L246,62 L268,100 L268,122 Z" fill="#E8A0B4" opacity="0.08"/>
-        <path d="M160,228 L52,122 L52,100 L74,62 L108,44 L138,52 L160,78 L182,52 L212,44 L246,62 L268,100 L268,122 Z" fill="none" stroke="#C8965A" stroke-width="1.5" stroke-linejoin="round"/>
-        <g class="inner-lines" stroke="#C8965A" stroke-width=".85" fill="none">
-          <line x1="160" y1="78" x2="160" y2="122"/><line x1="160" y1="178" x2="160" y2="228"/>
-          <line x1="52" y1="122" x2="142" y2="122"/><line x1="52" y1="100" x2="138" y2="118"/>
-          <line x1="74" y1="62" x2="146" y2="114"/><line x1="108" y1="44" x2="150" y2="108"/>
-          <line x1="138" y1="52" x2="155" y2="100"/><line x1="268" y1="122" x2="178" y2="122"/>
-          <line x1="268" y1="100" x2="182" y2="118"/><line x1="246" y1="62" x2="174" y2="114"/>
-          <line x1="212" y1="44" x2="170" y2="108"/><line x1="182" y1="52" x2="165" y2="100"/>
-          <line x1="52" y1="122" x2="142" y2="178"/><line x1="142" y1="178" x2="160" y2="228"/>
-          <line x1="268" y1="122" x2="178" y2="178"/><line x1="178" y1="178" x2="160" y2="228"/>
-          <line x1="138" y1="52" x2="160" y2="78"/><line x1="182" y1="52" x2="160" y2="78"/>
-          <line x1="52" y1="100" x2="108" y2="44"/><line x1="268" y1="100" x2="212" y2="44"/>
-          <line x1="108" y1="44" x2="138" y2="52"/><line x1="212" y1="44" x2="182" y2="52"/>
-        </g>
-        <text id="heart-initials" x="160" y="160" font-family="Cormorant Garamond,Georgia,serif" font-size="42" font-style="italic" font-weight="400" fill="#E8A0B4" text-anchor="middle"></text>
-      </g>
-    </svg>
-  </div>
-
   <div class="hero-names-outer" id="names-outer">
     <div class="names-writing-layer" id="names-writing-layer">
       <span class="names-wr-line" id="wr-name1"></span>
@@ -376,6 +382,7 @@ body.lang-pa .section-label,body.lang-pa .section-title,body.lang-pa .section-bo
   <div class="hero-slideshow" id="hero-slideshow">
     <div class="ss-frame" id="ss-frame">
       <div id="ss-track"></div>
+      <div class="ss-overlay"></div>
       <div class="ss-arrows">
         <button class="ss-arrow" onclick="ssPrev()"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
         <button class="ss-arrow" onclick="ssNext()"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
