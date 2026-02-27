@@ -761,7 +761,7 @@ function autoplaySong(){
   if(playing) return;
   if(WEDDING.songAudio){
     if(!audio){audio=new Audio(WEDDING.songAudio);audio.onended=()=>stopSong();}
-    audio.play().catch(()=>{});
+    audio.currentTime=18;audio.play().catch(()=>{});
     const vinyl=document.getElementById('song-vinyl'),icon=document.getElementById('play-icon');
     const bv=document.getElementById('bar-vinyl'),bi=document.getElementById('bar-play-icon');
     playing=true;vinyl.style.animation='barSpin 3s linear infinite';bv.classList.add('playing');
@@ -787,7 +787,7 @@ window.toggleSong=function(){
   const bv=document.getElementById('bar-vinyl'),bi=document.getElementById('bar-play-icon');
   const bar=document.getElementById('progress-bar'),bbar=document.getElementById('bar-progress-bar');
   function startUI(){playing=true;vinyl.style.animation='barSpin 3s linear infinite';bv.classList.add('playing');icon.innerHTML='<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';bi.innerHTML='<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';}
-  if(WEDDING.songAudio){if(!audio){audio=new Audio(WEDDING.songAudio);audio.onended=()=>stopSong();}if(playing){audio.pause();stopSong();}else{audio.play();startUI();progTimer=setInterval(()=>{const p=(audio.currentTime/audio.duration*100)+'%';bar.style.width=p;bbar.style.width=p;},500);}}
+  if(WEDDING.songAudio){    if(!audio){audio=new Audio(WEDDING.songAudio);audio.onended=()=>stopSong();}if(playing){audio.pause();stopSong();}else{audio.currentTime=18;audio.play();startUI();progTimer=setInterval(()=>{const p=(audio.currentTime/audio.duration*100)+'%';bar.style.width=p;bbar.style.width=p;},500);}}
   else{if(!playing){startUI();let w=0;progTimer=setInterval(()=>{w=Math.min(w+0.4,100);const p=w+'%';bar.style.width=p;bbar.style.width=p;if(w>=100)stopSong();},200);window.open(WEDDING.songSpotify,'_blank');}else stopSong();}
 };
 function stopSong(){playing=false;document.getElementById('song-vinyl').style.animation='';document.getElementById('bar-vinyl').classList.remove('playing');document.getElementById('play-icon').innerHTML='<path d="M8 5v14l11-7z"/>';document.getElementById('bar-play-icon').innerHTML='<path d="M8 5v14l11-7z"/>';clearInterval(progTimer);document.getElementById('progress-bar').style.width='0%';document.getElementById('bar-progress-bar').style.width='0%';}
