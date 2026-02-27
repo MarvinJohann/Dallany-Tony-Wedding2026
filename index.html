@@ -32,12 +32,11 @@ body{background:var(--cream);color:var(--text);font-family:var(--sans);overflow-
 #lb-prev:hover,#lb-next:hover{background:rgba(232,160,180,.4);}
 #lb-prev svg,#lb-next svg{width:16px;height:16px;fill:white;}
 
-/* ENVELOPE */
+/* ── ENVELOPE ── */
 #env-overlay{position:fixed;inset:0;z-index:9999;background:radial-gradient(ellipse at 50% 45%,#F0E8DC,#DDD3C4);display:flex;align-items:center;justify-content:center;transition:opacity .6s ease;}
 #env-overlay.gone{opacity:0;pointer-events:none;}
 @keyframes eUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-@keyframes flt{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,-60%)}}
-#env-box{position:relative;width:300px;height:210px;animation:eUp .8s ease .3s both;}
+#env-box{position:relative;width:300px;height:210px;animation:eUp .8s ease .3s both;overflow:visible;}
 #env-back{position:absolute;inset:0;z-index:1;background:linear-gradient(168deg,#EAE4D8,#DDD6C8);box-shadow:0 18px 58px rgba(0,0,0,.26);}
 .env-fold{position:absolute;z-index:2;pointer-events:none;}
 .env-fold-l{top:0;left:0;bottom:0;width:51%;clip-path:polygon(0 0,0 100%,100% 50%);background:rgba(0,0,0,.04);}
@@ -45,9 +44,12 @@ body{background:var(--cream);color:var(--text);font-family:var(--sans);overflow-
 .env-fold-b{bottom:0;left:0;right:0;height:58%;clip-path:polygon(0 100%,50% 0%,100% 100%);background:rgba(0,0,0,.065);}
 #env-flap{position:absolute;top:0;left:0;right:0;height:56%;background:linear-gradient(172deg,#F2EDE4,#E6DFD0);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform .9s cubic-bezier(.4,0,.2,1);z-index:4;}
 #env-flap::after{content:'';position:absolute;inset:0;background:linear-gradient(172deg,rgba(255,255,255,.3),transparent 55%);clip-path:polygon(0 0,100% 0,50% 100%);pointer-events:none;}
-#env-mono{position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;animation:flt 3s ease-in-out 1.2s infinite;white-space:nowrap;overflow:visible;}
+/* monogram on flap */
+#env-mono{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;white-space:nowrap;overflow:visible;transition:opacity .25s ease;}
+/* wax seal — absolute in env-box, above ALL layers */
+#env-seal{position:absolute;left:150px;top:118px;transform:translate(-50%,-50%);z-index:9999;pointer-events:none;filter:drop-shadow(0 3px 10px rgba(40,0,15,.6));transition:opacity .25s ease;}
 #env-hint{position:absolute;bottom:10%;left:50%;transform:translateX(-50%);z-index:5;pointer-events:none;text-align:center;width:100%;}
-#env-hint-text{font-family:var(--serif);font-style:italic;font-size:.78rem;color:rgba(80,50,20,.45);letter-spacing:1.5px;display:block;transition:opacity .35s ease;}
+#env-hint-text{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:rgba(80,50,20,.55);letter-spacing:1.5px;display:block;transition:opacity .35s ease;}
 #env-front{position:absolute;inset:0;z-index:6;cursor:pointer;}
 
 /* TOP BAR */
@@ -55,15 +57,15 @@ body{background:var(--cream);color:var(--text);font-family:var(--sans);overflow-
 .bar-left{display:flex;align-items:center;gap:8px;flex:1;min-width:0;}
 .bar-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
 .ham-btn{display:flex;flex-direction:column;justify-content:center;gap:5px;width:32px;height:32px;background:none;border:none;cursor:pointer;padding:4px;}
-.ham-btn span{display:block;height:1.8px;background:#C8965A;border-radius:2px;transition:all .3s;}
+.ham-btn span{display:block;height:2px;background:#F2B8CA;border-radius:2px;transition:all .3s;}
 .ham-btn.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
 .ham-btn.open span:nth-child(2){opacity:0;transform:scaleX(0);}
 .ham-btn.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
 @keyframes barFloat{0%,100%{transform:translateY(0) scale(1)}30%{transform:translateY(-3px) scale(1.03)}60%{transform:translateY(1px) scale(.98)}}
 #bar-center{position:absolute;left:50%;transform:translateX(-50%);pointer-events:none;}
-#bar-names{font-family:var(--script);font-size:1.18rem;color:#C8965A;white-space:nowrap;opacity:0;letter-spacing:1px;text-shadow:0 1px 8px rgba(200,150,90,.28);}
+#bar-names{font-family:var(--script);font-size:1.55rem;color:#C8965A;white-space:nowrap;opacity:0;letter-spacing:1px;text-shadow:0 1px 8px rgba(200,150,90,.28);}
 #bar-names.show{opacity:1;animation:barFloat 3.2s ease-in-out infinite;}
-.lang-dw{position:relative;}
+.lang-dw{position:relative;display:flex;flex-direction:row-reverse;align-items:center;gap:4px;}
 .lang-icon-btn{background:none;border:none;padding:5px 7px;cursor:pointer;display:flex;align-items:center;opacity:.85;transition:opacity .2s;}
 .lang-icon-btn:hover{opacity:1;}
 .lang-dd{display:none;position:absolute;top:calc(100% + 7px);right:0;background:white;border:1px solid rgba(200,150,90,.28);box-shadow:0 8px 28px rgba(60,30,40,.12);min-width:148px;z-index:200;border-radius:4px;overflow:hidden;}
@@ -72,6 +74,7 @@ body{background:var(--cream);color:var(--text);font-family:var(--sans);overflow-
 .lang-opt:hover,.lang-opt.active{background:#FAEEF2;color:var(--pk);}
 .lo-check{margin-left:auto;color:var(--pk);font-size:.8rem;opacity:0;}
 .lang-opt.active .lo-check{opacity:1;}
+#lang-label{font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-family:var(--sans);font-weight:400;line-height:1;user-select:none;white-space:nowrap;pointer-events:none;}
 
 /* FLOATING PLAYER */
 #fmp{position:fixed;bottom:26px;right:18px;z-index:200;width:62px;height:62px;border-radius:50%;background:rgba(253,232,242,.96);backdrop-filter:blur(20px);box-shadow:0 4px 22px rgba(232,160,180,.5),0 2px 8px rgba(0,0,0,.07);opacity:0;transform:translateY(14px) scale(.9);transition:opacity .5s,transform .5s;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-direction:column;gap:4px;}
@@ -110,6 +113,7 @@ body{background:var(--cream);color:var(--text);font-family:var(--sans);overflow-
 .nav-cd{font-size:.52rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-top:3px;}
 .nav-item{display:flex;align-items:center;gap:12px;padding:10px 22px;color:var(--text);font-size:.62rem;letter-spacing:2px;text-transform:uppercase;font-weight:300;cursor:pointer;transition:background .2s;border:none;background:none;width:100%;font-family:var(--sans);}
 .nav-item:hover{background:#FAEEF2;color:var(--pk);}
+.ni{filter:sepia(1) saturate(4) hue-rotate(-15deg) brightness(.85);display:inline-block;}
 .nav-sep{height:1px;background:rgba(200,150,90,.12);margin:4px 20px;}
 
 /* HERO */
@@ -140,8 +144,8 @@ body{background:var(--cream);color:var(--text);font-family:var(--sans);overflow-
 .sl-wrap{display:flex;align-items:center;gap:18px;margin:10px auto;width:min(320px,78%);}
 .sl{flex:1;height:.5px;background:rgba(255,255,255,.5);}
 .sd{width:5px;height:5px;background:rgba(255,255,255,.8);transform:rotate(45deg);flex-shrink:0;}
-#h-date{font-family:var(--serif);font-size:clamp(.95rem,2.4vw,1.35rem);font-weight:300;letter-spacing:3px;color:#C8965A;text-shadow:0 2px 12px rgba(100,60,0,.55),0 1px 4px rgba(0,0,0,.4);}
-#h-loc{font-size:.58rem;font-weight:200;letter-spacing:5px;text-transform:uppercase;color:#F2B8CA;margin-top:4px;text-shadow:0 1px 8px rgba(0,0,0,.5);}
+#h-date{font-family:var(--serif);font-size:clamp(.95rem,2.4vw,1.35rem);font-weight:300;letter-spacing:3px;color:#C8965A;text-shadow:0 2px 14px rgba(0,0,0,.65),0 1px 6px rgba(0,0,0,.5),0 0 28px rgba(0,0,0,.4);}
+#h-loc{font-size:.58rem;font-weight:200;letter-spacing:5px;text-transform:uppercase;color:#F2B8CA;margin-top:4px;text-shadow:0 2px 12px rgba(0,0,0,.7),0 1px 5px rgba(0,0,0,.55);}
 .hss{position:absolute;inset:0;z-index:0;opacity:0;transition:opacity 1s;}
 .hss.show{opacity:1;}
 .ss-frame{position:absolute;inset:0;overflow:hidden;}
@@ -165,7 +169,6 @@ body{background:var(--cream);color:var(--text);font-family:var(--sans);overflow-
 .cd{display:flex;justify-content:center;gap:clamp(20px,5vw,56px);}
 .cdn{font-family:var(--serif);font-size:clamp(3.5rem,10vw,5.5rem);font-weight:300;color:white;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,.45),0 1px 4px rgba(0,0,0,.3);}
 .cdl{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:#fff;margin-top:6px;text-shadow:0 2px 10px rgba(0,0,0,.7),0 1px 3px rgba(0,0,0,.6);}
-
 .nm-item{margin-bottom:36px;}
 .nm-icon-circle{width:64px;height:64px;border-radius:50%;background:rgba(242,196,208,.18);border:2.5px solid rgba(232,160,180,.55);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 12px;box-shadow:0 2px 16px rgba(232,160,180,.2);}
 .nm-role{font-size:.56rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px;}
@@ -255,23 +258,46 @@ body{background:var(--cream);color:var(--text);font-family:var(--sans);overflow-
 .song-play-btn:hover{background:#e09aae;transform:scale(1.07);}
 .song-play-btn svg{width:18px;height:18px;fill:white;margin-left:2px;}
 
-/* GIFTS */
+/* ── GIFTS ── */
 .gifts-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:24px;}
-.gift-card{background:white;border:1px solid rgba(200,150,90,.28);padding:22px 26px;min-width:160px;max-width:220px;display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;transition:transform .25s,box-shadow .25s;}
+
+/* Both cards share identical rigid 3-zone structure */
+.gift-card,
+.bank-flip-wrap{width:200px;height:168px;flex-shrink:0;}
+
+.gift-card{background:white;border:1px solid rgba(200,150,90,.28);display:flex;flex-direction:column;align-items:stretch;text-decoration:none;overflow:hidden;transition:transform .25s,box-shadow .25s;}
 .gift-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(60,30,40,.1);}
-.gift-cta{font-size:.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
-/* bank flip card */
-.bank-flip-wrap{width:200px;height:170px;perspective:900px;cursor:pointer;flex-shrink:0;}
+
+/* zone 1: logo — fills remaining space, centered */
+.gc-logo{flex:1;display:flex;align-items:center;justify-content:center;width:100%;}
+/* zone 2: main label — fixed height, gold, centered */
+.gc-label{height:46px;flex-shrink:0;display:flex;align-items:center;justify-content:center;width:100%;padding:0 10px;font-size:.44rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);text-align:center;line-height:1.7;border-top:1px solid rgba(200,150,90,.13);border-bottom:1px solid rgba(200,150,90,.13);}
+/* zone 3: sub label — fixed height, muted, centered */
+.gc-sub{height:34px;flex-shrink:0;display:flex;align-items:center;justify-content:center;width:100%;font-size:.46rem;color:var(--muted);text-align:center;}
+
+/* Bank flip */
+.bank-flip-wrap{perspective:900px;cursor:pointer;}
 .bank-flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.4,0,.2,1);}
 .bank-flip-wrap.flipped .bank-flip-inner{transform:rotateY(180deg);}
-.bank-face{position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;border:1px solid rgba(200,150,90,.28);background:white;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:18px;}
-.bank-face-back{transform:rotateY(180deg);align-items:flex-start;justify-content:flex-start;gap:0;padding:14px 16px;}
-.bank-lbl{font-size:.42rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-top:8px;margin-bottom:2px;}
-.bank-lbl:first-child{margin-top:0;}
-.bank-row{display:flex;align-items:center;gap:4px;width:100%;}
-.bank-val{font-family:var(--serif);font-size:.82rem;color:var(--text);font-style:italic;flex:1;min-width:0;}
-.bank-copy-ic{background:none;border:none;cursor:pointer;padding:2px;color:rgba(200,150,90,.55);transition:color .2s;flex-shrink:0;line-height:0;}
+.bank-face{position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;border:1px solid rgba(200,150,90,.28);background:white;overflow:hidden;}
+/* front: same 3-zone layout as PayPal card */
+.bank-face-front{display:flex;flex-direction:column;align-items:stretch;}
+
+/* back face field list */
+.bank-face-back{
+  transform:rotateY(180deg);
+  display:flex;flex-direction:column;align-items:stretch;justify-content:center;
+  padding:8px 14px;gap:0;
+}
+.bank-field{width:100%;padding:5px 0;border-bottom:1px solid rgba(200,150,90,.12);text-align:center;}
+.bank-field:last-child{border-bottom:none;}
+.bank-field-lbl{font-size:.38rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;display:block;margin-bottom:3px;text-align:center;}
+.bank-field-row{display:flex;align-items:center;justify-content:center;gap:4px;min-height:20px;}
+.bank-field-val{font-family:var(--serif);font-size:.8rem;font-style:italic;color:var(--text);text-align:center;}
+.bank-field-val.clabe{font-size:.66rem;letter-spacing:.5px;}
+.bank-copy-ic{background:none;border:none;cursor:pointer;padding:3px;color:rgba(200,150,90,.5);transition:color .2s;flex-shrink:0;line-height:0;display:flex;align-items:center;justify-content:center;}
 .bank-copy-ic:hover{color:var(--gold);}
+.bank-copy-ic.no-btn{pointer-events:none;visibility:hidden;width:0;padding:0;}
 
 /* RSVP */
 .rsvp-grid{display:grid;grid-template-columns:1fr 210px;gap:22px;max-width:720px;margin:28px auto 0;align-items:start;}
@@ -306,7 +332,6 @@ body{background:var(--cream);color:var(--text);font-family:var(--sans);overflow-
 .qt::before{content:'\201C';font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,3.5vw,1.9rem);color:rgba(255,255,255,.85);margin-right:2px;vertical-align:-.08em;}
 .qt::after{content:'\201D';font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,3.5vw,1.9rem);color:rgba(255,255,255,.85);margin-left:2px;vertical-align:-.08em;}
 .qa{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.42);margin-top:16px;}
-
 #qr-c{margin:24px auto 0;display:inline-block;padding:12px;background:white;box-shadow:0 4px 24px rgba(60,30,40,.1);border:1px solid rgba(200,150,90,.2);}
 .qr-sub{font-size:.6rem;letter-spacing:2px;color:var(--muted);margin-top:14px;}
 .qr-dl{display:inline-block;margin-top:12px;padding:9px 24px;border:1px solid rgba(200,150,90,.45);color:var(--text);font-size:.6rem;letter-spacing:3px;text-transform:uppercase;cursor:pointer;background:none;font-family:var(--sans);transition:all .3s;}
@@ -329,8 +354,29 @@ body.lang-pa .nm-names,.lang-pa .bt,.lang-pa .itin-ev,.lang-pa .itin-desc,.lang-
   <div id="env-box">
     <div id="env-back"></div>
     <div class="env-fold env-fold-l"></div><div class="env-fold env-fold-r"></div><div class="env-fold env-fold-b"></div>
-    <div id="env-flap"></div>
-    <div id="env-mono"><span style="font-family:'Great Vibes',cursive;font-size:30px;background:linear-gradient(135deg,#F8E878,#D4A040 25%,#F2CC58 50%,#B87820 75%,#ECC050);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1;letter-spacing:6px;padding-right:8px;filter:drop-shadow(0 2px 5px rgba(160,100,0,.35));">D &amp; T</span></div>
+    <div id="env-flap">
+      <div id="env-mono"><span style="font-family:'Great Vibes',cursive;font-size:30px;background:linear-gradient(135deg,#F8E878,#D4A040 25%,#F2CC58 50%,#B87820 75%,#ECC050);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1;letter-spacing:6px;padding-right:8px;filter:drop-shadow(0 2px 5px rgba(160,100,0,.35));">D &amp; T</span></div>
+    </div>
+    <!-- seal is a direct child of env-box, NOT inside the flap -->
+    <div id="env-seal">
+      <svg width="52" height="52" viewBox="0 0 62 62" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="sg" cx="38%" cy="32%" r="68%">
+            <stop offset="0%" stop-color="#7A1830"/>
+            <stop offset="60%" stop-color="#5A1020"/>
+            <stop offset="100%" stop-color="#3A0810"/>
+          </radialGradient>
+        </defs>
+        <circle cx="31" cy="31" r="30" fill="url(#sg)"/>
+        <circle cx="31" cy="31" r="29" fill="none" stroke="rgba(0,0,0,.25)" stroke-width="2"/>
+        <circle cx="31" cy="31" r="23" fill="none" stroke="rgba(0,0,0,.18)" stroke-width=".8"/>
+        <circle cx="31" cy="31" r="22" fill="none" stroke="rgba(160,50,70,.2)" stroke-width=".5"/>
+        <text x="31" y="12" font-family="serif" font-size="6" fill="rgba(100,20,35,.7)" text-anchor="middle">✦</text>
+        <text x="32" y="38" font-family="'Great Vibes',cursive" font-size="15" fill="#2A0610" text-anchor="middle" letter-spacing="1" opacity=".9">D &amp; T</text>
+        <text x="31" y="37" font-family="'Great Vibes',cursive" font-size="15" fill="#5A1020" text-anchor="middle" letter-spacing="1" opacity=".85">D &amp; T</text>
+        <text x="31" y="56" font-family="serif" font-size="6" fill="rgba(100,20,35,.7)" text-anchor="middle">✦</text>
+      </svg>
+    </div>
     <div id="env-hint"><span id="env-hint-text">Toca para abrir</span></div>
     <div id="env-front" onclick="openEnvelope()"></div>
   </div>
@@ -339,18 +385,18 @@ body.lang-pa .nm-names,.lang-pa .bt,.lang-pa .itin-ev,.lang-pa .itin-desc,.lang-
 <div id="nav-ov" onclick="closeNav()"></div>
 <div id="nav-drawer"><div class="nav-inner">
   <div class="nav-couple"><div class="nav-cn">Dallany &amp; Tony</div><div class="nav-cd">3 &middot; VII &middot; 2026</div></div>
-  <button class="nav-item" onclick="navTo('section-hero')">&#127968; &nbsp;<span data-i18n="nav_home"></span></button>
-  <button class="nav-item" onclick="navTo('sec-nombram')">&#128106; &nbsp;<span data-i18n="nav_parents"></span></button>
-  <button class="nav-item" onclick="navTo('sec-events')">&#128197; &nbsp;<span data-i18n="nav_dates"></span></button>
-  <button class="nav-item" onclick="navTo('sec-itin')">&#128336; &nbsp;<span data-i18n="nav_dayitin"></span></button>
+  <button class="nav-item" onclick="navTo('section-hero')"><span class="ni">&#127968;</span> &nbsp;<span data-i18n="nav_home"></span></button>
+  <button class="nav-item" onclick="navTo('sec-nombram')"><span class="ni">&#128106;</span> &nbsp;<span data-i18n="nav_parents"></span></button>
+  <button class="nav-item" onclick="navTo('sec-events')"><span class="ni">&#128197;</span> &nbsp;<span data-i18n="nav_dates"></span></button>
+  <button class="nav-item" onclick="navTo('sec-itin')"><span class="ni">&#128336;</span> &nbsp;<span data-i18n="nav_dayitin"></span></button>
   <div class="nav-sep"></div>
-  <button class="nav-item" onclick="navTo('sec-dress')">&#128247; &nbsp;<span data-i18n="nav_attire"></span></button>
-  <button class="nav-item" onclick="navTo('sec-gallery')">&#128247; &nbsp;<span data-i18n="nav_gallery"></span></button>
-  <button class="nav-item" onclick="navTo('sec-hotels')">&#127968; &nbsp;<span data-i18n="nav_hotels"></span></button>
+  <button class="nav-item" onclick="navTo('sec-dress')"><span class="ni">&#128247;</span> &nbsp;<span data-i18n="nav_attire"></span></button>
+  <button class="nav-item" onclick="navTo('sec-gallery')"><span class="ni">&#128247;</span> &nbsp;<span data-i18n="nav_gallery"></span></button>
+  <button class="nav-item" onclick="navTo('sec-hotels')"><span class="ni">&#127968;</span> &nbsp;<span data-i18n="nav_hotels"></span></button>
   <div class="nav-sep"></div>
-  <button class="nav-item" onclick="navTo('sec-song')">&#127925; &nbsp;<span data-i18n="nav_song"></span></button>
-  <button class="nav-item" onclick="navTo('sec-gifts')">&#127873; &nbsp;<span data-i18n="nav_gifts"></span></button>
-  <button class="nav-item" onclick="navTo('sec-rsvp')">&#9993; &nbsp;<span data-i18n="nav_rsvp"></span></button>
+  <button class="nav-item" onclick="navTo('sec-song')"><span class="ni">&#127925;</span> &nbsp;<span data-i18n="nav_song"></span></button>
+  <button class="nav-item" onclick="navTo('sec-gifts')"><span class="ni">&#127873;</span> &nbsp;<span data-i18n="nav_gifts"></span></button>
+  <button class="nav-item" onclick="navTo('sec-rsvp')"><span class="ni">&#9993;</span> &nbsp;<span data-i18n="nav_rsvp"></span></button>
 </div></div>
 
 <div class="top-bar">
@@ -358,6 +404,7 @@ body.lang-pa .nm-names,.lang-pa .bt,.lang-pa .itin-ev,.lang-pa .itin-desc,.lang-
   <div id="bar-center"><div id="bar-names">Dallany &amp; Tony</div></div>
   <div class="bar-right"><div class="lang-dw" id="lang-wrap">
     <button class="lang-icon-btn" onclick="toggleLangDD()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8965A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></button>
+    <span id="lang-label">🇲🇽 ES</span>
     <div class="lang-dd" id="lang-dd">
       <button class="lang-opt active" id="lo-es" onclick="setLang('es');closeLangDD()">&#127474;&#127485; Español <span class="lo-check">&#10003;</span></button>
       <button class="lang-opt" id="lo-en" onclick="setLang('en');closeLangDD()">&#127464;&#127462; English <span class="lo-check">&#10003;</span></button>
@@ -389,7 +436,6 @@ body.lang-pa .nm-names,.lang-pa .bt,.lang-pa .itin-ev,.lang-pa .itin-desc,.lang-
 </section>
 
 <div class="cdw"><span class="gl wh" data-i18n="countdown"></span><div class="cd"><div><div class="cdn" id="cd-d">00</div><div class="cdl" data-i18n="days"></div></div><div><div class="cdn" id="cd-h">00</div><div class="cdl" data-i18n="hours"></div></div><div><div class="cdn" id="cd-m">00</div><div class="cdl" data-i18n="minutes"></div></div><div><div class="cdn" id="cd-s">00</div><div class="cdl" data-i18n="seconds"></div></div></div></div>
-
 <section class="floral-bg sp sf" id="sec-guest"><div class="inn"><p class="bt" data-i18n="guestIntro"></p><p class="bt" style="margin-top:10px;" data-i18n="guestMsg"></p></div></section>
 <div class="fdv" style="background:#2C1A0E;"><svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FEF9F6"/><stop offset="100%" stop-color="#2C1A0E"/></linearGradient></defs><rect width="1200" height="60" fill="url(#g1)"/></svg></div>
 <section id="sec-nombram" class="wood-bg sp sf"><div class="inn"><span class="gl wh" data-i18n="padrinosLabel"></span><h2 class="sc-ttl wh" data-i18n="nombramTitle"></h2><div id="nm-list" style="max-width:440px;margin:28px auto 0;"></div></div></section>
@@ -418,83 +464,13 @@ body.lang-pa .nm-names,.lang-pa .bt,.lang-pa .itin-ev,.lang-pa .itin-desc,.lang-
 <footer><span class="f-brand">Mak Invitations</span><span class="f-url">makinvitations.com.mx</span><span class="f-couple" id="f-couple"></span></footer>
 
 <script>
-/* © 2025 Mak Invitations — makinvitations.com.mx */
+var W={name1:'Dallany',name2:'Tony',dateISO:'2026-07-03T17:00:00',city:'Chihuahua, México',dateDisplay:{es:'Viernes, 3 de Julio de 2026',en:'Friday, July 3rd, 2026',pa:'3 ਜੁਲਾਈ 2026'},brideParents:'Ernesto Oyarzabal Barrios\nXochitl Aragon Dominguez',groomParents:'Nombre Apellido\nNombre Apellido',events:[{tk:'civil',tkLabel:{es:'Boda Civil',en:'Civil Wedding',pa:'ਸਿਵਲ ਵਿਆਹ'},photo:'img/registrocivil1.jpeg',name:{es:'Registro Civil No. 1',en:'Registry Office No. 1',pa:'ਰਜਿਸਟਰੀ'},addr:{es:'Niños Héroes 1001, Centro\nChihuahua, Chih. 31000',en:'Niños Héroes 1001, Centro\nChihuahua, Chih. 31000',pa:'ਨਿਓਸ ਹੇਰੋਏਸ 1001\nਚਿਹੁਆਹੁਆ'},hora:'12:00 PM',map:'https://maps.google.com/?q=Registro+Civil+Chihuahua',ck:'civil'},{tk:'ceremony',tkLabel:{es:'Ceremonia',en:'Ceremony',pa:'ਸਮਾਰੋਹ'},photo:'img/coloniajuareztemple.jpeg',name:{es:'Templo de Colonia Juárez',en:'Colonia Juárez Temple',pa:'ਮੰਦਰ'},addr:{es:'Calles Chihuahua y Díaz\nColonia Juárez, Chih. 31857',en:'Calles Chihuahua y Díaz\nColonia Juárez, Chih. 31857',pa:'ਕਾਲੇ ਚਿਹੁਆਹੁਆ y ਦੀਆਜ਼\nਚਿਹੁਆਹੁਆ'},hora:'4:00 PM',map:'https://maps.app.goo.gl/h9YN1gZNF2mot6CF8',ck:'temple'},{tk:'reception',tkLabel:{es:'Recepción',en:'Reception',pa:'ਸਵਾਗਤ'},photo:'img/Facetune_07-02-2026-14-02-18.jpeg',name:{es:'Salon Los Jardines',en:'Salon Los Jardines',pa:'ਸਲੋਨ'},addr:{es:'Calle Jardín 2105, Mirador\nChihuahua, Chih. 31240',en:'Calle Jardín 2105, Mirador\nChihuahua, Chih. 31240',pa:'ਕਾਲੇ ਜਾਰਦੀਨ 2105\nਚਿਹੁਆਹੁਆ'},hora:'7:00 PM',map:'https://maps.google.com/?q=Salon+Los+Jardines+Chihuahua',ck:'reception'}],calEvents:{civil:{tES:'Boda Civil - Dallany & Tony',tEN:'Civil Wedding - Dallany & Tony',s:'20260701T120000',e:'20260701T140000',loc:'Registro Civil No. 1, Chihuahua'},temple:{tES:'Ceremonia Religiosa - Dallany & Tony',tEN:'Church Ceremony - Dallany & Tony',s:'20260702T160000',e:'20260702T180000',loc:'Templo de Colonia Juárez, Chihuahua'},reception:{tES:'Recepcion - Dallany & Tony',tEN:'Reception - Dallany & Tony',s:'20260703T190000',e:'20260703T235900',loc:'Salon Los Jardines, Chihuahua'}},itinerary:[{group:true,date:{es:'1 de Julio',en:'July 1st',pa:'1 ਜੁਲਾਈ'},sub:{es:'Miércoles · Boda Civil',en:'Wednesday · Civil Wedding',pa:'ਬੁੱਧਵਾਰ · ਸਿਵਲ ਵਿਆਹ'}},{time:'12:00 PM',icon:'💍',name:{es:'Registro Civil No. 1',en:'Registry Office No. 1',pa:'ਰਜਿਸਟਰੀ'},desc:{es:'Ceremonia civil · Chihuahua',en:'Civil ceremony · Chihuahua',pa:'ਸਿਵਲ ਸਮਾਰੋਹ'}},{group:true,date:{es:'2 de Julio',en:'July 2nd',pa:'2 ਜੁਲਾਈ'},sub:{es:'Jueves · Ceremonia Religiosa',en:'Thursday · Religious Ceremony',pa:'ਵੀਰਵਾਰ · ਧਾਰਮਿਕ ਸਮਾਰੋਹ'}},{time:'4:00 PM',icon:'⛪',name:{es:'Ceremonia Religiosa',en:'Religious Ceremony',pa:'ਸਮਾਰੋਹ'},desc:{es:'Templo de Colonia Juárez · Chih.',en:'Colonia Juárez Temple · Chih.',pa:'ਟੈਂਪਲੋ ਦੇ ਕੋਲੋਨੀਆ ਜੁਆਰੇਜ਼'}},{time:'5:30 PM',icon:'📸',name:{es:'Sesión fotográfica',en:'Photo session',pa:'ਫੋਟੋ'},desc:{es:'Fotos con los novios',en:'Photos with the couple',pa:'ਜੋੜੇ ਨਾਲ ਫੋਟੋ'}},{group:true,date:{es:'3 de Julio',en:'July 3rd',pa:'3 ਜੁਲਾਈ'},sub:{es:'Viernes · Recepción',en:'Friday · Reception',pa:'ਸ਼ੁੱਕਰਵਾਰ · ਸਵਾਗਤ'}},{time:'7:00 PM',icon:'🌹',name:{es:'Recepción',en:'Reception',pa:'ਸਵਾਗਤ'},desc:{es:'Salon Los Jardines · Chihuahua',en:'Salon Los Jardines · Chihuahua',pa:'ਸਲੋਨ ਲੋਸ ਜਾਰਦੀਨੇਸ'}},{time:'8:00 PM',icon:'🍽️',name:{es:'Cena',en:'Dinner',pa:'ਖਾਣਾ'},desc:{es:'Disfruta una deliciosa cena',en:'Enjoy a delicious dinner',pa:'ਸੁਆਦੀ ਖਾਣਾ'}},{time:'9:00 PM',icon:'💃',name:{es:'Vals',en:'First dance',pa:'ਪਹਿਲਾ ਡਾਂਸ'},desc:{es:'Nuestro primer baile',en:'Our first dance',pa:'ਸਾਡਾ ਪਹਿਲਾ ਡਾਂਸ'}},{time:'9:30 PM',icon:'🎉',name:{es:'Fiesta',en:'Party',pa:'ਪਾਰਟੀ'},desc:{es:'¡Sacale brillo a la pista!',en:'Light up the dance floor!',pa:'ਡਾਂਸ ਫਲੋਰ'}},{time:'2:00 AM',icon:'🌙',name:{es:'Hasta pronto',en:'Farewell',pa:'ਅੰਤ'},desc:{es:'Gracias por celebrar con nosotros',en:'Thank you for celebrating with us',pa:'ਧੰਨਵਾਦ'}}],avoidColors:['#9B8EC4','#A08070'],hotels:[{name:'Hotel Mision Chihuahua',stars:4,dist:{es:'5 min del salón',en:'5 min from venue',pa:'5 min'},note:{es:'Tarifa especial · Desayuno incluido',en:'Special rate · Breakfast included',pa:'Tarifa especial'},url:'https://maps.google.com/?q=Hotel+Mision+Chihuahua'},{name:'Wyndham Garden Chihuahua',stars:4,dist:{es:'8 min del salón',en:'8 min from venue',pa:'8 min'},note:{es:'Alberca · Estacionamiento gratuito',en:'Pool · Free parking',pa:'Pool · Parking'},url:'https://maps.google.com/?q=Wyndham+Garden+Chihuahua'},{name:'Hotel San Francisco',stars:3,dist:{es:'12 min del salón',en:'12 min from venue',pa:'12 min'},note:{es:'Opción económica recomendada',en:'Recommended budget option',pa:'Budget'},url:'https://maps.google.com/?q=Hotel+San+Francisco+Chihuahua'}],songTitle:'Perfect',songArtist:'Ed Sheeran',songSpotify:'https://open.spotify.com/track/0tgVpDi06FyKpA1z0VMD4v',songAudio:'Ed Sheeran - Perfect (Official Music Video) - (320 Kbps).mp3',gifts:[{store:'PayPal',url:'https://www.paypal.com/paypalme/TUUSUARIO'},{store:'Bank',banco:'BBVA Bancomer',titular:'Dallany Oyarzabal',clabe:'012345678901234567'}],rsvpDeadline:{es:'1 de Mayo de 2026',en:'May 1st, 2026',pa:'1 May 2026'},rsvpWa:'526142198023',inviteURL:'https://tu-invitacion.netlify.app',photos:['img/IMG_7517.jpeg','img/Facetune_07-02-2026-13-18-06.jpeg','img/Facetune_07-02-2026-13-59-51.jpeg','img/Facetune_07-02-2026-14-07-42.jpeg','img/IMG_7485.jpeg','img/Facetune_07-02-2026-14-02-18.jpeg']};
 
-/* ══════════════════════════════════════════════════
-   SECCIÓN DE PERSONALIZACIÓN — EDITA SOLO AQUÍ
-   ══════════════════════════════════════════════════ */
-var W = {
-  name1:'Dallany', name2:'Tony',
-  dateISO:'2026-07-03T17:00:00',
-  city:'Chihuahua, México',
-  dateDisplay:{es:'Viernes, 3 de Julio de 2026',en:'Friday, July 3rd, 2026',pa:'3 ਜੁਲਾਈ 2026'},
-  brideParents:'Ernesto Oyarzabal Barrios\nXochitl Aragon Dominguez',
-  groomParents:'Nombre Apellido\nNombre Apellido',
-  events:[
-    {tk:'civil', tkLabel:{es:'Boda Civil',en:'Civil Wedding',pa:'ਸਿਵਲ ਵਿਆਹ'},
-     photo:'img/registrocivil1.jpeg',
-     name:{es:'Registro Civil No. 1',en:'Registry Office No. 1',pa:'ਰਜਿਸਟਰੀ'},
-     addr:{es:'Niños Héroes 1001, Centro\nChihuahua, Chih. 31000',en:'Niños Héroes 1001, Centro\nChihuahua, Chih. 31000',pa:'ਨਿਓਸ ਹੇਰੋਏਸ 1001\nਚਿਹੁਆਹੁਆ'},
-     hora:'12:00 PM', map:'https://maps.google.com/?q=Registro+Civil+Chihuahua', ck:'civil'},
-    {tk:'ceremony', tkLabel:{es:'Ceremonia',en:'Ceremony',pa:'ਸਮਾਰੋਹ'},
-     photo:'img/coloniajuareztemple.jpeg',
-     name:{es:'Colonia Juarez Temple',en:'Colonia Juarez Temple',pa:'ਮੰਦਰ'},
-     addr:{es:'Av. Homero 3115, Col. Juárez\nChihuahua, Chih. 31200',en:'Av. Homero 3115, Col. Juárez\nChihuahua, Chih. 31200',pa:'ਅਵ. ਹੋਮੇਰੋ 3115\nਚਿਹੁਆਹੁਆ'},
-     hora:'4:00 PM', map:'https://maps.app.goo.gl/ywPJZuzydDq6wroc6', ck:'temple'},
-    {tk:'reception', tkLabel:{es:'Recepción',en:'Reception',pa:'ਸਵਾਗਤ'},
-     photo:'img/Facetune_07-02-2026-14-02-18.jpeg',
-     name:{es:'Salon Los Jardines',en:'Salon Los Jardines',pa:'ਸਲੋਨ'},
-     addr:{es:'Calle Jardín 2105, Mirador\nChihuahua, Chih. 31240',en:'Calle Jardín 2105, Mirador\nChihuahua, Chih. 31240',pa:'ਕਾਲੇ ਜਾਰਦੀਨ 2105\nਚਿਹੁਆਹੁਆ'},
-     hora:'7:00 PM', map:'https://maps.google.com/?q=Salon+Los+Jardines+Chihuahua', ck:'reception'}
-  ],
-  calEvents:{
-    civil:{tES:'Boda Civil - Dallany & Tony',tEN:'Civil Wedding - Dallany & Tony',s:'20260701T120000',e:'20260701T140000',loc:'Registro Civil No. 1, Chihuahua'},
-    temple:{tES:'Ceremonia Religiosa - Dallany & Tony',tEN:'Church Ceremony - Dallany & Tony',s:'20260702T160000',e:'20260702T180000',loc:'Colonia Juarez Temple, Chihuahua'},
-    reception:{tES:'Recepcion - Dallany & Tony',tEN:'Reception - Dallany & Tony',s:'20260703T190000',e:'20260703T235900',loc:'Salon Los Jardines, Chihuahua'}
-  },
-  itinerary:[
-    {group:true,date:{es:'1 de Julio',en:'July 1st',pa:'1 ਜੁਲਾਈ'},sub:{es:'Miércoles · Boda Civil',en:'Wednesday · Civil Wedding',pa:'ਬੁੱਧਵਾਰ · ਸਿਵਲ ਵਿਆਹ'}},
-    {time:'12:00 PM',icon:'💍',name:{es:'Registro Civil No. 1',en:'Registry Office No. 1',pa:'ਰਜਿਸਟਰੀ'},desc:{es:'Ceremonia civil · Chihuahua',en:'Civil ceremony · Chihuahua',pa:'ਸਿਵਲ ਸਮਾਰੋਹ'}},
-    {group:true,date:{es:'2 de Julio',en:'July 2nd',pa:'2 ਜੁਲਾਈ'},sub:{es:'Jueves · Ceremonia Religiosa',en:'Thursday · Religious Ceremony',pa:'ਵੀਰਵਾਰ · ਧਾਰਮਿਕ ਸਮਾਰੋਹ'}},
-    {time:'4:00 PM',icon:'⛪',name:{es:'Ceremonia Religiosa',en:'Religious Ceremony',pa:'ਸਮਾਰੋਹ'},desc:{es:'Colonia Juarez Temple · Chihuahua',en:'Colonia Juarez Temple · Chihuahua',pa:'ਕੋਲੋਨੀਆ ਜੁਆਰੇਜ਼ ਮੰਦਰ'}},
-    {time:'5:30 PM',icon:'📸',name:{es:'Sesión fotográfica',en:'Photo session',pa:'ਫੋਟੋ'},desc:{es:'Fotos con los novios',en:'Photos with the couple',pa:'ਜੋੜੇ ਨਾਲ ਫੋਟੋ'}},
-    {group:true,date:{es:'3 de Julio',en:'July 3rd',pa:'3 ਜੁਲਾਈ'},sub:{es:'Viernes · Recepción',en:'Friday · Reception',pa:'ਸ਼ੁੱਕਰਵਾਰ · ਸਵਾਗਤ'}},
-    {time:'7:00 PM',icon:'🌹',name:{es:'Recepción',en:'Reception',pa:'ਸਵਾਗਤ'},desc:{es:'Salon Los Jardines · Chihuahua',en:'Salon Los Jardines · Chihuahua',pa:'ਸਲੋਨ ਲੋਸ ਜਾਰਦੀਨੇਸ'}},
-    {time:'8:00 PM',icon:'🍽️',name:{es:'Cena',en:'Dinner',pa:'ਖਾਣਾ'},desc:{es:'Disfruta una deliciosa cena',en:'Enjoy a delicious dinner',pa:'ਸੁਆਦੀ ਖਾਣਾ'}},
-    {time:'9:00 PM',icon:'💃',name:{es:'Vals',en:'First dance',pa:'ਪਹਿਲਾ ਡਾਂਸ'},desc:{es:'Nuestro primer baile',en:'Our first dance',pa:'ਸਾਡਾ ਪਹਿਲਾ ਡਾਂਸ'}},
-    {time:'9:30 PM',icon:'🎉',name:{es:'Fiesta',en:'Party',pa:'ਪਾਰਟੀ'},desc:{es:'¡Sacale brillo a la pista!',en:'Light up the dance floor!',pa:'ਡਾਂਸ ਫਲੋਰ'}},
-    {time:'2:00 AM',icon:'🌙',name:{es:'Hasta pronto',en:'Farewell',pa:'ਅੰਤ'},desc:{es:'Gracias por celebrar con nosotros',en:'Thank you for celebrating with us',pa:'ਧੰਨਵਾਦ'}}
-  ],
-  avoidColors:['#9B8EC4','#A08070'],
-  hotels:[
-    {name:'Hotel Mision Chihuahua',stars:4,dist:{es:'5 min del salón',en:'5 min from venue',pa:'5 min'},note:{es:'Tarifa especial · Desayuno incluido',en:'Special rate · Breakfast included',pa:'Tarifa especial'},url:'https://maps.google.com/?q=Hotel+Mision+Chihuahua'},
-    {name:'Wyndham Garden Chihuahua',stars:4,dist:{es:'8 min del salón',en:'8 min from venue',pa:'8 min'},note:{es:'Alberca · Estacionamiento gratuito',en:'Pool · Free parking',pa:'Pool · Parking'},url:'https://maps.google.com/?q=Wyndham+Garden+Chihuahua'},
-    {name:'Hotel San Francisco',stars:3,dist:{es:'12 min del salón',en:'12 min from venue',pa:'12 min'},note:{es:'Opción económica recomendada',en:'Recommended budget option',pa:'Budget'},url:'https://maps.google.com/?q=Hotel+San+Francisco+Chihuahua'}
-  ],
-  songTitle:'Perfect', songArtist:'Ed Sheeran',
-  songSpotify:'https://open.spotify.com/track/0tgVpDi06FyKpA1z0VMD4v',
-  songAudio:'Ed Sheeran - Perfect (Official Music Video) - (320 Kbps).mp3',
-  gifts:[
-    {store:'PayPal', url:'https://www.paypal.com/paypalme/TUUSUARIO'},
-    {store:'Bank', banco:'BBVA Bancomer', titular:'Dallany Oyarzabal', clabe:'012345678901234567'}
-  ],
-  rsvpDeadline:{es:'1 de Mayo de 2026',en:'May 1st, 2026',pa:'1 May 2026'},
-  rsvpWa:'526142198023',
-  inviteURL:'https://tu-invitacion.netlify.app',
-  photos:['img/IMG_7517.jpeg','img/Facetune_07-02-2026-13-18-06.jpeg','img/Facetune_07-02-2026-13-59-51.jpeg','img/Facetune_07-02-2026-14-07-42.jpeg','img/IMG_7485.jpeg','img/Facetune_07-02-2026-14-02-18.jpeg']
-};
-/* ══ FIN SECCIÓN DE PERSONALIZACIÓN ══ */
-
-var T = {
-  es:{countdown:'cuenta regresiva',days:'dias',hours:'horas',minutes:'minutos',seconds:'segundos',quoteText:'No hay remedio para el amor, sino amar más.',guestIntro:'Con amor y alegría, tenemos el placer de invitarte a celebrar con nosotros.',guestMsg:'Tu presencia es el mejor regalo que podemos recibir.',padrinosLabel:'con el benepácito de',nombramTitle:'Nombramientos',padresNovia:'Padres de la Novia',padresNovio:'Padres del Novio',scheduleLabel:'fechas importantes y ubicación',eventsTitle:'Los Eventos',viewMap:'Llevame',addCal:'Agregar al calendario',eLblName:'Nombre',eLblAddr:'Dirección',eLblTime:'Hora',dayItinLabel:'programa del día',dayItinTitle:'Itinerario',itinNote:'Llega temprano. Se agradece tu puntualidad en este día tan importante para nosotros.',dresscodeLabel:'código de vestimenta',dresscodeTitle2:'Vestimenta Formal',dressHdr:'Vestimenta formal.',dressClr:'Colores sugeridos: Negro, neutros y tonos tierra.',avoidColors:'Evita usar los siguientes colores',dressLadies:'Mujeres',dressGents:'Hombres',vestidoLargo:'Vestido Largo',traje:'Traje',galleryLabel:'galería de fotos',galleryTitle:'Nuestros Momentos',hotelLabel:'hospedaje recomendado',hotelTitle:'Opciones de Hospedaje',hotelBody:'Para mayor comodidad, recomendamos los siguientes hoteles cercanos al salón.',hotelDir:'Llevame',songLabel:'nuestra canción',songTitle2:'La Música de Nuestro Amor',listenSpotify:'Escuchar en Spotify',giftsLabel:'mesa de regalos',giftsTitle:'Un Regalo del Corazón',giftsBody:'Tu presencia es nuestro mejor regalo.',giftsCash:'Únicamente recibiremos regalos en efectivo o transferencia bancaria. ¡Gracias por tu generosidad!',giftsTransfer:'Hacer transferencia',giftsBankLabel:'Transferencia bancaria',giftsTap:'Toca para ver datos',giftsBank:'Banco',giftsTitular:'Titular',giftsClabe:'CLABE',giftsCopied:'¡Copiado!',rsvpLabel:'confirmación de asistencia',rsvpTitle:'Confirmar Asistencia',rsvpPre:'Por favor, confirma tu asistencia antes del',rsvpFname:'Nombre',rsvpLname:'Apellido',rsvpMsg:'Mensaje para los novios',rsvpAttend:'¿Podrás asistir a la boda?',rsvpYes:'Sí',rsvpNo:'No',rsvpSubmit:'Enviar mi Confirmación',rsvpWaTitle:'¿Dudas?',rsvpWaBody:'Envíanos un WhatsApp.',qrLabel:'agregar al calendario',qrTitle:'Escanea para guardar las fechas',qrBody:'Escanea este código para guardar todos los eventos.',qrSub:'Compatible con Google, Apple y Outlook Calendar',qrDownloadICS:'Agregar eventos a mi calendario',nav_home:'Inicio',nav_parents:'Nombramientos',nav_dates:'Fechas y Ubicación',nav_dayitin:'Itinerario',nav_attire:'Vestimenta',nav_gallery:'Galería',nav_hotels:'Hospedaje',nav_song:'Canción',nav_gifts:'Regalos',nav_rsvp:'Confirmar'},
-  en:{countdown:'countdown',days:'days',hours:'hours',minutes:'minutes',seconds:'seconds',quoteText:'There is no remedy for love but to love more.',guestIntro:'With love and joy, we have the pleasure of inviting you to celebrate with us.',guestMsg:'Your presence is the greatest gift we could receive.',padrinosLabel:'with the blessing of',nombramTitle:'Honors',padresNovia:"Bride's Parents",padresNovio:"Groom's Parents",scheduleLabel:'important dates & location',eventsTitle:'The Events',viewMap:'Take me there',addCal:'Add to calendar',eLblName:'Name',eLblAddr:'Address',eLblTime:'Time',dayItinLabel:'day program',dayItinTitle:'Itinerary',itinNote:'Please arrive early. We appreciate your punctuality.',dresscodeLabel:'dress code',dresscodeTitle2:'Formal Attire',dressHdr:'Formal attire.',dressClr:'Suggested colors: Black, neutrals and earth tones.',avoidColors:'Please avoid these colors',dressLadies:'Women',dressGents:'Men',vestidoLargo:'Long Gown',traje:'Suit',galleryLabel:'photo gallery',galleryTitle:'Our Moments',hotelLabel:'recommended lodging',hotelTitle:'Lodging Options',hotelBody:'For your convenience, we recommend the following hotels near our venue.',hotelDir:'Take me there',songLabel:'our song',songTitle2:'The Music of Our Love',listenSpotify:'Listen on Spotify',giftsLabel:'gift registry',giftsTitle:'A Gift from the Heart',giftsBody:'Your presence is our greatest gift.',giftsCash:'We will only accept gifts in cash or bank transfer. Thank you for your generosity!',giftsTransfer:'Make a transfer',giftsBankLabel:'Bank transfer',giftsTap:'Tap to see details',giftsBank:'Bank',giftsTitular:'Account holder',giftsClabe:'CLABE',giftsCopied:'Copied!',rsvpLabel:'rsvp',rsvpTitle:'Confirm Attendance',rsvpPre:'Please confirm your attendance before',rsvpFname:'First Name',rsvpLname:'Last Name',rsvpMsg:'Message for the couple',rsvpAttend:'Will you be able to attend?',rsvpYes:'Yes',rsvpNo:'No',rsvpSubmit:'Send my Confirmation',rsvpWaTitle:'Questions?',rsvpWaBody:'Send us a WhatsApp.',qrLabel:'add to calendar',qrTitle:'Scan to save the dates',qrBody:'Scan this code to add all events.',qrSub:'Compatible with Google, Apple and Outlook Calendar',qrDownloadICS:'Add events to my calendar',nav_home:'Home',nav_parents:'Honors',nav_dates:'Dates & Location',nav_dayitin:'Itinerary',nav_attire:'Attire',nav_gallery:'Gallery',nav_hotels:'Lodging',nav_song:'Song',nav_gifts:'Gifts',nav_rsvp:'RSVP'},
-  pa:{countdown:'ਉਲਟੀ ਗਿਣਤੀ',days:'ਦਿਨ',hours:'ਘੰਟੇ',minutes:'ਮਿੰਟ',seconds:'ਸਕਿੰਟ',quoteText:'ਪਿਆਰ ਦਾ ਕੋਈ ਇਲਾਜ ਨਹੀਂ, ਸਿਵਾਏ ਹੋਰ ਪਿਆਰ ਕਰਨ ਦੇ.',guestIntro:'ਪਿਆਰ ਨਾਲ, ਅਸੀਂ ਤੁਹਾਨੂੰ ਸੱਦਾ ਦਿੰਦੇ ਹਾਂ.',guestMsg:'ਤੁਹਾਡੀ ਹਾਜ਼ਰੀ ਸਾਡਾ ਸਭ ਤੋਂ ਵੱਡਾ ਤੋਹਫ਼ਾ ਹੈ.',padrinosLabel:'ਮਾਤਾ-ਪਿਤਾ',nombramTitle:'ਸਨਮਾਨ',padresNovia:'ਲੜਕੀ ਦੇ ਮਾਤਾ-ਪਿਤਾ',padresNovio:'ਲੜਕੇ ਦੇ ਮਾਤਾ-ਪਿਤਾ',scheduleLabel:'ਤਾਰੀਖਾਂ',eventsTitle:'ਸਮਾਗਮ',viewMap:'ਲੈ ਜਾਓ',addCal:'ਕੈਲੰਡਰ',eLblName:'ਨਾਮ',eLblAddr:'ਪਤਾ',eLblTime:'ਸਮਾਂ',dayItinLabel:'ਪ੍ਰੋਗਰਾਮ',dayItinTitle:'ਇਤਿਨੇਰਾਰੀ',itinNote:'ਕਿਰਪਾ ਜਲਦੀ ਪਹੁੰਚੋ.',dresscodeLabel:'ਪਹਿਰਾਵੇ ਦਾ ਕੋਡ',dresscodeTitle2:'ਰਸਮੀ ਪਹਿਰਾਵਾ',dressHdr:'ਰਸਮੀ.',dressClr:'ਰੰਗ.',avoidColors:'ਇਹ ਰੰਗ ਨਾ ਪਾਓ',dressLadies:'ਔਰਤਾਂ',dressGents:'ਮਰਦ',vestidoLargo:'ਗਾਊਨ',traje:'ਸੂਟ',galleryLabel:'ਗੈਲਰੀ',galleryTitle:'ਯਾਦਗਾਰ ਪਲ',hotelLabel:'ਹੋਟਲ',hotelTitle:'ਰਿਹਾਇਸ਼ ਦੇ ਵਿਕਲਪ',hotelBody:'ਹੋਟਲ ਸੁਝਾਅ.',hotelDir:'ਲੈ ਜਾਓ',songLabel:'ਗੀਤ',songTitle2:'ਸਾਡੇ ਪਿਆਰ ਦਾ ਸੰਗੀਤ',listenSpotify:'ਸੁਣੋ',giftsLabel:'ਤੋਹਫ਼ੇ',giftsTitle:'ਤੋਹਫ਼ਾ',giftsBody:'ਤੁਹਾਡੀ ਹਾਜ਼ਰੀ.',giftsCash:'ਅਸੀਂ ਸਿਰਫ਼ ਨਕਦ ਜਾਂ ਬੈਂਕ ਟ੍ਰਾਂਸਫਰ ਸਵੀਕਾਰ ਕਰਦੇ ਹਾਂ।',giftsTransfer:'ਟ੍ਰਾਂਸਫਰ ਕਰੋ',giftsBankLabel:'ਬੈਂਕ ਟ੍ਰਾਂਸਫਰ',giftsTap:'ਵੇਰਵੇ ਦੇਖੋ',giftsBank:'ਬੈਂਕ',giftsTitular:'ਖਾਤਾਧਾਰਕ',giftsClabe:'CLABE',giftsCopied:'ਕਾਪੀ!',rsvpLabel:'ਪੁਸ਼ਟੀ',rsvpTitle:'ਪੁਸ਼ਟੀ ਕਰੋ',rsvpPre:'ਪਹਿਲਾਂ ਪੁਸ਼ਟੀ ਕਰੋ',rsvpFname:'ਨਾਮ',rsvpLname:'ਉਪਨਾਮ',rsvpMsg:'ਸੁਨੇਹਾ',rsvpAttend:'ਆ ਸਕਦੇ ਹੋ?',rsvpYes:'ਹਾਂ',rsvpNo:'ਨਹੀਂ',rsvpSubmit:'ਭੇਜੋ',rsvpWaTitle:'ਸਵਾਲ?',rsvpWaBody:'WhatsApp ਕਰੋ.',qrLabel:'ਕੈਲੰਡਰ',qrTitle:'ਸਕੈਨ ਕਰੋ',qrBody:'ਸਕੈਨ.',qrSub:'Google, Apple ਅਤੇ Outlook',qrDownloadICS:'ਕੈਲੰਡਰ ਵਿੱਚ ਜੋੜੋ',nav_home:'ਮੁੱਖ',nav_parents:'ਸਨਮਾਨ',nav_dates:'ਤਾਰੀਖਾਂ',nav_dayitin:'ਇਤਿਨੇਰਾਰੀ',nav_attire:'ਪਹਿਰਾਵਾ',nav_gallery:'ਗੈਲਰੀ',nav_hotels:'ਹੋਟਲ',nav_song:'ਗੀਤ',nav_gifts:'ਤੋਹਫ਼ੇ',nav_rsvp:'ਪੁਸ਼ਟੀ'}
-};
+var T={es:{countdown:'cuenta regresiva',days:'dias',hours:'horas',minutes:'minutos',seconds:'segundos',quoteText:'No hay remedio para el amor, sino amar más.',guestIntro:'Con amor y alegría, tenemos el placer de invitarte a celebrar con nosotros.',guestMsg:'Tu presencia es el mejor regalo que podemos recibir.',padrinosLabel:'con el benepácito de',nombramTitle:'Nombramientos',padresNovia:'Padres de la Novia',padresNovio:'Padres del Novio',scheduleLabel:'fechas importantes y ubicación',eventsTitle:'Los Eventos',viewMap:'Mapa',addCal:'Agregar al calendario',eLblName:'Nombre',eLblAddr:'Dirección',eLblTime:'Hora',dayItinLabel:'programa del día',dayItinTitle:'Itinerario',itinNote:'Llega temprano. Se agradece tu puntualidad en este día tan importante para nosotros.',dresscodeLabel:'código de vestimenta',dresscodeTitle2:'Vestimenta Formal',dressHdr:'Vestimenta formal.',dressClr:'Colores sugeridos: Negro, neutros y tonos tierra.',avoidColors:'Evita usar los siguientes colores',dressLadies:'Mujeres',dressGents:'Hombres',vestidoLargo:'Vestido Largo',traje:'Traje',galleryLabel:'galería de fotos',galleryTitle:'Nuestros Momentos',hotelLabel:'hospedaje recomendado',hotelTitle:'Opciones de Hospedaje',hotelBody:'Para mayor comodidad, recomendamos los siguientes hoteles cercanos al salón.',hotelDir:'Llevame',songLabel:'nuestra canción',songTitle2:'La Música de Nuestro Amor',listenSpotify:'Escuchar en Spotify',giftsLabel:'mesa de regalos',giftsTitle:'Un Regalo del Corazón',giftsBody:'Tu presencia es nuestro mejor regalo.',giftsCash:'Únicamente recibiremos regalos en efectivo o transferencia bancaria. ¡Gracias por tu generosidad!',giftsTransfer:'Hacer Transferencia',giftsBankLabel:'Transferencia Bancaria',giftsTap:'Toca para ver datos',giftsBank:'Banco',giftsTitular:'Titular',giftsClabe:'CLABE',giftsCopied:'¡Copiado!',rsvpLabel:'confirmación de asistencia',rsvpTitle:'Confirmar Asistencia',rsvpPre:'Por favor, confirma tu asistencia antes del',rsvpFname:'Nombre',rsvpLname:'Apellido',rsvpMsg:'Mensaje para los novios',rsvpAttend:'¿Podrás asistir a la boda?',rsvpYes:'Sí',rsvpNo:'No',rsvpSubmit:'Enviar mi Confirmación',rsvpWaTitle:'¿Dudas?',rsvpWaBody:'Envíanos un WhatsApp.',qrLabel:'agregar al calendario',qrTitle:'Escanea para guardar las fechas',qrBody:'Escanea este código para guardar todos los eventos.',qrSub:'Compatible con Google, Apple y Outlook Calendar',qrDownloadICS:'Agregar eventos a mi calendario',nav_home:'Inicio',nav_parents:'Nombramientos',nav_dates:'Fechas y Ubicación',nav_dayitin:'Itinerario',nav_attire:'Vestimenta',nav_gallery:'Galería',nav_hotels:'Hospedaje',nav_song:'Canción',nav_gifts:'Regalos',nav_rsvp:'Confirmar'},en:{countdown:'countdown',days:'days',hours:'hours',minutes:'minutes',seconds:'seconds',quoteText:'There is no remedy for love but to love more.',guestIntro:'With love and joy, we have the pleasure of inviting you to celebrate with us.',guestMsg:'Your presence is the greatest gift we could receive.',padrinosLabel:'with the blessing of',nombramTitle:'Honors',padresNovia:"Bride's Parents",padresNovio:"Groom's Parents",scheduleLabel:'important dates & location',eventsTitle:'The Events',viewMap:'Map',addCal:'Add to calendar',eLblName:'Name',eLblAddr:'Address',eLblTime:'Time',dayItinLabel:'day program',dayItinTitle:'Itinerary',itinNote:'Please arrive early. We appreciate your punctuality.',dresscodeLabel:'dress code',dresscodeTitle2:'Formal Attire',dressHdr:'Formal attire.',dressClr:'Suggested colors: Black, neutrals and earth tones.',avoidColors:'Please avoid these colors',dressLadies:'Women',dressGents:'Men',vestidoLargo:'Long Gown',traje:'Suit',galleryLabel:'photo gallery',galleryTitle:'Our Moments',hotelLabel:'recommended lodging',hotelTitle:'Lodging Options',hotelBody:'For your convenience, we recommend the following hotels near our venue.',hotelDir:'Take me there',songLabel:'our song',songTitle2:'The Music of Our Love',listenSpotify:'Listen on Spotify',giftsLabel:'gift registry',giftsTitle:'A Gift from the Heart',giftsBody:'Your presence is our greatest gift.',giftsCash:'We will only accept gifts in cash or bank transfer. Thank you for your generosity!',giftsTransfer:'Make a Transfer',giftsBankLabel:'Bank Transfer',giftsTap:'Tap to see details',giftsBank:'Bank',giftsTitular:'Account holder',giftsClabe:'CLABE',giftsCopied:'Copied!',rsvpLabel:'rsvp',rsvpTitle:'Confirm Attendance',rsvpPre:'Please confirm your attendance before',rsvpFname:'First Name',rsvpLname:'Last Name',rsvpMsg:'Message for the couple',rsvpAttend:'Will you be able to attend?',rsvpYes:'Yes',rsvpNo:'No',rsvpSubmit:'Send my Confirmation',rsvpWaTitle:'Questions?',rsvpWaBody:'Send us a WhatsApp.',qrLabel:'add to calendar',qrTitle:'Scan to save the dates',qrBody:'Scan this code to add all events.',qrSub:'Compatible with Google, Apple and Outlook Calendar',qrDownloadICS:'Add events to my calendar',nav_home:'Home',nav_parents:'Honors',nav_dates:'Dates & Location',nav_dayitin:'Itinerary',nav_attire:'Attire',nav_gallery:'Gallery',nav_hotels:'Lodging',nav_song:'Song',nav_gifts:'Gifts',nav_rsvp:'RSVP'},pa:{countdown:'ਉਲਟੀ ਗਿਣਤੀ',days:'ਦਿਨ',hours:'ਘੰਟੇ',minutes:'ਮਿੰਟ',seconds:'ਸਕਿੰਟ',quoteText:'ਪਿਆਰ ਦਾ ਕੋਈ ਇਲਾਜ ਨਹੀਂ, ਸਿਵਾਏ ਹੋਰ ਪਿਆਰ ਕਰਨ ਦੇ.',guestIntro:'ਪਿਆਰ ਨਾਲ, ਅਸੀਂ ਤੁਹਾਨੂੰ ਸੱਦਾ ਦਿੰਦੇ ਹਾਂ.',guestMsg:'ਤੁਹਾਡੀ ਹਾਜ਼ਰੀ ਸਾਡਾ ਸਭ ਤੋਂ ਵੱਡਾ ਤੋਹਫ਼ਾ ਹੈ.',padrinosLabel:'ਮਾਤਾ-ਪਿਤਾ',nombramTitle:'ਸਨਮਾਨ',padresNovia:'ਲੜਕੀ ਦੇ ਮਾਤਾ-ਪਿਤਾ',padresNovio:'ਲੜਕੇ ਦੇ ਮਾਤਾ-ਪਿਤਾ',scheduleLabel:'ਤਾਰੀਖਾਂ',eventsTitle:'ਸਮਾਗਮ',viewMap:'ਨਕਸ਼ਾ',addCal:'ਕੈਲੰਡਰ',eLblName:'ਨਾਮ',eLblAddr:'ਪਤਾ',eLblTime:'ਸਮਾਂ',dayItinLabel:'ਪ੍ਰੋਗਰਾਮ',dayItinTitle:'ਇਤਿਨੇਰਾਰੀ',itinNote:'ਕਿਰਪਾ ਜਲਦੀ ਪਹੁੰਚੋ.',dresscodeLabel:'ਪਹਿਰਾਵੇ ਦਾ ਕੋਡ',dresscodeTitle2:'ਰਸਮੀ ਪਹਿਰਾਵਾ',dressHdr:'ਰਸਮੀ.',dressClr:'ਰੰਗ.',avoidColors:'ਇਹ ਰੰਗ ਨਾ ਪਾਓ',dressLadies:'ਔਰਤਾਂ',dressGents:'ਮਰਦ',vestidoLargo:'ਗਾਊਨ',traje:'ਸੂਟ',galleryLabel:'ਗੈਲਰੀ',galleryTitle:'ਯਾਦਗਾਰ ਪਲ',hotelLabel:'ਹੋਟਲ',hotelTitle:'ਰਿਹਾਇਸ਼ ਦੇ ਵਿਕਲਪ',hotelBody:'ਹੋਟਲ ਸੁਝਾਅ.',hotelDir:'ਲੈ ਜਾਓ',songLabel:'ਗੀਤ',songTitle2:'ਸਾਡੇ ਪਿਆਰ ਦਾ ਸੰਗੀਤ',listenSpotify:'ਸੁਣੋ',giftsLabel:'ਤੋਹਫ਼ੇ',giftsTitle:'ਤੋਹਫ਼ਾ',giftsBody:'ਤੁਹਾਡੀ ਹਾਜ਼ਰੀ.',giftsCash:'ਅਸੀਂ ਸਿਰਫ਼ ਨਕਦ ਜਾਂ ਬੈਂਕ ਟ੍ਰਾਂਸਫਰ ਸਵੀਕਾਰ ਕਰਦੇ ਹਾਂ।',giftsTransfer:'ਟ੍ਰਾਂਸਫਰ ਕਰੋ',giftsBankLabel:'ਬੈਂਕ ਟ੍ਰਾਂਸਫਰ',giftsTap:'ਵੇਰਵੇ ਦੇਖੋ',giftsBank:'ਬੈਂਕ',giftsTitular:'ਖਾਤਾਧਾਰਕ',giftsClabe:'CLABE',giftsCopied:'ਕਾਪੀ!',rsvpLabel:'ਪੁਸ਼ਟੀ',rsvpTitle:'ਪੁਸ਼ਟੀ ਕਰੋ',rsvpPre:'ਪਹਿਲਾਂ ਪੁਸ਼ਟੀ ਕਰੋ',rsvpFname:'ਨਾਮ',rsvpLname:'ਉਪਨਾਮ',rsvpMsg:'ਸੁਨੇਹਾ',rsvpAttend:'ਆ ਸਕਦੇ ਹੋ?',rsvpYes:'ਹਾਂ',rsvpNo:'ਨਹੀਂ',rsvpSubmit:'ਭੇਜੋ',rsvpWaTitle:'ਸਵਾਲ?',rsvpWaBody:'WhatsApp ਕਰੋ.',qrLabel:'ਕੈਲੰਡਰ',qrTitle:'ਸਕੈਨ ਕਰੋ',qrBody:'ਸਕੈਨ.',qrSub:'Google, Apple ਅਤੇ Outlook',qrDownloadICS:'ਕੈਲੰਡਰ ਵਿੱਚ ਜੋੜੋ',nav_home:'ਮੁੱਖ',nav_parents:'ਸਨਮਾਨ',nav_dates:'ਤਾਰੀਖਾਂ',nav_dayitin:'ਇਤਿਨੇਰਾਰੀ',nav_attire:'ਪਹਿਰਾਵਾ',nav_gallery:'ਗੈਲਰੀ',nav_hotels:'ਹੋਟਲ',nav_song:'ਗੀਤ',nav_gifts:'ਤੋਹਫ਼ੇ',nav_rsvp:'ਪੁਸ਼ਟੀ'}};
 
 var DRESS_LADY='<svg viewBox="0 0 130 240" class="dress-svg" style="width:120px;height:auto;" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="dg1" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#F8D4E0"/><stop offset="100%" stop-color="#E090B0"/></radialGradient><radialGradient id="dg2" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#FAE0EA"/><stop offset="100%" stop-color="#D87898"/></radialGradient></defs><ellipse cx="65" cy="20" rx="16" ry="18" fill="#F8C4BC"/><ellipse cx="65" cy="13" rx="18" ry="11" fill="#6A3820" opacity=".82"/><path d="M40,48 Q46,38 65,36 Q84,38 90,48 L87,86 L43,86Z" fill="url(#dg2)" opacity=".92"/><path d="M43,84 L18,170 L8,218 Q36,212 65,215 Q94,212 122,218 L112,170 L87,84Z" fill="url(#dg1)" opacity=".82"/><path d="M43,84 Q65,92 87,84 Q85,96 65,100 Q45,96 43,84Z" fill="#C87090" opacity=".65"/><path d="M6,218 Q18,232 30,228 Q44,222 57,230 Q65,236 73,230 Q86,222 100,228 Q112,232 124,218" stroke="#E8A0B8" stroke-width="2.2" fill="#FAD8E8" fill-opacity=".6" stroke-linecap="round"/></svg>';
 var DRESS_GENT='<svg viewBox="0 0 130 240" class="dress-svg" style="width:120px;height:auto;" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D8C090"/><stop offset="100%" stop-color="#B89060"/></linearGradient></defs><ellipse cx="65" cy="20" rx="16" ry="18" fill="#F5C0B0"/><ellipse cx="65" cy="13" rx="18" ry="10" fill="#5A3010" opacity=".88"/><path d="M38,50 Q46,40 60,37 L65,52 L70,37 Q84,40 92,50 L90,130 L40,130Z" fill="url(#sg1)"/><path d="M60,52 L65,64 L70,52" fill="white" opacity=".7"/><path d="M62,52 L65,62 L68,52 Q67,47 65,49 Q63,47 62,52Z" fill="#C06070" opacity=".88"/><path d="M40,50 L28,90 Q36,92 40,88 Q42,72 48,60" fill="#C8A070" opacity=".75"/><path d="M90,50 L102,90 Q94,92 90,88 Q88,72 82,60" fill="#C8A070" opacity=".75"/><path d="M40,128 L30,205 L52,205 L65,162 L78,205 L100,205 L90,128Z" fill="url(#sg1)" opacity=".92"/><ellipse cx="40" cy="209" rx="16" ry="7" fill="#3A1808"/><ellipse cx="90" cy="209" rx="16" ry="7" fill="#3A1808"/></svg>';
 
-/* PETALS */
 var pC,pX,pts=[],pR=false,mouseX=-9999,mouseY=-9999;
 document.addEventListener('mousemove',function(e){mouseX=e.clientX;mouseY=e.clientY;});
 document.addEventListener('mouseleave',function(){mouseX=-9999;mouseY=-9999;});
@@ -525,20 +501,18 @@ function closeNav(){navOpen=false;document.getElementById('nav-drawer').classLis
 function navTo(id){var el=document.getElementById(id);if(el)scrollTo({top:el.getBoundingClientRect().top+scrollY-54,behavior:'smooth'});closeNav();}
 function toggleLangDD(){document.getElementById('lang-dd').classList.toggle('open');}
 function closeLangDD(){document.getElementById('lang-dd').classList.remove('open');}
-
-function applyHeroColors(){
-  var d=document.getElementById('h-date');if(d){d.style.color='#C8965A';d.style.textShadow='0 2px 12px rgba(100,60,0,.55),0 1px 4px rgba(0,0,0,.4)';}
-  var l=document.getElementById('h-loc');if(l){l.style.color='#F2B8CA';l.style.textShadow='0 1px 8px rgba(0,0,0,.5)';}
-  var amp=document.querySelector('.hnf .amp');if(amp){amp.style.color='#C8965A';amp.style.textShadow='0 2px 16px rgba(200,150,90,.55)';}
-}
+function applyHeroColors(){var d=document.getElementById('h-date');if(d){d.style.color='#C8965A';d.style.textShadow='0 2px 14px rgba(0,0,0,.65),0 1px 6px rgba(0,0,0,.5),0 0 28px rgba(0,0,0,.4)';}var l=document.getElementById('h-loc');if(l){l.style.color='#F2B8CA';l.style.textShadow='0 2px 12px rgba(0,0,0,.7),0 1px 5px rgba(0,0,0,.55)';}var amp=document.querySelector('.hnf .amp');if(amp){amp.style.color='#C8965A';amp.style.textShadow='0 2px 16px rgba(200,150,90,.55)';}}
 
 var envOpened=false;
 function openEnvelope(){
   if(envOpened)return;envOpened=true;stopHint();
   var flap=document.getElementById('env-flap'),mono=document.getElementById('env-mono'),
-      hint=document.getElementById('env-hint'),front=document.getElementById('env-front'),ov=document.getElementById('env-overlay');
+      seal=document.getElementById('env-seal'),hint=document.getElementById('env-hint'),
+      front=document.getElementById('env-front'),ov=document.getElementById('env-overlay');
   if(front)front.style.pointerEvents='none';
   if(hint)hint.style.opacity='0';
+  if(mono)mono.style.opacity='0';
+  if(seal)seal.style.opacity='0';
   if(mono)mono.style.animation='none';
   if(flap)flap.style.transform='perspective(900px) rotateX(-178deg)';
   setTimeout(function(){
@@ -556,34 +530,9 @@ function setupBarObs(){var hero=document.getElementById('section-hero');if(!hero
 var NM_DATA=[{emoji:'👰',roleKey:'padresNovia',names:'brideParents'},{emoji:'🤵',roleKey:'padresNovio',names:'groomParents'}];
 function buildNombram(){var t=T[currentLang],c=document.getElementById('nm-list');if(!c)return;c.innerHTML='';NM_DATA.forEach(function(it,i){var d=document.createElement('div');d.className='nm-item sf';var names=W[it.names].split('\n');d.innerHTML='<div class="nm-icon-circle">'+it.emoji+'</div><p class="nm-role">'+t[it.roleKey]+'</p><p class="nm-names">'+names[0]+(names[1]?'<span class="nm-amp">&amp;</span>'+names[1]:'')+'</p>'+(i<NM_DATA.length-1?'<div class="nm-sep"></div>':'');c.appendChild(d);obsSF(d);});}
 
-function buildEvents(){
-  var g=document.getElementById('ec-grid');if(!g)return;g.innerHTML='';
-  var t=T[currentLang];
-  W.events.forEach(function(ev){
-    var card=document.createElement('div');card.className='ecard sf';
-    var label=ev.tkLabel?ev.tkLabel[currentLang]:(t[ev.tk]||ev.tk);
-    var imgH=ev.photo?'<img class="ecard-img" src="'+ev.photo+'" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><div class="ecard-ph" style="display:none">🏛</div>':'<div class="ecard-ph">🏛</div>';
-    card.innerHTML=imgH+'<div class="ecard-body"><div class="ecard-title">'+label+'</div><div class="ecard-dots">+ + + + + + + + + +</div><p class="ecard-lbl">'+t.eLblName+'</p><p class="ecard-info"><strong>'+ev.name[currentLang]+'</strong></p><div class="ecard-dots">+ + + + + + + + + +</div><p class="ecard-lbl">'+t.eLblAddr+'</p><p class="ecard-info">'+ev.addr[currentLang].replace('\n','<br>')+'</p><div class="ecard-dots">+ + + + + + + + + +</div><p class="ecard-lbl">'+t.eLblTime+'</p><p class="ecard-hora">'+ev.hora+'</p></div><a class="llevame" href="'+ev.map+'" target="_blank">'+t.viewMap+' 📍</a><div style="text-align:center;"><div class="cal-w"><button class="cal-btn" onclick="toggleCalDD(\'cal-'+ev.ck+'\')">📅 '+t.addCal+'</button><div class="cal-dd" id="cal-'+ev.ck+'"><button class="cal-opt" onclick="openGCal(\''+ev.ck+'\')">📅 Google</button><button class="cal-opt" onclick="dlICS(\''+ev.ck+'\')">📱 Apple/Outlook</button></div></div></div>';
-    g.appendChild(card);obsSF(card);
-  });
-}
+function buildEvents(){var g=document.getElementById('ec-grid');if(!g)return;g.innerHTML='';var t=T[currentLang];W.events.forEach(function(ev){var card=document.createElement('div');card.className='ecard sf';var label=ev.tkLabel?ev.tkLabel[currentLang]:(t[ev.tk]||ev.tk);var imgH=ev.photo?'<img class="ecard-img" src="'+ev.photo+'" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><div class="ecard-ph" style="display:none">🏛</div>':'<div class="ecard-ph">🏛</div>';card.innerHTML=imgH+'<div class="ecard-body"><div class="ecard-title">'+label+'</div><div class="ecard-dots">+ + + + + + + + + +</div><p class="ecard-lbl">'+t.eLblName+'</p><p class="ecard-info"><strong>'+ev.name[currentLang]+'</strong></p><div class="ecard-dots">+ + + + + + + + + +</div><p class="ecard-lbl">'+t.eLblAddr+'</p><p class="ecard-info">'+ev.addr[currentLang].replace('\n','<br>')+'</p><div class="ecard-dots">+ + + + + + + + + +</div><p class="ecard-lbl">'+t.eLblTime+'</p><p class="ecard-hora">'+ev.hora+'</p></div><a class="llevame" href="'+ev.map+'" target="_blank">'+t.viewMap+' 📍</a><div style="text-align:center;"><div class="cal-w"><button class="cal-btn" onclick="toggleCalDD(\'cal-'+ev.ck+'\')">📅 '+t.addCal+'</button><div class="cal-dd" id="cal-'+ev.ck+'"><button class="cal-opt" onclick="openGCal(\''+ev.ck+'\')">📅 Google</button><button class="cal-opt" onclick="dlICS(\''+ev.ck+'\')">📱 Apple/Outlook</button></div></div></div>';g.appendChild(card);obsSF(card);});}
 
-function buildItin(){
-  var c=document.getElementById('itin-c');if(!c)return;
-  c.innerHTML='<div class="itin-line"></div><div class="itin-line-gold" id="itin-gold"></div>';
-  W.itinerary.forEach(function(row){
-    if(row.group){
-      var hdr=document.createElement('div');hdr.className='itin-date-hdr';
-      hdr.innerHTML='<div class="itin-date-line left"></div><span class="itin-date-txt">'+row.date[currentLang]+'</span><div class="itin-date-line"></div>';
-      c.appendChild(hdr);
-      var sub=document.createElement('p');sub.className='itin-date-sub';sub.textContent=row.sub[currentLang];c.appendChild(sub);
-    } else {
-      var d=document.createElement('div');d.className='itin-row sf';
-      d.innerHTML='<div class="itin-icon-col"><div class="itin-icon"><span class="ie">'+row.icon+'</span></div></div><div class="itin-content"><span class="itin-time">'+row.time+'</span><p class="itin-ev">'+row.name[currentLang]+'</p><p class="itin-desc">'+row.desc[currentLang]+'</p></div>';
-      c.appendChild(d);obsSF(d);
-    }
-  });
-}
+function buildItin(){var c=document.getElementById('itin-c');if(!c)return;c.innerHTML='<div class="itin-line"></div><div class="itin-line-gold" id="itin-gold"></div>';W.itinerary.forEach(function(row){if(row.group){var hdr=document.createElement('div');hdr.className='itin-date-hdr';hdr.innerHTML='<div class="itin-date-line left"></div><span class="itin-date-txt">'+row.date[currentLang]+'</span><div class="itin-date-line"></div>';c.appendChild(hdr);var sub=document.createElement('p');sub.className='itin-date-sub';sub.textContent=row.sub[currentLang];c.appendChild(sub);}else{var d=document.createElement('div');d.className='itin-row sf';d.innerHTML='<div class="itin-icon-col"><div class="itin-icon"><span class="ie">'+row.icon+'</span></div></div><div class="itin-content"><span class="itin-time">'+row.time+'</span><p class="itin-ev">'+row.name[currentLang]+'</p><p class="itin-desc">'+row.desc[currentLang]+'</p></div>';c.appendChild(d);obsSF(d);}});}
 
 function buildDress(){var t=T[currentLang];document.getElementById('dress-hdr').textContent=t.dressHdr;document.getElementById('dress-clr').textContent=t.dressClr;var c=document.getElementById('dress-cols');if(!c)return;c.innerHTML='<div class="dress-col"><p class="dress-lbl">'+t.dressLadies+'</p>'+DRESS_LADY+'<p class="dress-type">'+t.vestidoLargo+'</p></div><div class="dress-col"><p class="dress-lbl">'+t.dressGents+'</p>'+DRESS_GENT+'<p class="dress-type">'+t.traje+'</p></div>';var sw=document.getElementById('avoid-sw');if(sw){sw.innerHTML='';W.avoidColors.forEach(function(col){var s=document.createElement('div');s.className='av-sw';s.style.background=col;sw.appendChild(s);});}}
 
@@ -591,58 +540,59 @@ function buildGallery(){var g=document.getElementById('sg-list');if(!g)return;g.
 
 function buildHotels(){var c=document.getElementById('h-cards');if(!c)return;var t=T[currentLang];c.innerHTML='';W.hotels.forEach(function(h){var s='★'.repeat(h.stars)+'☆'.repeat(5-h.stars);var card=document.createElement('div');card.className='h-card sf';card.innerHTML='<div class="h-stars">'+s+'</div><div class="h-name">'+h.name+'</div><div class="h-dist">📍 '+h.dist[currentLang]+'</div><p class="h-note">'+h.note[currentLang]+'</p><a class="h-link" href="'+h.url+'" target="_blank">'+t.hotelDir+' →</a>';c.appendChild(card);obsSF(card);});}
 
-/* GIFTS — PayPal link + Bank flip card */
 var COPY_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+function doCopy(btn,val){try{navigator.clipboard.writeText(val);}catch(e){var ta=document.createElement('textarea');ta.value=val;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e2){}document.body.removeChild(ta);}var orig=btn.innerHTML;btn.innerHTML='✓';btn.style.color='#C8965A';setTimeout(function(){btn.innerHTML=COPY_SVG;btn.style.color='';},1600);}
 
-function doCopy(btn, val) {
-  try { navigator.clipboard.writeText(val); } catch(e) {
-    var ta=document.createElement('textarea');ta.value=val;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e2){}document.body.removeChild(ta);
-  }
-  var orig=btn.style.color;btn.style.color='#C8965A';
-  setTimeout(function(){btn.style.color=orig;},1500);
-}
-
-function buildGifts() {
+function buildGifts(){
   var gg=document.getElementById('gifts-grid');if(!gg)return;
   gg.innerHTML='';
   var t=T[currentLang];
-  W.gifts.forEach(function(g) {
-    if(g.store==='Bank') {
+  W.gifts.forEach(function(g){
+    if(g.store==='Bank'){
       var wrap=document.createElement('div');wrap.className='bank-flip-wrap';
       var inner=document.createElement('div');inner.className='bank-flip-inner';
-      /* FRONT */
-      var front=document.createElement('div');front.className='bank-face';
-      front.innerHTML='<div style="font-size:1.8rem">🏦</div>'+
-        '<span style="font-size:.56rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);">'+t.giftsBankLabel+'</span>'+
-        '<span style="font-size:.44rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;">'+t.giftsTap+' ↻</span>';
-      /* BACK */
+
+      /* ── FRONT: same 3-zone as PayPal ── */
+      var front=document.createElement('div');front.className='bank-face bank-face-front';
+      var fLogo=document.createElement('div');fLogo.className='gc-logo';
+      fLogo.innerHTML='<span style="font-size:2rem;line-height:1;">🏦</span>';
+      var fLbl=document.createElement('div');fLbl.className='gc-label';
+      fLbl.textContent=t.giftsBankLabel;
+      var fSub=document.createElement('div');fSub.className='gc-sub';
+      fSub.textContent=t.giftsTap+' ↻';
+      front.appendChild(fLogo);front.appendChild(fLbl);front.appendChild(fSub);
+
+      /* ── BACK: centered fields ── */
       var back=document.createElement('div');back.className='bank-face bank-face-back';
-      /* banco row (no copy) */
-      var r1=document.createElement('div');
-      r1.innerHTML='<p class="bank-lbl">'+t.giftsBank+'</p><div class="bank-row"><span class="bank-val">'+g.banco+'</span></div>';
-      /* titular row with copy */
-      var r2=document.createElement('div');
-      var b2=document.createElement('button');b2.className='bank-copy-ic';b2.innerHTML=COPY_SVG;
-      b2.addEventListener('click',function(e){e.stopPropagation();doCopy(b2,g.titular);});
-      r2.innerHTML='<p class="bank-lbl">'+t.giftsTitular+'</p>';
-      var row2=document.createElement('div');row2.className='bank-row';
-      var v2=document.createElement('span');v2.className='bank-val';v2.textContent=g.titular;
-      row2.appendChild(v2);row2.appendChild(b2);r2.appendChild(row2);
-      /* clabe row with copy */
-      var r3=document.createElement('div');
-      var b3=document.createElement('button');b3.className='bank-copy-ic';b3.innerHTML=COPY_SVG;
-      b3.addEventListener('click',function(e){e.stopPropagation();doCopy(b3,g.clabe);});
-      r3.innerHTML='<p class="bank-lbl">'+t.giftsClabe+'</p>';
-      var row3=document.createElement('div');row3.className='bank-row';
-      var v3=document.createElement('span');v3.className='bank-val';v3.style.fontSize='.72rem';v3.textContent=g.clabe;
-      row3.appendChild(v3);row3.appendChild(b3);r3.appendChild(row3);
-      back.appendChild(r1);back.appendChild(r2);back.appendChild(r3);
+      function mkField(lbl,val,copyable,extraClass){
+        var field=document.createElement('div');field.className='bank-field';
+        var labelEl=document.createElement('span');labelEl.className='bank-field-lbl';labelEl.textContent=lbl;
+        var row=document.createElement('div');row.className='bank-field-row';
+        var valEl=document.createElement('span');valEl.className='bank-field-val'+(extraClass?' '+extraClass:'');valEl.textContent=val;
+        row.appendChild(valEl);
+        if(copyable){
+          var btn=document.createElement('button');btn.className='bank-copy-ic';btn.innerHTML=COPY_SVG;
+          btn.addEventListener('click',function(e){e.stopPropagation();doCopy(btn,val);});
+          row.appendChild(btn);
+        }
+        field.appendChild(labelEl);field.appendChild(row);
+        return field;
+      }
+      back.appendChild(mkField(t.giftsBank,g.banco,false));
+      back.appendChild(mkField(t.giftsTitular,g.titular,true));
+      back.appendChild(mkField(t.giftsClabe,g.clabe,true,'clabe'));
+
       inner.appendChild(front);inner.appendChild(back);wrap.appendChild(inner);
       wrap.addEventListener('click',function(e){if(e.target.closest('.bank-copy-ic'))return;wrap.classList.toggle('flipped');});
       gg.appendChild(wrap);
     } else {
+      /* PayPal: same 3-zone */
       var a=document.createElement('a');a.className='gift-card';a.href=g.url;a.target='_blank';
-      a.innerHTML='<div style="height:42px;display:flex;align-items:center;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 40" width="130" height="34"><text x="2" y="27" font-family="Arial Black" font-weight="900" font-size="30" fill="#F2C4D0">P</text><text x="12" y="31" font-family="Arial Black" font-weight="900" font-size="30" fill="#E8A0B4">P</text><text x="48" y="27" font-family="Arial" font-weight="700" font-size="18" fill="#E8A0B4">PayPal</text></svg></div><span class="gift-cta">'+t.giftsTransfer+'</span>';
+      var pLogo=document.createElement('div');pLogo.className='gc-logo';
+      pLogo.innerHTML='<span style="font-family:Arial Black,sans-serif;font-size:1.55rem;font-weight:900;color:#F2C4D0;line-height:1;">P</span><span style="font-family:Arial Black,sans-serif;font-size:1.1rem;font-weight:900;color:#E8A0B4;margin-left:-4px;margin-top:6px;line-height:1;">P</span><span style="font-family:Arial,sans-serif;font-size:.82rem;font-weight:700;color:#E8A0B4;margin-left:5px;">PayPal</span>';
+      var pLbl=document.createElement('div');pLbl.className='gc-label';pLbl.textContent=t.giftsTransfer;
+      var pSub=document.createElement('div');pSub.className='gc-sub';
+      a.appendChild(pLogo);a.appendChild(pLbl);a.appendChild(pSub);
       gg.appendChild(a);
     }
   });
@@ -656,14 +606,7 @@ document.getElementById('lb-next').onclick=function(){lbIdx=(lbIdx+1)%lbImgs.len
 document.getElementById('lb').onclick=function(e){if(e.target===this)this.classList.remove('open');};
 document.addEventListener('keydown',function(e){var lb=document.getElementById('lb');if(!lb.classList.contains('open'))return;if(e.key==='Escape')lb.classList.remove('open');if(e.key==='ArrowLeft')document.getElementById('lb-prev').click();if(e.key==='ArrowRight')document.getElementById('lb-next').click();});
 
-function updateScrollFX(){
-  document.querySelectorAll('.sg-photo').forEach(function(el,i){var r=el.getBoundingClientRect();var dist=(r.top+r.height/2-innerHeight/2)/(innerHeight*.6);dist=Math.max(-1,Math.min(1,dist));el.style.transform='rotate('+(dist*16*(i%2===0?1:-1))+'deg)';});
-  document.querySelectorAll('.dress-svg').forEach(function(el,i){var r=el.getBoundingClientRect();var dist=Math.max(-1,Math.min(1,(r.top+r.height/2-innerHeight/2)/(innerHeight/2)));el.style.transform='rotate('+(dist*9*(i%2===0?1:-1))+'deg)';});
-  document.querySelectorAll('.itin-icon').forEach(function(el){var r=el.getBoundingClientRect();el.classList.toggle('active',r.top<innerHeight*.65);});
-  var itinC=document.getElementById('itin-c'),gold=document.getElementById('itin-gold');
-  if(itinC&&gold){var r=itinC.getBoundingClientRect();var filled=Math.max(0,Math.min(itinC.offsetHeight-60,innerHeight*0.55-r.top));gold.style.height=filled+'px';}
-  document.querySelectorAll('.sf:not(.vis)').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight*.9)el.classList.add('vis');});
-}
+function updateScrollFX(){document.querySelectorAll('.sg-photo').forEach(function(el,i){var r=el.getBoundingClientRect();var dist=(r.top+r.height/2-innerHeight/2)/(innerHeight*.6);dist=Math.max(-1,Math.min(1,dist));el.style.transform='rotate('+(dist*16*(i%2===0?1:-1))+'deg)';});document.querySelectorAll('.dress-svg').forEach(function(el,i){var r=el.getBoundingClientRect();var dist=Math.max(-1,Math.min(1,(r.top+r.height/2-innerHeight/2)/(innerHeight/2)));el.style.transform='rotate('+(dist*9*(i%2===0?1:-1))+'deg)';});document.querySelectorAll('.itin-icon').forEach(function(el){var r=el.getBoundingClientRect();el.classList.toggle('active',r.top<innerHeight*.65);});var itinC=document.getElementById('itin-c'),gold=document.getElementById('itin-gold');if(itinC&&gold){var r=itinC.getBoundingClientRect();var filled=Math.max(0,Math.min(itinC.offsetHeight-60,innerHeight*0.55-r.top));gold.style.height=filled+'px';}document.querySelectorAll('.sf:not(.vis)').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight*.9)el.classList.add('vis');});}
 addEventListener('scroll',updateScrollFX,{passive:true});
 function obsSF(el){new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)en.target.classList.add('vis');});},{threshold:.06}).observe(el);}
 
@@ -685,6 +628,8 @@ function stopSong(){playing=false;setSongUI(false);}
 var currentLang='es';
 function setLang(lang){
   currentLang=lang;
+  var ll=document.getElementById('lang-label');
+  if(ll){var lf={es:'🇲🇽 ES',en:'🇨🇦 EN',pa:'🇮🇳 PA'};ll.textContent=lf[lang]||lang.toUpperCase();}
   document.body.className='lang-'+lang;
   ['es','en','pa'].forEach(function(l){var el=document.getElementById('lo-'+l);if(el)el.classList.toggle('active',l===lang);});
   var t=T[lang];
@@ -696,15 +641,8 @@ function setLang(lang){
   applyHeroColors();
 }
 
-/* Protection */
-(function(){
-  document.addEventListener('contextmenu',function(e){e.preventDefault();});
-  document.addEventListener('selectstart',function(e){e.preventDefault();});
-  document.addEventListener('keydown',function(e){if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&['I','J','C'].includes(e.key))||(e.ctrlKey&&['U','S'].includes(e.key))){e.preventDefault();return false;}});
-  console.log('%c © Mak Invitations — makinvitations.com.mx','color:#C8965A;font-size:14px;font-weight:bold;');
-})();
+(function(){document.addEventListener('contextmenu',function(e){e.preventDefault();});document.addEventListener('selectstart',function(e){e.preventDefault();});document.addEventListener('keydown',function(e){if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&['I','J','C'].includes(e.key))||(e.ctrlKey&&['U','S'].includes(e.key))){e.preventDefault();return false;}});console.log('%c © Mak Invitations — makinvitations.com.mx','color:#C8965A;font-size:14px;font-weight:bold;');})();
 
-/* INIT */
 buildNameSpans();buildSS();
 document.getElementById('h-loc').textContent=W.city;
 var sTitle=document.getElementById('s-title');if(sTitle)sTitle.textContent=W.songTitle;
