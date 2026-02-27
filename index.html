@@ -46,7 +46,7 @@ body{background:var(--cream);color:var(--text);font-family:var(--sans);overflow-
 .env-fold-b{bottom:0;left:0;right:0;height:58%;clip-path:polygon(0 100%,50% 0%,100% 100%);background:rgba(0,0,0,.065);}
 #env-flap{position:absolute;top:0;left:0;right:0;height:56%;background:linear-gradient(172deg,#F2EDE4,#E6DFD0);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform .9s cubic-bezier(.4,0,.2,1);z-index:4;}
 #env-flap::after{content:'';position:absolute;inset:0;background:linear-gradient(172deg,rgba(255,255,255,.3),transparent 55%);clip-path:polygon(0 0,100% 0,50% 100%);pointer-events:none;}
-#env-mono{position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;animation:flt 3s ease-in-out 1.2s infinite;}
+#env-mono{position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;animation:flt 3s ease-in-out 1.2s infinite;white-space:nowrap;overflow:visible;}
 #env-hint{position:absolute;bottom:10%;left:50%;transform:translateX(-50%);z-index:5;pointer-events:none;text-align:center;width:100%;}
 #env-hint-text{font-family:var(--serif);font-style:italic;font-size:.6rem;color:rgba(80,50,20,.42);letter-spacing:1.5px;display:block;transition:opacity .35s ease;}
 #env-front{position:absolute;inset:0;z-index:6;cursor:pointer;}
@@ -334,7 +334,7 @@ body.lang-pa .nm-names,.lang-pa .bt,.lang-pa .itin-ev,.lang-pa .itin-desc,.lang-
     <div class="env-fold env-fold-r"></div>
     <div class="env-fold env-fold-b"></div>
     <div id="env-flap"></div>
-    <div id="env-mono"><span style="font-family:'Great Vibes',cursive;font-size:34px;background:linear-gradient(135deg,#F8E878,#D4A040 25%,#F2CC58 50%,#B87820 75%,#ECC050);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1;letter-spacing:3px;filter:drop-shadow(0 2px 5px rgba(160,100,0,.35));">D &amp; T</span></div>
+    <div id="env-mono"><span style="font-family:'Great Vibes',cursive;font-size:30px;background:linear-gradient(135deg,#F8E878,#D4A040 25%,#F2CC58 50%,#B87820 75%,#ECC050);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1;letter-spacing:6px;padding-right:8px;filter:drop-shadow(0 2px 5px rgba(160,100,0,.35));">D &amp; T</span></div>
     <div id="env-hint"><span id="env-hint-text">Toca para abrir</span></div>
     <div id="env-front" onclick="openEnvelope()"></div>
   </div>
