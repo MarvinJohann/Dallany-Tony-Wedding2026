@@ -52,8 +52,10 @@ body{background:var(--cream);color:var(--text);font-family:var(--sans);overflow-
 .ham-btn.open span:nth-child(2){opacity:0;}
 .ham-btn.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
 @keyframes barFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-#bar-center{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;justify-content:center;align-items:center;pointer-events:none;}
-#bar-names{font-family:var(--script);font-size:1.55rem;color:#C8965A;white-space:nowrap;opacity:0;letter-spacing:1px;}
+#bar-center{position:absolute;left:0;right:0;top:0;bottom:0;display:grid;place-items:center;pointer-events:none;}
+#bar-initials{font-family:var(--script);font-size:1.65rem;letter-spacing:5px;background:linear-gradient(160deg,#FFF0A0,#E8C040 20%,#FFF5B0 38%,#C8860A 55%,#F0D060 72%,#A06010 88%,#E8C040);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 1px 4px rgba(140,90,0,.45));white-space:nowrap;opacity:1;transition:opacity .5s ease;grid-area:1/1;}
+#bar-initials.hide{opacity:0;pointer-events:none;}
+#bar-names{font-family:var(--script);font-size:1.55rem;color:#C8965A;white-space:nowrap;opacity:0;letter-spacing:1px;grid-area:1/1;transition:opacity .5s ease;}
 #bar-names.show{opacity:1;animation:barFloat 3.2s ease-in-out infinite;}
 .lang-dw{position:relative;display:flex;flex-direction:row-reverse;align-items:center;gap:4px;}
 .lang-icon-btn{background:none;border:none;padding:5px 7px;cursor:pointer;display:flex;align-items:center;}
@@ -139,8 +141,11 @@ body{background:var(--cream);color:var(--text);font-family:var(--sans);overflow-
 .ss-dot.active{background:var(--gold);transform:scale(1.4);}
 /* ── NOMBRAM ── */
 #sec-nombram{position:relative;overflow:visible;background:#FDF0F5;}
-#sec-nombram .gl.wh{color:var(--gold);}
-#sec-nombram .sc-ttl.wh{color:var(--text);}
+#sec-nombram .gl.wh{color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.55),0 2px 16px rgba(0,0,0,.35);}
+#sec-nombram .sc-ttl.wh{color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.55),0 4px 24px rgba(0,0,0,.3);}
+#sec-nombram .nm-role{color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.5);}
+#sec-nombram .nm-names{color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.45);}
+#sec-nombram .nm-amp{color:#FFD080;text-shadow:0 1px 8px rgba(0,0,0,.45);}
 .nm-item{margin-bottom:36px;}
 @keyframes goldPulse{0%,100%{box-shadow:0 0 8px rgba(200,150,90,.4),0 0 4px rgba(200,150,90,.2);border-color:#C8965A;background:rgba(200,150,90,.12);}50%{box-shadow:0 0 22px rgba(200,150,90,.9),0 0 10px rgba(200,150,90,.5);border-color:#E8C068;background:rgba(200,150,90,.26);}}
 .nm-icon-circle{width:64px;height:64px;border-radius:50%;background:rgba(200,150,90,.12);border:2.5px solid #C8965A;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 12px;animation:goldPulse 2.6s ease-in-out infinite;}
@@ -313,7 +318,7 @@ body.lang-pa .nm-names,.lang-pa .bt,.lang-pa .itin-ev,.lang-pa .gl,.lang-pa .nav
 
 <div class="top-bar">
   <div class="bar-left"><button class="ham-btn" id="ham-btn" onclick="toggleNav()"><span></span><span></span><span></span></button></div>
-  <div id="bar-center"><div id="bar-names"></div></div>
+  <div id="bar-center"><div id="bar-initials">D &amp; S</div><div id="bar-names"></div></div>
   <div class="bar-right"><div class="lang-dw" id="lang-wrap">
     <button class="lang-icon-btn" onclick="toggleLangDD()"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C8965A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></button>
     <span id="lang-label">&#127474;&#127485; ES</span>
@@ -605,7 +610,7 @@ function closeLangDD(){document.getElementById('lang-dd').classList.remove('open
 function applyHeroColors(){var d=document.getElementById('h-date');if(d){d.style.color='#C8965A';d.style.textShadow='0 0 20px rgba(0,0,0,.9),0 2px 8px rgba(0,0,0,.85),0 1px 3px rgba(0,0,0,.8)';}var l=document.getElementById('h-loc');if(l){l.style.color='#F2B8CA';l.style.textShadow='0 0 18px rgba(0,0,0,.95),0 2px 8px rgba(0,0,0,.9),0 1px 3px rgba(0,0,0,.8)';}var amp=document.querySelector('.hnf .amp');if(amp){amp.style.background='linear-gradient(160deg,#E8C068 0%,#C8965A 30%,#F0D080 50%,#A87030 70%,#D4A850 100%)';amp.style.webkitBackgroundClip='text';amp.style.webkitTextFillColor='transparent';amp.style.backgroundClip='text';amp.style.filter='drop-shadow(0 2px 8px rgba(180,120,0,.55)) drop-shadow(0 1px 3px rgba(0,0,0,.5))';}}
 var envOpened=false;
 function openEnvelope(){if(envOpened)return;envOpened=true;stopHint();var flap=document.getElementById('env-flap'),mono=document.getElementById('env-mono'),seal=document.getElementById('env-seal'),hint=document.getElementById('env-hint'),front=document.getElementById('env-front'),ov=document.getElementById('env-overlay');if(front)front.style.pointerEvents='none';if(hint)hint.style.opacity='0';if(mono)mono.style.opacity='0';if(seal)seal.style.opacity='0';if(flap)flap.style.transform='perspective(900px) rotateX(-178deg)';setTimeout(function(){var f=document.createElement('div');f.style.cssText='position:fixed;inset:0;z-index:10001;background:#FEF9F6;opacity:0;transition:opacity .6s ease;pointer-events:none;';document.body.appendChild(f);void f.offsetWidth;f.style.opacity='1';setTimeout(function(){if(ov&&ov.parentNode)ov.remove();initPetals();setTimeout(function(){f.style.opacity='0';setTimeout(function(){if(f.parentNode)f.remove();triggerWrite();setTimeout(function(){var fmp=document.getElementById('fmp');if(fmp)fmp.classList.add('show');autoplaySong();},800);},500);},100);},600);},1000);}
-function setupBarObs(){var hero=document.getElementById('section-hero');if(!hero)return;new IntersectionObserver(function(e){e.forEach(function(en){var n=document.getElementById('bar-names');if(n)n.classList.toggle('show',!en.isIntersecting);});},{threshold:.05}).observe(hero);}
+function setupBarObs(){var hero=document.getElementById('section-hero');if(!hero)return;new IntersectionObserver(function(e){e.forEach(function(en){var n=document.getElementById('bar-names');var ini=document.getElementById('bar-initials');if(n)n.classList.toggle('show',!en.isIntersecting);if(ini)ini.classList.toggle('hide',!en.isIntersecting);});},{threshold:.05}).observe(hero);}
 var NM_DATA=[{emoji:'&#128112;',roleKey:'padresNovia',names:'brideParents'},{emoji:'&#129333;',roleKey:'padresNovio',names:'groomParents'}];
 function buildNombram(){var t=T[currentLang],c=document.getElementById('nm-list');if(!c)return;c.innerHTML='';NM_DATA.forEach(function(it,i){var d=document.createElement('div');d.className='nm-item sf';var names=W[it.names].split('\n');d.innerHTML='<div class="nm-icon-circle">'+it.emoji+'</div><p class="nm-role">'+t[it.roleKey]+'</p><p class="nm-names">'+names[0]+(names[1]?'<span class="nm-amp">&amp;</span>'+names[1]:'')+'</p>'+(i<NM_DATA.length-1?'<div class="nm-sep"></div>':'');c.appendChild(d);obsSF(d);});}
 function buildEvents(){var g=document.getElementById('ec-grid');if(!g)return;g.innerHTML='';var t=T[currentLang];W.events.forEach(function(ev){var card=document.createElement('div');card.className='ecard sf';var label=ev.tkLabel?ev.tkLabel[currentLang]:(t[ev.tk]||ev.tk);var imgH=ev.photo?'<img class="ecard-img" src="'+ev.photo+'" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><div class="ecard-ph" style="display:none">&#x1F3DB;</div>':'<div class="ecard-ph">&#x1F3DB;</div>';card.innerHTML=imgH+'<div class="ecard-body"><div class="ecard-title">'+label+'</div><div class="ecard-dots">+ + + + + + + +</div><p class="ecard-lbl">'+t.eLblName+'</p><p class="ecard-info"><strong>'+ev.name[currentLang]+'</strong></p><div class="ecard-dots">+ + + + + + + +</div><p class="ecard-lbl">'+t.eLblAddr+'</p><p class="ecard-info">'+ev.addr[currentLang].replace('\n','<br>')+'</p><div class="ecard-dots">+ + + + + + + +</div><p class="ecard-lbl">'+t.eLblTime+'</p><p class="ecard-hora">'+ev.hora+'</p></div><a class="llevame" href="'+ev.map+'" target="_blank">'+t.viewMap+' &#x1F4CD;</a><div style="text-align:center;"><div class="cal-w"><button class="cal-btn" onclick="toggleCalDD(\'cal-'+ev.ck+'\')">&#x1F4C5; '+t.addCal+'</button><div class="cal-dd" id="cal-'+ev.ck+'"><button class="cal-opt" onclick="openGCal(\''+ev.ck+'\')">&#x1F4C5; Google</button><button class="cal-opt" onclick="dlICS(\''+ev.ck+'\')">&#x1F4F1; Apple/Outlook</button></div></div></div>';g.appendChild(card);obsSF(card);});}
