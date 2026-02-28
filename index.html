@@ -137,19 +137,20 @@ body{background:var(--cream);color:var(--text);font-family:var(--sans);overflow-
 .ss-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:3;}
 .ss-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;border:none;padding:0;transition:background .3s,transform .3s;}
 .ss-dot.active{background:var(--gold);transform:scale(1.4);}
-#sec-nombram{background-color:#FDF0F5;position:relative;overflow:visible;}
+/* ── NOMBRAM ── */
+#sec-nombram{position:relative;overflow:visible;background:#FDF0F5;}
 #sec-nombram .gl.wh{color:var(--gold);}
 #sec-nombram .sc-ttl.wh{color:var(--text);}
 .nm-item{margin-bottom:36px;}
-@keyframes goldPulse{
-  0%,100%{box-shadow:0 0 8px rgba(200,150,90,.4),0 0 4px rgba(200,150,90,.2);border-color:#C8965A;background:rgba(200,150,90,.12);}
-  50%{box-shadow:0 0 22px rgba(200,150,90,.9),0 0 10px rgba(200,150,90,.5);border-color:#E8C068;background:rgba(200,150,90,.26);}
-}
+@keyframes goldPulse{0%,100%{box-shadow:0 0 8px rgba(200,150,90,.4),0 0 4px rgba(200,150,90,.2);border-color:#C8965A;background:rgba(200,150,90,.12);}50%{box-shadow:0 0 22px rgba(200,150,90,.9),0 0 10px rgba(200,150,90,.5);border-color:#E8C068;background:rgba(200,150,90,.26);}}
 .nm-icon-circle{width:64px;height:64px;border-radius:50%;background:rgba(200,150,90,.12);border:2.5px solid #C8965A;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 12px;animation:goldPulse 2.6s ease-in-out infinite;}
 .nm-role{font-size:.56rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px;}
 .nm-names{font-family:var(--serif);font-size:1.15rem;font-style:italic;color:#5A2A3A;line-height:1.9;}
 .nm-amp{color:var(--pk);font-family:var(--script);font-size:1.6rem;display:block;line-height:1.1;}
 .nm-sep{width:60px;height:1px;background:rgba(200,150,90,.3);margin:28px auto;}
+/* Gold frame SVG overlay */
+.nombram-frame{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:visible;}
+.nombram-inner{position:relative;z-index:2;}
 .ec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:900px;margin:32px auto 0;padding:0 16px;}
 @media(max-width:720px){.ec-grid{grid-template-columns:1fr;max-width:340px;}}
 @media(min-width:480px) and (max-width:720px){.ec-grid{grid-template-columns:1fr 1fr;max-width:680px;}}
@@ -349,191 +350,202 @@ body.lang-pa .nm-names,.lang-pa .bt,.lang-pa .itin-ev,.lang-pa .gl,.lang-pa .nav
 
 <section class="floral-bg sp sf" id="sec-guest"><div class="inn"><p class="bt" data-i18n="guestIntro"></p><p class="bt" style="margin-top:10px;" data-i18n="guestMsg"></p></div></section>
 <div class="fdv" style="background:#2C1A0E;"><svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FEF9F6"/><stop offset="100%" stop-color="#2C1A0E"/></linearGradient></defs><rect width="1200" height="60" fill="url(#g1)"/></svg></div>
-<section id="sec-nombram" class="wood-bg sp sf" style="position:relative;overflow:visible;">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" width="100%" height="100" style="position:absolute;top:0;left:0;right:0;overflow:visible;pointer-events:none;z-index:0;">
-    <path d="M0,85 Q100,68 220,80 Q350,94 480,66 Q600,46 720,72 Q860,98 980,66 Q1080,48 1200,74" fill="none" stroke="#C8965A" stroke-width="2" stroke-linecap="round"><animate attributeName="opacity" values="0.6;1;0.6" dur="5s" repeatCount="indefinite"/></path>
-    <path d="M220,76 Q218,52 216,28" fill="none" stroke="#C8965A" stroke-width="1.1" stroke-linecap="round"/>
-    <path d="M540,56 Q538,34 536,12" fill="none" stroke="#C8965A" stroke-width="1.1" stroke-linecap="round"/>
-    <path d="M860,62 Q858,40 856,18" fill="none" stroke="#C8965A" stroke-width="1.1" stroke-linecap="round"/>
-    <path d="M350,88 Q360,72 370,62" fill="none" stroke="#C8965A" stroke-width="1" stroke-linecap="round"/>
-    <path d="M840,90 Q850,74 860,64" fill="none" stroke="#C8965A" stroke-width="1" stroke-linecap="round"/>
-    <path d="M70,82 Q64,64 58,50" fill="none" stroke="#C8965A" stroke-width="1" stroke-linecap="round"/>
-    <g transform="translate(216,24)"><g><animateTransform attributeName="transform" type="scale" values="1;1.13;1" dur="3.5s" begin="0s" repeatCount="indefinite"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(0)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(72)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(144)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(216)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(288)"/>
-      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#EE96BE" transform="rotate(36)"/>
-      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#E882B0" transform="rotate(108)"/>
-      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#EE96BE" transform="rotate(180)"/>
-      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#E882B0" transform="rotate(252)"/>
-      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#EE96BE" transform="rotate(324)"/>
-      <line x1="0" y1="0" x2="0" y2="-4.5" stroke="#E8B840" stroke-width="0.7"/><circle cx="0" cy="-4.8" r="0.85" fill="#F5D840"/>
-      <line x1="0" y1="0" x2="4.5" y2="0" stroke="#E8B840" stroke-width="0.7"/><circle cx="4.8" cy="0" r="0.85" fill="#F5D840"/>
-      <line x1="0" y1="0" x2="-4.5" y2="0" stroke="#E8B840" stroke-width="0.7"/><circle cx="-4.8" cy="0" r="0.85" fill="#F5D840"/>
-      <line x1="0" y1="0" x2="3.2" y2="-3.2" stroke="#E8B840" stroke-width="0.7"/><circle cx="3.4" cy="-3.4" r="0.85" fill="#F5D840"/>
-      <line x1="0" y1="0" x2="-3.2" y2="-3.2" stroke="#E8B840" stroke-width="0.7"/><circle cx="-3.4" cy="-3.4" r="0.85" fill="#F5D840"/>
-      <circle r="2.6" fill="#C87830"/><circle r="1.3" fill="#F5D840"/>
-    </g></g>
-    <g transform="translate(536,8)"><g><animateTransform attributeName="transform" type="scale" values="1;1.13;1" dur="3.5s" begin="0.8s" repeatCount="indefinite"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(0)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(72)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(144)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(216)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(288)"/>
-      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#EE96BE" transform="rotate(36)"/>
-      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#E882B0" transform="rotate(108)"/>
-      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#EE96BE" transform="rotate(252)"/>
-      <circle r="2.6" fill="#C87830"/><circle r="1.3" fill="#F5D840"/>
-    </g></g>
-    <g transform="translate(856,14)"><g><animateTransform attributeName="transform" type="scale" values="1;1.13;1" dur="3.5s" begin="1.6s" repeatCount="indefinite"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(0)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(72)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(144)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(216)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(288)"/>
-      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#EE96BE" transform="rotate(36)"/>
-      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#E882B0" transform="rotate(180)"/>
-      <circle r="2.6" fill="#C87830"/><circle r="1.3" fill="#F5D840"/>
-    </g></g>
-    <g transform="translate(58,46)"><g><animateTransform attributeName="transform" type="scale" values="1;1.16;1" dur="3.1s" begin="0.4s" repeatCount="indefinite"/>
-      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFE0EE" transform="rotate(0)"/>
-      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFD0E8" transform="rotate(72)"/>
-      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFE0EE" transform="rotate(144)"/>
-      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFD0E8" transform="rotate(216)"/>
-      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFE0EE" transform="rotate(288)"/>
-      <circle r="2" fill="#FFF8E0"/>
-      <line x1="0" y1="0" x2="0" y2="-6.4" stroke="#F8C0D8" stroke-width="0.6"/><circle cx="0" cy="-6.8" r="0.75" fill="#EFD060"/>
-      <line x1="0" y1="0" x2="6.1" y2="-4.4" stroke="#F8C0D8" stroke-width="0.6"/><circle cx="6.5" cy="-4.7" r="0.75" fill="#EFD060"/>
-      <line x1="0" y1="0" x2="-6.1" y2="-4.4" stroke="#F8C0D8" stroke-width="0.6"/><circle cx="-6.5" cy="-4.7" r="0.75" fill="#EFD060"/>
-    </g></g>
-    <g transform="translate(370,58)"><g><animateTransform attributeName="transform" type="scale" values="1;1.16;1" dur="3.1s" begin="1.2s" repeatCount="indefinite"/>
-      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFE0EE" transform="rotate(0)"/>
-      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFD0E8" transform="rotate(72)"/>
-      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFE0EE" transform="rotate(144)"/>
-      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFD0E8" transform="rotate(216)"/>
-      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFE0EE" transform="rotate(288)"/>
-      <circle r="1.8" fill="#FFF8E0"/>
-    </g></g>
-    <g transform="translate(860,60)"><g><animateTransform attributeName="transform" type="scale" values="1;1.16;1" dur="3.1s" begin="0.6s" repeatCount="indefinite"/>
-      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFE0EE" transform="rotate(0)"/>
-      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFD0E8" transform="rotate(72)"/>
-      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFE0EE" transform="rotate(144)"/>
-      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFD0E8" transform="rotate(216)"/>
-      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFE0EE" transform="rotate(288)"/>
-      <circle r="1.8" fill="#FFF8E0"/>
-    </g></g>
-    <g transform="translate(175,72) rotate(-22)"><g><animateTransform attributeName="transform" type="scale" values="1;1.1;1" dur="3s" begin="0.3s" repeatCount="indefinite"/>
-      <ellipse cx="0" cy="-5.5" rx="3.4" ry="5.6" fill="#FFB8D4"/>
-      <ellipse cx="0" cy="-4.2" rx="2" ry="3.8" fill="#E880B2"/>
-      <path d="M-3.4,1.7 Q0,5.6 3.4,1.7" fill="none" stroke="#6AAA44" stroke-width="1.1" stroke-linecap="round"/>
-      <path d="M0,1.7 Q4,4.6 2,8" fill="none" stroke="#6AAA44" stroke-width="0.8"/>
-      <path d="M0,1.7 Q-3.6,5 -1.8,8.2" fill="none" stroke="#6AAA44" stroke-width="0.8"/>
-    </g></g>
-    <g transform="translate(420,62) rotate(14)"><g><animateTransform attributeName="transform" type="scale" values="1;1.1;1" dur="3s" begin="1.1s" repeatCount="indefinite"/>
-      <ellipse cx="0" cy="-5.5" rx="3.4" ry="5.6" fill="#FFB8D4"/>
-      <ellipse cx="0" cy="-4.2" rx="2" ry="3.8" fill="#E880B2"/>
-      <path d="M-3.4,1.7 Q0,5.6 3.4,1.7" fill="none" stroke="#6AAA44" stroke-width="1.1" stroke-linecap="round"/>
-    </g></g>
-    <g transform="translate(700,66) rotate(11)"><g><animateTransform attributeName="transform" type="scale" values="1;1.1;1" dur="3s" begin="0.6s" repeatCount="indefinite"/>
-      <ellipse cx="0" cy="-5" rx="3" ry="5" fill="#FFB8D4"/>
-      <ellipse cx="0" cy="-3.8" rx="1.8" ry="3.4" fill="#E880B2"/>
-      <path d="M-3,1.5 Q0,5 3,1.5" fill="none" stroke="#6AAA44" stroke-width="1" stroke-linecap="round"/>
-    </g></g>
-    <g transform="translate(196,36) rotate(-46)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0.1s" repeatCount="indefinite"/>
-      <path d="M0,0 Q8,-9.5 0,-21 Q-8,-9.5 0,0Z" fill="#78B850" opacity="0.88"/>
-      <path d="M0,0 Q0.4,-9 0,-21" fill="none" stroke="#4A8830" stroke-width="0.7"/>
-      <path d="M-4,-6 Q0,-9.2 3.8,-7.8" fill="none" stroke="#4A8830" stroke-width="0.4"/>
-      <path d="M-3.4,-12 Q0,-15 3.2,-13.4" fill="none" stroke="#4A8830" stroke-width="0.4"/>
-    </g></g>
-    <g transform="translate(240,28) rotate(38)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0.9s" repeatCount="indefinite"/>
-      <path d="M0,0 Q7.5,-8.5 0,-18 Q-7.5,-8.5 0,0Z" fill="#78B850" opacity="0.88"/>
-      <path d="M0,0 Q0.4,-8 0,-18" fill="none" stroke="#4A8830" stroke-width="0.7"/>
-    </g></g>
-    <g transform="translate(204,58) rotate(-66)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="1.5s" repeatCount="indefinite"/>
-      <path d="M0,0 Q6.5,-7.5 0,-15 Q-6.5,-7.5 0,0Z" fill="#78B850" opacity="0.88"/>
-      <path d="M0,0 Q0.4,-7 0,-15" fill="none" stroke="#4A8830" stroke-width="0.65"/>
-    </g></g>
-    <g transform="translate(94,74) rotate(-28)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0.4s" repeatCount="indefinite"/>
-      <path d="M0,0 Q7.5,-8.5 0,-18 Q-7.5,-8.5 0,0Z" fill="#78B850" opacity="0.88"/>
-      <path d="M0,0 Q0.4,-8 0,-18" fill="none" stroke="#4A8830" stroke-width="0.7"/>
-    </g></g>
-    <g transform="translate(514,20) rotate(-52)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0.2s" repeatCount="indefinite"/>
-      <path d="M0,0 Q8,-9.5 0,-21 Q-8,-9.5 0,0Z" fill="#78B850" opacity="0.88"/>
-      <path d="M0,0 Q0.4,-9 0,-21" fill="none" stroke="#4A8830" stroke-width="0.7"/>
-    </g></g>
-    <g transform="translate(560,18) rotate(44)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="1.0s" repeatCount="indefinite"/>
-      <path d="M0,0 Q7.5,-8.5 0,-18 Q-7.5,-8.5 0,0Z" fill="#78B850" opacity="0.88"/>
-      <path d="M0,0 Q0.4,-8 0,-18" fill="none" stroke="#4A8830" stroke-width="0.7"/>
-    </g></g>
-    <g transform="translate(520,38) rotate(-64)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="1.7s" repeatCount="indefinite"/>
-      <path d="M0,0 Q6.5,-7.5 0,-15 Q-6.5,-7.5 0,0Z" fill="#78B850" opacity="0.88"/>
-      <path d="M0,0 Q0.4,-7 0,-15" fill="none" stroke="#4A8830" stroke-width="0.65"/>
-    </g></g>
-    <g transform="translate(836,24) rotate(-48)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0s" repeatCount="indefinite"/>
-      <path d="M0,0 Q8,-9.5 0,-21 Q-8,-9.5 0,0Z" fill="#78B850" opacity="0.88"/>
-      <path d="M0,0 Q0.4,-9 0,-21" fill="none" stroke="#4A8830" stroke-width="0.7"/>
-    </g></g>
-    <g transform="translate(878,22) rotate(40)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0.7s" repeatCount="indefinite"/>
-      <path d="M0,0 Q7.5,-8.5 0,-18 Q-7.5,-8.5 0,0Z" fill="#78B850" opacity="0.88"/>
-      <path d="M0,0 Q0.4,-8 0,-18" fill="none" stroke="#4A8830" stroke-width="0.7"/>
-    </g></g>
-    <g transform="translate(848,46) rotate(-62)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="1.4s" repeatCount="indefinite"/>
-      <path d="M0,0 Q6.5,-7.5 0,-15 Q-6.5,-7.5 0,0Z" fill="#78B850" opacity="0.88"/>
-      <path d="M0,0 Q0.4,-7 0,-15" fill="none" stroke="#4A8830" stroke-width="0.65"/>
-    </g></g>
+
+<!-- ═══ PARENTS SECTION ═══ -->
+<section id="sec-nombram" class="sp sf">
+
+  <!-- Gold floral frame SVG — transparent bg, stretches full section -->
+  <svg class="nombram-frame" xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <linearGradient id="gld" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%"   stop-color="#C8860A"/>
+        <stop offset="25%"  stop-color="#FFD060"/>
+        <stop offset="55%"  stop-color="#C8860A"/>
+        <stop offset="80%"  stop-color="#F0C040"/>
+        <stop offset="100%" stop-color="#8B5E08"/>
+      </linearGradient>
+    </defs>
+
+    <!-- ─── Triple geometric frame ─── -->
+    <!-- outer -->
+    <rect x="10" y="10" width="880" height="580" fill="none" stroke="url(#gld)" stroke-width="2.2"/>
+    <!-- middle (offset) -->
+    <rect x="20" y="16" width="860" height="568" fill="none" stroke="url(#gld)" stroke-width="1" opacity=".55"/>
+    <!-- inner rotated -->
+    <polygon points="24,10 890,18 876,590 14,582"
+             fill="none" stroke="url(#gld)" stroke-width="1" opacity=".45"/>
+
+    <!-- ─── BOTTOM-LEFT floral bouquet ─── -->
+    <g fill="none" stroke="url(#gld)" stroke-linecap="round" stroke-linejoin="round">
+
+      <!-- main upward stem -->
+      <path d="M110,590 Q106,540 100,490 Q94,440 86,385 Q78,330 68,270 Q58,210 46,148" stroke-width="2"/>
+      <!-- left branch -->
+      <path d="M80,420 Q55,400 36,372 Q20,346 12,312" stroke-width="1.5"/>
+      <!-- right branch -->
+      <path d="M96,460 Q122,440 138,410 Q150,384 148,352" stroke-width="1.5"/>
+      <!-- top twig left -->
+      <path d="M46,148 Q32,128 22,106 Q14,88 12,68" stroke-width="1.2"/>
+      <path d="M12,68 Q8,50 10,34" stroke-width="1"/>
+      <path d="M10,34 Q6,22 8,12" stroke-width=".9"/>
+      <!-- top twig right -->
+      <path d="M46,148 Q58,128 64,106 Q68,88 66,68" stroke-width="1.1"/>
+      <path d="M66,68 Q68,52 64,38" stroke-width=".95"/>
+
+      <!-- wispy berry tips -->
+      <circle cx="8"  cy="12"  r="3.2" stroke-width="1.2"/>
+      <circle cx="16" cy="6"   r="2.5" stroke-width="1"/>
+      <circle cx="64" cy="38"  r="3"   stroke-width="1.1"/>
+      <circle cx="72" cy="30"  r="2.2" stroke-width="1"/>
+      <circle cx="12" cy="312" r="2.8" stroke-width="1"/>
+      <circle cx="6"  cy="300" r="2"   stroke-width=".9"/>
+      <circle cx="148" cy="352" r="2.8" stroke-width="1"/>
+
+      <!-- BIG LEAVES -->
+      <!-- leaf L1 -->
+      <path d="M86,385 Q52,362 44,328 Q66,334 76,358 Q81,370 86,385Z" stroke-width="1.8"/>
+      <line x1="86" y1="385" x2="52" y2="336" stroke-width=".8" opacity=".8"/>
+      <!-- leaf L2 -->
+      <path d="M78,460 Q42,440 36,406 Q58,412 68,436 Q73,447 78,460Z" stroke-width="1.7"/>
+      <line x1="78" y1="460" x2="46" y2="416" stroke-width=".75" opacity=".8"/>
+      <!-- leaf R1 -->
+      <path d="M104,430 Q136,408 142,374 Q120,382 112,406 Q107,418 104,430Z" stroke-width="1.8"/>
+      <line x1="104" y1="430" x2="138" y2="382" stroke-width=".8" opacity=".8"/>
+      <!-- leaf upper-L -->
+      <path d="M60,300 Q28,282 22,252 Q44,258 54,280 Q57,290 60,300Z" stroke-width="1.5"/>
+      <line x1="60" y1="300" x2="28" y2="260" stroke-width=".7"/>
+      <!-- leaf upper-R -->
+      <path d="M92,310 Q118,290 122,260 Q102,268 96,288 Q93,299 92,310Z" stroke-width="1.5"/>
+      <!-- small leaf mid-L -->
+      <path d="M54,230 Q24,214 20,186 Q40,192 48,212 Q51,221 54,230Z" stroke-width="1.3"/>
+      <!-- small leaf mid-R -->
+      <path d="M82,240 Q108,222 110,194 Q90,202 84,220 Q83,230 82,240Z" stroke-width="1.3"/>
+
+      <!-- ── MAIN FLOWER (6 petals, detailed) ── -->
+      <g transform="translate(128,510)">
+        <!-- outer petals -->
+        <path d="M0,-46 C6,-38 10,-24 0,-14 C-10,-24 -6,-38 0,-46Z" stroke-width="1.8"/>
+        <path d="M0,-46 C6,-38 10,-24 0,-14 C-10,-24 -6,-38 0,-46Z" transform="rotate(60)"  stroke-width="1.8"/>
+        <path d="M0,-46 C6,-38 10,-24 0,-14 C-10,-24 -6,-38 0,-46Z" transform="rotate(120)" stroke-width="1.8"/>
+        <path d="M0,-46 C6,-38 10,-24 0,-14 C-10,-24 -6,-38 0,-46Z" transform="rotate(180)" stroke-width="1.8"/>
+        <path d="M0,-46 C6,-38 10,-24 0,-14 C-10,-24 -6,-38 0,-46Z" transform="rotate(240)" stroke-width="1.8"/>
+        <path d="M0,-46 C6,-38 10,-24 0,-14 C-10,-24 -6,-38 0,-46Z" transform="rotate(300)" stroke-width="1.8"/>
+        <!-- center veins -->
+        <line x1="0" y1="-14" x2="0"  y2="-44" stroke-width=".8" opacity=".9"/>
+        <line x1="0" y1="-14" x2="0"  y2="-44" transform="rotate(60)"  stroke-width=".8" opacity=".9"/>
+        <line x1="0" y1="-14" x2="0"  y2="-44" transform="rotate(120)" stroke-width=".8" opacity=".9"/>
+        <line x1="0" y1="-14" x2="0"  y2="-44" transform="rotate(180)" stroke-width=".8" opacity=".9"/>
+        <line x1="0" y1="-14" x2="0"  y2="-44" transform="rotate(240)" stroke-width=".8" opacity=".9"/>
+        <line x1="0" y1="-14" x2="0"  y2="-44" transform="rotate(300)" stroke-width=".8" opacity=".9"/>
+        <!-- stamens -->
+        <line x1="0" y1="0" x2="0"    y2="-8"  stroke-width=".9"/><circle cx="0"   cy="-9"  r="1.5" stroke-width="1"/>
+        <line x1="0" y1="0" x2="7"    y2="-4"  stroke-width=".9"/><circle cx="7.5" cy="-4.5" r="1.5" stroke-width="1"/>
+        <line x1="0" y1="0" x2="7"    y2="4"   stroke-width=".9"/><circle cx="7.5" cy="4.5"  r="1.5" stroke-width="1"/>
+        <line x1="0" y1="0" x2="0"    y2="8"   stroke-width=".9"/><circle cx="0"   cy="9"   r="1.5" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-7"   y2="4"   stroke-width=".9"/><circle cx="-7.5" cy="4.5" r="1.5" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-7"   y2="-4"  stroke-width=".9"/><circle cx="-7.5" cy="-4.5" r="1.5" stroke-width="1"/>
+        <circle cx="0" cy="0" r="10"  stroke-width="1.8"/>
+        <circle cx="0" cy="0" r="5.5" stroke-width="1.2"/>
+        <circle cx="0" cy="0" r="2"   stroke-width="1"/>
+      </g>
+
+      <!-- ── SECONDARY FLOWER ── -->
+      <g transform="translate(56,490)">
+        <path d="M0,-34 C5,-28 8,-18 0,-10 C-8,-18 -5,-28 0,-34Z" stroke-width="1.5"/>
+        <path d="M0,-34 C5,-28 8,-18 0,-10 C-8,-18 -5,-28 0,-34Z" transform="rotate(60)"  stroke-width="1.5"/>
+        <path d="M0,-34 C5,-28 8,-18 0,-10 C-8,-18 -5,-28 0,-34Z" transform="rotate(120)" stroke-width="1.5"/>
+        <path d="M0,-34 C5,-28 8,-18 0,-10 C-8,-18 -5,-28 0,-34Z" transform="rotate(180)" stroke-width="1.5"/>
+        <path d="M0,-34 C5,-28 8,-18 0,-10 C-8,-18 -5,-28 0,-34Z" transform="rotate(240)" stroke-width="1.5"/>
+        <path d="M0,-34 C5,-28 8,-18 0,-10 C-8,-18 -5,-28 0,-34Z" transform="rotate(300)" stroke-width="1.5"/>
+        <circle cx="0" cy="0" r="7.5"  stroke-width="1.5"/>
+        <circle cx="0" cy="0" r="3.5"  stroke-width="1.1"/>
+      </g>
+
+      <!-- ── BUD ── -->
+      <g transform="translate(46,148) rotate(-10)">
+        <path d="M0,0 C-7,4 -6,16 0,20 C6,16 7,4 0,0Z"  stroke-width="1.4"/>
+        <path d="M-6,10 C-12,12 -16,18 -18,24" stroke-width="1"/>
+        <path d="M6,10 C12,12 16,18 18,24"  stroke-width="1"/>
+        <line x1="0" y1="0" x2="0" y2="20" stroke-width=".8"/>
+      </g>
+    </g>
+
+    <!-- ─── TOP-RIGHT botanical stems ─── -->
+    <g fill="none" stroke="url(#gld)" stroke-linecap="round" stroke-linejoin="round">
+      <!-- three main upward stems -->
+      <path d="M740,10 Q742,60 744,120 Q746,185 744,250 Q742,305 738,360" stroke-width="1.8"/>
+      <path d="M770,10 Q772,65 774,130 Q776,200 774,268 Q772,328 768,390" stroke-width="2.2"/>
+      <path d="M800,10 Q802,58 804,118 Q806,182 804,246 Q802,300 798,354" stroke-width="1.8"/>
+
+      <!-- leaf pairs on LEFT stem — going down -->
+      <path d="M740,80  Q714,68  710,44  Q726,50 734,66  Q737,73 740,80Z"  stroke-width="1.4"/>
+      <path d="M744,80  Q770,68  774,44  Q758,50 750,66  Q747,73 744,80Z"  stroke-width="1.4"/>
+      <path d="M740,130 Q712,118 708,94  Q724,100 732,116 Q736,123 740,130Z" stroke-width="1.4"/>
+      <path d="M744,130 Q772,118 776,94  Q760,100 752,116 Q748,123 744,130Z" stroke-width="1.4"/>
+      <path d="M740,185 Q712,172 709,148 Q724,154 732,170 Q736,177 740,185Z" stroke-width="1.3"/>
+      <path d="M744,185 Q772,172 775,148 Q760,154 752,170 Q748,177 744,185Z" stroke-width="1.3"/>
+      <path d="M740,240 Q712,228 709,204 Q724,210 732,224 Q736,232 740,240Z" stroke-width="1.3"/>
+      <path d="M744,240 Q772,228 775,204 Q760,210 752,224 Q748,232 744,240Z" stroke-width="1.3"/>
+      <!-- teardrop tip -->
+      <path d="M740,10 Q737,2 740,-8 Q743,2 740,10Z" stroke-width="1.2"/>
+
+      <!-- leaf pairs on MIDDLE stem -->
+      <path d="M768,90  Q740,78  736,52  Q752,58 760,74  Q764,82 768,90Z"  stroke-width="1.5"/>
+      <path d="M774,90  Q802,78  806,52  Q790,58 782,74  Q778,82 774,90Z"  stroke-width="1.5"/>
+      <path d="M768,148 Q738,136 734,110 Q750,116 760,132 Q764,140 768,148Z" stroke-width="1.5"/>
+      <path d="M774,148 Q804,136 808,110 Q792,116 782,132 Q778,140 774,148Z" stroke-width="1.5"/>
+      <path d="M768,208 Q738,196 734,170 Q750,176 760,192 Q764,200 768,208Z" stroke-width="1.4"/>
+      <path d="M774,208 Q804,196 808,170 Q792,176 782,192 Q778,200 774,208Z" stroke-width="1.4"/>
+      <path d="M768,270 Q738,258 734,232 Q750,238 760,254 Q764,262 768,270Z" stroke-width="1.4"/>
+      <path d="M774,270 Q804,258 808,232 Q792,238 782,254 Q778,262 774,270Z" stroke-width="1.4"/>
+      <path d="M768,328 Q740,316 737,292 Q752,298 760,314 Q764,321 768,328Z" stroke-width="1.3"/>
+      <path d="M774,328 Q802,316 805,292 Q790,298 782,314 Q778,321 774,328Z" stroke-width="1.3"/>
+      <!-- double teardrop tip -->
+      <path d="M770,10 Q767,1 770,-10 Q773,1 770,10Z"  stroke-width="1.4"/>
+      <path d="M764,4  Q761,-4 764,-13 Q767,-4 764,4Z"  stroke-width="1.1"/>
+
+      <!-- leaf pairs on RIGHT stem -->
+      <path d="M798,78  Q772,66 768,42 Q784,48 792,64 Q795,71 798,78Z"  stroke-width="1.4"/>
+      <path d="M804,78  Q830,66 834,42 Q818,48 810,64 Q807,71 804,78Z"  stroke-width="1.4"/>
+      <path d="M798,134 Q770,122 766,98 Q782,104 792,120 Q795,127 798,134Z" stroke-width="1.4"/>
+      <path d="M804,134 Q832,122 836,98 Q820,104 810,120 Q807,127 804,134Z" stroke-width="1.4"/>
+      <path d="M798,192 Q770,180 766,156 Q782,162 792,178 Q795,185 798,192Z" stroke-width="1.3"/>
+      <path d="M804,192 Q832,180 836,156 Q820,162 810,178 Q807,185 804,192Z" stroke-width="1.3"/>
+      <path d="M798,250 Q770,238 766,214 Q782,220 792,236 Q795,243 798,250Z" stroke-width="1.3"/>
+      <path d="M804,250 Q832,238 836,214 Q820,220 810,236 Q807,243 804,250Z" stroke-width="1.3"/>
+      <!-- teardrop tip -->
+      <path d="M800,10 Q797,2 800,-8 Q803,2 800,10Z" stroke-width="1.2"/>
+
+      <!-- berry cluster where stems meet frame bottom -->
+      <circle cx="752" cy="378" r="4.5" stroke-width="1.4"/>
+      <circle cx="768" cy="383" r="5"   stroke-width="1.6"/>
+      <circle cx="784" cy="378" r="4.5" stroke-width="1.4"/>
+      <circle cx="760" cy="390" r="3.5" stroke-width="1.2"/>
+      <circle cx="776" cy="390" r="3.5" stroke-width="1.2"/>
+      <circle cx="768" cy="396" r="3"   stroke-width="1.1"/>
+    </g>
+
+    <!-- ─── BOTTOM-RIGHT corner small leaves ─── -->
+    <g fill="none" stroke="url(#gld)" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M830,590 Q830,565 830,542" stroke-width="1.4"/>
+      <path d="M830,570 Q812,560 806,544 Q818,546 824,558 Q827,564 830,570Z" stroke-width="1.2"/>
+      <path d="M830,570 Q848,560 854,544 Q842,546 836,558 Q833,564 830,570Z" stroke-width="1.2"/>
+      <path d="M830,552 Q812,542 806,526 Q818,528 824,542 Q827,547 830,552Z" stroke-width="1.1"/>
+      <path d="M830,552 Q848,542 854,526 Q842,528 836,542 Q833,547 830,552Z" stroke-width="1.1"/>
+      <path d="M830,542 Q828,530 830,520 Q832,530 830,542Z" stroke-width="1"/>
+      <circle cx="830" cy="520" r="3" stroke-width="1.1"/>
+    </g>
   </svg>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" width="100%" height="100" style="position:absolute;bottom:0;left:0;right:0;overflow:visible;pointer-events:none;z-index:0;transform:scaleY(-1);">
-    <path d="M0,85 Q100,68 220,80 Q350,94 480,66 Q600,46 720,72 Q860,98 980,66 Q1080,48 1200,74" fill="none" stroke="#C8965A" stroke-width="2" stroke-linecap="round"><animate attributeName="opacity" values="0.6;1;0.6" dur="5s" begin="2.5s" repeatCount="indefinite"/></path>
-    <path d="M220,76 Q218,52 216,28" fill="none" stroke="#C8965A" stroke-width="1.1" stroke-linecap="round"/>
-    <path d="M540,56 Q538,34 536,12" fill="none" stroke="#C8965A" stroke-width="1.1" stroke-linecap="round"/>
-    <path d="M860,62 Q858,40 856,18" fill="none" stroke="#C8965A" stroke-width="1.1" stroke-linecap="round"/>
-    <g transform="translate(216,24)"><g><animateTransform attributeName="transform" type="scale" values="1;1.13;1" dur="3.5s" begin="0.5s" repeatCount="indefinite"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(0)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(72)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(144)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(216)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(288)"/>
-      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#EE96BE" transform="rotate(36)"/>
-      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#E882B0" transform="rotate(180)"/>
-      <circle r="2.6" fill="#C87830"/><circle r="1.3" fill="#F5D840"/>
-    </g></g>
-    <g transform="translate(536,8)"><g><animateTransform attributeName="transform" type="scale" values="1;1.13;1" dur="3.5s" begin="1.3s" repeatCount="indefinite"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(0)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(144)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(288)"/>
-      <circle r="2.6" fill="#C87830"/><circle r="1.3" fill="#F5D840"/>
-    </g></g>
-    <g transform="translate(856,14)"><g><animateTransform attributeName="transform" type="scale" values="1;1.13;1" dur="3.5s" begin="2.1s" repeatCount="indefinite"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(0)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(72)"/>
-      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(144)"/>
-      <circle r="2.6" fill="#C87830"/><circle r="1.3" fill="#F5D840"/>
-    </g></g>
-    <g transform="translate(58,46)"><g><animateTransform attributeName="transform" type="scale" values="1;1.16;1" dur="3.1s" begin="0.9s" repeatCount="indefinite"/>
-      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFE0EE" transform="rotate(0)"/>
-      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFD0E8" transform="rotate(72)"/>
-      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFE0EE" transform="rotate(144)"/>
-      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFD0E8" transform="rotate(216)"/>
-      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFE0EE" transform="rotate(288)"/>
-      <circle r="2" fill="#FFF8E0"/>
-    </g></g>
-    <g transform="translate(196,36) rotate(-46)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0.6s" repeatCount="indefinite"/>
-      <path d="M0,0 Q8,-9.5 0,-21 Q-8,-9.5 0,0Z" fill="#78B850" opacity="0.88"/>
-      <path d="M0,0 Q0.4,-9 0,-21" fill="none" stroke="#4A8830" stroke-width="0.7"/>
-    </g></g>
-    <g transform="translate(514,20) rotate(-52)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0.7s" repeatCount="indefinite"/>
-      <path d="M0,0 Q8,-9.5 0,-21 Q-8,-9.5 0,0Z" fill="#78B850" opacity="0.88"/>
-      <path d="M0,0 Q0.4,-9 0,-21" fill="none" stroke="#4A8830" stroke-width="0.7"/>
-    </g></g>
-    <g transform="translate(836,24) rotate(-48)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0.5s" repeatCount="indefinite"/>
-      <path d="M0,0 Q8,-9.5 0,-21 Q-8,-9.5 0,0Z" fill="#78B850" opacity="0.88"/>
-      <path d="M0,0 Q0.4,-9 0,-21" fill="none" stroke="#4A8830" stroke-width="0.7"/>
-    </g></g>
-  </svg>
-  <div class="inn" style="position:relative;z-index:2;"><span class="gl wh" data-i18n="padrinosLabel"></span><h2 class="sc-ttl wh" data-i18n="nombramTitle"></h2><div id="nm-list" style="max-width:440px;margin:28px auto 0;"></div></div>
+
+  <!-- Content -->
+  <div class="nombram-inner inn">
+    <span class="gl wh" data-i18n="padrinosLabel"></span>
+    <h2 class="sc-ttl wh" data-i18n="nombramTitle"></h2>
+    <div id="nm-list" style="max-width:440px;margin:28px auto 0;"></div>
+  </div>
 </section>
+
 <div class="fdv" style="background:var(--cream);"><svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2C1A0E"/><stop offset="100%" stop-color="#FEF9F6"/></linearGradient></defs><rect width="1200" height="60" fill="url(#g2)"/></svg></div>
 <section id="sec-events" class="floral-bg sp sf"><div class="inn"><span class="gl" data-i18n="scheduleLabel"></span><h2 class="sc-ttl" data-i18n="eventsTitle"></h2><div class="ec-grid" id="ec-grid"></div></div></section>
 <div class="slim-div floral-bg"><svg viewBox="0 0 380 24" style="width:min(380px,88vw)" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="12" x2="148" y2="12" stroke="#C8965A" stroke-width=".5" opacity=".4"/><polygon points="162,12 168,7 174,12 168,17" fill="none" stroke="#C8965A" stroke-width=".8"/><circle cx="186" cy="12" r="2.5" fill="#C8965A" opacity=".7"/><polygon points="198,12 204,7 210,12 204,17" fill="none" stroke="#C8965A" stroke-width=".8"/><line x1="222" y1="12" x2="380" y2="12" stroke="#C8965A" stroke-width=".5" opacity=".4"/></svg></div>
@@ -559,242 +571,30 @@ body.lang-pa .nm-names,.lang-pa .bt,.lang-pa .itin-ev,.lang-pa .gl,.lang-pa .nav
 <footer><span class="f-brand">Mak Invitations</span><span class="f-url">makinvitations.com.mx</span><span class="f-couple" id="f-couple"></span></footer>
 
 <script>
-var CFG = {
-  name1: 'Dallany',
-  name2: 'Sarbjit',
-  dateISO: '2026-07-03T17:00:00',
-  city: 'Chihuahua, M\u00e9xico',
-  dateDisplay: {
-    es: 'Viernes, 3 de Julio de 2026',
-    en: 'Friday, July 3rd, 2026',
-    pa: '3 \u0a1c\u0a41\u0a32\u0a3e\u0a08 2026'
-  },
-  brideParents: 'Ernesto Oyarzabal Barrios\nXochitl Aragon Dominguez',
-  groomParents: 'Nombre Apellido\nNombre Apellido',
-  events: [
-    {
-      tkLabel: { es: 'Boda Civil', en: 'Civil Wedding', pa: '\u0a38\u0a3f\u0a35\u0a32 \u0a35\u0a3f\u0a06\u0a39' },
-      photo: 'img/registrocivil1.jpeg',
-      name: { es: 'Registro Civil No. 1', en: 'Registry Office No. 1', pa: 'Registry' },
-      addr: { es: 'Ni\u00f1os H\u00e9roes 1001, Centro\nChihuahua, Chih. 31000', en: 'Ni\u00f1os H\u00e9roes 1001, Centro\nChihuahua, Chih. 31000', pa: 'Chihuahua' },
-      hora: '12:00 PM',
-      map: 'https://maps.google.com/?q=Registro+Civil+Chihuahua',
-      ck: 'civil',
-      cal: { tES: 'Boda Civil - Dallany & Tony', tEN: 'Civil Wedding - Dallany & Tony', s: '20260701T120000', e: '20260701T140000' }
-    },
-    {
-      tkLabel: { es: 'Ceremonia', en: 'Ceremony', pa: '\u0a30\u0a38\u0a2e' },
-      photo: 'img/coloniajuareztemple.jpeg',
-      name: { es: 'Templo de Ciudad Ju\u00e1rez', en: 'Ciudad Ju\u00e1rez Temple', pa: 'Temple' },
-      addr: { es: 'Calle Paraguay 2900 Esq. Jos\u00e9 Borunda\nCol. Partido Romero, Cd. Ju\u00e1rez 32177', en: 'Calle Paraguay 2900 Esq. Jos\u00e9 Borunda\nCol. Partido Romero, Cd. Ju\u00e1rez 32177', pa: 'Cd. Ju\u00e1rez' },
-      hora: '4:00 PM',
-      map: 'https://maps.app.goo.gl/h9YN1gZNF2mot6CF8',
-      ck: 'temple',
-      cal: { tES: 'Ceremonia - Dallany & Tony', tEN: 'Ceremony - Dallany & Tony', s: '20260702T160000', e: '20260702T180000' }
-    },
-    {
-      tkLabel: { es: 'Recepci\u00f3n', en: 'Reception', pa: '\u0a38\u0a35\u0a3e\u0a17\u0a24' },
-      photo: 'img/Facetune_07-02-2026-14-02-18.jpeg',
-      name: { es: 'Salon Los Jardines', en: 'Salon Los Jardines', pa: 'Salon' },
-      addr: { es: 'Calle Jard\u00edn 2105, Mirador\nChihuahua, Chih. 31240', en: 'Calle Jard\u00edn 2105, Mirador\nChihuahua, Chih. 31240', pa: 'Chihuahua' },
-      hora: '7:00 PM',
-      map: 'https://maps.google.com/?q=Salon+Los+Jardines+Chihuahua',
-      ck: 'reception',
-      cal: { tES: 'Recepcion - Dallany & Tony', tEN: 'Reception - Dallany & Tony', s: '20260703T190000', e: '20260703T235900' }
-    }
-  ],
-  itinerary: [
-    { group:true, date:{es:'1 de Julio',en:'July 1st',pa:'1 \u0a1c\u0a41\u0a32\u0a3e\u0a08'}, sub:{es:'Mi\u00e9rcoles \u00b7 Boda Civil',en:'Wednesday \u00b7 Civil Wedding',pa:'Wed \u00b7 \u0a38\u0a3f\u0a35\u0a32 \u0a35\u0a3f\u0a06\u0a39'} },
-    { time:'12:00 PM', icon:'\ud83d\udc8d', name:{es:'Registro Civil No. 1',en:'Registry Office No. 1',pa:'Registry'}, desc:{es:'Ceremonia civil \u00b7 Chihuahua',en:'Civil ceremony \u00b7 Chihuahua',pa:'Chihuahua'} },
-    { group:true, date:{es:'2 de Julio',en:'July 2nd',pa:'2 \u0a1c\u0a41\u0a32\u0a3e\u0a08'}, sub:{es:'Jueves \u00b7 Ceremonia',en:'Thursday \u00b7 Ceremony',pa:'Thu \u00b7 \u0a30\u0a38\u0a2e'} },
-    { time:'4:00 PM', icon:'\u26ea', name:{es:'Ceremonia Religiosa',en:'Religious Ceremony',pa:'\u0a27\u0a3e\u0a30\u0a2e\u0a3f\u0a15 \u0a30\u0a38\u0a2e'}, desc:{es:'Templo de Ciudad Ju\u00e1rez',en:'Ciudad Ju\u00e1rez Temple',pa:'Temple'} },
-    { time:'5:30 PM', icon:'\ud83d\udcf8', name:{es:'Sesi\u00f3n fotogr\u00e1fica',en:'Photo session',pa:'\u0a2b\u0a4b\u0a1f\u0a4b'}, desc:{es:'Fotos con los novios',en:'Photos with the couple',pa:'\u0a2b\u0a4b\u0a1f\u0a4b'} },
-    { group:true, date:{es:'3 de Julio',en:'July 3rd',pa:'3 \u0a1c\u0a41\u0a32\u0a3e\u0a08'}, sub:{es:'Viernes \u00b7 Recepci\u00f3n',en:'Friday \u00b7 Reception',pa:'Fri \u00b7 \u0a38\u0a35\u0a3e\u0a17\u0a24'} },
-    { time:'7:00 PM', icon:'\ud83c\udf39', name:{es:'Recepci\u00f3n',en:'Reception',pa:'\u0a38\u0a35\u0a3e\u0a17\u0a24'}, desc:{es:'Salon Los Jardines',en:'Salon Los Jardines',pa:'Salon'} },
-    { time:'8:00 PM', icon:'\ud83c\udf7d\ufe0f', name:{es:'Cena',en:'Dinner',pa:'\u0a30\u0a3e\u0a24 \u0a26\u0a3e \u0a16\u0a3e\u0a23\u0a3e'}, desc:{es:'Disfruta una deliciosa cena',en:'Enjoy a delicious dinner',pa:'\u0a38\u0a41\u0a06\u0a26\u0a40 \u0a16\u0a3e\u0a23\u0a3e'} },
-    { time:'9:00 PM', icon:'\ud83d\udc83', name:{es:'Vals',en:'First dance',pa:'\u0a2a\u0a39\u0a3f\u0a32\u0a3e \u0a28\u0a3f\u0a31\u0a4d\u0a24'}, desc:{es:'Nuestro primer baile',en:'Our first dance',pa:'\u0a38\u0a3e\u0a21\u0a3c\u0a3e \u0a2a\u0a39\u0a3f\u0a32\u0a3e \u0a28\u0a3f\u0a31\u0a4d\u0a24'} },
-    { time:'9:30 PM', icon:'\ud83c\udf89', name:{es:'Fiesta',en:'Party',pa:'\u0a1c\u0a38\u0a3c\u0a28'}, desc:{es:'\u00a1Sacale brillo a la pista!',en:'Light up the dance floor!',pa:'\u0a1c\u0a38\u0a3c\u0a28 \u0a35\u0a3f\u0a1a \u0a86\u0a13!'} },
-    { time:'2:00 AM', icon:'\ud83c\udf19', name:{es:'Hasta pronto',en:'Farewell',pa:'\u0a1c\u0a40 \u0a06\u0a07\u0a06\u0a02'}, desc:{es:'Gracias por celebrar con nosotros',en:'Thank you for celebrating with us',pa:'\u0a2e\u0a28\u0a3e\u0a09\u0a23 \u0a32\u0a08 \u0a27\u0a3c\u0a28\u0a35\u0a3e\u0a26'} }
-  ],
-  avoidColors: ['#9B8EC4', '#A08070'],
-  hotels: [
-    { name:'Hotel Mision Chihuahua', stars:4, dist:{es:'5 min del sal\u00f3n',en:'5 min from venue',pa:'5 \u0a2e\u0a3f\u0a70\u0a1f'}, note:{es:'Tarifa especial \u00b7 Desayuno incluido',en:'Special rate \u00b7 Breakfast included',pa:'\u0a16\u0a3c\u0a3e\u0a38 \u0a26\u0a30'}, url:'https://maps.google.com/?q=Hotel+Mision+Chihuahua' },
-    { name:'Wyndham Garden Chihuahua', stars:4, dist:{es:'8 min del sal\u00f3n',en:'8 min from venue',pa:'8 \u0a2e\u0a3f\u0a70\u0a1f'}, note:{es:'Alberca \u00b7 Estacionamiento gratuito',en:'Pool \u00b7 Free parking',pa:'\u0a2a\u0a42\u0a32'}, url:'https://maps.google.com/?q=Wyndham+Garden+Chihuahua' },
-    { name:'Hotel San Francisco', stars:3, dist:{es:'12 min del sal\u00f3n',en:'12 min from venue',pa:'12 \u0a2e\u0a3f\u0a70\u0a1f'}, note:{es:'Opci\u00f3n econ\u00f3mica recomendada',en:'Recommended budget option',pa:'\u0a38\u0a38\u0a24\u0a3e \u0a35\u0a3f\u0a15\u0a32\u0a4d\u0a2a'}, url:'https://maps.google.com/?q=Hotel+San+Francisco+Chihuahua' }
-  ],
-  songTitle:   'Perfect',
-  songArtist:  'Ed Sheeran',
-  songSpotify: 'https://open.spotify.com/track/0tgVpDi06FyKpA1z0VMD4v',
-  songAudio:   'Ed Sheeran - Perfect (Official Music Video) - (320 Kbps).mp3',
-  gifts: [
-    { store:'PayPal', url:'https://www.paypal.com/paypalme/TUUSUARIO' },
-    { store:'Bank', banco:'BBVA Bancomer', titular:'Dallany Oyarzabal', clabe:'012345678901234567' }
-  ],
-  rsvpDeadline: { es:'1 de Mayo de 2026', en:'May 1st, 2026', pa:'1 \u0a2e\u0a08 2026' },
-  rsvpWa:       '526142198023',
-  sheetsURL:    '',
-  inviteURL: 'https://tu-invitacion.netlify.app',
-  photos: [
-    'img/IMG_7517.jpeg',
-    'img/Facetune_07-02-2026-13-18-06.jpeg',
-    'img/Facetune_07-02-2026-13-59-51.jpeg',
-    'img/Facetune_07-02-2026-14-07-42.jpeg',
-    'img/IMG_7485.jpeg',
-    'img/Facetune_07-02-2026-14-02-18.jpeg'
-  ]
-};
-
-var W = {
-  name1: CFG.name1, name2: CFG.name2,
-  dateISO: CFG.dateISO, city: CFG.city,
-  dateDisplay: CFG.dateDisplay,
-  brideParents: CFG.brideParents, groomParents: CFG.groomParents,
-  events: CFG.events.map(function(ev){return Object.assign({tk:ev.ck},ev);}),
-  calEvents: (function(){var o={};CFG.events.forEach(function(ev){o[ev.ck]={tES:ev.cal.tES,tEN:ev.cal.tEN,s:ev.cal.s,e:ev.cal.e,loc:ev.name.es+', '+CFG.city};});return o;})(),
-  itinerary: CFG.itinerary,
-  avoidColors: CFG.avoidColors,
-  hotels: CFG.hotels,
-  songTitle: CFG.songTitle, songArtist: CFG.songArtist,
-  songSpotify: CFG.songSpotify, songAudio: CFG.songAudio,
-  gifts: CFG.gifts,
-  rsvpDeadline: CFG.rsvpDeadline, rsvpWa: CFG.rsvpWa,
-  inviteURL: CFG.inviteURL,
-  photos: CFG.photos
-};
-
-var T={
-  es:{countdown:'cuenta regresiva',days:'dias',hours:'horas',minutes:'minutos',seconds:'segundos',quoteText:'No hay remedio para el amor, sino amar m\u00e1s.',guestIntro:'Con amor y alegr\u00eda, tenemos el placer de invitarte a celebrar con nosotros.',guestMsg:'Tu presencia es el mejor regalo que podemos recibir.',padrinosLabel:'con el benep\u00e1cito de',nombramTitle:'Nombramientos',padresNovia:'Padres de la Novia',padresNovio:'Padres del Novio',scheduleLabel:'fechas importantes y ubicaci\u00f3n',eventsTitle:'Los Eventos',viewMap:'Mapa',addCal:'Agregar al calendario',eLblName:'Nombre',eLblAddr:'Direcci\u00f3n',eLblTime:'Hora',dayItinLabel:'programa del d\u00eda',dayItinTitle:'Itinerario',itinNote:'Llega temprano. Se agradece tu puntualidad.',dresscodeLabel:'c\u00f3digo de vestimenta',dresscodeTitle2:'Vestimenta Formal',dressClrLady:'Tonos pasteles',dressClrGent:'Negro, neutros',avoidColors:'Evita usar los siguientes colores',dressLadies:'Mujeres',dressGents:'Hombres',vestidoLargo:'Vestido Largo',traje:'Traje',galleryLabel:'galer\u00eda de fotos',galleryTitle:'Nuestros Momentos',hotelLabel:'hospedaje recomendado',hotelTitle:'Opciones de Hospedaje',hotelBody:'Para mayor comodidad, recomendamos los siguientes hoteles.',hotelDir:'Mapa',songLabel:'nuestra canci\u00f3n',songTitle2:'La M\u00fasica de Nuestro Amor',listenSpotify:'Escuchar en Spotify',giftsLabel:'mesa de regalos',giftsTitle:'Un Regalo del Coraz\u00f3n',giftsBody:'Tu presencia es nuestro mejor regalo.',giftsCash:'\u00danicamente recibiremos regalos en efectivo o transferencia bancaria.',giftsTransfer:'Hacer Transferencia',giftsBankLabel:'Transferencia Bancaria',giftsTap:'Toca para ver datos',giftsBank:'Banco',giftsTitular:'Titular',giftsClabe:'CLABE',giftsCopied:'\u00a1Copiado!',rsvpLabel:'confirmaci\u00f3n de asistencia',rsvpTitle:'Confirmar Asistencia',rsvpPre:'Por favor, confirma tu asistencia antes del',rsvpFname:'Nombre',rsvpLname:'Apellido',rsvpMsg:'Mensaje para los novios',rsvpAttend:'\u00bfPodr\u00e1s asistir a la boda?',rsvpYes:'S\u00ed',rsvpNo:'No',rsvpSubmit:'Enviar mi Confirmaci\u00f3n',rsvpWaTitle:'\u00bfDudas?',rsvpWaBody:'Env\u00edanos un WhatsApp.',qrLabel:'agregar al calendario',qrTitle:'Escanea para guardar las fechas',qrBody:'Escanea este c\u00f3digo para guardar todos los eventos.',qrSub:'Compatible con Google, Apple y Outlook Calendar',qrDownloadICS:'Agregar eventos a mi calendario',nav_home:'Inicio',nav_parents:'Nombramientos',nav_dates:'Fechas y Ubicaci\u00f3n',nav_dayitin:'Itinerario',nav_attire:'Vestimenta',nav_gallery:'Galer\u00eda',nav_hotels:'Hospedaje',nav_song:'Canci\u00f3n',nav_gifts:'Regalos',nav_rsvp:'Confirmar'},
-  en:{countdown:'countdown',days:'days',hours:'hours',minutes:'minutes',seconds:'seconds',quoteText:'There is no remedy for love but to love more.',guestIntro:'With love and joy, we have the pleasure of inviting you to celebrate with us.',guestMsg:'Your presence is the greatest gift we could receive.',padrinosLabel:'with the blessing of',nombramTitle:'Honors',padresNovia:"Bride's Parents",padresNovio:"Groom's Parents",scheduleLabel:'important dates & location',eventsTitle:'The Events',viewMap:'Map',addCal:'Add to calendar',eLblName:'Name',eLblAddr:'Address',eLblTime:'Time',dayItinLabel:'day program',dayItinTitle:'Itinerary',itinNote:'Please arrive early. We appreciate your punctuality.',dresscodeLabel:'dress code',dresscodeTitle2:'Formal Attire',dressClrLady:'Pastel tones',dressClrGent:'Black, neutrals',avoidColors:'Please avoid these colors',dressLadies:'Women',dressGents:'Men',vestidoLargo:'Long Gown',traje:'Suit',galleryLabel:'photo gallery',galleryTitle:'Our Moments',hotelLabel:'recommended lodging',hotelTitle:'Lodging Options',hotelBody:'For your convenience, we recommend the following hotels.',hotelDir:'Map',songLabel:'our song',songTitle2:'The Music of Our Love',listenSpotify:'Listen on Spotify',giftsLabel:'gift registry',giftsTitle:'A Gift from the Heart',giftsBody:'Your presence is our greatest gift.',giftsCash:'We will only accept gifts in cash or bank transfer.',giftsTransfer:'Make a Transfer',giftsBankLabel:'Bank Transfer',giftsTap:'Tap to see details',giftsBank:'Bank',giftsTitular:'Account holder',giftsClabe:'CLABE',giftsCopied:'Copied!',rsvpLabel:'rsvp',rsvpTitle:'Confirm Attendance',rsvpPre:'Please confirm your attendance before',rsvpFname:'First Name',rsvpLname:'Last Name',rsvpMsg:'Message for the couple',rsvpAttend:'Will you be able to attend?',rsvpYes:'Yes',rsvpNo:'No',rsvpSubmit:'Send my Confirmation',rsvpWaTitle:'Questions?',rsvpWaBody:'Send us a WhatsApp.',qrLabel:'add to calendar',qrTitle:'Scan to save the dates',qrBody:'Scan this code to add all events.',qrSub:'Compatible with Google, Apple and Outlook Calendar',qrDownloadICS:'Add events to my calendar',nav_home:'Home',nav_parents:'Honors',nav_dates:'Dates & Location',nav_dayitin:'Itinerary',nav_attire:'Attire',nav_gallery:'Gallery',nav_hotels:'Lodging',nav_song:'Song',nav_gifts:'Gifts',nav_rsvp:'RSVP'},
-  pa:{
-    countdown:'\u0a09\u0a32\u0a1f\u0a40 \u0a17\u0a3f\u0a23\u0a24\u0a40',days:'\u0a26\u0a3f\u0a28',hours:'\u0a18\u0a70\u0a1f\u0a47',minutes:'\u0a2e\u0a3f\u0a70\u0a1f',seconds:'\u0a38\u0a15\u0a3f\u0a70\u0a1f',
-    quoteText:'\u0a2a\u0a3f\u0a06\u0a30 \u0a26\u0a3e \u0a15\u0a4b\u0a08 \u0a07\u0a32\u0a3e\u0a1c \u0a28\u0a39\u0a40\u0a02, \u0a38\u0a3f\u0a35\u0a3e\u0a0f \u0a39\u0a4b\u0a30 \u0a2a\u0a3f\u0a06\u0a30 \u0a15\u0a30\u0a28 \u0a26\u0a47\u0a2c\u0a3e\u0b44',
-    guestIntro:'\u0a2a\u0a3f\u0a06\u0a30 \u0a05\u0a24\u0a47 \u0a16\u0a41\u0a38\u0a3c\u0a40 \u0a28\u0a3e\u0a32, \u0a05\u0a38\u0a40\u0a02 \u0a24\u0a41\u0a39\u0a3e\u0a21\u0a3c\u0a47 \u0a28\u0a3e\u0a32 \u0a1c\u0a38\u0a3c\u0a28 \u0a2e\u0a28\u0a3e\u0a09\u0a23 \u0a32\u0a08 \u0a38\u0a71\u0a26\u0a3e \u0a26\u0a3f\u0a70\u0a26\u0a47 \u0a39\u0a3e\u0a02\u0b4d',
-    guestMsg:'\u0a24\u0a41\u0a39\u0a3e\u0a21\u0a3c\u0a40 \u0a39\u0a3e\u0a1c\u0a3c\u0a30\u0a40 \u0a38\u0a3e\u0a21\u0a3c\u0a3e \u0a38\u0a2d \u0a24\u0a4b\u0a02 \u0a35\u0a71\u0a21\u0a3e \u0a24\u0a4b\u0a39\u0a2b\u0a3c\u0a3e \u0a39\u0a48\u0b4d',
-    padrinosLabel:'\u0a06\u0a38\u0a3c\u0a40\u0a30\u0a35\u0a3e\u0a26 \u0a28\u0a3e\u0a32',nombramTitle:'\u0a38\u0a28\u0a2e\u0a3e\u0a28',
-    padresNovia:'\u0a32\u0a3e\u0a5c\u0a40 \u0a26\u0a47 \u0a2e\u0a3e\u0a24\u0a3e-\u0a2a\u0a3f\u0a24\u0a3e',padresNovio:'\u0a32\u0a3e\u0a5c\u0a47 \u0a26\u0a47 \u0a2e\u0a3e\u0a24\u0a3e-\u0a2a\u0a3f\u0a24\u0a3e',
-    scheduleLabel:'\u0a2e\u0a39\u0a71\u0a24\u0a35\u0a2a\u0a42\u0a30\u0a28 \u0a24\u0a3e\u0a30\u0a40\u0a16\u0a3e\u0a02 \u0a05\u0a24\u0a47 \u0a25\u0a3e\u0a82',eventsTitle:'\u0a38\u0a2e\u0a3e\u0a17\u0a2e',
-    viewMap:'\u0a28\u0a15\u0a38\u0a3c\u0a3e',addCal:'\u0a15\u0a48\u0a32\u0a70\u0a21\u0a30 \u0a35\u0a3f\u0a71\u0a1a \u0a1c\u0a4b\u0a5c\u0a4b',
-    eLblName:'\u0a28\u0a3e\u0a2e',eLblAddr:'\u0a2a\u0a24\u0a3e',eLblTime:'\u0a38\u0a2e\u0a3e\u0a82',
-    dayItinLabel:'\u0a26\u0a3f\u0a28 \u0a26\u0a3e \u0a2a\u0a4d\u0a30\u0a4b\u0a17\u0a30\u0a3e\u0a2e',dayItinTitle:'\u0a15\u0a3e\u0a30\u0a1c\u0a15\u0a4d\u0a30\u0a2e',
-    itinNote:'\u0a15\u0a3f\u0a30\u0a2a\u0a3e \u0a15\u0a30\u0a15\u0a47 \u0a38\u0a2e\u0a47\u0a02 \u0a38\u0a3f\u0a30 \u0a86\u0a13\u0b4d',
-    dresscodeLabel:'\u0a2a\u0a39\u0a3f\u0a30\u0a3e\u0a35\u0a47 \u0a26\u0a3e \u0a28\u0a3f\u0a2f\u0a2e',dresscodeTitle2:'\u0a30\u0a38\u0a2e\u0a40 \u0a2a\u0a39\u0a3f\u0a30\u0a3e\u0a35\u0a3e',
-    dressClrLady:'\u0a39\u0a32\u0a15\u0a47 \u0a30\u0a70\u0a17',dressClrGent:'\u0a15\u0a3e\u0a32\u0a3e, \u0a28\u0a3f\u0a30\u0a2a\u0a71\u0a16 \u0a30\u0a70\u0a17',
-    avoidColors:'\u0a07\u0a39 \u0a30\u0a70\u0a17 \u0a28\u0a3e \u0a2a\u0a39\u0a3f\u0a28\u0a4b',dressLadies:'\u0a14\u0a30\u0a24\u0a3e\u0a82',dressGents:'\u0a2e\u0a30\u0a26',
-    vestidoLargo:'\u0a32\u0a70\u0a2c\u0a3e \u0a32\u0a3f\u0a2c\u0a3e\u0a38',traje:'\u0a38\u0a42\u0a1f',
-    galleryLabel:'\u0a2b\u0a4b\u0a1f\u0a4b \u0a17\u0a48\u0a32\u0a30\u0a40',galleryTitle:'\u0a38\u0a3e\u0a21\u0a3c\u0a47 \u0a2a\u0a32',
-    hotelLabel:'\u0a30\u0a3f\u0a39\u0a3e\u0a07\u0a38\u0a3c \u0a26\u0a40 \u0a38\u0a3f\u0a2b\u0a3c\u0a3e\u0a30\u0a38\u0a3c',hotelTitle:'\u0a39\u0a4b\u0a1f\u0a32',
-    hotelBody:'\u0a38\u0a39\u0a42\u0a32\u0a40\u0a05\u0a24 \u0a32\u0a08 \u0a39\u0a47\u0a20\u0a3e\u0a82 \u0a26\u0a3f\u0a71\u0a24\u0a47 \u0a39\u0a4b\u0a1f\u0a32\u0a3e\u0a82 \u0a26\u0a40 \u0a38\u0a3f\u0a2b\u0a3c\u0a3e\u0a30\u0a38\u0a3c \u0a15\u0a30\u0a26\u0a47 \u0a39\u0a3e\u0a82\u0b4d',hotelDir:'\u0a28\u0a15\u0a38\u0a3c\u0a3e',
-    songLabel:'\u0a38\u0a3e\u0a21\u0a3c\u0a3e \u0a17\u0a40\u0a24',songTitle2:'\u0a38\u0a3e\u0a21\u0a3c\u0a47 \u0a2a\u0a3f\u0a06\u0a30 \u0a26\u0a3e \u0a38\u0a70\u0a17\u0a40\u0a24',listenSpotify:'Spotify \u0a24\u0a47 \u0a38\u0a41\u0a23\u0a4b',
-    giftsLabel:'\u0a24\u0a4b\u0a39\u0a2b\u0a3c\u0a47',giftsTitle:'\u0a26\u0a3f\u0a32\u0a4b\u0a82 \u0a24\u0a4b\u0a39\u0a2b\u0a3c\u0a3e',
-    giftsBody:'\u0a24\u0a41\u0a39\u0a3e\u0a21\u0a3c\u0a40 \u0a39\u0a3e\u0a1c\u0a3c\u0a30\u0a40 \u0a38\u0a3e\u0a21\u0a3c\u0a3e \u0a38\u0a2d \u0a24\u0a4b\u0a82 \u0a35\u0a71\u0a21\u0a3e \u0a24\u0a4b\u0a39\u0a2b\u0a3c\u0a3e \u0a39\u0a48\u0b4d',
-    giftsCash:'\u0a05\u0a38\u0a40\u0a82 \u0a38\u0a3f\u0a30\u0a2b\u0a3c \u0a28\u0a15\u0a26 \u0a1c\u0a3e\u0a82 \u0a2c\u0a48\u0a82\u0a15 \u0a1f\u0a4d\u0a30\u0a3e\u0a82\u0a38\u0a2b\u0a3c\u0a30 \u0a38\u0a35\u0a40\u0a15\u0a3e\u0a30 \u0a15\u0a30\u0a26\u0a47 \u0a39\u0a3e\u0a82\u0b4d',
-    giftsTransfer:'\u0a1f\u0a4d\u0a30\u0a3e\u0a82\u0a38\u0a2b\u0a3c\u0a30 \u0a15\u0a30\u0a4b',giftsBankLabel:'\u0a2c\u0a48\u0a82\u0a15 \u0a1f\u0a4d\u0a30\u0a3e\u0a82\u0a38\u0a2b\u0a3c\u0a30',
-    giftsTap:'\u0a35\u0a47\u0a30\u0a35\u0a47 \u0a26\u0a47\u0a16\u0a23 \u0a32\u0a08 \u0a1f\u0a48\u0a2a \u0a15\u0a30\u0a4b',giftsBank:'\u0a2c\u0a48\u0a82\u0a15',giftsTitular:'\u0a16\u0a3e\u0a24\u0a3e\u0a27\u0a3e\u0a30\u0a15',giftsClabe:'CLABE',giftsCopied:'\u0a15\u0a3e\u0a2a\u0a40 \u0a39\u0a4b \u0a17\u0a08!',
-    rsvpLabel:'\u0a39\u0a3e\u0a1c\u0a3c\u0a30\u0a40 \u0a2a\u0a41\u0a38\u0a3c\u0a1f\u0a40',rsvpTitle:'\u0a39\u0a3e\u0a1c\u0a3c\u0a30\u0a40 \u0a2a\u0a71\u0a15\u0a40 \u0a15\u0a30\u0a4b',
-    rsvpPre:'\u0a15\u0a3f\u0a30\u0a2a\u0a3e \u0a15\u0a30\u0a15\u0a47 \u0a07\u0a38 \u0a24\u0a3e\u0a30\u0a40\u0a16 \u0a24\u0a4b\u0a82 \u0a2a\u0a39\u0a3f\u0a32\u0a3e\u0a82 \u0a2a\u0a41\u0a38\u0a3c\u0a1f\u0a40 \u0a15\u0a30\u0a4b',
-    rsvpFname:'\u0a28\u0a3e\u0a2e',rsvpLname:'\u0a09\u0a2a\u0a28\u0a3e\u0a2e',rsvpMsg:'\u0a38\u0a41\u0a28\u0a47\u0a39\u0a3e \u0a38\u0a70\u0a26\u0a47\u0a38\u0a3c\u0a3e',
-    rsvpAttend:'\u0a15\u0a40 \u0a24\u0a41\u0a38\u0a40\u0a82 \u0a35\u0a3f\u0a06\u0a39 \u0a35\u0a3f\u0a71\u0a1a \u0a86 \u0a38\u0a15\u0a26\u0a47 \u0a39\u0a4b?',rsvpYes:'\u0a39\u0a3e\u0a82',rsvpNo:'\u0a28\u0a39\u0a40\u0a82',
-    rsvpSubmit:'\u0a2a\u0a41\u0a38\u0a3c\u0a1f\u0a40 \u0a2d\u0a47\u0a1c\u0a4b',rsvpWaTitle:'\u0a15\u0a4b\u0a08 \u0a38\u0a35\u0a3e\u0a32?',rsvpWaBody:'\u0a38\u0a3e\u0a28\u0a42\u0a70 WhatsApp \u0a24\u0a47 \u0a38\u0a70\u0a2a\u0a30\u0a15 \u0a15\u0a30\u0a4b\u0b4d',
-    qrLabel:'\u0a15\u0a48\u0a32\u0a70\u0a21\u0a30 \u0a35\u0a3f\u0a71\u0a1a \u0a1c\u0a4b\u0a5c\u0a4b',qrTitle:'\u0a24\u0a3e\u0a30\u0a40\u0a16\u0a3e\u0a82 \u0a38\u0a3c\u0a47\u0a05\u0a35 \u0a15\u0a30\u0a28 \u0a32\u0a08 \u0a38\u0a15\u0a48\u0a28 \u0a15\u0a30\u0a4b',
-    qrBody:'\u0a38\u0a3e\u0a30\u0a47 \u0a38\u0a2e\u0a3e\u0a17\u0a2e \u0a1c\u0a4b\u0a5c\u0a28 \u0a32\u0a08 \u0a07\u0a38 \u0a15\u0a4b\u0a21 \u0a28\u0a42\u0a70 \u0a38\u0a15\u0a48\u0a28 \u0a15\u0a30\u0a4b\u0b4d',qrSub:'Google, Apple \u0a05\u0a24\u0a47 Outlook \u0a28\u0a3e\u0a32 \u0a05\u0a28\u0a41\u0a15\u0a42\u0a32',qrDownloadICS:'\u0a2e\u0a47\u0a30\u0a47 \u0a15\u0a48\u0a32\u0a70\u0a21\u0a30 \u0a35\u0a3f\u0a71\u0a1a \u0a38\u0a2e\u0a3e\u0a17\u0a2e \u0a1c\u0a4b\u0a5c\u0a4b',
-    nav_home:'\u0a2e\u0a41\u0a71\u0a16 \u0a2a\u0a70\u0a28\u0a3e',nav_parents:'\u0a2e\u0a3e\u0a24\u0a3e-\u0a2a\u0a3f\u0a24\u0a3e',nav_dates:'\u0a24\u0a3e\u0a30\u0a40\u0a16\u0a3e\u0a82 \u0a05\u0a24\u0a47 \u0a25\u0a3e\u0a82',nav_dayitin:'\u0a15\u0a3e\u0a30\u0a1c\u0a15\u0a4d\u0a30\u0a2e',nav_attire:'\u0a2a\u0a39\u0a3f\u0a30\u0a3e\u0a35\u0a3e',nav_gallery:'\u0a17\u0a48\u0a32\u0a30\u0a40',nav_hotels:'\u0a39\u0a4b\u0a1f\u0a32',nav_song:'\u0a17\u0a40\u0a24',nav_gifts:'\u0a24\u0a4b\u0a39\u0a2b\u0a3c\u0a47',nav_rsvp:'\u0a2a\u0a41\u0a38\u0a3c\u0a1f\u0a40'
-  }
-};
-
-var LADY_SVG = '<svg viewBox="0 0 130 280" overflow="visible" class="dress-svg" style="width:90px;height:auto;" xmlns="http://www.w3.org/2000/svg">'
-  + '<defs><radialGradient id="dg1l" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#F8D4E0"/><stop offset="100%" stop-color="#E090B0"/></radialGradient>'
-  + '<radialGradient id="dg2l" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#FAE0EA"/><stop offset="100%" stop-color="#D87898"/></radialGradient>'
-  + '<radialGradient id="dg3l" cx="50%" cy="50%" r="55%"><stop offset="0%" stop-color="#FDE8F0"/><stop offset="100%" stop-color="#E8A0C0"/></radialGradient></defs>'
-  + '<path d="M52,16 Q36,34 34,72 Q32,102 36,128" fill="#4A2010" opacity=".5"/>'
-  + '<path d="M78,16 Q94,34 96,72 Q98,102 94,128" fill="#4A2010" opacity=".5"/>'
-  + '<ellipse cx="65" cy="22" rx="14" ry="16" fill="#F8C4BC"/>'
-  + '<path d="M52,14 Q40,30 38,58 Q36,82 39,110" fill="#6A3820" opacity=".95" stroke="#5A2810" stroke-width=".4"/>'
-  + '<path d="M78,14 Q90,30 92,58 Q94,82 91,110" fill="#6A3820" opacity=".95" stroke="#5A2810" stroke-width=".4"/>'
-  + '<ellipse cx="65" cy="10" rx="17" ry="10" fill="#6A3820"/>'
-  + '<path d="M48,54 Q38,68 32,84 Q28,96 31,100 Q35,103 38,90 Q44,74 52,58Z" fill="#F8C4BC" stroke="#E8B0A8" stroke-width=".6"/>'
-  + '<ellipse cx="30" cy="101" rx="5" ry="3.5" transform="rotate(-20,30,101)" fill="#F8C4BC"/>'
-  + '<path d="M82,54 Q92,68 98,84 Q102,96 99,100 Q95,103 92,90 Q86,74 78,58Z" fill="#F8C4BC" stroke="#E8B0A8" stroke-width=".6"/>'
-  + '<ellipse cx="100" cy="101" rx="5" ry="3.5" transform="rotate(20,100,101)" fill="#F8C4BC"/>'
-  + '<path d="M46,52 Q51,42 65,39 Q79,42 84,52 L82,86 L48,86Z" fill="url(#dg2l)" opacity=".97"/>'
-  + '<line x1="61" y1="40" x2="59" y2="85" stroke="rgba(200,100,140,.22)" stroke-width=".7"/>'
-  + '<line x1="65" y1="39" x2="65" y2="86" stroke="rgba(200,100,140,.22)" stroke-width=".7"/>'
-  + '<line x1="69" y1="40" x2="71" y2="85" stroke="rgba(200,100,140,.22)" stroke-width=".7"/>'
-  + '<path d="M54,50 Q60,44 65,48 Q70,44 76,50" stroke="#C87090" stroke-width="1.2" fill="none" stroke-linecap="round"/>'
-  + '<path d="M48,84 Q65,93 82,84 Q80,97 65,101 Q50,97 48,84Z" fill="#C87090" opacity=".6"/>'
-  + '<path d="M58,89 Q62,84 65,88 Q68,84 72,89 Q68,94 65,90 Q62,94 58,89Z" fill="#E8A0C0" opacity=".85"/>'
-  + '<path d="M50,99 L22,190 L12,236 Q38,229 65,232 Q92,229 118,236 L108,190 L80,99Z" fill="url(#dg1l)" opacity=".9"/>'
-  + '<path d="M53,99 L28,184 L18,228 Q42,223 65,226 Q88,223 112,228 L102,184 L77,99Z" fill="url(#dg3l)" opacity=".28"/>'
-  + '<path d="M16,174 Q40,167 65,170 Q90,167 114,174" stroke="#E8A0B8" stroke-width="1.8" fill="none" stroke-linecap="round"/>'
-  + '<path d="M10,210 Q37,202 65,206 Q93,202 120,210" stroke="#E8A0B8" stroke-width="1.8" fill="none" stroke-linecap="round"/>'
-  + '<path d="M10,236 Q24,250 38,244 Q50,237 58,244 Q62,250 65,245 Q68,250 72,244 Q80,237 92,244 Q106,250 120,236" stroke="#E8A0B8" stroke-width="2.5" fill="#FAD8E8" fill-opacity=".65" stroke-linecap="round"/>'
-  + '<path d="M48,236 Q47,244 46,250" stroke="#F5C0B0" stroke-width="7" stroke-linecap="round" fill="none"/>'
-  + '<path d="M39,247 Q45,242 55,245 Q54,250 47,251 Q40,251 39,247Z" fill="#C87090"/>'
-  + '<line x1="41" y1="249" x2="39" y2="261" stroke="#8B3060" stroke-width="2" stroke-linecap="round"/>'
-  + '<path d="M82,236 Q83,244 84,250" stroke="#F5C0B0" stroke-width="7" stroke-linecap="round" fill="none"/>'
-  + '<path d="M75,247 Q81,242 91,245 Q90,250 83,251 Q76,251 75,247Z" fill="#C87090"/>'
-  + '<line x1="77" y1="249" x2="75" y2="261" stroke="#8B3060" stroke-width="2" stroke-linecap="round"/>'
-  + '</svg>';
-
-var GENT_SVG = '<svg viewBox="0 0 130 280" overflow="visible" class="dress-svg" style="width:90px;height:auto;" xmlns="http://www.w3.org/2000/svg">'
-  + '<defs><linearGradient id="sg1g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4A4A6A"/><stop offset="100%" stop-color="#2A2A48"/></linearGradient>'
-  + '<linearGradient id="sg2g" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#3A3A58"/><stop offset="50%" stop-color="#5A5A7A"/><stop offset="100%" stop-color="#3A3A58"/></linearGradient></defs>'
-  + '<ellipse cx="65" cy="22" rx="14" ry="16" fill="#F5C0B0"/>'
-  + '<ellipse cx="65" cy="11" rx="15" ry="8" fill="#4A2E10"/>'
-  + '<rect x="59" y="35" width="12" height="9" fill="#F5C0B0"/>'
-  + '<path d="M54,39 L59,45 L65,41 L71,45 L76,39" fill="white" stroke="#DDD" stroke-width=".5"/>'
-  + '<path d="M44,54 Q34,70 27,88 Q22,102 25,106 Q29,108 32,94 Q39,76 50,58Z" fill="#4A4A6A" stroke="#3A3A58" stroke-width=".6"/>'
-  + '<rect x="22" y="100" width="12" height="6" rx="2" fill="white" stroke="#DDD" stroke-width=".4"/>'
-  + '<circle cx="28" cy="103" r="2.2" fill="#C8965A"/>'
-  + '<ellipse cx="27" cy="108" rx="5.5" ry="3.5" transform="rotate(-18,27,108)" fill="#F5C0B0"/>'
-  + '<path d="M86,54 Q96,70 103,88 Q108,102 105,106 Q101,108 98,94 Q91,76 80,58Z" fill="#4A4A6A" stroke="#3A3A58" stroke-width=".6"/>'
-  + '<rect x="96" y="100" width="12" height="6" rx="2" fill="white" stroke="#DDD" stroke-width=".4"/>'
-  + '<circle cx="102" cy="103" r="2.2" fill="#C8965A"/>'
-  + '<ellipse cx="103" cy="108" rx="5.5" ry="3.5" transform="rotate(18,103,108)" fill="#F5C0B0"/>'
-  + '<path d="M44,50 Q51,40 62,37 L65,52 L68,37 Q79,40 86,50 L84,122 L46,122Z" fill="url(#sg1g)"/>'
-  + '<path d="M62,37 L55,58 L65,65 L75,58 L68,37" fill="#3A3A56"/>'
-  + '<path d="M55,58 L60,47" stroke="#5A5A78" stroke-width=".8" fill="none"/>'
-  + '<path d="M75,58 L70,47" stroke="#5A5A78" stroke-width=".8" fill="none"/>'
-  + '<path d="M61,42 L63,65 L67,65 L69,42" fill="white" opacity=".9"/>'
-  + '<circle cx="65" cy="48" r="1.4" fill="#E8E8F0"/>'
-  + '<circle cx="65" cy="56" r="1.4" fill="#E8E8F0"/>'
-  + '<circle cx="65" cy="64" r="1.4" fill="#E8E8F0"/>'
-  + '<path d="M59,43 Q62,39 65,43 Q68,39 71,43 Q68,46 65,43 Q62,46 59,43Z" fill="#8B1A2A"/>'
-  + '<path d="M47,58 Q50,53 53,56 Q51,60 48,62Z" fill="white" opacity=".85"/>'
-  + '<circle cx="65" cy="90" r="2.4" fill="#3A3A56" stroke="#6A6A88" stroke-width=".6"/>'
-  + '<rect x="46" y="120" width="38" height="6" rx="1" fill="#2A1A08"/>'
-  + '<rect x="61" y="121" width="8" height="4" rx="1" fill="#C8965A" stroke="#A87840" stroke-width=".4"/>'
-  + '<path d="M46,126 L36,216 L54,216 L65,170 L76,216 L94,216 L84,126Z" fill="url(#sg2g)"/>'
-  + '<path d="M36,216 Q35,224 34,230" stroke="#3A3A58" stroke-width="10" stroke-linecap="round" fill="none"/>'
-  + '<path d="M22,227 Q33,221 48,224 L48,230 Q33,232 21,230Z" fill="#111018"/>'
-  + '<path d="M20,230 Q33,233 49,230 L49,234 Q33,236 20,234Z" fill="#1e1c28"/>'
-  + '<path d="M94,216 Q95,224 96,230" stroke="#3A3A58" stroke-width="10" stroke-linecap="round" fill="none"/>'
-  + '<path d="M82,227 Q93,221 108,224 L108,230 Q93,232 81,230Z" fill="#111018"/>'
-  + '<path d="M80,230 Q93,233 109,230 L109,234 Q93,236 80,234Z" fill="#1e1c28"/>'
-  + '</svg>';
-
+var CFG={name1:'Dallany',name2:'Sarbjit',dateISO:'2026-07-03T17:00:00',city:'Chihuahua, M\u00e9xico',dateDisplay:{es:'Viernes, 3 de Julio de 2026',en:'Friday, July 3rd, 2026',pa:'3 \u0a1c\u0a41\u0a32\u0a3e\u0a08 2026'},brideParents:'Ernesto Oyarzabal Barrios\nXochitl Aragon Dominguez',groomParents:'Nombre Apellido\nNombre Apellido',events:[{tkLabel:{es:'Boda Civil',en:'Civil Wedding',pa:'\u0a38\u0a3f\u0a35\u0a32 \u0a35\u0a3f\u0a06\u0a39'},photo:'img/registrocivil1.jpeg',name:{es:'Registro Civil No. 1',en:'Registry Office No. 1',pa:'Registry'},addr:{es:'Ni\u00f1os H\u00e9roes 1001, Centro\nChihuahua, Chih. 31000',en:'Ni\u00f1os H\u00e9roes 1001, Centro\nChihuahua, Chih. 31000',pa:'Chihuahua'},hora:'12:00 PM',map:'https://maps.google.com/?q=Registro+Civil+Chihuahua',ck:'civil',cal:{tES:'Boda Civil - Dallany & Tony',tEN:'Civil Wedding - Dallany & Tony',s:'20260701T120000',e:'20260701T140000'}},{tkLabel:{es:'Ceremonia',en:'Ceremony',pa:'\u0a30\u0a38\u0a2e'},photo:'img/coloniajuareztemple.jpeg',name:{es:'Templo de Ciudad Ju\u00e1rez',en:'Ciudad Ju\u00e1rez Temple',pa:'Temple'},addr:{es:'Calle Paraguay 2900 Esq. Jos\u00e9 Borunda\nCol. Partido Romero, Cd. Ju\u00e1rez 32177',en:'Calle Paraguay 2900 Esq. Jos\u00e9 Borunda\nCol. Partido Romero, Cd. Ju\u00e1rez 32177',pa:'Cd. Ju\u00e1rez'},hora:'4:00 PM',map:'https://maps.app.goo.gl/h9YN1gZNF2mot6CF8',ck:'temple',cal:{tES:'Ceremonia - Dallany & Tony',tEN:'Ceremony - Dallany & Tony',s:'20260702T160000',e:'20260702T180000'}},{tkLabel:{es:'Recepci\u00f3n',en:'Reception',pa:'\u0a38\u0a35\u0a3e\u0a17\u0a24'},photo:'img/Facetune_07-02-2026-14-02-18.jpeg',name:{es:'Salon Los Jardines',en:'Salon Los Jardines',pa:'Salon'},addr:{es:'Calle Jard\u00edn 2105, Mirador\nChihuahua, Chih. 31240',en:'Calle Jard\u00edn 2105, Mirador\nChihuahua, Chih. 31240',pa:'Chihuahua'},hora:'7:00 PM',map:'https://maps.google.com/?q=Salon+Los+Jardines+Chihuahua',ck:'reception',cal:{tES:'Recepcion - Dallany & Tony',tEN:'Reception - Dallany & Tony',s:'20260703T190000',e:'20260703T235900'}}],itinerary:[{group:true,date:{es:'1 de Julio',en:'July 1st',pa:'1 \u0a1c\u0a41\u0a32\u0a3e\u0a08'},sub:{es:'Mi\u00e9rcoles \u00b7 Boda Civil',en:'Wednesday \u00b7 Civil Wedding',pa:'Wed \u00b7 \u0a38\u0a3f\u0a35\u0a32 \u0a35\u0a3f\u0a06\u0a39'}},{time:'12:00 PM',icon:'\ud83d\udc8d',name:{es:'Registro Civil No. 1',en:'Registry Office No. 1',pa:'Registry'},desc:{es:'Ceremonia civil \u00b7 Chihuahua',en:'Civil ceremony \u00b7 Chihuahua',pa:'Chihuahua'}},{group:true,date:{es:'2 de Julio',en:'July 2nd',pa:'2 \u0a1c\u0a41\u0a32\u0a3e\u0a08'},sub:{es:'Jueves \u00b7 Ceremonia',en:'Thursday \u00b7 Ceremony',pa:'Thu \u00b7 \u0a30\u0a38\u0a2e'}},{time:'4:00 PM',icon:'\u26ea',name:{es:'Ceremonia Religiosa',en:'Religious Ceremony',pa:'\u0a27\u0a3e\u0a30\u0a2e\u0a3f\u0a15 \u0a30\u0a38\u0a2e'},desc:{es:'Templo de Ciudad Ju\u00e1rez',en:'Ciudad Ju\u00e1rez Temple',pa:'Temple'}},{time:'5:30 PM',icon:'\ud83d\udcf8',name:{es:'Sesi\u00f3n fotogr\u00e1fica',en:'Photo session',pa:'\u0a2b\u0a4b\u0a1f\u0a4b'},desc:{es:'Fotos con los novios',en:'Photos with the couple',pa:'\u0a2b\u0a4b\u0a1f\u0a4b'}},{group:true,date:{es:'3 de Julio',en:'July 3rd',pa:'3 \u0a1c\u0a41\u0a32\u0a3e\u0a08'},sub:{es:'Viernes \u00b7 Recepci\u00f3n',en:'Friday \u00b7 Reception',pa:'Fri \u00b7 \u0a38\u0a35\u0a3e\u0a17\u0a24'}},{time:'7:00 PM',icon:'\ud83c\udf39',name:{es:'Recepci\u00f3n',en:'Reception',pa:'\u0a38\u0a35\u0a3e\u0a17\u0a24'},desc:{es:'Salon Los Jardines',en:'Salon Los Jardines',pa:'Salon'}},{time:'8:00 PM',icon:'\ud83c\udf7d\ufe0f',name:{es:'Cena',en:'Dinner',pa:'\u0a30\u0a3e\u0a24 \u0a26\u0a3e \u0a16\u0a3e\u0a23\u0a3e'},desc:{es:'Disfruta una deliciosa cena',en:'Enjoy a delicious dinner',pa:'\u0a38\u0a41\u0a06\u0a26\u0a40 \u0a16\u0a3e\u0a23\u0a3e'}},{time:'9:00 PM',icon:'\ud83d\udc83',name:{es:'Vals',en:'First dance',pa:'\u0a2a\u0a39\u0a3f\u0a32\u0a3e \u0a28\u0a3f\u0a31\u0a4d\u0a24'},desc:{es:'Nuestro primer baile',en:'Our first dance',pa:'\u0a38\u0a3e\u0a21\u0a3c\u0a3e \u0a2a\u0a39\u0a3f\u0a32\u0a3e \u0a28\u0a3f\u0a31\u0a4d\u0a24'}},{time:'9:30 PM',icon:'\ud83c\udf89',name:{es:'Fiesta',en:'Party',pa:'\u0a1c\u0a38\u0a3c\u0a28'},desc:{es:'\u00a1Sacale brillo a la pista!',en:'Light up the dance floor!',pa:'\u0a1c\u0a38\u0a3c\u0a28 \u0a35\u0a3f\u0a1a \u0a86\u0a13!'}},{time:'2:00 AM',icon:'\ud83c\udf19',name:{es:'Hasta pronto',en:'Farewell',pa:'\u0a1c\u0a40 \u0a06\u0a07\u0a06\u0a02'},desc:{es:'Gracias por celebrar con nosotros',en:'Thank you for celebrating with us',pa:'\u0a2e\u0a28\u0a3e\u0a09\u0a23 \u0a32\u0a08 \u0a27\u0a3c\u0a28\u0a35\u0a3e\u0a26'}}],avoidColors:['#9B8EC4','#A08070'],hotels:[{name:'Hotel Mision Chihuahua',stars:4,dist:{es:'5 min del sal\u00f3n',en:'5 min from venue',pa:'5 \u0a2e\u0a3f\u0a70\u0a1f'},note:{es:'Tarifa especial \u00b7 Desayuno incluido',en:'Special rate \u00b7 Breakfast included',pa:'\u0a16\u0a3c\u0a3e\u0a38 \u0a26\u0a30'},url:'https://maps.google.com/?q=Hotel+Mision+Chihuahua'},{name:'Wyndham Garden Chihuahua',stars:4,dist:{es:'8 min del sal\u00f3n',en:'8 min from venue',pa:'8 \u0a2e\u0a3f\u0a70\u0a1f'},note:{es:'Alberca \u00b7 Estacionamiento gratuito',en:'Pool \u00b7 Free parking',pa:'\u0a2a\u0a42\u0a32'},url:'https://maps.google.com/?q=Wyndham+Garden+Chihuahua'},{name:'Hotel San Francisco',stars:3,dist:{es:'12 min del sal\u00f3n',en:'12 min from venue',pa:'12 \u0a2e\u0a3f\u0a70\u0a1f'},note:{es:'Opci\u00f3n econ\u00f3mica recomendada',en:'Recommended budget option',pa:'\u0a38\u0a38\u0a24\u0a3e \u0a35\u0a3f\u0a15\u0a32\u0a4d\u0a2a'},url:'https://maps.google.com/?q=Hotel+San+Francisco+Chihuahua'}],songTitle:'Perfect',songArtist:'Ed Sheeran',songSpotify:'https://open.spotify.com/track/0tgVpDi06FyKpA1z0VMD4v',songAudio:'Ed Sheeran - Perfect (Official Music Video) - (320 Kbps).mp3',gifts:[{store:'PayPal',url:'https://www.paypal.com/paypalme/TUUSUARIO'},{store:'Bank',banco:'BBVA Bancomer',titular:'Dallany Oyarzabal',clabe:'012345678901234567'}],rsvpDeadline:{es:'1 de Mayo de 2026',en:'May 1st, 2026',pa:'1 \u0a2e\u0a08 2026'},rsvpWa:'526142198023',sheetsURL:'',inviteURL:'https://tu-invitacion.netlify.app',photos:['img/IMG_7517.jpeg','img/Facetune_07-02-2026-13-18-06.jpeg','img/Facetune_07-02-2026-13-59-51.jpeg','img/Facetune_07-02-2026-14-07-42.jpeg','img/IMG_7485.jpeg','img/Facetune_07-02-2026-14-02-18.jpeg']};
+var W={name1:CFG.name1,name2:CFG.name2,dateISO:CFG.dateISO,city:CFG.city,dateDisplay:CFG.dateDisplay,brideParents:CFG.brideParents,groomParents:CFG.groomParents,events:CFG.events.map(function(ev){return Object.assign({tk:ev.ck},ev);}),calEvents:(function(){var o={};CFG.events.forEach(function(ev){o[ev.ck]={tES:ev.cal.tES,tEN:ev.cal.tEN,s:ev.cal.s,e:ev.cal.e,loc:ev.name.es+', '+CFG.city};});return o;})(),itinerary:CFG.itinerary,avoidColors:CFG.avoidColors,hotels:CFG.hotels,songTitle:CFG.songTitle,songArtist:CFG.songArtist,songSpotify:CFG.songSpotify,songAudio:CFG.songAudio,gifts:CFG.gifts,rsvpDeadline:CFG.rsvpDeadline,rsvpWa:CFG.rsvpWa,inviteURL:CFG.inviteURL,photos:CFG.photos};
+var T={es:{countdown:'cuenta regresiva',days:'dias',hours:'horas',minutes:'minutos',seconds:'segundos',quoteText:'No hay remedio para el amor, sino amar m\u00e1s.',guestIntro:'Con amor y alegr\u00eda, tenemos el placer de invitarte a celebrar con nosotros.',guestMsg:'Tu presencia es el mejor regalo que podemos recibir.',padrinosLabel:'con el benep\u00e1cito de',nombramTitle:'Nombramientos',padresNovia:'Padres de la Novia',padresNovio:'Padres del Novio',scheduleLabel:'fechas importantes y ubicaci\u00f3n',eventsTitle:'Los Eventos',viewMap:'Mapa',addCal:'Agregar al calendario',eLblName:'Nombre',eLblAddr:'Direcci\u00f3n',eLblTime:'Hora',dayItinLabel:'programa del d\u00eda',dayItinTitle:'Itinerario',itinNote:'Llega temprano. Se agradece tu puntualidad.',dresscodeLabel:'c\u00f3digo de vestimenta',dresscodeTitle2:'Vestimenta Formal',dressClrLady:'Tonos pasteles',dressClrGent:'Negro, neutros',avoidColors:'Evita usar los siguientes colores',dressLadies:'Mujeres',dressGents:'Hombres',vestidoLargo:'Vestido Largo',traje:'Traje',galleryLabel:'galer\u00eda de fotos',galleryTitle:'Nuestros Momentos',hotelLabel:'hospedaje recomendado',hotelTitle:'Opciones de Hospedaje',hotelBody:'Para mayor comodidad, recomendamos los siguientes hoteles.',hotelDir:'Mapa',songLabel:'nuestra canci\u00f3n',songTitle2:'La M\u00fasica de Nuestro Amor',listenSpotify:'Escuchar en Spotify',giftsLabel:'mesa de regalos',giftsTitle:'Un Regalo del Coraz\u00f3n',giftsBody:'Tu presencia es nuestro mejor regalo.',giftsCash:'\u00danicamente recibiremos regalos en efectivo o transferencia bancaria.',giftsTransfer:'Hacer Transferencia',giftsBankLabel:'Transferencia Bancaria',giftsTap:'Toca para ver datos',giftsBank:'Banco',giftsTitular:'Titular',giftsClabe:'CLABE',giftsCopied:'\u00a1Copiado!',rsvpLabel:'confirmaci\u00f3n de asistencia',rsvpTitle:'Confirmar Asistencia',rsvpPre:'Por favor, confirma tu asistencia antes del',rsvpFname:'Nombre',rsvpLname:'Apellido',rsvpMsg:'Mensaje para los novios',rsvpAttend:'\u00bfPodr\u00e1s asistir a la boda?',rsvpYes:'S\u00ed',rsvpNo:'No',rsvpSubmit:'Enviar mi Confirmaci\u00f3n',rsvpWaTitle:'\u00bfDudas?',rsvpWaBody:'Env\u00edanos un WhatsApp.',qrLabel:'agregar al calendario',qrTitle:'Escanea para guardar las fechas',qrBody:'Escanea este c\u00f3digo para guardar todos los eventos.',qrSub:'Compatible con Google, Apple y Outlook Calendar',qrDownloadICS:'Agregar eventos a mi calendario',nav_home:'Inicio',nav_parents:'Nombramientos',nav_dates:'Fechas y Ubicaci\u00f3n',nav_dayitin:'Itinerario',nav_attire:'Vestimenta',nav_gallery:'Galer\u00eda',nav_hotels:'Hospedaje',nav_song:'Canci\u00f3n',nav_gifts:'Regalos',nav_rsvp:'Confirmar'},en:{countdown:'countdown',days:'days',hours:'hours',minutes:'minutes',seconds:'seconds',quoteText:'There is no remedy for love but to love more.',guestIntro:'With love and joy, we have the pleasure of inviting you to celebrate with us.',guestMsg:'Your presence is the greatest gift we could receive.',padrinosLabel:'with the blessing of',nombramTitle:'Honors',padresNovia:"Bride's Parents",padresNovio:"Groom's Parents",scheduleLabel:'important dates & location',eventsTitle:'The Events',viewMap:'Map',addCal:'Add to calendar',eLblName:'Name',eLblAddr:'Address',eLblTime:'Time',dayItinLabel:'day program',dayItinTitle:'Itinerary',itinNote:'Please arrive early. We appreciate your punctuality.',dresscodeLabel:'dress code',dresscodeTitle2:'Formal Attire',dressClrLady:'Pastel tones',dressClrGent:'Black, neutrals',avoidColors:'Please avoid these colors',dressLadies:'Women',dressGents:'Men',vestidoLargo:'Long Gown',traje:'Suit',galleryLabel:'photo gallery',galleryTitle:'Our Moments',hotelLabel:'recommended lodging',hotelTitle:'Lodging Options',hotelBody:'For your convenience, we recommend the following hotels.',hotelDir:'Map',songLabel:'our song',songTitle2:'The Music of Our Love',listenSpotify:'Listen on Spotify',giftsLabel:'gift registry',giftsTitle:'A Gift from the Heart',giftsBody:'Your presence is our greatest gift.',giftsCash:'We will only accept gifts in cash or bank transfer.',giftsTransfer:'Make a Transfer',giftsBankLabel:'Bank Transfer',giftsTap:'Tap to see details',giftsBank:'Bank',giftsTitular:'Account holder',giftsClabe:'CLABE',giftsCopied:'Copied!',rsvpLabel:'rsvp',rsvpTitle:'Confirm Attendance',rsvpPre:'Please confirm your attendance before',rsvpFname:'First Name',rsvpLname:'Last Name',rsvpMsg:'Message for the couple',rsvpAttend:'Will you be able to attend?',rsvpYes:'Yes',rsvpNo:'No',rsvpSubmit:'Send my Confirmation',rsvpWaTitle:'Questions?',rsvpWaBody:'Send us a WhatsApp.',qrLabel:'add to calendar',qrTitle:'Scan to save the dates',qrBody:'Scan this code to add all events.',qrSub:'Compatible with Google, Apple and Outlook Calendar',qrDownloadICS:'Add events to my calendar',nav_home:'Home',nav_parents:'Honors',nav_dates:'Dates & Location',nav_dayitin:'Itinerary',nav_attire:'Attire',nav_gallery:'Gallery',nav_hotels:'Lodging',nav_song:'Song',nav_gifts:'Gifts',nav_rsvp:'RSVP'},pa:{countdown:'\u0a09\u0a32\u0a1f\u0a40 \u0a17\u0a3f\u0a23\u0a24\u0a40',days:'\u0a26\u0a3f\u0a28',hours:'\u0a18\u0a70\u0a1f\u0a47',minutes:'\u0a2e\u0a3f\u0a70\u0a1f',seconds:'\u0a38\u0a15\u0a3f\u0a70\u0a1f',quoteText:'\u0a2a\u0a3f\u0a06\u0a30 \u0a26\u0a3e \u0a15\u0a4b\u0a08 \u0a07\u0a32\u0a3e\u0a1c \u0a28\u0a39\u0a40\u0a02, \u0a38\u0a3f\u0a35\u0a3e\u0a0f \u0a39\u0a4b\u0a30 \u0a2a\u0a3f\u0a06\u0a30 \u0a15\u0a30\u0a28 \u0a26\u0a47\u0a2c\u0a3e\u0b44',guestIntro:'\u0a2a\u0a3f\u0a06\u0a30 \u0a05\u0a24\u0a47 \u0a16\u0a41\u0a38\u0a3c\u0a40 \u0a28\u0a3e\u0a32, \u0a05\u0a38\u0a40\u0a02 \u0a24\u0a41\u0a39\u0a3e\u0a21\u0a3c\u0a47 \u0a28\u0a3e\u0a32 \u0a1c\u0a38\u0a3c\u0a28 \u0a2e\u0a28\u0a3e\u0a09\u0a23 \u0a32\u0a08 \u0a38\u0a71\u0a26\u0a3e \u0a26\u0a3f\u0a70\u0a26\u0a47 \u0a39\u0a3e\u0a02\u0b4d',guestMsg:'\u0a24\u0a41\u0a39\u0a3e\u0a21\u0a3c\u0a40 \u0a39\u0a3e\u0a1c\u0a3c\u0a30\u0a40 \u0a38\u0a3e\u0a21\u0a3c\u0a3e \u0a38\u0a2d \u0a24\u0a4b\u0a82 \u0a35\u0a71\u0a21\u0a3e \u0a24\u0a4b\u0a39\u0a2b\u0a3c\u0a3e \u0a39\u0a48\u0b4d',padrinosLabel:'\u0a06\u0a38\u0a3c\u0a40\u0a30\u0a35\u0a3e\u0a26 \u0a28\u0a3e\u0a32',nombramTitle:'\u0a38\u0a28\u0a2e\u0a3e\u0a28',padresNovia:'\u0a32\u0a3e\u0a5c\u0a40 \u0a26\u0a47 \u0a2e\u0a3e\u0a24\u0a3e-\u0a2a\u0a3f\u0a24\u0a3e',padresNovio:'\u0a32\u0a3e\u0a5c\u0a47 \u0a26\u0a47 \u0a2e\u0a3e\u0a24\u0a3e-\u0a2a\u0a3f\u0a24\u0a3e',scheduleLabel:'\u0a2e\u0a39\u0a71\u0a24\u0a35\u0a2a\u0a42\u0a30\u0a28 \u0a24\u0a3e\u0a30\u0a40\u0a16\u0a3e\u0a02 \u0a05\u0a24\u0a47 \u0a25\u0a3e\u0a82',eventsTitle:'\u0a38\u0a2e\u0a3e\u0a17\u0a2e',viewMap:'\u0a28\u0a15\u0a38\u0a3c\u0a3e',addCal:'\u0a15\u0a48\u0a32\u0a70\u0a21\u0a30 \u0a35\u0a3f\u0a71\u0a1a \u0a1c\u0a4b\u0a5c\u0a4b',eLblName:'\u0a28\u0a3e\u0a2e',eLblAddr:'\u0a2a\u0a24\u0a3e',eLblTime:'\u0a38\u0a2e\u0a3e\u0a82',dayItinLabel:'\u0a26\u0a3f\u0a28 \u0a26\u0a3e \u0a2a\u0a4d\u0a30\u0a4b\u0a17\u0a30\u0a3e\u0a2e',dayItinTitle:'\u0a15\u0a3e\u0a30\u0a1c\u0a15\u0a4d\u0a30\u0a2e',itinNote:'\u0a15\u0a3f\u0a30\u0a2a\u0a3e \u0a15\u0a30\u0a15\u0a47 \u0a38\u0a2e\u0a47\u0a02 \u0a38\u0a3f\u0a30 \u0a86\u0a13\u0b4d',dresscodeLabel:'\u0a2a\u0a39\u0a3f\u0a30\u0a3e\u0a35\u0a47 \u0a26\u0a3e \u0a28\u0a3f\u0a2f\u0a2e',dresscodeTitle2:'\u0a30\u0a38\u0a2e\u0a40 \u0a2a\u0a39\u0a3f\u0a30\u0a3e\u0a35\u0a3e',dressClrLady:'\u0a39\u0a32\u0a15\u0a47 \u0a30\u0a70\u0a17',dressClrGent:'\u0a15\u0a3e\u0a32\u0a3e, \u0a28\u0a3f\u0a30\u0a2a\u0a71\u0a16 \u0a30\u0a70\u0a17',avoidColors:'\u0a07\u0a39 \u0a30\u0a70\u0a17 \u0a28\u0a3e \u0a2a\u0a39\u0a3f\u0a28\u0a4b',dressLadies:'\u0a14\u0a30\u0a24\u0a3e\u0a82',dressGents:'\u0a2e\u0a30\u0a26',vestidoLargo:'\u0a32\u0a70\u0a2c\u0a3e \u0a32\u0a3f\u0a2c\u0a3e\u0a38',traje:'\u0a38\u0a42\u0a1f',galleryLabel:'\u0a2b\u0a4b\u0a1f\u0a4b \u0a17\u0a48\u0a32\u0a30\u0a40',galleryTitle:'\u0a38\u0a3e\u0a21\u0a3c\u0a47 \u0a2a\u0a32',hotelLabel:'\u0a30\u0a3f\u0a39\u0a3e\u0a07\u0a38\u0a3c \u0a26\u0a40 \u0a38\u0a3f\u0a2b\u0a3c\u0a3e\u0a30\u0a38\u0a3c',hotelTitle:'\u0a39\u0a4b\u0a1f\u0a32',hotelBody:'\u0a38\u0a39\u0a42\u0a32\u0a40\u0a05\u0a24 \u0a32\u0a08 \u0a39\u0a47\u0a20\u0a3e\u0a82 \u0a26\u0a3f\u0a71\u0a24\u0a47 \u0a39\u0a4b\u0a1f\u0a32\u0a3e\u0a82 \u0a26\u0a40 \u0a38\u0a3f\u0a2b\u0a3c\u0a3e\u0a30\u0a38\u0a3c \u0a15\u0a30\u0a26\u0a47 \u0a39\u0a3e\u0a82\u0b4d',hotelDir:'\u0a28\u0a15\u0a38\u0a3c\u0a3e',songLabel:'\u0a38\u0a3e\u0a21\u0a3c\u0a3e \u0a17\u0a40\u0a24',songTitle2:'\u0a38\u0a3e\u0a21\u0a3c\u0a47 \u0a2a\u0a3f\u0a06\u0a30 \u0a26\u0a3e \u0a38\u0a70\u0a17\u0a40\u0a24',listenSpotify:'Spotify \u0a24\u0a47 \u0a38\u0a41\u0a23\u0a4b',giftsLabel:'\u0a24\u0a4b\u0a39\u0a2b\u0a3c\u0a47',giftsTitle:'\u0a26\u0a3f\u0a32\u0a4b\u0a82 \u0a24\u0a4b\u0a39\u0a2b\u0a3c\u0a3e',giftsBody:'\u0a24\u0a41\u0a39\u0a3e\u0a21\u0a3c\u0a40 \u0a39\u0a3e\u0a1c\u0a3c\u0a30\u0a40 \u0a38\u0a3e\u0a21\u0a3c\u0a3e \u0a38\u0a2d \u0a24\u0a4b\u0a82 \u0a35\u0a71\u0a21\u0a3e \u0a24\u0a4b\u0a39\u0a2b\u0a3c\u0a3e \u0a39\u0a48\u0b4d',giftsCash:'\u0a05\u0a38\u0a40\u0a82 \u0a38\u0a3f\u0a30\u0a2b\u0a3c \u0a28\u0a15\u0a26 \u0a1c\u0a3e\u0a82 \u0a2c\u0a48\u0a82\u0a15 \u0a1f\u0a4d\u0a30\u0a3e\u0a82\u0a38\u0a2b\u0a3c\u0a30 \u0a38\u0a35\u0a40\u0a15\u0a3e\u0a30 \u0a15\u0a30\u0a26\u0a47 \u0a39\u0a3e\u0a82\u0b4d',giftsTransfer:'\u0a1f\u0a4d\u0a30\u0a3e\u0a82\u0a38\u0a2b\u0a3c\u0a30 \u0a15\u0a30\u0a4b',giftsBankLabel:'\u0a2c\u0a48\u0a82\u0a15 \u0a1f\u0a4d\u0a30\u0a3e\u0a82\u0a38\u0a2b\u0a3c\u0a30',giftsTap:'\u0a35\u0a47\u0a30\u0a35\u0a47 \u0a26\u0a47\u0a16\u0a23 \u0a32\u0a08 \u0a1f\u0a48\u0a2a \u0a15\u0a30\u0a4b',giftsBank:'\u0a2c\u0a48\u0a82\u0a15',giftsTitular:'\u0a16\u0a3e\u0a24\u0a3e\u0a27\u0a3e\u0a30\u0a15',giftsClabe:'CLABE',giftsCopied:'\u0a15\u0a3e\u0a2a\u0a40 \u0a39\u0a4b \u0a17\u0a08!',rsvpLabel:'\u0a39\u0a3e\u0a1c\u0a3c\u0a30\u0a40 \u0a2a\u0a41\u0a38\u0a3c\u0a1f\u0a40',rsvpTitle:'\u0a39\u0a3e\u0a1c\u0a3c\u0a30\u0a40 \u0a2a\u0a71\u0a15\u0a40 \u0a15\u0a30\u0a4b',rsvpPre:'\u0a15\u0a3f\u0a30\u0a2a\u0a3e \u0a15\u0a30\u0a15\u0a47 \u0a07\u0a38 \u0a24\u0a3e\u0a30\u0a40\u0a16 \u0a24\u0a4b\u0a82 \u0a2a\u0a39\u0a3f\u0a32\u0a3e\u0a82 \u0a2a\u0a41\u0a38\u0a3c\u0a1f\u0a40 \u0a15\u0a30\u0a4b',rsvpFname:'\u0a28\u0a3e\u0a2e',rsvpLname:'\u0a09\u0a2a\u0a28\u0a3e\u0a2e',rsvpMsg:'\u0a38\u0a41\u0a28\u0a47\u0a39\u0a3e \u0a38\u0a70\u0a26\u0a47\u0a38\u0a3c\u0a3e',rsvpAttend:'\u0a15\u0a40 \u0a24\u0a41\u0a38\u0a40\u0a82 \u0a35\u0a3f\u0a06\u0a39 \u0a35\u0a3f\u0a71\u0a1a \u0a86 \u0a38\u0a15\u0a26\u0a47 \u0a39\u0a4b?',rsvpYes:'\u0a39\u0a3e\u0a82',rsvpNo:'\u0a28\u0a39\u0a40\u0a82',rsvpSubmit:'\u0a2a\u0a41\u0a38\u0a3c\u0a1f\u0a40 \u0a2d\u0a47\u0a1c\u0a4b',rsvpWaTitle:'\u0a15\u0a4b\u0a08 \u0a38\u0a35\u0a3e\u0a32?',rsvpWaBody:'\u0a38\u0a3e\u0a28\u0a42\u0a70 WhatsApp \u0a24\u0a47 \u0a38\u0a70\u0a2a\u0a30\u0a15 \u0a15\u0a30\u0a4b\u0b4d',qrLabel:'\u0a15\u0a48\u0a32\u0a70\u0a21\u0a30 \u0a35\u0a3f\u0a71\u0a1a \u0a1c\u0a4b\u0a5c\u0a4b',qrTitle:'\u0a24\u0a3e\u0a30\u0a40\u0a16\u0a3e\u0a82 \u0a38\u0a3c\u0a47\u0a05\u0a35 \u0a15\u0a30\u0a28 \u0a32\u0a08 \u0a38\u0a15\u0a48\u0a28 \u0a15\u0a30\u0a4b',qrBody:'\u0a38\u0a3e\u0a30\u0a47 \u0a38\u0a2e\u0a3e\u0a17\u0a2e \u0a1c\u0a4b\u0a5c\u0a28 \u0a32\u0a08 \u0a07\u0a38 \u0a15\u0a4b\u0a21 \u0a28\u0a42\u0a70 \u0a38\u0a15\u0a48\u0a28 \u0a15\u0a30\u0a4b\u0b4d',qrSub:'Google, Apple \u0a05\u0a24\u0a47 Outlook \u0a28\u0a3e\u0a32 \u0a05\u0a28\u0a41\u0a15\u0a42\u0a32',qrDownloadICS:'\u0a2e\u0a47\u0a30\u0a47 \u0a15\u0a48\u0a32\u0a70\u0a21\u0a30 \u0a35\u0a3f\u0a71\u0a1a \u0a38\u0a2e\u0a3e\u0a17\u0a2e \u0a1c\u0a4b\u0a5c\u0a4b',nav_home:'\u0a2e\u0a41\u0a71\u0a16 \u0a2a\u0a70\u0a28\u0a3e',nav_parents:'\u0a2e\u0a3e\u0a24\u0a3e-\u0a2a\u0a3f\u0a24\u0a3e',nav_dates:'\u0a24\u0a3e\u0a30\u0a40\u0a16\u0a3e\u0a82 \u0a05\u0a24\u0a47 \u0a25\u0a3e\u0a82',nav_dayitin:'\u0a15\u0a3e\u0a30\u0a1c\u0a15\u0a4d\u0a30\u0a2e',nav_attire:'\u0a2a\u0a39\u0a3f\u0a30\u0a3e\u0a35\u0a3e',nav_gallery:'\u0a17\u0a48\u0a32\u0a30\u0a40',nav_hotels:'\u0a39\u0a4b\u0a1f\u0a32',nav_song:'\u0a17\u0a40\u0a24',nav_gifts:'\u0a24\u0a4b\u0a39\u0a2b\u0a3c\u0a47',nav_rsvp:'\u0a2a\u0a41\u0a38\u0a3c\u0a1f\u0a40'}};
+var LADY_SVG='<svg viewBox="0 0 130 280" overflow="visible" class="dress-svg" style="width:90px;height:auto;" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="dg1l" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#F8D4E0"/><stop offset="100%" stop-color="#E090B0"/></radialGradient><radialGradient id="dg2l" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#FAE0EA"/><stop offset="100%" stop-color="#D87898"/></radialGradient><radialGradient id="dg3l" cx="50%" cy="50%" r="55%"><stop offset="0%" stop-color="#FDE8F0"/><stop offset="100%" stop-color="#E8A0C0"/></radialGradient></defs><path d="M52,16 Q36,34 34,72 Q32,102 36,128" fill="#4A2010" opacity=".5"/><path d="M78,16 Q94,34 96,72 Q98,102 94,128" fill="#4A2010" opacity=".5"/><ellipse cx="65" cy="22" rx="14" ry="16" fill="#F8C4BC"/><path d="M52,14 Q40,30 38,58 Q36,82 39,110" fill="#6A3820" opacity=".95" stroke="#5A2810" stroke-width=".4"/><path d="M78,14 Q90,30 92,58 Q94,82 91,110" fill="#6A3820" opacity=".95" stroke="#5A2810" stroke-width=".4"/><ellipse cx="65" cy="10" rx="17" ry="10" fill="#6A3820"/><path d="M48,54 Q38,68 32,84 Q28,96 31,100 Q35,103 38,90 Q44,74 52,58Z" fill="#F8C4BC" stroke="#E8B0A8" stroke-width=".6"/><ellipse cx="30" cy="101" rx="5" ry="3.5" transform="rotate(-20,30,101)" fill="#F8C4BC"/><path d="M82,54 Q92,68 98,84 Q102,96 99,100 Q95,103 92,90 Q86,74 78,58Z" fill="#F8C4BC" stroke="#E8B0A8" stroke-width=".6"/><ellipse cx="100" cy="101" rx="5" ry="3.5" transform="rotate(20,100,101)" fill="#F8C4BC"/><path d="M46,52 Q51,42 65,39 Q79,42 84,52 L82,86 L48,86Z" fill="url(#dg2l)" opacity=".97"/><line x1="61" y1="40" x2="59" y2="85" stroke="rgba(200,100,140,.22)" stroke-width=".7"/><line x1="65" y1="39" x2="65" y2="86" stroke="rgba(200,100,140,.22)" stroke-width=".7"/><line x1="69" y1="40" x2="71" y2="85" stroke="rgba(200,100,140,.22)" stroke-width=".7"/><path d="M54,50 Q60,44 65,48 Q70,44 76,50" stroke="#C87090" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M48,84 Q65,93 82,84 Q80,97 65,101 Q50,97 48,84Z" fill="#C87090" opacity=".6"/><path d="M58,89 Q62,84 65,88 Q68,84 72,89 Q68,94 65,90 Q62,94 58,89Z" fill="#E8A0C0" opacity=".85"/><path d="M50,99 L22,190 L12,236 Q38,229 65,232 Q92,229 118,236 L108,190 L80,99Z" fill="url(#dg1l)" opacity=".9"/><path d="M53,99 L28,184 L18,228 Q42,223 65,226 Q88,223 112,228 L102,184 L77,99Z" fill="url(#dg3l)" opacity=".28"/><path d="M16,174 Q40,167 65,170 Q90,167 114,174" stroke="#E8A0B8" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M10,210 Q37,202 65,206 Q93,202 120,210" stroke="#E8A0B8" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M10,236 Q24,250 38,244 Q50,237 58,244 Q62,250 65,245 Q68,250 72,244 Q80,237 92,244 Q106,250 120,236" stroke="#E8A0B8" stroke-width="2.5" fill="#FAD8E8" fill-opacity=".65" stroke-linecap="round"/><path d="M48,236 Q47,244 46,250" stroke="#F5C0B0" stroke-width="7" stroke-linecap="round" fill="none"/><path d="M39,247 Q45,242 55,245 Q54,250 47,251 Q40,251 39,247Z" fill="#C87090"/><line x1="41" y1="249" x2="39" y2="261" stroke="#8B3060" stroke-width="2" stroke-linecap="round"/><path d="M82,236 Q83,244 84,250" stroke="#F5C0B0" stroke-width="7" stroke-linecap="round" fill="none"/><path d="M75,247 Q81,242 91,245 Q90,250 83,251 Q76,251 75,247Z" fill="#C87090"/><line x1="77" y1="249" x2="75" y2="261" stroke="#8B3060" stroke-width="2" stroke-linecap="round"/></svg>';
+var GENT_SVG='<svg viewBox="0 0 130 280" overflow="visible" class="dress-svg" style="width:90px;height:auto;" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sg1g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4A4A6A"/><stop offset="100%" stop-color="#2A2A48"/></linearGradient><linearGradient id="sg2g" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#3A3A58"/><stop offset="50%" stop-color="#5A5A7A"/><stop offset="100%" stop-color="#3A3A58"/></linearGradient></defs><ellipse cx="65" cy="22" rx="14" ry="16" fill="#F5C0B0"/><ellipse cx="65" cy="11" rx="15" ry="8" fill="#4A2E10"/><rect x="59" y="35" width="12" height="9" fill="#F5C0B0"/><path d="M54,39 L59,45 L65,41 L71,45 L76,39" fill="white" stroke="#DDD" stroke-width=".5"/><path d="M44,54 Q34,70 27,88 Q22,102 25,106 Q29,108 32,94 Q39,76 50,58Z" fill="#4A4A6A" stroke="#3A3A58" stroke-width=".6"/><rect x="22" y="100" width="12" height="6" rx="2" fill="white" stroke="#DDD" stroke-width=".4"/><circle cx="28" cy="103" r="2.2" fill="#C8965A"/><ellipse cx="27" cy="108" rx="5.5" ry="3.5" transform="rotate(-18,27,108)" fill="#F5C0B0"/><path d="M86,54 Q96,70 103,88 Q108,102 105,106 Q101,108 98,94 Q91,76 80,58Z" fill="#4A4A6A" stroke="#3A3A58" stroke-width=".6"/><rect x="96" y="100" width="12" height="6" rx="2" fill="white" stroke="#DDD" stroke-width=".4"/><circle cx="102" cy="103" r="2.2" fill="#C8965A"/><ellipse cx="103" cy="108" rx="5.5" ry="3.5" transform="rotate(18,103,108)" fill="#F5C0B0"/><path d="M44,50 Q51,40 62,37 L65,52 L68,37 Q79,40 86,50 L84,122 L46,122Z" fill="url(#sg1g)"/><path d="M62,37 L55,58 L65,65 L75,58 L68,37" fill="#3A3A56"/><path d="M55,58 L60,47" stroke="#5A5A78" stroke-width=".8" fill="none"/><path d="M75,58 L70,47" stroke="#5A5A78" stroke-width=".8" fill="none"/><path d="M61,42 L63,65 L67,65 L69,42" fill="white" opacity=".9"/><circle cx="65" cy="48" r="1.4" fill="#E8E8F0"/><circle cx="65" cy="56" r="1.4" fill="#E8E8F0"/><circle cx="65" cy="64" r="1.4" fill="#E8E8F0"/><path d="M59,43 Q62,39 65,43 Q68,39 71,43 Q68,46 65,43 Q62,46 59,43Z" fill="#8B1A2A"/><path d="M47,58 Q50,53 53,56 Q51,60 48,62Z" fill="white" opacity=".85"/><circle cx="65" cy="90" r="2.4" fill="#3A3A56" stroke="#6A6A88" stroke-width=".6"/><rect x="46" y="120" width="38" height="6" rx="1" fill="#2A1A08"/><rect x="61" y="121" width="8" height="4" rx="1" fill="#C8965A" stroke="#A87840" stroke-width=".4"/><path d="M46,126 L36,216 L54,216 L65,170 L76,216 L94,216 L84,126Z" fill="url(#sg2g)"/><path d="M36,216 Q35,224 34,230" stroke="#3A3A58" stroke-width="10" stroke-linecap="round" fill="none"/><path d="M22,227 Q33,221 48,224 L48,230 Q33,232 21,230Z" fill="#111018"/><path d="M20,230 Q33,233 49,230 L49,234 Q33,236 20,234Z" fill="#1e1c28"/><path d="M94,216 Q95,224 96,230" stroke="#3A3A58" stroke-width="10" stroke-linecap="round" fill="none"/><path d="M82,227 Q93,221 108,224 L108,230 Q93,232 81,230Z" fill="#111018"/><path d="M80,230 Q93,233 109,230 L109,234 Q93,236 80,234Z" fill="#1e1c28"/></svg>';
 var pC,pX,pts=[],pR=false,pFrame=0,mouseX=-9999,mouseY=-9999;
 document.addEventListener('mousemove',function(e){mouseX=e.clientX;mouseY=e.clientY;});
 document.addEventListener('mouseleave',function(){mouseX=-9999;mouseY=-9999;});
 function initPetals(){pC=document.getElementById('pc');pC.width=innerWidth;pC.height=innerHeight;pX=pC.getContext('2d');pFrame=0;addEventListener('resize',function(){pC.width=innerWidth;pC.height=innerHeight;});for(var i=0;i<28;i++)pts.push(mkP());pC.classList.add('show');pR=true;animP();}
 function mkP(){var t=Math.random();var fr=t<0.33?0.006+Math.random()*0.004:t<0.66?0.02+Math.random()*0.01:0.06+Math.random()*0.03;return{x:Math.random()*innerWidth,y:Math.random()*-innerHeight,r:Math.random()*7+4,sp:Math.random()*1+0.4,sx:Math.random()*1.2-0.6,sw:Math.random()*.03+.01,sc:Math.random()*Math.PI*2,op:Math.random()*.5+.2,h:Math.random()<.5,fr:fr,fp:Math.random()*Math.PI*2};}
 function animP(){if(!pR)return;pFrame++;pX.clearRect(0,0,pC.width,pC.height);var fR=180;pts.forEach(function(p){p.y+=p.sp;p.x+=Math.sin(p.sc)*p.sx;p.sc+=p.sw;var sw=Math.sin(p.sc)*3,px=p.x+sw;var dx=px-mouseX,dy=p.y-mouseY,dist=Math.sqrt(dx*dx+dy*dy);var prox=Math.max(0,1-dist/fR);var fA=Math.max(0,1-prox*2.5);var rF=0.65+0.35*Math.sin(pFrame*p.fr+p.fp);var fl=1-fA*(1-rF);var al=(p.op*0.52+prox*0.85)*fl;var sc=1+prox*0.45;pX.save();pX.translate(px,p.y);pX.scale(sc,sc);pX.globalAlpha=Math.min(1,al);pX.shadowColor='rgba(180,80,120,0.5)';pX.shadowBlur=8+prox*10;pX.shadowOffsetX=1.5;pX.shadowOffsetY=2.5;if(p.h){pX.beginPath();var r=p.r;pX.moveTo(0,-r);pX.bezierCurveTo(r,-r,r,r/2,0,r);pX.bezierCurveTo(-r,r/2,-r,-r,0,-r);pX.fillStyle='rgb(242,'+Math.round(180+fl*75)+',208)';pX.fill();}else{pX.beginPath();pX.ellipse(0,0,p.r*.6,p.r,Math.sin(p.sc)*.5,0,Math.PI*2);pX.fillStyle='rgba(232,'+Math.round(120+fl*60)+',180,0.92)';pX.fill();}pX.restore();if(p.y>innerHeight+20){p.y=-20;p.x=Math.random()*innerWidth;}});var nR=9999;pts.forEach(function(p){var d=Math.sqrt((p.x-mouseX)*(p.x-mouseX)+(p.y-mouseY)*(p.y-mouseY));if(d<nR)nR=d;});pC.style.filter='blur('+(nR<fR?(nR/fR)*3:3).toFixed(1)+'px)';pC.style.opacity=nR<fR?(0.45+(1-nR/fR)*0.5).toFixed(2):'0.45';requestAnimationFrame(animP);}
-
 var hIdx=0,hTmr=null,HINTS=['Toca para abrir','Tap to open','\u0a16\u0a4b\u0a32\u0a4d\u0a39\u0a23 \u0a32\u0a08 \u0a1f\u0a48\u0a2a \u0a15\u0a30\u0a4b'];
 function cycleHint(){var el=document.getElementById('env-hint-text');if(!el)return;el.style.opacity='0';setTimeout(function(){hIdx=(hIdx+1)%HINTS.length;el.textContent=HINTS[hIdx];el.style.opacity='1';},350);}
 function startHint(){hTmr=setInterval(cycleHint,2400);}
 function stopHint(){clearInterval(hTmr);}
-
 var ssIdx=0,ssTmr=null,ssSlides=[];
 function buildSS(){var t=document.getElementById('ss-track'),d=document.getElementById('ss-dots');if(!t)return;t.innerHTML='';d.innerHTML='';ssSlides=[];W.photos.forEach(function(src,i){var s=document.createElement('div');s.className='ss-slide'+(i===0?' active':'');if(src){var img=document.createElement('img');img.src=src;img.alt='';s.appendChild(img);}t.appendChild(s);ssSlides.push(s);var dot=document.createElement('button');dot.className='ss-dot'+(i===0?' active':'');dot.onclick=(function(n){return function(){ssGo(n);};})(i);d.appendChild(dot);});}
 function ssGo(n){if(!ssSlides.length)return;ssSlides[ssIdx].classList.remove('active');document.querySelectorAll('.ss-dot')[ssIdx].classList.remove('active');ssIdx=(n+ssSlides.length)%ssSlides.length;ssSlides[ssIdx].classList.add('active');document.querySelectorAll('.ss-dot')[ssIdx].classList.add('active');}
 function ssNext(){clearInterval(ssTmr);ssGo(ssIdx+1);ssTmr=setInterval(function(){ssGo(ssIdx+1);},3800);}
 function ssPrev(){clearInterval(ssTmr);ssGo(ssIdx-1);ssTmr=setInterval(function(){ssGo(ssIdx+1);},3800);}
 function startSS(){ssTmr=setInterval(function(){ssGo(ssIdx+1);},3800);}
-
 var wT=false;
 function buildNameSpans(){var l1=document.getElementById('wn1'),lA=document.getElementById('wamp'),l2=document.getElementById('wn2');var h='';for(var i=0;i<W.name1.length;i++)h+='<span class="wc">'+W.name1[i]+'</span>';l1.innerHTML=h;lA.innerHTML='<span class="wc wc-amp">&amp;</span>';h='';for(var j=0;j<W.name2.length;j++)h+='<span class="wc">'+W.name2[j]+'</span>';l2.innerHTML=h;document.getElementById('fn1').textContent=W.name1;document.getElementById('fn2').textContent=W.name2;}
 function triggerWrite(){if(wT)return;wT=true;var outer=document.getElementById('hno'),quill=document.getElementById('quill');var chars=Array.prototype.slice.call(document.querySelectorAll('#wn1 .wc,#wamp .wc,#wn2 .wc'));if(!chars.length)return;var qW=quill.offsetWidth||36,qH=quill.offsetHeight||90;quill.style.opacity='1';quill.classList.add('writing');var cMs=170,delay=300;chars.forEach(function(s,i){var isSp=s.textContent.trim()==='';var dur=isSp?40:cMs+Math.random()*60;setTimeout((function(sp,isp,isLast){return function(){var sR=sp.getBoundingClientRect(),oR=outer.getBoundingClientRect();var xOff=isLast?sR.width*0.85:sR.width*.18;quill.style.left=(sR.left-oR.left+xOff-qW*.5)+'px';quill.style.top=(sR.top-oR.top+sR.height*.65-qH*.88)+'px';sp.style.transition='clip-path '+(isp?0:cMs*.85)+'ms ease-out';sp.classList.add('on');};})(s,isSp,i===chars.length-1),delay);delay+=dur;});var tot=delay;setTimeout(function(){quill.classList.remove('writing');quill.style.transition='opacity .3s ease,left .12s,top .12s';quill.style.opacity='0';},tot+120);setTimeout(function(){document.getElementById('nwl').classList.add('exit');},tot+450);setTimeout(function(){document.getElementById('hnf').classList.add('show');applyHeroColors();},tot+750);setTimeout(function(){document.getElementById('hiw').classList.add('show');},tot+1100);setTimeout(function(){document.getElementById('hss').classList.add('show');startSS();},tot+1500);}
-
 var navOpen=false;
 function toggleNav(){navOpen?closeNav():openNav();}
 function openNav(){navOpen=true;document.getElementById('nav-drawer').classList.add('open');document.getElementById('nav-ov').classList.add('open');document.getElementById('ham-btn').classList.add('open');}
@@ -803,30 +603,19 @@ function navTo(id){var el=document.getElementById(id);if(el)scrollTo({top:el.get
 function toggleLangDD(){document.getElementById('lang-dd').classList.toggle('open');}
 function closeLangDD(){document.getElementById('lang-dd').classList.remove('open');}
 function applyHeroColors(){var d=document.getElementById('h-date');if(d){d.style.color='#C8965A';d.style.textShadow='0 0 20px rgba(0,0,0,.9),0 2px 8px rgba(0,0,0,.85),0 1px 3px rgba(0,0,0,.8)';}var l=document.getElementById('h-loc');if(l){l.style.color='#F2B8CA';l.style.textShadow='0 0 18px rgba(0,0,0,.95),0 2px 8px rgba(0,0,0,.9),0 1px 3px rgba(0,0,0,.8)';}var amp=document.querySelector('.hnf .amp');if(amp){amp.style.background='linear-gradient(160deg,#E8C068 0%,#C8965A 30%,#F0D080 50%,#A87030 70%,#D4A850 100%)';amp.style.webkitBackgroundClip='text';amp.style.webkitTextFillColor='transparent';amp.style.backgroundClip='text';amp.style.filter='drop-shadow(0 2px 8px rgba(180,120,0,.55)) drop-shadow(0 1px 3px rgba(0,0,0,.5))';}}
-
 var envOpened=false;
 function openEnvelope(){if(envOpened)return;envOpened=true;stopHint();var flap=document.getElementById('env-flap'),mono=document.getElementById('env-mono'),seal=document.getElementById('env-seal'),hint=document.getElementById('env-hint'),front=document.getElementById('env-front'),ov=document.getElementById('env-overlay');if(front)front.style.pointerEvents='none';if(hint)hint.style.opacity='0';if(mono)mono.style.opacity='0';if(seal)seal.style.opacity='0';if(flap)flap.style.transform='perspective(900px) rotateX(-178deg)';setTimeout(function(){var f=document.createElement('div');f.style.cssText='position:fixed;inset:0;z-index:10001;background:#FEF9F6;opacity:0;transition:opacity .6s ease;pointer-events:none;';document.body.appendChild(f);void f.offsetWidth;f.style.opacity='1';setTimeout(function(){if(ov&&ov.parentNode)ov.remove();initPetals();setTimeout(function(){f.style.opacity='0';setTimeout(function(){if(f.parentNode)f.remove();triggerWrite();setTimeout(function(){var fmp=document.getElementById('fmp');if(fmp)fmp.classList.add('show');autoplaySong();},800);},500);},100);},600);},1000);}
-
 function setupBarObs(){var hero=document.getElementById('section-hero');if(!hero)return;new IntersectionObserver(function(e){e.forEach(function(en){var n=document.getElementById('bar-names');if(n)n.classList.toggle('show',!en.isIntersecting);});},{threshold:.05}).observe(hero);}
-
 var NM_DATA=[{emoji:'&#128112;',roleKey:'padresNovia',names:'brideParents'},{emoji:'&#129333;',roleKey:'padresNovio',names:'groomParents'}];
 function buildNombram(){var t=T[currentLang],c=document.getElementById('nm-list');if(!c)return;c.innerHTML='';NM_DATA.forEach(function(it,i){var d=document.createElement('div');d.className='nm-item sf';var names=W[it.names].split('\n');d.innerHTML='<div class="nm-icon-circle">'+it.emoji+'</div><p class="nm-role">'+t[it.roleKey]+'</p><p class="nm-names">'+names[0]+(names[1]?'<span class="nm-amp">&amp;</span>'+names[1]:'')+'</p>'+(i<NM_DATA.length-1?'<div class="nm-sep"></div>':'');c.appendChild(d);obsSF(d);});}
-
 function buildEvents(){var g=document.getElementById('ec-grid');if(!g)return;g.innerHTML='';var t=T[currentLang];W.events.forEach(function(ev){var card=document.createElement('div');card.className='ecard sf';var label=ev.tkLabel?ev.tkLabel[currentLang]:(t[ev.tk]||ev.tk);var imgH=ev.photo?'<img class="ecard-img" src="'+ev.photo+'" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><div class="ecard-ph" style="display:none">&#x1F3DB;</div>':'<div class="ecard-ph">&#x1F3DB;</div>';card.innerHTML=imgH+'<div class="ecard-body"><div class="ecard-title">'+label+'</div><div class="ecard-dots">+ + + + + + + +</div><p class="ecard-lbl">'+t.eLblName+'</p><p class="ecard-info"><strong>'+ev.name[currentLang]+'</strong></p><div class="ecard-dots">+ + + + + + + +</div><p class="ecard-lbl">'+t.eLblAddr+'</p><p class="ecard-info">'+ev.addr[currentLang].replace('\n','<br>')+'</p><div class="ecard-dots">+ + + + + + + +</div><p class="ecard-lbl">'+t.eLblTime+'</p><p class="ecard-hora">'+ev.hora+'</p></div><a class="llevame" href="'+ev.map+'" target="_blank">'+t.viewMap+' &#x1F4CD;</a><div style="text-align:center;"><div class="cal-w"><button class="cal-btn" onclick="toggleCalDD(\'cal-'+ev.ck+'\')">&#x1F4C5; '+t.addCal+'</button><div class="cal-dd" id="cal-'+ev.ck+'"><button class="cal-opt" onclick="openGCal(\''+ev.ck+'\')">&#x1F4C5; Google</button><button class="cal-opt" onclick="dlICS(\''+ev.ck+'\')">&#x1F4F1; Apple/Outlook</button></div></div></div>';g.appendChild(card);obsSF(card);});}
-
 function buildItin(){var c=document.getElementById('itin-c');if(!c)return;c.innerHTML='<div class="itin-line"></div><div class="itin-line-gold" id="itin-gold"></div>';W.itinerary.forEach(function(row){if(row.group){var hdr=document.createElement('div');hdr.className='itin-date-hdr';hdr.innerHTML='<div class="itin-date-line left"></div><span class="itin-date-txt">'+row.date[currentLang]+'</span><div class="itin-date-line"></div>';c.appendChild(hdr);var sub=document.createElement('p');sub.className='itin-date-sub';sub.textContent=row.sub[currentLang];c.appendChild(sub);}else{var d=document.createElement('div');d.className='itin-row sf';d.innerHTML='<div class="itin-icon-col"><div class="itin-icon"><span class="ie">'+row.icon+'</span></div></div><div class="itin-content"><span class="itin-time">'+row.time+'</span><p class="itin-ev">'+row.name[currentLang]+'</p><p class="itin-desc">'+row.desc[currentLang]+'</p></div>';c.appendChild(d);obsSF(d);}});}
-
 function buildDress(){var t=T[currentLang];var dc=document.getElementById('dress-clr');if(dc)dc.textContent='';var c=document.getElementById('dress-cols');if(!c)return;c.innerHTML='<div class="dress-col"><p class="dress-lbl">'+t.dressLadies+'</p>'+LADY_SVG+'<p class="dress-type">'+t.vestidoLargo+'</p><p style="font-size:.58rem;color:var(--muted);font-family:var(--sans);font-weight:300;margin-top:4px;">'+t.dressClrLady+'</p></div><div class="dress-col"><p class="dress-lbl">'+t.dressGents+'</p>'+GENT_SVG+'<p class="dress-type">'+t.traje+'</p><p style="font-size:.58rem;color:var(--muted);font-family:var(--sans);font-weight:300;margin-top:4px;">'+t.dressClrGent+'</p></div>';var sw=document.getElementById('avoid-sw');if(sw){sw.innerHTML='';W.avoidColors.forEach(function(col){var s=document.createElement('div');s.className='av-sw';s.style.background=col;sw.appendChild(s);});}}
-
 function buildGallery(){var g=document.getElementById('sg-list');if(!g)return;g.innerHTML='';var lbI=W.photos.filter(Boolean);W.photos.forEach(function(src,i){var slide=document.createElement('div');slide.className='sg-slide';var inner=document.createElement('div');inner.className='sg-photo';if(src){var img=document.createElement('img');img.src=src;img.alt='';img.onerror=function(){inner.innerHTML='<div class="sg-ph">&#x1F338;</div>';};inner.appendChild(img);}else{inner.innerHTML='<div class="sg-ph">&#x1F338;</div>';}inner.onclick=(function(n){return function(){openLB(lbI,n);};})(i);slide.appendChild(inner);g.appendChild(slide);});}
-
 function buildHotels(){var c=document.getElementById('h-cards');if(!c)return;var t=T[currentLang];c.innerHTML='';W.hotels.forEach(function(h){var s='&#9733;'.repeat(h.stars)+'&#9734;'.repeat(5-h.stars);var card=document.createElement('div');card.className='h-card sf';card.innerHTML='<div class="h-stars">'+s+'</div><div class="h-name">'+h.name+'</div><div class="h-dist">&#x1F4CD; '+h.dist[currentLang]+'</div><p class="h-note">'+h.note[currentLang]+'</p><a class="h-link" href="'+h.url+'" target="_blank">'+t.hotelDir+' &rarr;</a>';c.appendChild(card);obsSF(card);});}
-
 var COPY_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
 function doCopy(btn,val){try{navigator.clipboard.writeText(val);}catch(e){var ta=document.createElement('textarea');ta.value=val;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e2){}document.body.removeChild(ta);}btn.innerHTML='&#10003;';btn.style.color='#C8965A';setTimeout(function(){btn.innerHTML=COPY_SVG;btn.style.color='';},1600);}
-
 function buildGifts(){var gg=document.getElementById('gifts-grid');if(!gg)return;gg.innerHTML='';var t=T[currentLang];W.gifts.forEach(function(g){if(g.store==='Bank'){var wrap=document.createElement('div');wrap.className='bank-flip-wrap';var inner=document.createElement('div');inner.className='bank-flip-inner';var front=document.createElement('div');front.className='bank-face bank-face-front';var fL=document.createElement('div');fL.className='gc-logo';fL.innerHTML='<span style="font-size:2rem;">&#x1F3E6;</span>';var fLb=document.createElement('div');fLb.className='gc-label';fLb.textContent=t.giftsBankLabel;var fS=document.createElement('div');fS.className='gc-sub';fS.textContent=t.giftsTap+' \u21bb';front.appendChild(fL);front.appendChild(fLb);front.appendChild(fS);var back=document.createElement('div');back.className='bank-face bank-face-back';function mkF(lb,vl,cp,ex){var f=document.createElement('div');f.className='bank-field';var l=document.createElement('span');l.className='bank-field-lbl';l.textContent=lb;var r=document.createElement('div');r.className='bank-field-row';var v=document.createElement('span');v.className='bank-field-val'+(ex?' '+ex:'');v.textContent=vl;r.appendChild(v);if(cp){var b=document.createElement('button');b.className='bank-copy-ic';b.innerHTML=COPY_SVG;b.addEventListener('click',function(e){e.stopPropagation();doCopy(b,vl);});r.appendChild(b);}f.appendChild(l);f.appendChild(r);return f;}back.appendChild(mkF(t.giftsBank,g.banco,false));back.appendChild(mkF(t.giftsTitular,g.titular,true));back.appendChild(mkF(t.giftsClabe,g.clabe,true,'clabe'));inner.appendChild(front);inner.appendChild(back);wrap.appendChild(inner);wrap.addEventListener('click',function(e){if(e.target.closest('.bank-copy-ic'))return;wrap.classList.toggle('flipped');});gg.appendChild(wrap);}else{var a=document.createElement('a');a.className='gift-card';a.href=g.url;a.target='_blank';var pL=document.createElement('div');pL.className='gc-logo';pL.innerHTML='<span style="font-family:Arial Black,sans-serif;font-size:1.55rem;font-weight:900;color:#F2C4D0;line-height:1;">P</span><span style="font-family:Arial Black,sans-serif;font-size:1.1rem;font-weight:900;color:#E8A0B4;margin-left:-4px;margin-top:6px;line-height:1;">P</span><span style="font-family:Arial,sans-serif;font-size:.82rem;font-weight:700;color:#E8A0B4;margin-left:5px;">PayPal</span>';var pLb=document.createElement('div');pLb.className='gc-label';pLb.textContent=t.giftsTransfer;var pS=document.createElement('div');pS.className='gc-sub';a.appendChild(pL);a.appendChild(pLb);a.appendChild(pS);gg.appendChild(a);}});}
-
 var lbIdx=0,lbImgs=[];
 function openLB(imgs,idx){lbImgs=imgs;lbIdx=idx;document.getElementById('lb-img').src=imgs[idx];document.getElementById('lb').classList.add('open');}
 document.getElementById('lb-close').onclick=function(){document.getElementById('lb').classList.remove('open');};
@@ -834,58 +623,25 @@ document.getElementById('lb-prev').onclick=function(){lbIdx=(lbIdx-1+lbImgs.leng
 document.getElementById('lb-next').onclick=function(){lbIdx=(lbIdx+1)%lbImgs.length;document.getElementById('lb-img').src=lbImgs[lbIdx];};
 document.getElementById('lb').onclick=function(e){if(e.target===this)this.classList.remove('open');};
 document.addEventListener('keydown',function(e){var lb=document.getElementById('lb');if(!lb.classList.contains('open'))return;if(e.key==='Escape')lb.classList.remove('open');if(e.key==='ArrowLeft')document.getElementById('lb-prev').click();if(e.key==='ArrowRight')document.getElementById('lb-next').click();});
-
 function updateScrollFX(){document.querySelectorAll('.sg-photo').forEach(function(el,i){var r=el.getBoundingClientRect();var dist=(r.top+r.height/2-innerHeight/2)/(innerHeight*.6);dist=Math.max(-1,Math.min(1,dist));el.style.transform='rotate('+(dist*16*(i%2===0?1:-1))+'deg)';});document.querySelectorAll('.itin-icon').forEach(function(el){var r=el.getBoundingClientRect();el.classList.toggle('active',r.top<innerHeight*.65);});var itinC=document.getElementById('itin-c'),gold=document.getElementById('itin-gold');if(itinC&&gold){var r=itinC.getBoundingClientRect();var filled=Math.max(0,Math.min(itinC.offsetHeight-60,innerHeight*0.55-r.top));gold.style.height=filled+'px';}document.querySelectorAll('.sf:not(.vis)').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight*.9)el.classList.add('vis');});}
 addEventListener('scroll',updateScrollFX,{passive:true});
 function obsSF(el){new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)en.target.classList.add('vis');});},{threshold:.06}).observe(el);}
-
 function toggleCalDD(id){var dd=document.getElementById(id);if(!dd)return;var isOpen=dd.classList.contains('open');document.querySelectorAll('.cal-dd').forEach(function(d){d.classList.remove('open');});if(!isOpen)dd.classList.add('open');}
 function getEv(k){var ev=W.calEvents[k];return{s:ev.s,e:ev.e,loc:ev.loc,title:currentLang==='en'?ev.tEN:ev.tES};}
 function openGCal(k){var ev=getEv(k);open('https://www.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(ev.title)+'&dates='+ev.s+'/'+ev.e+'&location='+encodeURIComponent(ev.loc),'_blank');document.querySelectorAll('.cal-dd').forEach(function(d){d.classList.remove('open');});}
 function dlICS(k){var ev=getEv(k);var ics=['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT','SUMMARY:'+ev.title,'DTSTART:'+ev.s,'DTEND:'+ev.e,'LOCATION:'+ev.loc,'END:VEVENT','END:VCALENDAR'].join('\r\n');var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download=k+'-boda.ics';document.body.appendChild(a);a.click();document.body.removeChild(a);document.querySelectorAll('.cal-dd').forEach(function(d){d.classList.remove('open');});}
 function dlAllICS(){var l=['BEGIN:VCALENDAR','VERSION:2.0'];['civil','temple','reception'].forEach(function(k){var ev=W.calEvents[k];l.push('BEGIN:VEVENT','SUMMARY:'+ev.tES,'DTSTART:'+ev.s,'DTEND:'+ev.e,'LOCATION:'+ev.loc,'END:VEVENT');});l.push('END:VCALENDAR');var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([l.join('\r\n')],{type:'text/calendar'}));a.download='boda-dallany-tony.ics';document.body.appendChild(a);a.click();document.body.removeChild(a);}
 function buildQR(){var c=document.getElementById('qr-c');if(!c)return;try{new QRCode(c,{text:W.inviteURL,width:180,height:180,colorDark:'#2C1A0E',colorLight:'#FDFAF8',correctLevel:QRCode.CorrectLevel.M});}catch(e){c.innerHTML='<p style="font-size:.7rem;color:var(--pk);padding:12px;">Actualiza inviteURL</p>';}}
-function submitRSVP(){
-  var fn=(document.getElementById('ri-fn').value||'').trim();
-  var ln=(document.getElementById('ri-ln').value||'').trim();
-  var em=(document.getElementById('ri-em').value||'').trim();
-  var msg=(document.getElementById('ri-msg').value||'').trim();
-  var asi=document.querySelector('input[name="asistir"]:checked');
-  if(!fn||!em){alert('Por favor completa los campos requeridos.');return;}
-  var nombre=fn+(ln?' '+ln:'');
-  var asistencia=asi&&asi.value==='si'?'Confirmo mi asistencia a su boda.':'Lamentablemente no podre asistir.';
-  if(CFG.sheetsURL){fetch(CFG.sheetsURL,{method:'POST',body:JSON.stringify({nombre:nombre,email:em,asistencia:asi?asi.value:'',mensaje:msg})}).catch(function(){});}
-  var m='Hola! Soy '+nombre+'. '+asistencia;
-  if(msg)m+=' Mensaje: '+msg;
-  m+=' Email: '+em;
-  open('https://wa.me/'+W.rsvpWa+'?text='+encodeURIComponent(m),'_blank');
-}
-
+function submitRSVP(){var fn=(document.getElementById('ri-fn').value||'').trim(),ln=(document.getElementById('ri-ln').value||'').trim(),em=(document.getElementById('ri-em').value||'').trim(),msg=(document.getElementById('ri-msg').value||'').trim(),asi=document.querySelector('input[name="asistir"]:checked');if(!fn||!em){alert('Por favor completa los campos requeridos.');return;}var nombre=fn+(ln?' '+ln:'');var asistencia=asi&&asi.value==='si'?'Confirmo mi asistencia a su boda.':'Lamentablemente no podre asistir.';if(CFG.sheetsURL){fetch(CFG.sheetsURL,{method:'POST',body:JSON.stringify({nombre:nombre,email:em,asistencia:asi?asi.value:'',mensaje:msg})}).catch(function(){});}var m='Hola! Soy '+nombre+'. '+asistencia;if(msg)m+=' Mensaje: '+msg;m+=' Email: '+em;open('https://wa.me/'+W.rsvpWa+'?text='+encodeURIComponent(m),'_blank');}
 var audio=null,playing=false,pTmr=null;
 function updateFmpUI(){var ring=document.getElementById('fmp-ring-fill'),waves=document.getElementById('fmp-waves'),C=2*Math.PI*27;if(audio&&audio.duration){var pct=audio.currentTime/audio.duration;if(ring)ring.style.strokeDashoffset=(C*(1-pct)).toFixed(2);}if(waves)waves.classList.toggle('paused',!playing);var pb=document.getElementById('s-pb');if(pb&&audio&&audio.duration)pb.style.width=(audio.currentTime/audio.duration*100)+'%';}
 function autoplaySong(){if(playing||!W.songAudio)return;if(!audio){audio=new Audio(W.songAudio);audio.onended=stopSong;audio.ontimeupdate=updateFmpUI;audio.onloadedmetadata=updateFmpUI;}audio.currentTime=18;audio.play().catch(function(){});playing=true;setSongUI(true);}
 function toggleSong(){if(W.songAudio){if(!audio){audio=new Audio(W.songAudio);audio.onended=stopSong;audio.ontimeupdate=updateFmpUI;audio.onloadedmetadata=updateFmpUI;}if(playing){audio.pause();stopSong();}else{audio.currentTime=audio.currentTime||18;audio.play();playing=true;setSongUI(true);}}else{if(!playing){playing=true;setSongUI(true);open(W.songSpotify,'_blank');}else stopSong();}}
 function setSongUI(on){var waves=document.getElementById('fmp-waves');if(waves)waves.classList.toggle('paused',!on);var piOn='<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>',piOff='<path d="M8 5v14l11-7z"/>';var fpi=document.getElementById('fmp-pi');if(fpi)fpi.innerHTML=on?piOn:piOff;var spi=document.getElementById('s-pi');if(spi)spi.innerHTML=on?piOn:piOff;if(!on){clearInterval(pTmr);pTmr=null;}}
 function stopSong(){playing=false;setSongUI(false);}
-
 var currentLang='es';
 function setLang(lang){currentLang=lang;var ll=document.getElementById('lang-label');if(ll){var lf={es:'&#127474;&#127485; ES',en:'&#127464;&#127462; EN',pa:'&#127470;&#127475; PA'};ll.innerHTML=lf[lang]||lang.toUpperCase();}document.body.className='lang-'+lang;['es','en','pa'].forEach(function(l){var el=document.getElementById('lo-'+l);if(el)el.classList.toggle('active',l===lang);});var t=T[lang];document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.textContent=t[k];});var de=document.getElementById('h-date');if(de)de.textContent=W.dateDisplay[lang];var dl=document.getElementById('rsvp-dl');if(dl)dl.innerHTML=t.rsvpPre+' <strong>'+W.rsvpDeadline[lang]+'</strong>';buildNombram();buildEvents();buildItin();buildDress();buildHotels();buildGifts();var wa=document.getElementById('rwa-link');if(wa)wa.href='https://wa.me/'+W.rsvpWa+'?text='+encodeURIComponent('Hola, tengo una pregunta sobre la boda de Dallany & Tony.');applyHeroColors();}
-
-/* ── protection ── */
-(function(){
-  document.addEventListener('contextmenu',function(e){e.preventDefault();});
-  document.addEventListener('selectstart',function(e){e.preventDefault();});
-  document.addEventListener('dragstart',function(e){e.preventDefault();});
-  document.addEventListener('keydown',function(e){
-    var k=e.key.toLowerCase();
-    if((e.ctrlKey||e.metaKey)&&['u','s','a','p','c'].includes(k)){e.preventDefault();return;}
-    if(e.key==='F12'||e.key==='F11'){e.preventDefault();}
-  });
-  var dT=function(){};
-  dT.toString=function(){document.body.style.display='none';};
-})();
-
-/* ── init ── */
+(function(){document.addEventListener('contextmenu',function(e){e.preventDefault();});document.addEventListener('selectstart',function(e){e.preventDefault();});document.addEventListener('dragstart',function(e){e.preventDefault();});document.addEventListener('keydown',function(e){var k=e.key.toLowerCase();if((e.ctrlKey||e.metaKey)&&['u','s','a','p','c'].includes(k)){e.preventDefault();return;}if(e.key==='F12'||e.key==='F11'){e.preventDefault();}});var dT=function(){};dT.toString=function(){document.body.style.display='none';};})();
 buildNameSpans();buildSS();
 document.getElementById('bar-names').textContent=W.name1+' & '+W.name2;
 document.getElementById('h-loc').textContent=W.city;
@@ -900,90 +656,7 @@ function tick(){var d=Math.max(0,new Date(W.dateISO).getTime()-Date.now());funct
 tick();setInterval(tick,1000);
 document.querySelectorAll('.sf').forEach(function(el){obsSF(el);});
 setupBarObs();setTimeout(startHint,1400);
-
-/* ── dynamic floral border on sec-nombram (JS-generated) ── */
-(function(){
-  var sec=document.getElementById('sec-nombram');
-  if(!sec)return;
-  var inn=sec.querySelector('.inn');
-  if(inn){inn.style.position='relative';inn.style.zIndex='2';}
-  function rv(v){return Number(v).toFixed(2);}
-  function rose(x,y,sz,dl){
-    var s='<g transform="translate('+x+','+y+')"><g>';
-    s+='<animateTransform attributeName="transform" type="scale" values="1;1.12;1" dur="3.6s" begin="'+dl+'s" repeatCount="indefinite"/>';
-    var oc=['#FFCCE0','#FFB8D4','#FFCCE0','#FFB8D4','#FFCCE0'];
-    var ic=['#EE96BE','#E882B0','#EE96BE','#E882B0','#EE96BE'];
-    for(var i=0;i<5;i++){var a=i*72;s+='<path d="M0,0 Q'+rv(sz*.85)+','+rv(-sz*.1)+' '+rv(sz*.58)+','+rv(-sz*.88)+' Q'+rv(sz*.1)+','+rv(-sz*1.28)+' 0,'+rv(-sz*1.05)+' Q'+rv(-sz*.1)+','+rv(-sz*1.28)+' '+rv(-sz*.58)+','+rv(-sz*.88)+' Q'+rv(-sz*.85)+','+rv(-sz*.1)+' 0,0Z" fill="'+oc[i]+'" transform="rotate('+a+')" opacity="0.95"/>';}
-    for(var j=0;j<5;j++){var b=36+j*72;s+='<path d="M0,0 Q'+rv(sz*.55)+','+rv(-sz*.08)+' '+rv(sz*.37)+','+rv(-sz*.56)+' Q'+rv(sz*.06)+','+rv(-sz*.82)+' 0,'+rv(-sz*.68)+' Q'+rv(-sz*.06)+','+rv(-sz*.82)+' '+rv(-sz*.37)+','+rv(-sz*.56)+' Q'+rv(-sz*.55)+','+rv(-sz*.08)+' 0,0Z" fill="'+ic[j]+'" transform="rotate('+b+')" opacity="0.95"/>';}
-    for(var k=0;k<8;k++){var ang=k*45*Math.PI/180;s+='<line x1="0" y1="0" x2="'+rv(Math.sin(ang)*sz*.3)+'" y2="'+rv(-Math.cos(ang)*sz*.3)+'" stroke="#E8B840" stroke-width="0.7"/><circle cx="'+rv(Math.sin(ang)*sz*.32)+'" cy="'+rv(-Math.cos(ang)*sz*.32)+'" r="0.9" fill="#F5D840"/>';}
-    s+='<circle r="'+rv(sz*.18)+'" fill="#D4900A"/><circle r="'+rv(sz*.09)+'" fill="#F5D840"/>';
-    s+='</g></g>';return s;
-  }
-  function blossom(x,y,sz,dl){
-    var s='<g transform="translate('+x+','+y+')"><g>';
-    s+='<animateTransform attributeName="transform" type="scale" values="1;1.14;1" dur="3.2s" begin="'+dl+'s" repeatCount="indefinite"/>';
-    for(var i=0;i<5;i++){var a=i*72;s+='<path d="M0,0 Q'+rv(sz*.7)+',0 '+rv(sz*.55)+','+rv(-sz*.75)+' Q'+rv(sz*.28)+','+rv(-sz*1.15)+' 0,'+rv(-sz*.98)+' Q'+rv(-sz*.28)+','+rv(-sz*1.15)+' '+rv(-sz*.55)+','+rv(-sz*.75)+' Q'+rv(-sz*.7)+',0 0,0Z" fill="#FFE0EE" transform="rotate('+a+')" opacity="0.92"/>';s+='<path d="M'+rv(sz*.08)+','+rv(-sz*.72)+' Q0,'+rv(-sz*.62)+' '+rv(-sz*.08)+','+rv(-sz*.72)+'" fill="none" stroke="#F0A8C8" stroke-width="0.7" transform="rotate('+a+')"/>';}
-    for(var k=0;k<5;k++){var ang=k*72*Math.PI/180;s+='<line x1="0" y1="0" x2="'+rv(Math.sin(ang)*sz*.42)+'" y2="'+rv(-Math.cos(ang)*sz*.42)+'" stroke="#F8C0D8" stroke-width="0.6"/><circle cx="'+rv(Math.sin(ang)*sz*.45)+'" cy="'+rv(-Math.cos(ang)*sz*.45)+'" r="0.8" fill="#EFD060"/>';}
-    s+='<circle r="'+rv(sz*.14)+'" fill="#FFF8E0"/>';
-    s+='</g></g>';return s;
-  }
-  function leaf(x,y,w,h,rot,dl){
-    var s='<g transform="translate('+x+','+y+') rotate('+rot+')"><g>';
-    s+='<animateTransform attributeName="transform" type="rotate" values="-2;2;-2" dur="4s" begin="'+dl+'s" repeatCount="indefinite"/>';
-    s+='<path d="M0,0 Q'+rv(w)+','+rv(-h*.45)+' 0,'+rv(-h)+' Q'+rv(-w)+','+rv(-h*.45)+' 0,0Z" fill="#78B850" opacity="0.88"/>';
-    s+='<path d="M0,0 Q0.5,'+rv(-h*.42)+' 0,'+rv(-h)+'" fill="none" stroke="#4A8830" stroke-width="0.75"/>';
-    s+='<path d="M'+rv(-w*.5)+','+rv(-h*.3)+' Q0,'+rv(-h*.44)+' '+rv(w*.45)+','+rv(-h*.38)+'" fill="none" stroke="#4A8830" stroke-width="0.45"/>';
-    s+='<path d="M'+rv(-w*.42)+','+rv(-h*.58)+' Q0,'+rv(-h*.72)+' '+rv(w*.38)+','+rv(-h*.65)+'" fill="none" stroke="#4A8830" stroke-width="0.45"/>';
-    s+='</g></g>';return s;
-  }
-  function bud(x,y,sz,rot,dl){
-    var s='<g transform="translate('+x+','+y+') rotate('+rot+')"><g>';
-    s+='<animateTransform attributeName="transform" type="scale" values="1;1.08;1" dur="3s" begin="'+dl+'s" repeatCount="indefinite"/>';
-    s+='<ellipse cx="0" cy="'+rv(-sz*.5)+'" rx="'+rv(sz*.46)+'" ry="'+rv(sz*.72)+'" fill="#FFB8D4"/>';
-    s+='<ellipse cx="0" cy="'+rv(-sz*.38)+'" rx="'+rv(sz*.26)+'" ry="'+rv(sz*.5)+'" fill="#E880B2"/>';
-    s+='<path d="M'+rv(-sz*.46)+','+rv(sz*.22)+' Q0,'+rv(sz*.72)+' '+rv(sz*.46)+','+rv(sz*.22)+'" fill="none" stroke="#6AAA44" stroke-width="1.2" stroke-linecap="round"/>';
-    s+='<path d="M0,'+rv(sz*.22)+' Q'+rv(sz*.55)+','+rv(sz*.6)+' '+rv(sz*.28)+','+rv(sz*1.05)+'" fill="none" stroke="#6AAA44" stroke-width="0.85"/>';
-    s+='<path d="M0,'+rv(sz*.22)+' Q'+rv(-sz*.5)+','+rv(sz*.68)+' '+rv(-sz*.24)+','+rv(sz*1.1)+'" fill="none" stroke="#6AAA44" stroke-width="0.85"/>';
-    s+='</g></g>';return s;
-  }
-  function buildSVG(){
-    var s='';
-    s+='<path d="M0,90 Q80,72 190,84 Q310,96 430,70 Q545,48 660,74 Q785,98 900,68 Q980,50 1200,76" fill="none" stroke="#9A7030" stroke-width="2.6" stroke-linecap="round"><animate attributeName="opacity" values="0.75;1;0.75" dur="5s" repeatCount="indefinite"/></path>';
-    ['M192,80 Q197,58 192,32','M508,56 Q513,36 508,12','M834,64 Q839,44 834,18',
-     'M310,90 Q318,74 326,62','M766,90 Q774,74 782,62','M65,85 Q60,66 55,48',
-     'M430,70 Q436,58 441,48','M660,74 Q665,60 669,50'
-    ].forEach(function(d){s+='<path d="'+d+'" fill="none" stroke="#9A7030" stroke-width="1.3" stroke-linecap="round"/>';});
-    ['M148,86 Q155,76 162,82','M375,80 Q381,70 387,76','M655,88 Q661,78 667,84','M870,74 Q876,64 882,70'
-    ].forEach(function(d){s+='<path d="'+d+'" fill="none" stroke="#9A7030" stroke-width="0.85" stroke-linecap="round"/>';});
-    s+=rose(192,28,16,0)+rose(508,8,15,0.9)+rose(834,14,15,1.8);
-    s+=blossom(55,44,12,0.4)+blossom(326,58,11,1.3)+blossom(441,44,10,0.2)+blossom(782,58,11,0.7);
-    s+=bud(162,74,8,-22,0.3)+bud(387,70,8,15,1.1)+bud(667,64,7,12,0.6)+bud(882,66,7,-20,1.7);
-    [[175,42,9,22,-46,0.1],[208,30,8,19,38,0.8],[180,62,7,16,-70,1.5],
-     [90,78,8,18,-28,0.4],[492,20,9,22,-52,0.2],[526,16,8,19,44,0.9],
-     [510,38,7,17,-68,1.6],[572,62,7,17,-26,0.5],[468,52,8,19,28,1.3],
-     [818,26,9,22,-48,0.0],[856,22,8,19,40,0.7],[836,48,7,16,-64,1.4],
-     [768,78,7,17,-30,0.6],[124,80,7,16,-14,0.3],[288,80,6,15,-24,0.8]
-    ].forEach(function(a){s+=leaf(a[0],a[1],a[2],a[3],a[4],a[5]);});
-    return s;
-  }
-  var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 110" width="100%" height="110" style="display:block;overflow:visible;">'+buildSVG()+'</svg>';
-  var wrap=document.createElement('div');
-  wrap.style.cssText='position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;z-index:0;overflow:visible;';
-  var topDiv=document.createElement('div');
-  topDiv.style.cssText='position:absolute;top:0;left:0;right:0;overflow:visible;';
-  topDiv.innerHTML=svg;
-  var botDiv=document.createElement('div');
-  botDiv.style.cssText='position:absolute;bottom:0;left:0;right:0;overflow:visible;transform:scaleY(-1);';
-  botDiv.innerHTML=svg;
-  wrap.appendChild(topDiv);
-  wrap.appendChild(botDiv);
-  sec.insertBefore(wrap,sec.firstChild);
-}());
-
-document.addEventListener('click',function(e){
-  if(!e.target.closest('#lang-wrap'))closeLangDD();
-  if(!e.target.closest('.cal-w'))document.querySelectorAll('.cal-dd').forEach(function(d){d.classList.remove('open');});
-});
+document.addEventListener('click',function(e){if(!e.target.closest('#lang-wrap'))closeLangDD();if(!e.target.closest('.cal-w'))document.querySelectorAll('.cal-dd').forEach(function(d){d.classList.remove('open');});});
 </script>
 </body>
 </html>
