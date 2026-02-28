@@ -38,7 +38,7 @@ body{background:var(--cream);color:var(--text);font-family:var(--sans);overflow-
 .env-fold-r{top:0;right:0;bottom:0;width:51%;clip-path:polygon(100% 0,100% 100%,0 50%);background:rgba(0,0,0,.04);}
 .env-fold-b{bottom:0;left:0;right:0;height:58%;clip-path:polygon(0 100%,50% 0%,100% 100%);background:rgba(0,0,0,.065);}
 #env-flap{position:absolute;top:0;left:0;right:0;height:56%;background:linear-gradient(172deg,#F2EDE4,#E6DFD0);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform .9s cubic-bezier(.4,0,.2,1);z-index:4;}
-#env-mono{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;white-space:nowrap;transition:opacity .25s ease;}
+#env-mono{position:absolute;top:36%;left:50%;transform:translate(-50%,-50%);z-index:8;pointer-events:none;white-space:nowrap;transition:opacity .25s ease;overflow:visible;}
 #env-seal{position:absolute;left:150px;top:118px;transform:translate(-50%,-50%);z-index:20;pointer-events:none;filter:drop-shadow(0 3px 10px rgba(40,0,15,.6));transition:opacity .25s ease;}
 #env-hint{position:absolute;bottom:10%;left:50%;transform:translateX(-50%);z-index:5;pointer-events:none;text-align:center;width:100%;}
 #env-hint-text{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:rgba(80,50,20,.55);letter-spacing:1.5px;display:block;transition:opacity .35s ease;}
@@ -137,10 +137,17 @@ body{background:var(--cream);color:var(--text);font-family:var(--sans);overflow-
 .ss-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:3;}
 .ss-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;border:none;padding:0;transition:background .3s,transform .3s;}
 .ss-dot.active{background:var(--gold);transform:scale(1.4);}
+#sec-nombram{background-color:#FDF0F5;position:relative;overflow:visible;}
+#sec-nombram .gl.wh{color:var(--gold);}
+#sec-nombram .sc-ttl.wh{color:var(--text);}
 .nm-item{margin-bottom:36px;}
-.nm-icon-circle{width:64px;height:64px;border-radius:50%;background:rgba(242,196,208,.18);border:2.5px solid rgba(232,160,180,.55);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 12px;}
+@keyframes goldPulse{
+  0%,100%{box-shadow:0 0 8px rgba(200,150,90,.4),0 0 4px rgba(200,150,90,.2);border-color:#C8965A;background:rgba(200,150,90,.12);}
+  50%{box-shadow:0 0 22px rgba(200,150,90,.9),0 0 10px rgba(200,150,90,.5);border-color:#E8C068;background:rgba(200,150,90,.26);}
+}
+.nm-icon-circle{width:64px;height:64px;border-radius:50%;background:rgba(200,150,90,.12);border:2.5px solid #C8965A;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 12px;animation:goldPulse 2.6s ease-in-out infinite;}
 .nm-role{font-size:.56rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px;}
-.nm-names{font-family:var(--serif);font-size:1.15rem;font-style:italic;color:rgba(255,255,255,.85);line-height:1.9;}
+.nm-names{font-family:var(--serif);font-size:1.15rem;font-style:italic;color:#5A2A3A;line-height:1.9;}
 .nm-amp{color:var(--pk);font-family:var(--script);font-size:1.6rem;display:block;line-height:1.1;}
 .nm-sep{width:60px;height:1px;background:rgba(200,150,90,.3);margin:28px auto;}
 .ec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:900px;margin:32px auto 0;padding:0 16px;}
@@ -278,8 +285,9 @@ body.lang-pa .nm-names,.lang-pa .bt,.lang-pa .itin-ev,.lang-pa .gl,.lang-pa .nav
   <div id="env-box">
     <div id="env-back"></div>
     <div class="env-fold env-fold-l"></div><div class="env-fold env-fold-r"></div><div class="env-fold env-fold-b"></div>
-    <div id="env-flap"><div id="env-mono"><span style="font-family:'Great Vibes',cursive;font-size:30px;background:linear-gradient(135deg,#F8E878,#D4A040 25%,#F2CC58 50%,#B87820 75%,#ECC050);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1;letter-spacing:6px;padding-right:8px;">D &amp; T</span></div></div>
-    <div id="env-seal"><svg width="52" height="52" viewBox="0 0 62 62" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="sg" cx="38%" cy="32%" r="68%"><stop offset="0%" stop-color="#7A1830"/><stop offset="60%" stop-color="#5A1020"/><stop offset="100%" stop-color="#3A0810"/></radialGradient></defs><circle cx="31" cy="31" r="30" fill="url(#sg)"/><circle cx="31" cy="31" r="29" fill="none" stroke="rgba(0,0,0,.25)" stroke-width="2"/><circle cx="31" cy="31" r="23" fill="none" stroke="rgba(0,0,0,.18)" stroke-width=".8"/><text x="31" y="12" font-family="serif" font-size="6" fill="rgba(100,20,35,.7)" text-anchor="middle">&#10022;</text><text x="32" y="38" font-family="'Great Vibes',cursive" font-size="15" fill="#2A0610" text-anchor="middle" letter-spacing="1" opacity=".9">D &amp; T</text><text x="31" y="37" font-family="'Great Vibes',cursive" font-size="15" fill="#5A1020" text-anchor="middle" letter-spacing="1" opacity=".85">D &amp; T</text><text x="31" y="56" font-family="serif" font-size="6" fill="rgba(100,20,35,.7)" text-anchor="middle">&#10022;</text></svg></div>
+    <div id="env-flap"></div>
+    <div id="env-mono" style="position:absolute;top:28px;left:50%;transform:translateX(-50%);z-index:8;pointer-events:none;white-space:nowrap;transition:opacity .25s ease;overflow:visible;width:200px;text-align:center;"><span style="font-family:'Great Vibes',cursive;font-size:30px;background:linear-gradient(160deg,#FFF0A0 0%,#E8C040 20%,#FFF5B0 38%,#C8860A 55%,#F0D060 72%,#A06010 88%,#E8C040 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block;line-height:1.4;letter-spacing:6px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.55)) drop-shadow(0 1px 2px rgba(180,120,0,.6));">D &amp; S</span></div>
+    <div id="env-seal"><svg width="52" height="52" viewBox="0 0 62 62" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="sg" cx="38%" cy="32%" r="68%"><stop offset="0%" stop-color="#7A1830"/><stop offset="60%" stop-color="#5A1020"/><stop offset="100%" stop-color="#3A0810"/></radialGradient></defs><circle cx="31" cy="31" r="30" fill="url(#sg)"/><circle cx="31" cy="31" r="29" fill="none" stroke="rgba(0,0,0,.25)" stroke-width="2"/><circle cx="31" cy="31" r="23" fill="none" stroke="rgba(0,0,0,.18)" stroke-width=".8"/><text x="31" y="12" font-family="serif" font-size="6" fill="rgba(100,20,35,.7)" text-anchor="middle">&#10022;</text><text x="32" y="38" font-family="'Great Vibes',cursive" font-size="15" fill="#2A0610" text-anchor="middle" letter-spacing="1" opacity=".9">D &amp; S</text><text x="31" y="37" font-family="'Great Vibes',cursive" font-size="15" fill="#5A1020" text-anchor="middle" letter-spacing="1" opacity=".85">D &amp; S</text><text x="31" y="56" font-family="serif" font-size="6" fill="rgba(100,20,35,.7)" text-anchor="middle">&#10022;</text></svg></div>
     <div id="env-hint"><span id="env-hint-text">Toca para abrir</span></div>
     <div id="env-front" onclick="openEnvelope()"></div>
   </div>
@@ -304,7 +312,7 @@ body.lang-pa .nm-names,.lang-pa .bt,.lang-pa .itin-ev,.lang-pa .gl,.lang-pa .nav
 
 <div class="top-bar">
   <div class="bar-left"><button class="ham-btn" id="ham-btn" onclick="toggleNav()"><span></span><span></span><span></span></button></div>
-  <div id="bar-center"><div id="bar-names">Dallany &amp; Tony</div></div>
+  <div id="bar-center"><div id="bar-names"></div></div>
   <div class="bar-right"><div class="lang-dw" id="lang-wrap">
     <button class="lang-icon-btn" onclick="toggleLangDD()"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C8965A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></button>
     <span id="lang-label">&#127474;&#127485; ES</span>
@@ -341,7 +349,191 @@ body.lang-pa .nm-names,.lang-pa .bt,.lang-pa .itin-ev,.lang-pa .gl,.lang-pa .nav
 
 <section class="floral-bg sp sf" id="sec-guest"><div class="inn"><p class="bt" data-i18n="guestIntro"></p><p class="bt" style="margin-top:10px;" data-i18n="guestMsg"></p></div></section>
 <div class="fdv" style="background:#2C1A0E;"><svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FEF9F6"/><stop offset="100%" stop-color="#2C1A0E"/></linearGradient></defs><rect width="1200" height="60" fill="url(#g1)"/></svg></div>
-<section id="sec-nombram" class="wood-bg sp sf"><div class="inn"><span class="gl wh" data-i18n="padrinosLabel"></span><h2 class="sc-ttl wh" data-i18n="nombramTitle"></h2><div id="nm-list" style="max-width:440px;margin:28px auto 0;"></div></div></section>
+<section id="sec-nombram" class="wood-bg sp sf" style="position:relative;overflow:visible;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" width="100%" height="100" style="position:absolute;top:0;left:0;right:0;overflow:visible;pointer-events:none;z-index:0;">
+    <path d="M0,85 Q100,68 220,80 Q350,94 480,66 Q600,46 720,72 Q860,98 980,66 Q1080,48 1200,74" fill="none" stroke="#C8965A" stroke-width="2" stroke-linecap="round"><animate attributeName="opacity" values="0.6;1;0.6" dur="5s" repeatCount="indefinite"/></path>
+    <path d="M220,76 Q218,52 216,28" fill="none" stroke="#C8965A" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M540,56 Q538,34 536,12" fill="none" stroke="#C8965A" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M860,62 Q858,40 856,18" fill="none" stroke="#C8965A" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M350,88 Q360,72 370,62" fill="none" stroke="#C8965A" stroke-width="1" stroke-linecap="round"/>
+    <path d="M840,90 Q850,74 860,64" fill="none" stroke="#C8965A" stroke-width="1" stroke-linecap="round"/>
+    <path d="M70,82 Q64,64 58,50" fill="none" stroke="#C8965A" stroke-width="1" stroke-linecap="round"/>
+    <g transform="translate(216,24)"><g><animateTransform attributeName="transform" type="scale" values="1;1.13;1" dur="3.5s" begin="0s" repeatCount="indefinite"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(0)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(72)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(144)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(216)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(288)"/>
+      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#EE96BE" transform="rotate(36)"/>
+      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#E882B0" transform="rotate(108)"/>
+      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#EE96BE" transform="rotate(180)"/>
+      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#E882B0" transform="rotate(252)"/>
+      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#EE96BE" transform="rotate(324)"/>
+      <line x1="0" y1="0" x2="0" y2="-4.5" stroke="#E8B840" stroke-width="0.7"/><circle cx="0" cy="-4.8" r="0.85" fill="#F5D840"/>
+      <line x1="0" y1="0" x2="4.5" y2="0" stroke="#E8B840" stroke-width="0.7"/><circle cx="4.8" cy="0" r="0.85" fill="#F5D840"/>
+      <line x1="0" y1="0" x2="-4.5" y2="0" stroke="#E8B840" stroke-width="0.7"/><circle cx="-4.8" cy="0" r="0.85" fill="#F5D840"/>
+      <line x1="0" y1="0" x2="3.2" y2="-3.2" stroke="#E8B840" stroke-width="0.7"/><circle cx="3.4" cy="-3.4" r="0.85" fill="#F5D840"/>
+      <line x1="0" y1="0" x2="-3.2" y2="-3.2" stroke="#E8B840" stroke-width="0.7"/><circle cx="-3.4" cy="-3.4" r="0.85" fill="#F5D840"/>
+      <circle r="2.6" fill="#C87830"/><circle r="1.3" fill="#F5D840"/>
+    </g></g>
+    <g transform="translate(536,8)"><g><animateTransform attributeName="transform" type="scale" values="1;1.13;1" dur="3.5s" begin="0.8s" repeatCount="indefinite"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(0)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(72)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(144)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(216)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(288)"/>
+      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#EE96BE" transform="rotate(36)"/>
+      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#E882B0" transform="rotate(108)"/>
+      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#EE96BE" transform="rotate(252)"/>
+      <circle r="2.6" fill="#C87830"/><circle r="1.3" fill="#F5D840"/>
+    </g></g>
+    <g transform="translate(856,14)"><g><animateTransform attributeName="transform" type="scale" values="1;1.13;1" dur="3.5s" begin="1.6s" repeatCount="indefinite"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(0)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(72)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(144)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(216)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(288)"/>
+      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#EE96BE" transform="rotate(36)"/>
+      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#E882B0" transform="rotate(180)"/>
+      <circle r="2.6" fill="#C87830"/><circle r="1.3" fill="#F5D840"/>
+    </g></g>
+    <g transform="translate(58,46)"><g><animateTransform attributeName="transform" type="scale" values="1;1.16;1" dur="3.1s" begin="0.4s" repeatCount="indefinite"/>
+      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFE0EE" transform="rotate(0)"/>
+      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFD0E8" transform="rotate(72)"/>
+      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFE0EE" transform="rotate(144)"/>
+      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFD0E8" transform="rotate(216)"/>
+      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFE0EE" transform="rotate(288)"/>
+      <circle r="2" fill="#FFF8E0"/>
+      <line x1="0" y1="0" x2="0" y2="-6.4" stroke="#F8C0D8" stroke-width="0.6"/><circle cx="0" cy="-6.8" r="0.75" fill="#EFD060"/>
+      <line x1="0" y1="0" x2="6.1" y2="-4.4" stroke="#F8C0D8" stroke-width="0.6"/><circle cx="6.5" cy="-4.7" r="0.75" fill="#EFD060"/>
+      <line x1="0" y1="0" x2="-6.1" y2="-4.4" stroke="#F8C0D8" stroke-width="0.6"/><circle cx="-6.5" cy="-4.7" r="0.75" fill="#EFD060"/>
+    </g></g>
+    <g transform="translate(370,58)"><g><animateTransform attributeName="transform" type="scale" values="1;1.16;1" dur="3.1s" begin="1.2s" repeatCount="indefinite"/>
+      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFE0EE" transform="rotate(0)"/>
+      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFD0E8" transform="rotate(72)"/>
+      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFE0EE" transform="rotate(144)"/>
+      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFD0E8" transform="rotate(216)"/>
+      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFE0EE" transform="rotate(288)"/>
+      <circle r="1.8" fill="#FFF8E0"/>
+    </g></g>
+    <g transform="translate(860,60)"><g><animateTransform attributeName="transform" type="scale" values="1;1.16;1" dur="3.1s" begin="0.6s" repeatCount="indefinite"/>
+      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFE0EE" transform="rotate(0)"/>
+      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFD0E8" transform="rotate(72)"/>
+      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFE0EE" transform="rotate(144)"/>
+      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFD0E8" transform="rotate(216)"/>
+      <path d="M0,0 Q9,0 7,-9.4 Q3.6,-14.4 0,-12.2 Q-3.6,-14.4 -7,-9.4 Q-9,0 0,0Z" fill="#FFE0EE" transform="rotate(288)"/>
+      <circle r="1.8" fill="#FFF8E0"/>
+    </g></g>
+    <g transform="translate(175,72) rotate(-22)"><g><animateTransform attributeName="transform" type="scale" values="1;1.1;1" dur="3s" begin="0.3s" repeatCount="indefinite"/>
+      <ellipse cx="0" cy="-5.5" rx="3.4" ry="5.6" fill="#FFB8D4"/>
+      <ellipse cx="0" cy="-4.2" rx="2" ry="3.8" fill="#E880B2"/>
+      <path d="M-3.4,1.7 Q0,5.6 3.4,1.7" fill="none" stroke="#6AAA44" stroke-width="1.1" stroke-linecap="round"/>
+      <path d="M0,1.7 Q4,4.6 2,8" fill="none" stroke="#6AAA44" stroke-width="0.8"/>
+      <path d="M0,1.7 Q-3.6,5 -1.8,8.2" fill="none" stroke="#6AAA44" stroke-width="0.8"/>
+    </g></g>
+    <g transform="translate(420,62) rotate(14)"><g><animateTransform attributeName="transform" type="scale" values="1;1.1;1" dur="3s" begin="1.1s" repeatCount="indefinite"/>
+      <ellipse cx="0" cy="-5.5" rx="3.4" ry="5.6" fill="#FFB8D4"/>
+      <ellipse cx="0" cy="-4.2" rx="2" ry="3.8" fill="#E880B2"/>
+      <path d="M-3.4,1.7 Q0,5.6 3.4,1.7" fill="none" stroke="#6AAA44" stroke-width="1.1" stroke-linecap="round"/>
+    </g></g>
+    <g transform="translate(700,66) rotate(11)"><g><animateTransform attributeName="transform" type="scale" values="1;1.1;1" dur="3s" begin="0.6s" repeatCount="indefinite"/>
+      <ellipse cx="0" cy="-5" rx="3" ry="5" fill="#FFB8D4"/>
+      <ellipse cx="0" cy="-3.8" rx="1.8" ry="3.4" fill="#E880B2"/>
+      <path d="M-3,1.5 Q0,5 3,1.5" fill="none" stroke="#6AAA44" stroke-width="1" stroke-linecap="round"/>
+    </g></g>
+    <g transform="translate(196,36) rotate(-46)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0.1s" repeatCount="indefinite"/>
+      <path d="M0,0 Q8,-9.5 0,-21 Q-8,-9.5 0,0Z" fill="#78B850" opacity="0.88"/>
+      <path d="M0,0 Q0.4,-9 0,-21" fill="none" stroke="#4A8830" stroke-width="0.7"/>
+      <path d="M-4,-6 Q0,-9.2 3.8,-7.8" fill="none" stroke="#4A8830" stroke-width="0.4"/>
+      <path d="M-3.4,-12 Q0,-15 3.2,-13.4" fill="none" stroke="#4A8830" stroke-width="0.4"/>
+    </g></g>
+    <g transform="translate(240,28) rotate(38)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0.9s" repeatCount="indefinite"/>
+      <path d="M0,0 Q7.5,-8.5 0,-18 Q-7.5,-8.5 0,0Z" fill="#78B850" opacity="0.88"/>
+      <path d="M0,0 Q0.4,-8 0,-18" fill="none" stroke="#4A8830" stroke-width="0.7"/>
+    </g></g>
+    <g transform="translate(204,58) rotate(-66)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="1.5s" repeatCount="indefinite"/>
+      <path d="M0,0 Q6.5,-7.5 0,-15 Q-6.5,-7.5 0,0Z" fill="#78B850" opacity="0.88"/>
+      <path d="M0,0 Q0.4,-7 0,-15" fill="none" stroke="#4A8830" stroke-width="0.65"/>
+    </g></g>
+    <g transform="translate(94,74) rotate(-28)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0.4s" repeatCount="indefinite"/>
+      <path d="M0,0 Q7.5,-8.5 0,-18 Q-7.5,-8.5 0,0Z" fill="#78B850" opacity="0.88"/>
+      <path d="M0,0 Q0.4,-8 0,-18" fill="none" stroke="#4A8830" stroke-width="0.7"/>
+    </g></g>
+    <g transform="translate(514,20) rotate(-52)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0.2s" repeatCount="indefinite"/>
+      <path d="M0,0 Q8,-9.5 0,-21 Q-8,-9.5 0,0Z" fill="#78B850" opacity="0.88"/>
+      <path d="M0,0 Q0.4,-9 0,-21" fill="none" stroke="#4A8830" stroke-width="0.7"/>
+    </g></g>
+    <g transform="translate(560,18) rotate(44)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="1.0s" repeatCount="indefinite"/>
+      <path d="M0,0 Q7.5,-8.5 0,-18 Q-7.5,-8.5 0,0Z" fill="#78B850" opacity="0.88"/>
+      <path d="M0,0 Q0.4,-8 0,-18" fill="none" stroke="#4A8830" stroke-width="0.7"/>
+    </g></g>
+    <g transform="translate(520,38) rotate(-64)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="1.7s" repeatCount="indefinite"/>
+      <path d="M0,0 Q6.5,-7.5 0,-15 Q-6.5,-7.5 0,0Z" fill="#78B850" opacity="0.88"/>
+      <path d="M0,0 Q0.4,-7 0,-15" fill="none" stroke="#4A8830" stroke-width="0.65"/>
+    </g></g>
+    <g transform="translate(836,24) rotate(-48)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0s" repeatCount="indefinite"/>
+      <path d="M0,0 Q8,-9.5 0,-21 Q-8,-9.5 0,0Z" fill="#78B850" opacity="0.88"/>
+      <path d="M0,0 Q0.4,-9 0,-21" fill="none" stroke="#4A8830" stroke-width="0.7"/>
+    </g></g>
+    <g transform="translate(878,22) rotate(40)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0.7s" repeatCount="indefinite"/>
+      <path d="M0,0 Q7.5,-8.5 0,-18 Q-7.5,-8.5 0,0Z" fill="#78B850" opacity="0.88"/>
+      <path d="M0,0 Q0.4,-8 0,-18" fill="none" stroke="#4A8830" stroke-width="0.7"/>
+    </g></g>
+    <g transform="translate(848,46) rotate(-62)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="1.4s" repeatCount="indefinite"/>
+      <path d="M0,0 Q6.5,-7.5 0,-15 Q-6.5,-7.5 0,0Z" fill="#78B850" opacity="0.88"/>
+      <path d="M0,0 Q0.4,-7 0,-15" fill="none" stroke="#4A8830" stroke-width="0.65"/>
+    </g></g>
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" width="100%" height="100" style="position:absolute;bottom:0;left:0;right:0;overflow:visible;pointer-events:none;z-index:0;transform:scaleY(-1);">
+    <path d="M0,85 Q100,68 220,80 Q350,94 480,66 Q600,46 720,72 Q860,98 980,66 Q1080,48 1200,74" fill="none" stroke="#C8965A" stroke-width="2" stroke-linecap="round"><animate attributeName="opacity" values="0.6;1;0.6" dur="5s" begin="2.5s" repeatCount="indefinite"/></path>
+    <path d="M220,76 Q218,52 216,28" fill="none" stroke="#C8965A" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M540,56 Q538,34 536,12" fill="none" stroke="#C8965A" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M860,62 Q858,40 856,18" fill="none" stroke="#C8965A" stroke-width="1.1" stroke-linecap="round"/>
+    <g transform="translate(216,24)"><g><animateTransform attributeName="transform" type="scale" values="1;1.13;1" dur="3.5s" begin="0.5s" repeatCount="indefinite"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(0)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(72)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(144)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(216)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(288)"/>
+      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#EE96BE" transform="rotate(36)"/>
+      <path d="M0,0 Q7.5,-0.8 5,-8.2 Q0.9,-12.6 0,-10.4 Q-0.9,-12.6 -5,-8.2 Q-7.5,-0.8 0,0Z" fill="#E882B0" transform="rotate(180)"/>
+      <circle r="2.6" fill="#C87830"/><circle r="1.3" fill="#F5D840"/>
+    </g></g>
+    <g transform="translate(536,8)"><g><animateTransform attributeName="transform" type="scale" values="1;1.13;1" dur="3.5s" begin="1.3s" repeatCount="indefinite"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(0)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(144)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(288)"/>
+      <circle r="2.6" fill="#C87830"/><circle r="1.3" fill="#F5D840"/>
+    </g></g>
+    <g transform="translate(856,14)"><g><animateTransform attributeName="transform" type="scale" values="1;1.13;1" dur="3.5s" begin="2.1s" repeatCount="indefinite"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(0)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFB8D4" transform="rotate(72)"/>
+      <path d="M0,0 Q12,-1 8,-13 Q1.5,-20 0,-16 Q-1.5,-20 -8,-13 Q-12,-1 0,0Z" fill="#FFCCE0" transform="rotate(144)"/>
+      <circle r="2.6" fill="#C87830"/><circle r="1.3" fill="#F5D840"/>
+    </g></g>
+    <g transform="translate(58,46)"><g><animateTransform attributeName="transform" type="scale" values="1;1.16;1" dur="3.1s" begin="0.9s" repeatCount="indefinite"/>
+      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFE0EE" transform="rotate(0)"/>
+      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFD0E8" transform="rotate(72)"/>
+      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFE0EE" transform="rotate(144)"/>
+      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFD0E8" transform="rotate(216)"/>
+      <path d="M0,0 Q10,0 7.8,-10.5 Q4,-16 0,-13.6 Q-4,-16 -7.8,-10.5 Q-10,0 0,0Z" fill="#FFE0EE" transform="rotate(288)"/>
+      <circle r="2" fill="#FFF8E0"/>
+    </g></g>
+    <g transform="translate(196,36) rotate(-46)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0.6s" repeatCount="indefinite"/>
+      <path d="M0,0 Q8,-9.5 0,-21 Q-8,-9.5 0,0Z" fill="#78B850" opacity="0.88"/>
+      <path d="M0,0 Q0.4,-9 0,-21" fill="none" stroke="#4A8830" stroke-width="0.7"/>
+    </g></g>
+    <g transform="translate(514,20) rotate(-52)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0.7s" repeatCount="indefinite"/>
+      <path d="M0,0 Q8,-9.5 0,-21 Q-8,-9.5 0,0Z" fill="#78B850" opacity="0.88"/>
+      <path d="M0,0 Q0.4,-9 0,-21" fill="none" stroke="#4A8830" stroke-width="0.7"/>
+    </g></g>
+    <g transform="translate(836,24) rotate(-48)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5;2.5;-2.5" dur="4s" begin="0.5s" repeatCount="indefinite"/>
+      <path d="M0,0 Q8,-9.5 0,-21 Q-8,-9.5 0,0Z" fill="#78B850" opacity="0.88"/>
+      <path d="M0,0 Q0.4,-9 0,-21" fill="none" stroke="#4A8830" stroke-width="0.7"/>
+    </g></g>
+  </svg>
+  <div class="inn" style="position:relative;z-index:2;"><span class="gl wh" data-i18n="padrinosLabel"></span><h2 class="sc-ttl wh" data-i18n="nombramTitle"></h2><div id="nm-list" style="max-width:440px;margin:28px auto 0;"></div></div>
+</section>
 <div class="fdv" style="background:var(--cream);"><svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2C1A0E"/><stop offset="100%" stop-color="#FEF9F6"/></linearGradient></defs><rect width="1200" height="60" fill="url(#g2)"/></svg></div>
 <section id="sec-events" class="floral-bg sp sf"><div class="inn"><span class="gl" data-i18n="scheduleLabel"></span><h2 class="sc-ttl" data-i18n="eventsTitle"></h2><div class="ec-grid" id="ec-grid"></div></div></section>
 <div class="slim-div floral-bg"><svg viewBox="0 0 380 24" style="width:min(380px,88vw)" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="12" x2="148" y2="12" stroke="#C8965A" stroke-width=".5" opacity=".4"/><polygon points="162,12 168,7 174,12 168,17" fill="none" stroke="#C8965A" stroke-width=".8"/><circle cx="186" cy="12" r="2.5" fill="#C8965A" opacity=".7"/><polygon points="198,12 204,7 210,12 204,17" fill="none" stroke="#C8965A" stroke-width=".8"/><line x1="222" y1="12" x2="380" y2="12" stroke="#C8965A" stroke-width=".5" opacity=".4"/></svg></div>
@@ -369,19 +561,19 @@ body.lang-pa .nm-names,.lang-pa .bt,.lang-pa .itin-ev,.lang-pa .gl,.lang-pa .nav
 <script>
 var CFG = {
   name1: 'Dallany',
-  name2: 'Sarjit',
+  name2: 'Sarbjit',
   dateISO: '2026-07-03T17:00:00',
   city: 'Chihuahua, M\u00e9xico',
   dateDisplay: {
     es: 'Viernes, 3 de Julio de 2026',
     en: 'Friday, July 3rd, 2026',
-    pa: '3 July 2026'
+    pa: '3 \u0a1c\u0a41\u0a32\u0a3e\u0a08 2026'
   },
   brideParents: 'Ernesto Oyarzabal Barrios\nXochitl Aragon Dominguez',
   groomParents: 'Nombre Apellido\nNombre Apellido',
   events: [
     {
-      tkLabel: { es: 'Boda Civil', en: 'Civil Wedding', pa: 'Civil' },
+      tkLabel: { es: 'Boda Civil', en: 'Civil Wedding', pa: '\u0a38\u0a3f\u0a35\u0a32 \u0a35\u0a3f\u0a06\u0a39' },
       photo: 'img/registrocivil1.jpeg',
       name: { es: 'Registro Civil No. 1', en: 'Registry Office No. 1', pa: 'Registry' },
       addr: { es: 'Ni\u00f1os H\u00e9roes 1001, Centro\nChihuahua, Chih. 31000', en: 'Ni\u00f1os H\u00e9roes 1001, Centro\nChihuahua, Chih. 31000', pa: 'Chihuahua' },
@@ -391,7 +583,7 @@ var CFG = {
       cal: { tES: 'Boda Civil - Dallany & Tony', tEN: 'Civil Wedding - Dallany & Tony', s: '20260701T120000', e: '20260701T140000' }
     },
     {
-      tkLabel: { es: 'Ceremonia', en: 'Ceremony', pa: 'Ceremony' },
+      tkLabel: { es: 'Ceremonia', en: 'Ceremony', pa: '\u0a30\u0a38\u0a2e' },
       photo: 'img/coloniajuareztemple.jpeg',
       name: { es: 'Templo de Ciudad Ju\u00e1rez', en: 'Ciudad Ju\u00e1rez Temple', pa: 'Temple' },
       addr: { es: 'Calle Paraguay 2900 Esq. Jos\u00e9 Borunda\nCol. Partido Romero, Cd. Ju\u00e1rez 32177', en: 'Calle Paraguay 2900 Esq. Jos\u00e9 Borunda\nCol. Partido Romero, Cd. Ju\u00e1rez 32177', pa: 'Cd. Ju\u00e1rez' },
@@ -401,7 +593,7 @@ var CFG = {
       cal: { tES: 'Ceremonia - Dallany & Tony', tEN: 'Ceremony - Dallany & Tony', s: '20260702T160000', e: '20260702T180000' }
     },
     {
-      tkLabel: { es: 'Recepci\u00f3n', en: 'Reception', pa: 'Reception' },
+      tkLabel: { es: 'Recepci\u00f3n', en: 'Reception', pa: '\u0a38\u0a35\u0a3e\u0a17\u0a24' },
       photo: 'img/Facetune_07-02-2026-14-02-18.jpeg',
       name: { es: 'Salon Los Jardines', en: 'Salon Los Jardines', pa: 'Salon' },
       addr: { es: 'Calle Jard\u00edn 2105, Mirador\nChihuahua, Chih. 31240', en: 'Calle Jard\u00edn 2105, Mirador\nChihuahua, Chih. 31240', pa: 'Chihuahua' },
@@ -412,23 +604,23 @@ var CFG = {
     }
   ],
   itinerary: [
-    { group:true, date:{es:'1 de Julio',en:'July 1st',pa:'1 July'}, sub:{es:'Mi\u00e9rcoles \u00b7 Boda Civil',en:'Wednesday \u00b7 Civil Wedding',pa:'Wed \u00b7 Civil'} },
-    { time:'12:00 PM', icon:'\ud83d\udc8d', name:{es:'Registro Civil No. 1',en:'Registry Office No. 1',pa:'Registry'}, desc:{es:'Ceremonia civil \u00b7 Chihuahua',en:'Civil ceremony \u00b7 Chihuahua',pa:'Civil'} },
-    { group:true, date:{es:'2 de Julio',en:'July 2nd',pa:'2 July'}, sub:{es:'Jueves \u00b7 Ceremonia',en:'Thursday \u00b7 Ceremony',pa:'Thu \u00b7 Ceremony'} },
-    { time:'4:00 PM', icon:'\u26ea', name:{es:'Ceremonia Religiosa',en:'Religious Ceremony',pa:'Ceremony'}, desc:{es:'Templo de Ciudad Ju\u00e1rez',en:'Ciudad Ju\u00e1rez Temple',pa:'Temple'} },
-    { time:'5:30 PM', icon:'\ud83d\udcf8', name:{es:'Sesi\u00f3n fotogr\u00e1fica',en:'Photo session',pa:'Photos'}, desc:{es:'Fotos con los novios',en:'Photos with the couple',pa:'Photos'} },
-    { group:true, date:{es:'3 de Julio',en:'July 3rd',pa:'3 July'}, sub:{es:'Viernes \u00b7 Recepci\u00f3n',en:'Friday \u00b7 Reception',pa:'Fri \u00b7 Reception'} },
-    { time:'7:00 PM', icon:'\ud83c\udf39', name:{es:'Recepci\u00f3n',en:'Reception',pa:'Reception'}, desc:{es:'Salon Los Jardines',en:'Salon Los Jardines',pa:'Salon'} },
-    { time:'8:00 PM', icon:'\ud83c\udf7d\ufe0f', name:{es:'Cena',en:'Dinner',pa:'Dinner'}, desc:{es:'Disfruta una deliciosa cena',en:'Enjoy a delicious dinner',pa:'Dinner'} },
-    { time:'9:00 PM', icon:'\ud83d\udc83', name:{es:'Vals',en:'First dance',pa:'Dance'}, desc:{es:'Nuestro primer baile',en:'Our first dance',pa:'Dance'} },
-    { time:'9:30 PM', icon:'\ud83c\udf89', name:{es:'Fiesta',en:'Party',pa:'Party'}, desc:{es:'\u00a1Sacale brillo a la pista!',en:'Light up the dance floor!',pa:'Party'} },
-    { time:'2:00 AM', icon:'\ud83c\udf19', name:{es:'Hasta pronto',en:'Farewell',pa:'Bye'}, desc:{es:'Gracias por celebrar con nosotros',en:'Thank you for celebrating with us',pa:'Thank you'} }
+    { group:true, date:{es:'1 de Julio',en:'July 1st',pa:'1 \u0a1c\u0a41\u0a32\u0a3e\u0a08'}, sub:{es:'Mi\u00e9rcoles \u00b7 Boda Civil',en:'Wednesday \u00b7 Civil Wedding',pa:'Wed \u00b7 \u0a38\u0a3f\u0a35\u0a32 \u0a35\u0a3f\u0a06\u0a39'} },
+    { time:'12:00 PM', icon:'\ud83d\udc8d', name:{es:'Registro Civil No. 1',en:'Registry Office No. 1',pa:'Registry'}, desc:{es:'Ceremonia civil \u00b7 Chihuahua',en:'Civil ceremony \u00b7 Chihuahua',pa:'Chihuahua'} },
+    { group:true, date:{es:'2 de Julio',en:'July 2nd',pa:'2 \u0a1c\u0a41\u0a32\u0a3e\u0a08'}, sub:{es:'Jueves \u00b7 Ceremonia',en:'Thursday \u00b7 Ceremony',pa:'Thu \u00b7 \u0a30\u0a38\u0a2e'} },
+    { time:'4:00 PM', icon:'\u26ea', name:{es:'Ceremonia Religiosa',en:'Religious Ceremony',pa:'\u0a27\u0a3e\u0a30\u0a2e\u0a3f\u0a15 \u0a30\u0a38\u0a2e'}, desc:{es:'Templo de Ciudad Ju\u00e1rez',en:'Ciudad Ju\u00e1rez Temple',pa:'Temple'} },
+    { time:'5:30 PM', icon:'\ud83d\udcf8', name:{es:'Sesi\u00f3n fotogr\u00e1fica',en:'Photo session',pa:'\u0a2b\u0a4b\u0a1f\u0a4b'}, desc:{es:'Fotos con los novios',en:'Photos with the couple',pa:'\u0a2b\u0a4b\u0a1f\u0a4b'} },
+    { group:true, date:{es:'3 de Julio',en:'July 3rd',pa:'3 \u0a1c\u0a41\u0a32\u0a3e\u0a08'}, sub:{es:'Viernes \u00b7 Recepci\u00f3n',en:'Friday \u00b7 Reception',pa:'Fri \u00b7 \u0a38\u0a35\u0a3e\u0a17\u0a24'} },
+    { time:'7:00 PM', icon:'\ud83c\udf39', name:{es:'Recepci\u00f3n',en:'Reception',pa:'\u0a38\u0a35\u0a3e\u0a17\u0a24'}, desc:{es:'Salon Los Jardines',en:'Salon Los Jardines',pa:'Salon'} },
+    { time:'8:00 PM', icon:'\ud83c\udf7d\ufe0f', name:{es:'Cena',en:'Dinner',pa:'\u0a30\u0a3e\u0a24 \u0a26\u0a3e \u0a16\u0a3e\u0a23\u0a3e'}, desc:{es:'Disfruta una deliciosa cena',en:'Enjoy a delicious dinner',pa:'\u0a38\u0a41\u0a06\u0a26\u0a40 \u0a16\u0a3e\u0a23\u0a3e'} },
+    { time:'9:00 PM', icon:'\ud83d\udc83', name:{es:'Vals',en:'First dance',pa:'\u0a2a\u0a39\u0a3f\u0a32\u0a3e \u0a28\u0a3f\u0a31\u0a4d\u0a24'}, desc:{es:'Nuestro primer baile',en:'Our first dance',pa:'\u0a38\u0a3e\u0a21\u0a3c\u0a3e \u0a2a\u0a39\u0a3f\u0a32\u0a3e \u0a28\u0a3f\u0a31\u0a4d\u0a24'} },
+    { time:'9:30 PM', icon:'\ud83c\udf89', name:{es:'Fiesta',en:'Party',pa:'\u0a1c\u0a38\u0a3c\u0a28'}, desc:{es:'\u00a1Sacale brillo a la pista!',en:'Light up the dance floor!',pa:'\u0a1c\u0a38\u0a3c\u0a28 \u0a35\u0a3f\u0a1a \u0a86\u0a13!'} },
+    { time:'2:00 AM', icon:'\ud83c\udf19', name:{es:'Hasta pronto',en:'Farewell',pa:'\u0a1c\u0a40 \u0a06\u0a07\u0a06\u0a02'}, desc:{es:'Gracias por celebrar con nosotros',en:'Thank you for celebrating with us',pa:'\u0a2e\u0a28\u0a3e\u0a09\u0a23 \u0a32\u0a08 \u0a27\u0a3c\u0a28\u0a35\u0a3e\u0a26'} }
   ],
   avoidColors: ['#9B8EC4', '#A08070'],
   hotels: [
-    { name:'Hotel Mision Chihuahua', stars:4, dist:{es:'5 min del sal\u00f3n',en:'5 min from venue',pa:'5 min'}, note:{es:'Tarifa especial \u00b7 Desayuno incluido',en:'Special rate \u00b7 Breakfast included',pa:'Special rate'}, url:'https://maps.google.com/?q=Hotel+Mision+Chihuahua' },
-    { name:'Wyndham Garden Chihuahua', stars:4, dist:{es:'8 min del sal\u00f3n',en:'8 min from venue',pa:'8 min'}, note:{es:'Alberca \u00b7 Estacionamiento gratuito',en:'Pool \u00b7 Free parking',pa:'Pool'}, url:'https://maps.google.com/?q=Wyndham+Garden+Chihuahua' },
-    { name:'Hotel San Francisco', stars:3, dist:{es:'12 min del sal\u00f3n',en:'12 min from venue',pa:'12 min'}, note:{es:'Opci\u00f3n econ\u00f3mica recomendada',en:'Recommended budget option',pa:'Budget'}, url:'https://maps.google.com/?q=Hotel+San+Francisco+Chihuahua' }
+    { name:'Hotel Mision Chihuahua', stars:4, dist:{es:'5 min del sal\u00f3n',en:'5 min from venue',pa:'5 \u0a2e\u0a3f\u0a70\u0a1f'}, note:{es:'Tarifa especial \u00b7 Desayuno incluido',en:'Special rate \u00b7 Breakfast included',pa:'\u0a16\u0a3c\u0a3e\u0a38 \u0a26\u0a30'}, url:'https://maps.google.com/?q=Hotel+Mision+Chihuahua' },
+    { name:'Wyndham Garden Chihuahua', stars:4, dist:{es:'8 min del sal\u00f3n',en:'8 min from venue',pa:'8 \u0a2e\u0a3f\u0a70\u0a1f'}, note:{es:'Alberca \u00b7 Estacionamiento gratuito',en:'Pool \u00b7 Free parking',pa:'\u0a2a\u0a42\u0a32'}, url:'https://maps.google.com/?q=Wyndham+Garden+Chihuahua' },
+    { name:'Hotel San Francisco', stars:3, dist:{es:'12 min del sal\u00f3n',en:'12 min from venue',pa:'12 \u0a2e\u0a3f\u0a70\u0a1f'}, note:{es:'Opci\u00f3n econ\u00f3mica recomendada',en:'Recommended budget option',pa:'\u0a38\u0a38\u0a24\u0a3e \u0a35\u0a3f\u0a15\u0a32\u0a4d\u0a2a'}, url:'https://maps.google.com/?q=Hotel+San+Francisco+Chihuahua' }
   ],
   songTitle:   'Perfect',
   songArtist:  'Ed Sheeran',
@@ -438,7 +630,7 @@ var CFG = {
     { store:'PayPal', url:'https://www.paypal.com/paypalme/TUUSUARIO' },
     { store:'Bank', banco:'BBVA Bancomer', titular:'Dallany Oyarzabal', clabe:'012345678901234567' }
   ],
-  rsvpDeadline: { es:'1 de Mayo de 2026', en:'May 1st, 2026', pa:'1 May 2026' },
+  rsvpDeadline: { es:'1 de Mayo de 2026', en:'May 1st, 2026', pa:'1 \u0a2e\u0a08 2026' },
   rsvpWa:       '526142198023',
   sheetsURL:    '',
   inviteURL: 'https://tu-invitacion.netlify.app',
@@ -470,7 +662,44 @@ var W = {
   photos: CFG.photos
 };
 
-var T={es:{countdown:'cuenta regresiva',days:'dias',hours:'horas',minutes:'minutos',seconds:'segundos',quoteText:'No hay remedio para el amor, sino amar m\u00e1s.',guestIntro:'Con amor y alegr\u00eda, tenemos el placer de invitarte a celebrar con nosotros.',guestMsg:'Tu presencia es el mejor regalo que podemos recibir.',padrinosLabel:'con el benep\u00e1cito de',nombramTitle:'Nombramientos',padresNovia:'Padres de la Novia',padresNovio:'Padres del Novio',scheduleLabel:'fechas importantes y ubicaci\u00f3n',eventsTitle:'Los Eventos',viewMap:'Mapa',addCal:'Agregar al calendario',eLblName:'Nombre',eLblAddr:'Direcci\u00f3n',eLblTime:'Hora',dayItinLabel:'programa del d\u00eda',dayItinTitle:'Itinerario',itinNote:'Llega temprano. Se agradece tu puntualidad.',dresscodeLabel:'c\u00f3digo de vestimenta',dresscodeTitle2:'Vestimenta Formal',dressClrLady:'Tonos pasteles',dressClrGent:'Negro, neutros',avoidColors:'Evita usar los siguientes colores',dressLadies:'Mujeres',dressGents:'Hombres',vestidoLargo:'Vestido Largo',traje:'Traje',galleryLabel:'galer\u00eda de fotos',galleryTitle:'Nuestros Momentos',hotelLabel:'hospedaje recomendado',hotelTitle:'Opciones de Hospedaje',hotelBody:'Para mayor comodidad, recomendamos los siguientes hoteles.',hotelDir:'Mapa',songLabel:'nuestra canci\u00f3n',songTitle2:'La M\u00fasica de Nuestro Amor',listenSpotify:'Escuchar en Spotify',giftsLabel:'mesa de regalos',giftsTitle:'Un Regalo del Coraz\u00f3n',giftsBody:'Tu presencia es nuestro mejor regalo.',giftsCash:'\u00danicamente recibiremos regalos en efectivo o transferencia bancaria.',giftsTransfer:'Hacer Transferencia',giftsBankLabel:'Transferencia Bancaria',giftsTap:'Toca para ver datos',giftsBank:'Banco',giftsTitular:'Titular',giftsClabe:'CLABE',giftsCopied:'\u00a1Copiado!',rsvpLabel:'confirmaci\u00f3n de asistencia',rsvpTitle:'Confirmar Asistencia',rsvpPre:'Por favor, confirma tu asistencia antes del',rsvpFname:'Nombre',rsvpLname:'Apellido',rsvpMsg:'Mensaje para los novios',rsvpAttend:'\u00bfPodr\u00e1s asistir a la boda?',rsvpYes:'S\u00ed',rsvpNo:'No',rsvpSubmit:'Enviar mi Confirmaci\u00f3n',rsvpWaTitle:'\u00bfDudas?',rsvpWaBody:'Env\u00edanos un WhatsApp.',qrLabel:'agregar al calendario',qrTitle:'Escanea para guardar las fechas',qrBody:'Escanea este c\u00f3digo para guardar todos los eventos.',qrSub:'Compatible con Google, Apple y Outlook Calendar',qrDownloadICS:'Agregar eventos a mi calendario',nav_home:'Inicio',nav_parents:'Nombramientos',nav_dates:'Fechas y Ubicaci\u00f3n',nav_dayitin:'Itinerario',nav_attire:'Vestimenta',nav_gallery:'Galer\u00eda',nav_hotels:'Hospedaje',nav_song:'Canci\u00f3n',nav_gifts:'Regalos',nav_rsvp:'Confirmar'},en:{countdown:'countdown',days:'days',hours:'hours',minutes:'minutes',seconds:'seconds',quoteText:'There is no remedy for love but to love more.',guestIntro:'With love and joy, we have the pleasure of inviting you to celebrate with us.',guestMsg:'Your presence is the greatest gift we could receive.',padrinosLabel:'with the blessing of',nombramTitle:'Honors',padresNovia:"Bride's Parents",padresNovio:"Groom's Parents",scheduleLabel:'important dates & location',eventsTitle:'The Events',viewMap:'Map',addCal:'Add to calendar',eLblName:'Name',eLblAddr:'Address',eLblTime:'Time',dayItinLabel:'day program',dayItinTitle:'Itinerary',itinNote:'Please arrive early. We appreciate your punctuality.',dresscodeLabel:'dress code',dresscodeTitle2:'Formal Attire',dressClrLady:'Pastel tones',dressClrGent:'Black, neutrals',avoidColors:'Please avoid these colors',dressLadies:'Women',dressGents:'Men',vestidoLargo:'Long Gown',traje:'Suit',galleryLabel:'photo gallery',galleryTitle:'Our Moments',hotelLabel:'recommended lodging',hotelTitle:'Lodging Options',hotelBody:'For your convenience, we recommend the following hotels.',hotelDir:'Map',songLabel:'our song',songTitle2:'The Music of Our Love',listenSpotify:'Listen on Spotify',giftsLabel:'gift registry',giftsTitle:'A Gift from the Heart',giftsBody:'Your presence is our greatest gift.',giftsCash:'We will only accept gifts in cash or bank transfer.',giftsTransfer:'Make a Transfer',giftsBankLabel:'Bank Transfer',giftsTap:'Tap to see details',giftsBank:'Bank',giftsTitular:'Account holder',giftsClabe:'CLABE',giftsCopied:'Copied!',rsvpLabel:'rsvp',rsvpTitle:'Confirm Attendance',rsvpPre:'Please confirm your attendance before',rsvpFname:'First Name',rsvpLname:'Last Name',rsvpMsg:'Message for the couple',rsvpAttend:'Will you be able to attend?',rsvpYes:'Yes',rsvpNo:'No',rsvpSubmit:'Send my Confirmation',rsvpWaTitle:'Questions?',rsvpWaBody:'Send us a WhatsApp.',qrLabel:'add to calendar',qrTitle:'Scan to save the dates',qrBody:'Scan this code to add all events.',qrSub:'Compatible with Google, Apple and Outlook Calendar',qrDownloadICS:'Add events to my calendar',nav_home:'Home',nav_parents:'Honors',nav_dates:'Dates & Location',nav_dayitin:'Itinerary',nav_attire:'Attire',nav_gallery:'Gallery',nav_hotels:'Lodging',nav_song:'Song',nav_gifts:'Gifts',nav_rsvp:'RSVP'},pa:{countdown:'countdown',days:'days',hours:'hours',minutes:'minutes',seconds:'seconds',quoteText:'There is no remedy for love but to love more.',guestIntro:'With love, we invite you.',guestMsg:'Your presence is our greatest gift.',padrinosLabel:'with the blessing of',nombramTitle:'Honors',padresNovia:"Bride's Parents",padresNovio:"Groom's Parents",scheduleLabel:'dates & location',eventsTitle:'Events',viewMap:'Map',addCal:'Calendar',eLblName:'Name',eLblAddr:'Address',eLblTime:'Time',dayItinLabel:'program',dayItinTitle:'Itinerary',itinNote:'Please arrive early.',dresscodeLabel:'dress code',dresscodeTitle2:'Formal Attire',dressClrLady:'Pastel tones',dressClrGent:'Black, neutrals',avoidColors:'Avoid these colors',dressLadies:'Women',dressGents:'Men',vestidoLargo:'Long Gown',traje:'Suit',galleryLabel:'gallery',galleryTitle:'Our Moments',hotelLabel:'hotels',hotelTitle:'Lodging',hotelBody:'Recommended hotels.',hotelDir:'Map',songLabel:'song',songTitle2:'Our Song',listenSpotify:'Listen',giftsLabel:'gifts',giftsTitle:'Gift',giftsBody:'Your presence is our gift.',giftsCash:'Cash or bank transfer only.',giftsTransfer:'Transfer',giftsBankLabel:'Bank Transfer',giftsTap:'Tap to see',giftsBank:'Bank',giftsTitular:'Holder',giftsClabe:'CLABE',giftsCopied:'Copied!',rsvpLabel:'rsvp',rsvpTitle:'Confirm',rsvpPre:'Confirm before',rsvpFname:'Name',rsvpLname:'Last Name',rsvpMsg:'Message',rsvpAttend:'Attending?',rsvpYes:'Yes',rsvpNo:'No',rsvpSubmit:'Send',rsvpWaTitle:'Questions?',rsvpWaBody:'WhatsApp us.',qrLabel:'calendar',qrTitle:'Scan',qrBody:'Scan.',qrSub:'Google, Apple and Outlook',qrDownloadICS:'Add to calendar',nav_home:'Home',nav_parents:'Honors',nav_dates:'Dates',nav_dayitin:'Itinerary',nav_attire:'Attire',nav_gallery:'Gallery',nav_hotels:'Hotels',nav_song:'Song',nav_gifts:'Gifts',nav_rsvp:'RSVP'}};
+var T={
+  es:{countdown:'cuenta regresiva',days:'dias',hours:'horas',minutes:'minutos',seconds:'segundos',quoteText:'No hay remedio para el amor, sino amar m\u00e1s.',guestIntro:'Con amor y alegr\u00eda, tenemos el placer de invitarte a celebrar con nosotros.',guestMsg:'Tu presencia es el mejor regalo que podemos recibir.',padrinosLabel:'con el benep\u00e1cito de',nombramTitle:'Nombramientos',padresNovia:'Padres de la Novia',padresNovio:'Padres del Novio',scheduleLabel:'fechas importantes y ubicaci\u00f3n',eventsTitle:'Los Eventos',viewMap:'Mapa',addCal:'Agregar al calendario',eLblName:'Nombre',eLblAddr:'Direcci\u00f3n',eLblTime:'Hora',dayItinLabel:'programa del d\u00eda',dayItinTitle:'Itinerario',itinNote:'Llega temprano. Se agradece tu puntualidad.',dresscodeLabel:'c\u00f3digo de vestimenta',dresscodeTitle2:'Vestimenta Formal',dressClrLady:'Tonos pasteles',dressClrGent:'Negro, neutros',avoidColors:'Evita usar los siguientes colores',dressLadies:'Mujeres',dressGents:'Hombres',vestidoLargo:'Vestido Largo',traje:'Traje',galleryLabel:'galer\u00eda de fotos',galleryTitle:'Nuestros Momentos',hotelLabel:'hospedaje recomendado',hotelTitle:'Opciones de Hospedaje',hotelBody:'Para mayor comodidad, recomendamos los siguientes hoteles.',hotelDir:'Mapa',songLabel:'nuestra canci\u00f3n',songTitle2:'La M\u00fasica de Nuestro Amor',listenSpotify:'Escuchar en Spotify',giftsLabel:'mesa de regalos',giftsTitle:'Un Regalo del Coraz\u00f3n',giftsBody:'Tu presencia es nuestro mejor regalo.',giftsCash:'\u00danicamente recibiremos regalos en efectivo o transferencia bancaria.',giftsTransfer:'Hacer Transferencia',giftsBankLabel:'Transferencia Bancaria',giftsTap:'Toca para ver datos',giftsBank:'Banco',giftsTitular:'Titular',giftsClabe:'CLABE',giftsCopied:'\u00a1Copiado!',rsvpLabel:'confirmaci\u00f3n de asistencia',rsvpTitle:'Confirmar Asistencia',rsvpPre:'Por favor, confirma tu asistencia antes del',rsvpFname:'Nombre',rsvpLname:'Apellido',rsvpMsg:'Mensaje para los novios',rsvpAttend:'\u00bfPodr\u00e1s asistir a la boda?',rsvpYes:'S\u00ed',rsvpNo:'No',rsvpSubmit:'Enviar mi Confirmaci\u00f3n',rsvpWaTitle:'\u00bfDudas?',rsvpWaBody:'Env\u00edanos un WhatsApp.',qrLabel:'agregar al calendario',qrTitle:'Escanea para guardar las fechas',qrBody:'Escanea este c\u00f3digo para guardar todos los eventos.',qrSub:'Compatible con Google, Apple y Outlook Calendar',qrDownloadICS:'Agregar eventos a mi calendario',nav_home:'Inicio',nav_parents:'Nombramientos',nav_dates:'Fechas y Ubicaci\u00f3n',nav_dayitin:'Itinerario',nav_attire:'Vestimenta',nav_gallery:'Galer\u00eda',nav_hotels:'Hospedaje',nav_song:'Canci\u00f3n',nav_gifts:'Regalos',nav_rsvp:'Confirmar'},
+  en:{countdown:'countdown',days:'days',hours:'hours',minutes:'minutes',seconds:'seconds',quoteText:'There is no remedy for love but to love more.',guestIntro:'With love and joy, we have the pleasure of inviting you to celebrate with us.',guestMsg:'Your presence is the greatest gift we could receive.',padrinosLabel:'with the blessing of',nombramTitle:'Honors',padresNovia:"Bride's Parents",padresNovio:"Groom's Parents",scheduleLabel:'important dates & location',eventsTitle:'The Events',viewMap:'Map',addCal:'Add to calendar',eLblName:'Name',eLblAddr:'Address',eLblTime:'Time',dayItinLabel:'day program',dayItinTitle:'Itinerary',itinNote:'Please arrive early. We appreciate your punctuality.',dresscodeLabel:'dress code',dresscodeTitle2:'Formal Attire',dressClrLady:'Pastel tones',dressClrGent:'Black, neutrals',avoidColors:'Please avoid these colors',dressLadies:'Women',dressGents:'Men',vestidoLargo:'Long Gown',traje:'Suit',galleryLabel:'photo gallery',galleryTitle:'Our Moments',hotelLabel:'recommended lodging',hotelTitle:'Lodging Options',hotelBody:'For your convenience, we recommend the following hotels.',hotelDir:'Map',songLabel:'our song',songTitle2:'The Music of Our Love',listenSpotify:'Listen on Spotify',giftsLabel:'gift registry',giftsTitle:'A Gift from the Heart',giftsBody:'Your presence is our greatest gift.',giftsCash:'We will only accept gifts in cash or bank transfer.',giftsTransfer:'Make a Transfer',giftsBankLabel:'Bank Transfer',giftsTap:'Tap to see details',giftsBank:'Bank',giftsTitular:'Account holder',giftsClabe:'CLABE',giftsCopied:'Copied!',rsvpLabel:'rsvp',rsvpTitle:'Confirm Attendance',rsvpPre:'Please confirm your attendance before',rsvpFname:'First Name',rsvpLname:'Last Name',rsvpMsg:'Message for the couple',rsvpAttend:'Will you be able to attend?',rsvpYes:'Yes',rsvpNo:'No',rsvpSubmit:'Send my Confirmation',rsvpWaTitle:'Questions?',rsvpWaBody:'Send us a WhatsApp.',qrLabel:'add to calendar',qrTitle:'Scan to save the dates',qrBody:'Scan this code to add all events.',qrSub:'Compatible with Google, Apple and Outlook Calendar',qrDownloadICS:'Add events to my calendar',nav_home:'Home',nav_parents:'Honors',nav_dates:'Dates & Location',nav_dayitin:'Itinerary',nav_attire:'Attire',nav_gallery:'Gallery',nav_hotels:'Lodging',nav_song:'Song',nav_gifts:'Gifts',nav_rsvp:'RSVP'},
+  pa:{
+    countdown:'\u0a09\u0a32\u0a1f\u0a40 \u0a17\u0a3f\u0a23\u0a24\u0a40',days:'\u0a26\u0a3f\u0a28',hours:'\u0a18\u0a70\u0a1f\u0a47',minutes:'\u0a2e\u0a3f\u0a70\u0a1f',seconds:'\u0a38\u0a15\u0a3f\u0a70\u0a1f',
+    quoteText:'\u0a2a\u0a3f\u0a06\u0a30 \u0a26\u0a3e \u0a15\u0a4b\u0a08 \u0a07\u0a32\u0a3e\u0a1c \u0a28\u0a39\u0a40\u0a02, \u0a38\u0a3f\u0a35\u0a3e\u0a0f \u0a39\u0a4b\u0a30 \u0a2a\u0a3f\u0a06\u0a30 \u0a15\u0a30\u0a28 \u0a26\u0a47\u0a2c\u0a3e\u0b44',
+    guestIntro:'\u0a2a\u0a3f\u0a06\u0a30 \u0a05\u0a24\u0a47 \u0a16\u0a41\u0a38\u0a3c\u0a40 \u0a28\u0a3e\u0a32, \u0a05\u0a38\u0a40\u0a02 \u0a24\u0a41\u0a39\u0a3e\u0a21\u0a3c\u0a47 \u0a28\u0a3e\u0a32 \u0a1c\u0a38\u0a3c\u0a28 \u0a2e\u0a28\u0a3e\u0a09\u0a23 \u0a32\u0a08 \u0a38\u0a71\u0a26\u0a3e \u0a26\u0a3f\u0a70\u0a26\u0a47 \u0a39\u0a3e\u0a02\u0b4d',
+    guestMsg:'\u0a24\u0a41\u0a39\u0a3e\u0a21\u0a3c\u0a40 \u0a39\u0a3e\u0a1c\u0a3c\u0a30\u0a40 \u0a38\u0a3e\u0a21\u0a3c\u0a3e \u0a38\u0a2d \u0a24\u0a4b\u0a02 \u0a35\u0a71\u0a21\u0a3e \u0a24\u0a4b\u0a39\u0a2b\u0a3c\u0a3e \u0a39\u0a48\u0b4d',
+    padrinosLabel:'\u0a06\u0a38\u0a3c\u0a40\u0a30\u0a35\u0a3e\u0a26 \u0a28\u0a3e\u0a32',nombramTitle:'\u0a38\u0a28\u0a2e\u0a3e\u0a28',
+    padresNovia:'\u0a32\u0a3e\u0a5c\u0a40 \u0a26\u0a47 \u0a2e\u0a3e\u0a24\u0a3e-\u0a2a\u0a3f\u0a24\u0a3e',padresNovio:'\u0a32\u0a3e\u0a5c\u0a47 \u0a26\u0a47 \u0a2e\u0a3e\u0a24\u0a3e-\u0a2a\u0a3f\u0a24\u0a3e',
+    scheduleLabel:'\u0a2e\u0a39\u0a71\u0a24\u0a35\u0a2a\u0a42\u0a30\u0a28 \u0a24\u0a3e\u0a30\u0a40\u0a16\u0a3e\u0a02 \u0a05\u0a24\u0a47 \u0a25\u0a3e\u0a82',eventsTitle:'\u0a38\u0a2e\u0a3e\u0a17\u0a2e',
+    viewMap:'\u0a28\u0a15\u0a38\u0a3c\u0a3e',addCal:'\u0a15\u0a48\u0a32\u0a70\u0a21\u0a30 \u0a35\u0a3f\u0a71\u0a1a \u0a1c\u0a4b\u0a5c\u0a4b',
+    eLblName:'\u0a28\u0a3e\u0a2e',eLblAddr:'\u0a2a\u0a24\u0a3e',eLblTime:'\u0a38\u0a2e\u0a3e\u0a82',
+    dayItinLabel:'\u0a26\u0a3f\u0a28 \u0a26\u0a3e \u0a2a\u0a4d\u0a30\u0a4b\u0a17\u0a30\u0a3e\u0a2e',dayItinTitle:'\u0a15\u0a3e\u0a30\u0a1c\u0a15\u0a4d\u0a30\u0a2e',
+    itinNote:'\u0a15\u0a3f\u0a30\u0a2a\u0a3e \u0a15\u0a30\u0a15\u0a47 \u0a38\u0a2e\u0a47\u0a02 \u0a38\u0a3f\u0a30 \u0a86\u0a13\u0b4d',
+    dresscodeLabel:'\u0a2a\u0a39\u0a3f\u0a30\u0a3e\u0a35\u0a47 \u0a26\u0a3e \u0a28\u0a3f\u0a2f\u0a2e',dresscodeTitle2:'\u0a30\u0a38\u0a2e\u0a40 \u0a2a\u0a39\u0a3f\u0a30\u0a3e\u0a35\u0a3e',
+    dressClrLady:'\u0a39\u0a32\u0a15\u0a47 \u0a30\u0a70\u0a17',dressClrGent:'\u0a15\u0a3e\u0a32\u0a3e, \u0a28\u0a3f\u0a30\u0a2a\u0a71\u0a16 \u0a30\u0a70\u0a17',
+    avoidColors:'\u0a07\u0a39 \u0a30\u0a70\u0a17 \u0a28\u0a3e \u0a2a\u0a39\u0a3f\u0a28\u0a4b',dressLadies:'\u0a14\u0a30\u0a24\u0a3e\u0a82',dressGents:'\u0a2e\u0a30\u0a26',
+    vestidoLargo:'\u0a32\u0a70\u0a2c\u0a3e \u0a32\u0a3f\u0a2c\u0a3e\u0a38',traje:'\u0a38\u0a42\u0a1f',
+    galleryLabel:'\u0a2b\u0a4b\u0a1f\u0a4b \u0a17\u0a48\u0a32\u0a30\u0a40',galleryTitle:'\u0a38\u0a3e\u0a21\u0a3c\u0a47 \u0a2a\u0a32',
+    hotelLabel:'\u0a30\u0a3f\u0a39\u0a3e\u0a07\u0a38\u0a3c \u0a26\u0a40 \u0a38\u0a3f\u0a2b\u0a3c\u0a3e\u0a30\u0a38\u0a3c',hotelTitle:'\u0a39\u0a4b\u0a1f\u0a32',
+    hotelBody:'\u0a38\u0a39\u0a42\u0a32\u0a40\u0a05\u0a24 \u0a32\u0a08 \u0a39\u0a47\u0a20\u0a3e\u0a82 \u0a26\u0a3f\u0a71\u0a24\u0a47 \u0a39\u0a4b\u0a1f\u0a32\u0a3e\u0a82 \u0a26\u0a40 \u0a38\u0a3f\u0a2b\u0a3c\u0a3e\u0a30\u0a38\u0a3c \u0a15\u0a30\u0a26\u0a47 \u0a39\u0a3e\u0a82\u0b4d',hotelDir:'\u0a28\u0a15\u0a38\u0a3c\u0a3e',
+    songLabel:'\u0a38\u0a3e\u0a21\u0a3c\u0a3e \u0a17\u0a40\u0a24',songTitle2:'\u0a38\u0a3e\u0a21\u0a3c\u0a47 \u0a2a\u0a3f\u0a06\u0a30 \u0a26\u0a3e \u0a38\u0a70\u0a17\u0a40\u0a24',listenSpotify:'Spotify \u0a24\u0a47 \u0a38\u0a41\u0a23\u0a4b',
+    giftsLabel:'\u0a24\u0a4b\u0a39\u0a2b\u0a3c\u0a47',giftsTitle:'\u0a26\u0a3f\u0a32\u0a4b\u0a82 \u0a24\u0a4b\u0a39\u0a2b\u0a3c\u0a3e',
+    giftsBody:'\u0a24\u0a41\u0a39\u0a3e\u0a21\u0a3c\u0a40 \u0a39\u0a3e\u0a1c\u0a3c\u0a30\u0a40 \u0a38\u0a3e\u0a21\u0a3c\u0a3e \u0a38\u0a2d \u0a24\u0a4b\u0a82 \u0a35\u0a71\u0a21\u0a3e \u0a24\u0a4b\u0a39\u0a2b\u0a3c\u0a3e \u0a39\u0a48\u0b4d',
+    giftsCash:'\u0a05\u0a38\u0a40\u0a82 \u0a38\u0a3f\u0a30\u0a2b\u0a3c \u0a28\u0a15\u0a26 \u0a1c\u0a3e\u0a82 \u0a2c\u0a48\u0a82\u0a15 \u0a1f\u0a4d\u0a30\u0a3e\u0a82\u0a38\u0a2b\u0a3c\u0a30 \u0a38\u0a35\u0a40\u0a15\u0a3e\u0a30 \u0a15\u0a30\u0a26\u0a47 \u0a39\u0a3e\u0a82\u0b4d',
+    giftsTransfer:'\u0a1f\u0a4d\u0a30\u0a3e\u0a82\u0a38\u0a2b\u0a3c\u0a30 \u0a15\u0a30\u0a4b',giftsBankLabel:'\u0a2c\u0a48\u0a82\u0a15 \u0a1f\u0a4d\u0a30\u0a3e\u0a82\u0a38\u0a2b\u0a3c\u0a30',
+    giftsTap:'\u0a35\u0a47\u0a30\u0a35\u0a47 \u0a26\u0a47\u0a16\u0a23 \u0a32\u0a08 \u0a1f\u0a48\u0a2a \u0a15\u0a30\u0a4b',giftsBank:'\u0a2c\u0a48\u0a82\u0a15',giftsTitular:'\u0a16\u0a3e\u0a24\u0a3e\u0a27\u0a3e\u0a30\u0a15',giftsClabe:'CLABE',giftsCopied:'\u0a15\u0a3e\u0a2a\u0a40 \u0a39\u0a4b \u0a17\u0a08!',
+    rsvpLabel:'\u0a39\u0a3e\u0a1c\u0a3c\u0a30\u0a40 \u0a2a\u0a41\u0a38\u0a3c\u0a1f\u0a40',rsvpTitle:'\u0a39\u0a3e\u0a1c\u0a3c\u0a30\u0a40 \u0a2a\u0a71\u0a15\u0a40 \u0a15\u0a30\u0a4b',
+    rsvpPre:'\u0a15\u0a3f\u0a30\u0a2a\u0a3e \u0a15\u0a30\u0a15\u0a47 \u0a07\u0a38 \u0a24\u0a3e\u0a30\u0a40\u0a16 \u0a24\u0a4b\u0a82 \u0a2a\u0a39\u0a3f\u0a32\u0a3e\u0a82 \u0a2a\u0a41\u0a38\u0a3c\u0a1f\u0a40 \u0a15\u0a30\u0a4b',
+    rsvpFname:'\u0a28\u0a3e\u0a2e',rsvpLname:'\u0a09\u0a2a\u0a28\u0a3e\u0a2e',rsvpMsg:'\u0a38\u0a41\u0a28\u0a47\u0a39\u0a3e \u0a38\u0a70\u0a26\u0a47\u0a38\u0a3c\u0a3e',
+    rsvpAttend:'\u0a15\u0a40 \u0a24\u0a41\u0a38\u0a40\u0a82 \u0a35\u0a3f\u0a06\u0a39 \u0a35\u0a3f\u0a71\u0a1a \u0a86 \u0a38\u0a15\u0a26\u0a47 \u0a39\u0a4b?',rsvpYes:'\u0a39\u0a3e\u0a82',rsvpNo:'\u0a28\u0a39\u0a40\u0a82',
+    rsvpSubmit:'\u0a2a\u0a41\u0a38\u0a3c\u0a1f\u0a40 \u0a2d\u0a47\u0a1c\u0a4b',rsvpWaTitle:'\u0a15\u0a4b\u0a08 \u0a38\u0a35\u0a3e\u0a32?',rsvpWaBody:'\u0a38\u0a3e\u0a28\u0a42\u0a70 WhatsApp \u0a24\u0a47 \u0a38\u0a70\u0a2a\u0a30\u0a15 \u0a15\u0a30\u0a4b\u0b4d',
+    qrLabel:'\u0a15\u0a48\u0a32\u0a70\u0a21\u0a30 \u0a35\u0a3f\u0a71\u0a1a \u0a1c\u0a4b\u0a5c\u0a4b',qrTitle:'\u0a24\u0a3e\u0a30\u0a40\u0a16\u0a3e\u0a82 \u0a38\u0a3c\u0a47\u0a05\u0a35 \u0a15\u0a30\u0a28 \u0a32\u0a08 \u0a38\u0a15\u0a48\u0a28 \u0a15\u0a30\u0a4b',
+    qrBody:'\u0a38\u0a3e\u0a30\u0a47 \u0a38\u0a2e\u0a3e\u0a17\u0a2e \u0a1c\u0a4b\u0a5c\u0a28 \u0a32\u0a08 \u0a07\u0a38 \u0a15\u0a4b\u0a21 \u0a28\u0a42\u0a70 \u0a38\u0a15\u0a48\u0a28 \u0a15\u0a30\u0a4b\u0b4d',qrSub:'Google, Apple \u0a05\u0a24\u0a47 Outlook \u0a28\u0a3e\u0a32 \u0a05\u0a28\u0a41\u0a15\u0a42\u0a32',qrDownloadICS:'\u0a2e\u0a47\u0a30\u0a47 \u0a15\u0a48\u0a32\u0a70\u0a21\u0a30 \u0a35\u0a3f\u0a71\u0a1a \u0a38\u0a2e\u0a3e\u0a17\u0a2e \u0a1c\u0a4b\u0a5c\u0a4b',
+    nav_home:'\u0a2e\u0a41\u0a71\u0a16 \u0a2a\u0a70\u0a28\u0a3e',nav_parents:'\u0a2e\u0a3e\u0a24\u0a3e-\u0a2a\u0a3f\u0a24\u0a3e',nav_dates:'\u0a24\u0a3e\u0a30\u0a40\u0a16\u0a3e\u0a82 \u0a05\u0a24\u0a47 \u0a25\u0a3e\u0a82',nav_dayitin:'\u0a15\u0a3e\u0a30\u0a1c\u0a15\u0a4d\u0a30\u0a2e',nav_attire:'\u0a2a\u0a39\u0a3f\u0a30\u0a3e\u0a35\u0a3e',nav_gallery:'\u0a17\u0a48\u0a32\u0a30\u0a40',nav_hotels:'\u0a39\u0a4b\u0a1f\u0a32',nav_song:'\u0a17\u0a40\u0a24',nav_gifts:'\u0a24\u0a4b\u0a39\u0a2b\u0a3c\u0a47',nav_rsvp:'\u0a2a\u0a41\u0a38\u0a3c\u0a1f\u0a40'
+  }
+};
 
 var LADY_SVG = '<svg viewBox="0 0 130 280" overflow="visible" class="dress-svg" style="width:90px;height:auto;" xmlns="http://www.w3.org/2000/svg">'
   + '<defs><radialGradient id="dg1l" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#F8D4E0"/><stop offset="100%" stop-color="#E090B0"/></radialGradient>'
@@ -580,7 +809,7 @@ function openEnvelope(){if(envOpened)return;envOpened=true;stopHint();var flap=d
 
 function setupBarObs(){var hero=document.getElementById('section-hero');if(!hero)return;new IntersectionObserver(function(e){e.forEach(function(en){var n=document.getElementById('bar-names');if(n)n.classList.toggle('show',!en.isIntersecting);});},{threshold:.05}).observe(hero);}
 
-var NM_DATA=[{emoji:'&#128144;',roleKey:'padresNovia',names:'brideParents'},{emoji:'&#129333;',roleKey:'padresNovio',names:'groomParents'}];
+var NM_DATA=[{emoji:'&#128112;',roleKey:'padresNovia',names:'brideParents'},{emoji:'&#129333;',roleKey:'padresNovio',names:'groomParents'}];
 function buildNombram(){var t=T[currentLang],c=document.getElementById('nm-list');if(!c)return;c.innerHTML='';NM_DATA.forEach(function(it,i){var d=document.createElement('div');d.className='nm-item sf';var names=W[it.names].split('\n');d.innerHTML='<div class="nm-icon-circle">'+it.emoji+'</div><p class="nm-role">'+t[it.roleKey]+'</p><p class="nm-names">'+names[0]+(names[1]?'<span class="nm-amp">&amp;</span>'+names[1]:'')+'</p>'+(i<NM_DATA.length-1?'<div class="nm-sep"></div>':'');c.appendChild(d);obsSF(d);});}
 
 function buildEvents(){var g=document.getElementById('ec-grid');if(!g)return;g.innerHTML='';var t=T[currentLang];W.events.forEach(function(ev){var card=document.createElement('div');card.className='ecard sf';var label=ev.tkLabel?ev.tkLabel[currentLang]:(t[ev.tk]||ev.tk);var imgH=ev.photo?'<img class="ecard-img" src="'+ev.photo+'" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><div class="ecard-ph" style="display:none">&#x1F3DB;</div>':'<div class="ecard-ph">&#x1F3DB;</div>';card.innerHTML=imgH+'<div class="ecard-body"><div class="ecard-title">'+label+'</div><div class="ecard-dots">+ + + + + + + +</div><p class="ecard-lbl">'+t.eLblName+'</p><p class="ecard-info"><strong>'+ev.name[currentLang]+'</strong></p><div class="ecard-dots">+ + + + + + + +</div><p class="ecard-lbl">'+t.eLblAddr+'</p><p class="ecard-info">'+ev.addr[currentLang].replace('\n','<br>')+'</p><div class="ecard-dots">+ + + + + + + +</div><p class="ecard-lbl">'+t.eLblTime+'</p><p class="ecard-hora">'+ev.hora+'</p></div><a class="llevame" href="'+ev.map+'" target="_blank">'+t.viewMap+' &#x1F4CD;</a><div style="text-align:center;"><div class="cal-w"><button class="cal-btn" onclick="toggleCalDD(\'cal-'+ev.ck+'\')">&#x1F4C5; '+t.addCal+'</button><div class="cal-dd" id="cal-'+ev.ck+'"><button class="cal-opt" onclick="openGCal(\''+ev.ck+'\')">&#x1F4C5; Google</button><button class="cal-opt" onclick="dlICS(\''+ev.ck+'\')">&#x1F4F1; Apple/Outlook</button></div></div></div>';g.appendChild(card);obsSF(card);});}
@@ -642,9 +871,23 @@ function stopSong(){playing=false;setSongUI(false);}
 var currentLang='es';
 function setLang(lang){currentLang=lang;var ll=document.getElementById('lang-label');if(ll){var lf={es:'&#127474;&#127485; ES',en:'&#127464;&#127462; EN',pa:'&#127470;&#127475; PA'};ll.innerHTML=lf[lang]||lang.toUpperCase();}document.body.className='lang-'+lang;['es','en','pa'].forEach(function(l){var el=document.getElementById('lo-'+l);if(el)el.classList.toggle('active',l===lang);});var t=T[lang];document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.textContent=t[k];});var de=document.getElementById('h-date');if(de)de.textContent=W.dateDisplay[lang];var dl=document.getElementById('rsvp-dl');if(dl)dl.innerHTML=t.rsvpPre+' <strong>'+W.rsvpDeadline[lang]+'</strong>';buildNombram();buildEvents();buildItin();buildDress();buildHotels();buildGifts();var wa=document.getElementById('rwa-link');if(wa)wa.href='https://wa.me/'+W.rsvpWa+'?text='+encodeURIComponent('Hola, tengo una pregunta sobre la boda de Dallany & Tony.');applyHeroColors();}
 
-(function(){document.addEventListener('contextmenu',function(e){e.preventDefault();});document.addEventListener('selectstart',function(e){e.preventDefault();});})();
+/* ── protection ── */
+(function(){
+  document.addEventListener('contextmenu',function(e){e.preventDefault();});
+  document.addEventListener('selectstart',function(e){e.preventDefault();});
+  document.addEventListener('dragstart',function(e){e.preventDefault();});
+  document.addEventListener('keydown',function(e){
+    var k=e.key.toLowerCase();
+    if((e.ctrlKey||e.metaKey)&&['u','s','a','p','c'].includes(k)){e.preventDefault();return;}
+    if(e.key==='F12'||e.key==='F11'){e.preventDefault();}
+  });
+  var dT=function(){};
+  dT.toString=function(){document.body.style.display='none';};
+})();
 
+/* ── init ── */
 buildNameSpans();buildSS();
+document.getElementById('bar-names').textContent=W.name1+' & '+W.name2;
 document.getElementById('h-loc').textContent=W.city;
 var sTitle=document.getElementById('s-title');if(sTitle)sTitle.textContent=W.songTitle;
 var sArtist=document.getElementById('s-artist');if(sArtist)sArtist.textContent=W.songArtist;
@@ -657,7 +900,90 @@ function tick(){var d=Math.max(0,new Date(W.dateISO).getTime()-Date.now());funct
 tick();setInterval(tick,1000);
 document.querySelectorAll('.sf').forEach(function(el){obsSF(el);});
 setupBarObs();setTimeout(startHint,1400);
-document.addEventListener('click',function(e){if(!e.target.closest('#lang-wrap'))closeLangDD();if(!e.target.closest('.cal-w'))document.querySelectorAll('.cal-dd').forEach(function(d){d.classList.remove('open');});});
+
+/* ── dynamic floral border on sec-nombram (JS-generated) ── */
+(function(){
+  var sec=document.getElementById('sec-nombram');
+  if(!sec)return;
+  var inn=sec.querySelector('.inn');
+  if(inn){inn.style.position='relative';inn.style.zIndex='2';}
+  function rv(v){return Number(v).toFixed(2);}
+  function rose(x,y,sz,dl){
+    var s='<g transform="translate('+x+','+y+')"><g>';
+    s+='<animateTransform attributeName="transform" type="scale" values="1;1.12;1" dur="3.6s" begin="'+dl+'s" repeatCount="indefinite"/>';
+    var oc=['#FFCCE0','#FFB8D4','#FFCCE0','#FFB8D4','#FFCCE0'];
+    var ic=['#EE96BE','#E882B0','#EE96BE','#E882B0','#EE96BE'];
+    for(var i=0;i<5;i++){var a=i*72;s+='<path d="M0,0 Q'+rv(sz*.85)+','+rv(-sz*.1)+' '+rv(sz*.58)+','+rv(-sz*.88)+' Q'+rv(sz*.1)+','+rv(-sz*1.28)+' 0,'+rv(-sz*1.05)+' Q'+rv(-sz*.1)+','+rv(-sz*1.28)+' '+rv(-sz*.58)+','+rv(-sz*.88)+' Q'+rv(-sz*.85)+','+rv(-sz*.1)+' 0,0Z" fill="'+oc[i]+'" transform="rotate('+a+')" opacity="0.95"/>';}
+    for(var j=0;j<5;j++){var b=36+j*72;s+='<path d="M0,0 Q'+rv(sz*.55)+','+rv(-sz*.08)+' '+rv(sz*.37)+','+rv(-sz*.56)+' Q'+rv(sz*.06)+','+rv(-sz*.82)+' 0,'+rv(-sz*.68)+' Q'+rv(-sz*.06)+','+rv(-sz*.82)+' '+rv(-sz*.37)+','+rv(-sz*.56)+' Q'+rv(-sz*.55)+','+rv(-sz*.08)+' 0,0Z" fill="'+ic[j]+'" transform="rotate('+b+')" opacity="0.95"/>';}
+    for(var k=0;k<8;k++){var ang=k*45*Math.PI/180;s+='<line x1="0" y1="0" x2="'+rv(Math.sin(ang)*sz*.3)+'" y2="'+rv(-Math.cos(ang)*sz*.3)+'" stroke="#E8B840" stroke-width="0.7"/><circle cx="'+rv(Math.sin(ang)*sz*.32)+'" cy="'+rv(-Math.cos(ang)*sz*.32)+'" r="0.9" fill="#F5D840"/>';}
+    s+='<circle r="'+rv(sz*.18)+'" fill="#D4900A"/><circle r="'+rv(sz*.09)+'" fill="#F5D840"/>';
+    s+='</g></g>';return s;
+  }
+  function blossom(x,y,sz,dl){
+    var s='<g transform="translate('+x+','+y+')"><g>';
+    s+='<animateTransform attributeName="transform" type="scale" values="1;1.14;1" dur="3.2s" begin="'+dl+'s" repeatCount="indefinite"/>';
+    for(var i=0;i<5;i++){var a=i*72;s+='<path d="M0,0 Q'+rv(sz*.7)+',0 '+rv(sz*.55)+','+rv(-sz*.75)+' Q'+rv(sz*.28)+','+rv(-sz*1.15)+' 0,'+rv(-sz*.98)+' Q'+rv(-sz*.28)+','+rv(-sz*1.15)+' '+rv(-sz*.55)+','+rv(-sz*.75)+' Q'+rv(-sz*.7)+',0 0,0Z" fill="#FFE0EE" transform="rotate('+a+')" opacity="0.92"/>';s+='<path d="M'+rv(sz*.08)+','+rv(-sz*.72)+' Q0,'+rv(-sz*.62)+' '+rv(-sz*.08)+','+rv(-sz*.72)+'" fill="none" stroke="#F0A8C8" stroke-width="0.7" transform="rotate('+a+')"/>';}
+    for(var k=0;k<5;k++){var ang=k*72*Math.PI/180;s+='<line x1="0" y1="0" x2="'+rv(Math.sin(ang)*sz*.42)+'" y2="'+rv(-Math.cos(ang)*sz*.42)+'" stroke="#F8C0D8" stroke-width="0.6"/><circle cx="'+rv(Math.sin(ang)*sz*.45)+'" cy="'+rv(-Math.cos(ang)*sz*.45)+'" r="0.8" fill="#EFD060"/>';}
+    s+='<circle r="'+rv(sz*.14)+'" fill="#FFF8E0"/>';
+    s+='</g></g>';return s;
+  }
+  function leaf(x,y,w,h,rot,dl){
+    var s='<g transform="translate('+x+','+y+') rotate('+rot+')"><g>';
+    s+='<animateTransform attributeName="transform" type="rotate" values="-2;2;-2" dur="4s" begin="'+dl+'s" repeatCount="indefinite"/>';
+    s+='<path d="M0,0 Q'+rv(w)+','+rv(-h*.45)+' 0,'+rv(-h)+' Q'+rv(-w)+','+rv(-h*.45)+' 0,0Z" fill="#78B850" opacity="0.88"/>';
+    s+='<path d="M0,0 Q0.5,'+rv(-h*.42)+' 0,'+rv(-h)+'" fill="none" stroke="#4A8830" stroke-width="0.75"/>';
+    s+='<path d="M'+rv(-w*.5)+','+rv(-h*.3)+' Q0,'+rv(-h*.44)+' '+rv(w*.45)+','+rv(-h*.38)+'" fill="none" stroke="#4A8830" stroke-width="0.45"/>';
+    s+='<path d="M'+rv(-w*.42)+','+rv(-h*.58)+' Q0,'+rv(-h*.72)+' '+rv(w*.38)+','+rv(-h*.65)+'" fill="none" stroke="#4A8830" stroke-width="0.45"/>';
+    s+='</g></g>';return s;
+  }
+  function bud(x,y,sz,rot,dl){
+    var s='<g transform="translate('+x+','+y+') rotate('+rot+')"><g>';
+    s+='<animateTransform attributeName="transform" type="scale" values="1;1.08;1" dur="3s" begin="'+dl+'s" repeatCount="indefinite"/>';
+    s+='<ellipse cx="0" cy="'+rv(-sz*.5)+'" rx="'+rv(sz*.46)+'" ry="'+rv(sz*.72)+'" fill="#FFB8D4"/>';
+    s+='<ellipse cx="0" cy="'+rv(-sz*.38)+'" rx="'+rv(sz*.26)+'" ry="'+rv(sz*.5)+'" fill="#E880B2"/>';
+    s+='<path d="M'+rv(-sz*.46)+','+rv(sz*.22)+' Q0,'+rv(sz*.72)+' '+rv(sz*.46)+','+rv(sz*.22)+'" fill="none" stroke="#6AAA44" stroke-width="1.2" stroke-linecap="round"/>';
+    s+='<path d="M0,'+rv(sz*.22)+' Q'+rv(sz*.55)+','+rv(sz*.6)+' '+rv(sz*.28)+','+rv(sz*1.05)+'" fill="none" stroke="#6AAA44" stroke-width="0.85"/>';
+    s+='<path d="M0,'+rv(sz*.22)+' Q'+rv(-sz*.5)+','+rv(sz*.68)+' '+rv(-sz*.24)+','+rv(sz*1.1)+'" fill="none" stroke="#6AAA44" stroke-width="0.85"/>';
+    s+='</g></g>';return s;
+  }
+  function buildSVG(){
+    var s='';
+    s+='<path d="M0,90 Q80,72 190,84 Q310,96 430,70 Q545,48 660,74 Q785,98 900,68 Q980,50 1200,76" fill="none" stroke="#9A7030" stroke-width="2.6" stroke-linecap="round"><animate attributeName="opacity" values="0.75;1;0.75" dur="5s" repeatCount="indefinite"/></path>';
+    ['M192,80 Q197,58 192,32','M508,56 Q513,36 508,12','M834,64 Q839,44 834,18',
+     'M310,90 Q318,74 326,62','M766,90 Q774,74 782,62','M65,85 Q60,66 55,48',
+     'M430,70 Q436,58 441,48','M660,74 Q665,60 669,50'
+    ].forEach(function(d){s+='<path d="'+d+'" fill="none" stroke="#9A7030" stroke-width="1.3" stroke-linecap="round"/>';});
+    ['M148,86 Q155,76 162,82','M375,80 Q381,70 387,76','M655,88 Q661,78 667,84','M870,74 Q876,64 882,70'
+    ].forEach(function(d){s+='<path d="'+d+'" fill="none" stroke="#9A7030" stroke-width="0.85" stroke-linecap="round"/>';});
+    s+=rose(192,28,16,0)+rose(508,8,15,0.9)+rose(834,14,15,1.8);
+    s+=blossom(55,44,12,0.4)+blossom(326,58,11,1.3)+blossom(441,44,10,0.2)+blossom(782,58,11,0.7);
+    s+=bud(162,74,8,-22,0.3)+bud(387,70,8,15,1.1)+bud(667,64,7,12,0.6)+bud(882,66,7,-20,1.7);
+    [[175,42,9,22,-46,0.1],[208,30,8,19,38,0.8],[180,62,7,16,-70,1.5],
+     [90,78,8,18,-28,0.4],[492,20,9,22,-52,0.2],[526,16,8,19,44,0.9],
+     [510,38,7,17,-68,1.6],[572,62,7,17,-26,0.5],[468,52,8,19,28,1.3],
+     [818,26,9,22,-48,0.0],[856,22,8,19,40,0.7],[836,48,7,16,-64,1.4],
+     [768,78,7,17,-30,0.6],[124,80,7,16,-14,0.3],[288,80,6,15,-24,0.8]
+    ].forEach(function(a){s+=leaf(a[0],a[1],a[2],a[3],a[4],a[5]);});
+    return s;
+  }
+  var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 110" width="100%" height="110" style="display:block;overflow:visible;">'+buildSVG()+'</svg>';
+  var wrap=document.createElement('div');
+  wrap.style.cssText='position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;z-index:0;overflow:visible;';
+  var topDiv=document.createElement('div');
+  topDiv.style.cssText='position:absolute;top:0;left:0;right:0;overflow:visible;';
+  topDiv.innerHTML=svg;
+  var botDiv=document.createElement('div');
+  botDiv.style.cssText='position:absolute;bottom:0;left:0;right:0;overflow:visible;transform:scaleY(-1);';
+  botDiv.innerHTML=svg;
+  wrap.appendChild(topDiv);
+  wrap.appendChild(botDiv);
+  sec.insertBefore(wrap,sec.firstChild);
+}());
+
+document.addEventListener('click',function(e){
+  if(!e.target.closest('#lang-wrap'))closeLangDD();
+  if(!e.target.closest('.cal-w'))document.querySelectorAll('.cal-dd').forEach(function(d){d.classList.remove('open');});
+});
 </script>
 </body>
 </html>
